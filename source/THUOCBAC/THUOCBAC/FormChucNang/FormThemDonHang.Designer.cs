@@ -373,6 +373,7 @@
 	  this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 	  this.KeyPreview = true;
 	  this.Name = "FormThemDonHang";
+	  this.ShowInTaskbar = false;
 	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 	  this.Text = "Đơn hàng";
 	  this.Load += new System.EventHandler(this.FormThemDonHang_Load);
