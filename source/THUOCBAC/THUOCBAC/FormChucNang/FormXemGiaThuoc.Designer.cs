@@ -126,7 +126,7 @@
 	  dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
 	  dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
 	  this.dataGridViewXLichSuGDVT.DefaultCellStyle = dataGridViewCellStyle1;
-	  this.dataGridViewXLichSuGDVT.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+	  this.dataGridViewXLichSuGDVT.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
 	  this.dataGridViewXLichSuGDVT.Location = new System.Drawing.Point(7, 20);
 	  this.dataGridViewXLichSuGDVT.Name = "dataGridViewXLichSuGDVT";
 	  this.dataGridViewXLichSuGDVT.ReadOnly = true;
@@ -300,6 +300,7 @@
 	  this.Controls.Add(this.panelEx1);
 	  this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 	  this.Name = "FormXemGiaThuoc";
+	  this.ShowInTaskbar = false;
 	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 	  this.Text = "Xem giá thuốc";
 	  this.Load += new System.EventHandler(this.FormXemGiaThuoc_Load);

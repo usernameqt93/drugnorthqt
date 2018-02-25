@@ -20,6 +20,7 @@ namespace THUOCBAC.FormDanhSach {
 	private BL_KhachHang BL_KHACHHANG=new BL_KhachHang();
 	private DataTable DT_KHACHHANG;
 	private string STR_NUT_VUABAM="NutHienTatCa";
+
 	public FormDanhSachDonHang() {
 	  InitializeComponent();
 	}

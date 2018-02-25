@@ -13,12 +13,16 @@ namespace THUOCBAC {
   public partial class FormMain:DevComponents.DotNetBar.Office2007RibbonForm {
 	BL_ViThuoc BL_VITHUOC=new BL_ViThuoc();
 	BL_DonHang BL_DONHANG=new BL_DonHang();
+	private const string CONST_STR_DS_DONHANG = "Danh sách các đơn hàng";
+	private const string CONST_STR_DS_VITHUOC = "Danh sách các vị thuốc";
+
 	public FormMain() {
 	  FormSplashScreen formSpl=new FormSplashScreen();
 	  formSpl.ShowDialog();
 	  InitializeComponent();
 
 	}
+
 	static int intViTriTab(TabControl TabControlTen,string strTenTab) {
 	  int temp=-1;
 	  for(int i=0;i<TabControlTen.TabPages.Count;i++) {
@@ -64,12 +68,12 @@ namespace THUOCBAC {
 
 	private void btnIDanhSachViThuoc_Click(object sender,EventArgs e) {
 	  FormDanhSach.FormDanhSachViThuoc formDanhSachViThuoc=new FormDanhSach.FormDanhSachViThuoc();
-	  voidTaoTab(tabControlChinh,"Danh sách các vị thuốc",formDanhSachViThuoc);
+	  voidTaoTab(tabControlChinh,CONST_STR_DS_VITHUOC,formDanhSachViThuoc);
 	}
 
 	private void btnIDanhSachDonHang_Click(object sender,EventArgs e) {
 	  FormDanhSach.FormDanhSachDonHang formDanhSachDonHang=new FormDanhSach.FormDanhSachDonHang();
-	  voidTaoTab(tabControlChinh,"Danh sách các đơn hàng",formDanhSachDonHang);
+	  voidTaoTab(tabControlChinh,CONST_STR_DS_DONHANG,formDanhSachDonHang);
 	}
 
 	private void buttonItemDonXinXacNhan_Click(object sender,EventArgs e) {
@@ -79,12 +83,12 @@ namespace THUOCBAC {
 
 	private void btnXXemChiTietDSDonHang_Click(object sender,EventArgs e) {
 	  FormDanhSach.FormDanhSachDonHang formDanhSachDonHang=new FormDanhSach.FormDanhSachDonHang();
-	  voidTaoTab(tabControlChinh,"Danh sách các đơn hàng",formDanhSachDonHang);
+	  voidTaoTab(tabControlChinh,CONST_STR_DS_DONHANG,formDanhSachDonHang);
 	}
 
 	private void btnXXemChiTietDSViThuoc_Click(object sender,EventArgs e) {
 	  FormDanhSach.FormDanhSachViThuoc formDanhSachViThuoc=new FormDanhSach.FormDanhSachViThuoc();
-	  voidTaoTab(tabControlChinh,"Danh sách các vị thuốc",formDanhSachViThuoc);
+	  voidTaoTab(tabControlChinh,CONST_STR_DS_VITHUOC,formDanhSachViThuoc);
 	}
 
 	private void FormMain_Load(object sender,EventArgs e) {
