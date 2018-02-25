@@ -66,11 +66,12 @@
 	  this.tabControlChinh = new System.Windows.Forms.TabControl();
 	  this.tabPage1 = new System.Windows.Forms.TabPage();
 	  this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
-	  this.groupBox1 = new System.Windows.Forms.GroupBox();
 	  this.btnXXemChiTietDSDonHang = new DevComponents.DotNetBar.ButtonX();
 	  this.btnXXemChiTietDSViThuoc = new DevComponents.DotNetBar.ButtonX();
 	  this.labelXTongSoDonHang = new DevComponents.DotNetBar.LabelX();
 	  this.labelXTongViThuoc = new DevComponents.DotNetBar.LabelX();
+	  this.tlpItem = new System.Windows.Forms.TableLayoutPanel();
+	  this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 	  this.ribbonControl1.SuspendLayout();
 	  this.ribbonPanel1.SuspendLayout();
 	  this.ribbonPanel2.SuspendLayout();
@@ -78,7 +79,8 @@
 	  this.tabControlChinh.SuspendLayout();
 	  this.tabPage1.SuspendLayout();
 	  this.panelEx1.SuspendLayout();
-	  this.groupBox1.SuspendLayout();
+	  this.tlpItem.SuspendLayout();
+	  this.tableLayoutPanel1.SuspendLayout();
 	  this.SuspendLayout();
 	  // 
 	  // ribbonControl1
@@ -622,10 +624,11 @@
 	  // tabControlChinh
 	  // 
 	  this.tabControlChinh.Controls.Add(this.tabPage1);
-	  this.tabControlChinh.Location = new System.Drawing.Point(0, 154);
+	  this.tabControlChinh.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.tabControlChinh.Location = new System.Drawing.Point(3, 3);
 	  this.tabControlChinh.Name = "tabControlChinh";
 	  this.tabControlChinh.SelectedIndex = 0;
-	  this.tabControlChinh.Size = new System.Drawing.Size(1357, 564);
+	  this.tabControlChinh.Size = new System.Drawing.Size(1341, 557);
 	  this.tabControlChinh.TabIndex = 1;
 	  // 
 	  // tabPage1
@@ -633,8 +636,7 @@
 	  this.tabPage1.Controls.Add(this.panelEx1);
 	  this.tabPage1.Location = new System.Drawing.Point(4, 22);
 	  this.tabPage1.Name = "tabPage1";
-	  this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-	  this.tabPage1.Size = new System.Drawing.Size(1349, 538);
+	  this.tabPage1.Size = new System.Drawing.Size(1333, 531);
 	  this.tabPage1.TabIndex = 0;
 	  this.tabPage1.Text = "Giới thiệu";
 	  this.tabPage1.UseVisualStyleBackColor = true;
@@ -643,10 +645,11 @@
 	  // 
 	  this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
 	  this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.panelEx1.Controls.Add(this.groupBox1);
-	  this.panelEx1.Location = new System.Drawing.Point(-4, 0);
+	  this.panelEx1.Controls.Add(this.tlpItem);
+	  this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.panelEx1.Location = new System.Drawing.Point(0, 0);
 	  this.panelEx1.Name = "panelEx1";
-	  this.panelEx1.Size = new System.Drawing.Size(1353, 538);
+	  this.panelEx1.Size = new System.Drawing.Size(1333, 531);
 	  this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
 	  this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
 	  this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -656,27 +659,15 @@
 	  this.panelEx1.Style.GradientAngle = 90;
 	  this.panelEx1.TabIndex = 0;
 	  // 
-	  // groupBox1
-	  // 
-	  this.groupBox1.Controls.Add(this.btnXXemChiTietDSDonHang);
-	  this.groupBox1.Controls.Add(this.btnXXemChiTietDSViThuoc);
-	  this.groupBox1.Controls.Add(this.labelXTongSoDonHang);
-	  this.groupBox1.Controls.Add(this.labelXTongViThuoc);
-	  this.groupBox1.Location = new System.Drawing.Point(10, 6);
-	  this.groupBox1.Name = "groupBox1";
-	  this.groupBox1.Size = new System.Drawing.Size(1330, 524);
-	  this.groupBox1.TabIndex = 0;
-	  this.groupBox1.TabStop = false;
-	  this.groupBox1.Text = "Phần mềm của bạn hiện tại đang lưu các thông tin dưới đây";
-	  // 
 	  // btnXXemChiTietDSDonHang
 	  // 
 	  this.btnXXemChiTietDSDonHang.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 	  this.btnXXemChiTietDSDonHang.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXXemChiTietDSDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.btnXXemChiTietDSDonHang.Image = global::THUOCBAC.Properties.Resources._goto;
-	  this.btnXXemChiTietDSDonHang.Location = new System.Drawing.Point(605, 194);
+	  this.btnXXemChiTietDSDonHang.Location = new System.Drawing.Point(674, 203);
 	  this.btnXXemChiTietDSDonHang.Name = "btnXXemChiTietDSDonHang";
-	  this.btnXXemChiTietDSDonHang.Size = new System.Drawing.Size(179, 33);
+	  this.btnXXemChiTietDSDonHang.Size = new System.Drawing.Size(174, 29);
 	  this.btnXXemChiTietDSDonHang.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 	  this.btnXXemChiTietDSDonHang.TabIndex = 1;
 	  this.btnXXemChiTietDSDonHang.Text = "Xem chi tiết";
@@ -686,10 +677,11 @@
 	  // 
 	  this.btnXXemChiTietDSViThuoc.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 	  this.btnXXemChiTietDSViThuoc.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXXemChiTietDSViThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.btnXXemChiTietDSViThuoc.Image = global::THUOCBAC.Properties.Resources._goto;
-	  this.btnXXemChiTietDSViThuoc.Location = new System.Drawing.Point(420, 194);
+	  this.btnXXemChiTietDSViThuoc.Location = new System.Drawing.Point(484, 203);
 	  this.btnXXemChiTietDSViThuoc.Name = "btnXXemChiTietDSViThuoc";
-	  this.btnXXemChiTietDSViThuoc.Size = new System.Drawing.Size(179, 33);
+	  this.btnXXemChiTietDSViThuoc.Size = new System.Drawing.Size(174, 29);
 	  this.btnXXemChiTietDSViThuoc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 	  this.btnXXemChiTietDSViThuoc.TabIndex = 1;
 	  this.btnXXemChiTietDSViThuoc.Text = "Xem chi tiết";
@@ -702,12 +694,13 @@
 	  // 
 	  // 
 	  this.labelXTongSoDonHang.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.labelXTongSoDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.labelXTongSoDonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 	  this.labelXTongSoDonHang.Image = global::THUOCBAC.Properties.Resources.Document_Copy_icon128x128;
 	  this.labelXTongSoDonHang.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-	  this.labelXTongSoDonHang.Location = new System.Drawing.Point(605, 19);
+	  this.labelXTongSoDonHang.Location = new System.Drawing.Point(674, 23);
 	  this.labelXTongSoDonHang.Name = "labelXTongSoDonHang";
-	  this.labelXTongSoDonHang.Size = new System.Drawing.Size(179, 169);
+	  this.labelXTongSoDonHang.Size = new System.Drawing.Size(174, 164);
 	  this.labelXTongSoDonHang.TabIndex = 0;
 	  this.labelXTongSoDonHang.Text = "16 đơn hàng";
 	  this.labelXTongSoDonHang.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -719,24 +712,64 @@
 	  // 
 	  // 
 	  this.labelXTongViThuoc.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.labelXTongViThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.labelXTongViThuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 	  this.labelXTongViThuoc.Image = global::THUOCBAC.Properties.Resources.leaf_icon128x128;
 	  this.labelXTongViThuoc.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-	  this.labelXTongViThuoc.Location = new System.Drawing.Point(420, 19);
+	  this.labelXTongViThuoc.Location = new System.Drawing.Point(484, 23);
 	  this.labelXTongViThuoc.Name = "labelXTongViThuoc";
-	  this.labelXTongViThuoc.Size = new System.Drawing.Size(179, 169);
+	  this.labelXTongViThuoc.Size = new System.Drawing.Size(174, 164);
 	  this.labelXTongViThuoc.TabIndex = 0;
 	  this.labelXTongViThuoc.Text = "54 vị thuốc";
 	  this.labelXTongViThuoc.TextAlignment = System.Drawing.StringAlignment.Center;
+	  // 
+	  // tlpItem
+	  // 
+	  this.tlpItem.ColumnCount = 5;
+	  this.tlpItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+	  this.tlpItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+	  this.tlpItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+	  this.tlpItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+	  this.tlpItem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+	  this.tlpItem.Controls.Add(this.labelXTongViThuoc, 1, 1);
+	  this.tlpItem.Controls.Add(this.btnXXemChiTietDSDonHang, 3, 3);
+	  this.tlpItem.Controls.Add(this.labelXTongSoDonHang, 3, 1);
+	  this.tlpItem.Controls.Add(this.btnXXemChiTietDSViThuoc, 1, 3);
+	  this.tlpItem.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.tlpItem.Location = new System.Drawing.Point(0, 0);
+	  this.tlpItem.Name = "tlpItem";
+	  this.tlpItem.RowCount = 5;
+	  this.tlpItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+	  this.tlpItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+	  this.tlpItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+	  this.tlpItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+	  this.tlpItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+	  this.tlpItem.Size = new System.Drawing.Size(1333, 531);
+	  this.tlpItem.TabIndex = 2;
+	  // 
+	  // tableLayoutPanel1
+	  // 
+	  this.tableLayoutPanel1.ColumnCount = 1;
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+	  this.tableLayoutPanel1.Controls.Add(this.tabControlChinh, 0, 0);
+	  this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 155);
+	  this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+	  this.tableLayoutPanel1.RowCount = 1;
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+	  this.tableLayoutPanel1.Size = new System.Drawing.Size(1347, 563);
+	  this.tableLayoutPanel1.TabIndex = 2;
 	  // 
 	  // FormMain
 	  // 
 	  this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 	  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 	  this.ClientSize = new System.Drawing.Size(1357, 720);
-	  this.Controls.Add(this.tabControlChinh);
+	  this.Controls.Add(this.tableLayoutPanel1);
 	  this.Controls.Add(this.ribbonControl1);
-	  this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+	  this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+	  this.MinimumSize = new System.Drawing.Size(1357, 720);
 	  this.Name = "FormMain";
 	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 	  this.Text = "Phạm Quốc Tuấn - Chuyên: Gia công chương trình in hóa đơn, chương trình kế toán, " +
@@ -751,7 +784,8 @@
 	  this.tabControlChinh.ResumeLayout(false);
 	  this.tabPage1.ResumeLayout(false);
 	  this.panelEx1.ResumeLayout(false);
-	  this.groupBox1.ResumeLayout(false);
+	  this.tlpItem.ResumeLayout(false);
+	  this.tableLayoutPanel1.ResumeLayout(false);
 	  this.ResumeLayout(false);
 
 	}
@@ -792,7 +826,6 @@
 	private DevComponents.DotNetBar.RibbonBar ribbonBar2;
 	private DevComponents.DotNetBar.ButtonItem buttonItemDonXinXacNhan;
 	private DevComponents.DotNetBar.PanelEx panelEx1;
-	private System.Windows.Forms.GroupBox groupBox1;
 	private DevComponents.DotNetBar.LabelX labelXTongViThuoc;
 	private DevComponents.DotNetBar.LabelX labelXTongSoDonHang;
 	private DevComponents.DotNetBar.ButtonX btnXXemChiTietDSViThuoc;
@@ -804,5 +837,7 @@
 	private DevComponents.DotNetBar.ButtonItem btnIDanhSachKhachHang;
 	private DevComponents.DotNetBar.RibbonBar ribbonBar4;
 	private DevComponents.DotNetBar.ButtonItem buttonItemXemGiaThuoc;
+	private System.Windows.Forms.TableLayoutPanel tlpItem;
+	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
   }
 }

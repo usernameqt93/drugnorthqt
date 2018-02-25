@@ -92,6 +92,7 @@ namespace THUOCBAC {
 	}
 
 	private void FormMain_Load(object sender,EventArgs e) {
+	  //tabPage1.w
 	  string strLoiTongViThuoc="";
 	  int intTongViThuoc=BL_VITHUOC.intTongSoViThuocTrongDanhSach(ref strLoiTongViThuoc);
 	  if(!strLoiTongViThuoc.Equals("")) {

@@ -5,3 +5,10 @@ project link github
 https://github.com/usernameqt93/drugnorthqt
 
 file putty luu o H CONGVIEC
+
+
+full man hinh hien tai 1357, 720
+
+FormDanhSachDonHang  1349, 538
+
+groupbox chuc nang 196, 223
