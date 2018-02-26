@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessObject;
+using QTCommon;
 
 namespace BusinessLogic {
   public class BL_DonHang {
@@ -25,16 +26,18 @@ namespace BusinessLogic {
 		dt=DAO_DONHANG.dataTableBangDanhSachDonHangCoTenKH();
 	  if(strDieuKien.Equals("TheoIdBangKhachHang"))
 		dt=DAO_DONHANG.dataTableBangDanhSachDHTheoIdKH(intIdBangKhachHang);
-	  dt.Columns.Add("STT");
-	  for(int i=0;i<dt.Rows.Count;i++)
-		dt.Rows[i]["STT"]=i+1;
+	 // dt.Columns.Add("STT");
+	 // for(int i=0;i<dt.Rows.Count;i++)
+		//dt.Rows[i]["STT"]=i+1;
+	  QTLibraryFunction.VOID_ADD_STT_COL_TO_DATATABLE(ref dt);
 	  return dt;
 	}
 	public DataTable dataTable_DANHSACH_DH_THEONGAY(DateTime dtThoiGianTimKiem) {
 	  DataTable dt=DAO_DONHANG.dataTableBANG_DANHSACH_DH_THEONGAY(dtThoiGianTimKiem);
-	  dt.Columns.Add("STT");
-	  for(int i=0;i<dt.Rows.Count;i++)
-		dt.Rows[i]["STT"]=i+1;
+	 // dt.Columns.Add("STT");
+	 // for(int i=0;i<dt.Rows.Count;i++)
+		//dt.Rows[i]["STT"]=i+1;
+	  QTLibraryFunction.VOID_ADD_STT_COL_TO_DATATABLE(ref dt);
 	  return dt;
 	}
 	public int intTongDonHangTrongDanhSach(ref string strLoi) {

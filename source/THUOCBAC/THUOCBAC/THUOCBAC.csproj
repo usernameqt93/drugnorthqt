@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>THUOCBAC</RootNamespace>
     <AssemblyName>THUOCBAC</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -142,6 +143,12 @@
     <Compile Include="FormDanhSach\FormDanhSachViThuoc.Designer.cs">
       <DependentUpon>FormDanhSachViThuoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDialogPhu\frmChonTenTrongDanhSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogPhu\frmChonTenTrongDanhSach.Designer.cs">
+      <DependentUpon>frmChonTenTrongDanhSach.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDanhSach\FormDanhSachViThuoc.resx">
       <DependentUpon>FormDanhSachViThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogPhu\frmChonTenTrongDanhSach.resx">
+      <DependentUpon>frmChonTenTrongDanhSach.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -393,6 +403,10 @@
     <ProjectReference Include="..\FValueObject\FValueObject.csproj">
       <Project>{3cdfd4af-4543-45ac-a996-56f7706d95c4}</Project>
       <Name>FValueObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QTCommon\QTCommon.csproj">
+      <Project>{c8ddd53c-0914-44e1-b55d-08074ad22fdd}</Project>
+      <Name>QTCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

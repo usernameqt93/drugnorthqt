@@ -41,7 +41,7 @@ namespace THUOCBAC.FormDanhSach {
 	  dataGridViewXCacDonHang.Columns["ThoiGianVietDonHangNay"].HeaderText="Thời gian viết";
 	  dataGridViewXCacDonHang.Columns["TongViThuoc"].HeaderText="Tổng số vị thuốc";
 	  dataGridViewXCacDonHang.Columns["TongKhoiLuong"].HeaderText="Tổng khối lượng";
-	  dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].HeaderText="Tổng giá trị";
+	  dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].HeaderText="Tổng giá trị đơn hàng";
 	  dataGridViewXCacDonHang.Columns["TenKhachHang"].HeaderText="Tên khách hàng";
 	  dataGridViewXCacDonHang.Columns["MaDonHang"].Visible=false;
 	  dataGridViewXCacDonHang.Columns["IdBangKhachHang"].Visible=false;
@@ -51,13 +51,38 @@ namespace THUOCBAC.FormDanhSach {
 	  dataGridViewXCacDonHang.Columns["TongViThuoc"].DefaultCellStyle.Format="#,###.### vị thuốc";
 	  dataGridViewXCacDonHang.Columns["TongKhoiLuong"].DefaultCellStyle.Format="#,###.### Kg";
 	}
+
+	private void VOID_SET_WIDTH_ALIGN_COLUMN(string _strTenCot,int _intWidth,DataGridViewContentAlignment _dgvContentAlign) {
+	  dataGridViewXCacDonHang.Columns[_strTenCot].Width=_intWidth;
+	  dataGridViewXCacDonHang.Columns[_strTenCot].DefaultCellStyle.Alignment=_dgvContentAlign;
+	  dataGridViewXCacDonHang.Columns[_strTenCot].HeaderCell.Style.Alignment=_dgvContentAlign;
+	}
+
+	private void VOID_SET_WIDTH_ALIGN_COLUMN(string _strTenCot,int _intWidth,DataGridViewContentAlignment _dgvContentAlign,DataGridViewAutoSizeColumnMode _dgvAutoSizeColumnMode) {
+	  dataGridViewXCacDonHang.Columns[_strTenCot].Width=_intWidth;
+	  dataGridViewXCacDonHang.Columns[_strTenCot].DefaultCellStyle.Alignment=_dgvContentAlign;
+	  dataGridViewXCacDonHang.Columns[_strTenCot].HeaderCell.Style.Alignment=_dgvContentAlign;
+	  dataGridViewXCacDonHang.Columns[_strTenCot].AutoSizeMode=_dgvAutoSizeColumnMode;
+	}
+
 	private void voidHIENTHI_DGV_DH_CO_STT(string strViTriTroDen,string strDieuKien,int intIdBangKhachHang) {
 	  dataGridViewXCacDonHang.DataSource=BL_DONHANG.dataTableBangDanhSachDonHang(strDieuKien,intIdBangKhachHang);
+
+	  foreach(DataGridViewColumn column in dataGridViewXCacDonHang.Columns) {
+		column.SortMode=DataGridViewColumnSortMode.NotSortable;
+	  }
+	  VOID_SET_WIDTH_ALIGN_COLUMN("STT",60,DataGridViewContentAlignment.MiddleCenter);
+	  VOID_SET_WIDTH_ALIGN_COLUMN("TongKhoiLuong",150,DataGridViewContentAlignment.MiddleCenter);
+	  VOID_SET_WIDTH_ALIGN_COLUMN("TongGiaTriDonHang",150,DataGridViewContentAlignment.MiddleCenter);
+	  VOID_SET_WIDTH_ALIGN_COLUMN("ThoiGianVietDonHangNay",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  VOID_SET_WIDTH_ALIGN_COLUMN("TongViThuoc",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  VOID_SET_WIDTH_ALIGN_COLUMN("TenKhachHang",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+
+	  dataGridViewXCacDonHang.Columns["STT"].DisplayIndex=0;
 	  if(strDieuKien.Equals("TatCa"))
 		groupBoxDanhSachDH.Text="Danh sách đơn hàng (Đang hiển thị tất cả đơn hàng)";
 	  if(strDieuKien.Equals("TheoIdBangKhachHang"))
 		groupBoxDanhSachDH.Text="Danh sách đơn hàng (Đang hiển thị những đơn hàng có TÊN KHÁCH HÀNG là '"+comboBoxExTenKhachHang.Text+"' )";
-	  dataGridViewXCacDonHang.Columns["STT"].DisplayIndex=0;
 	  if(strViTriTroDen.Equals("ViTriCuoiCung")) {
 		//chuyển xuống dòng dưới cùng
 		int intSoThuTuHangMuonTroVao=0;
@@ -173,6 +198,11 @@ namespace THUOCBAC.FormDanhSach {
 	  DateTime dtThoiGianTimKiem=dateTimeInputThoiGian.Value;
 	  voidHIENTHI_DGV_THEONGAY("ViTriCuoiCung",dtThoiGianTimKiem);
 	  STR_NUT_VUABAM="NutTimTheoNgay";
+	}
+
+	private void btnXChonTenKhachHang_Click(object sender,EventArgs e) {
+	  FormDialogPhu.frmChonTenTrongDanhSach frm = new FormDialogPhu.frmChonTenTrongDanhSach();
+	  frm.ShowDialog();
 	}
   }
 }

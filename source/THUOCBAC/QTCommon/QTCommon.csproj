@@ -42,6 +42,9 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QTAppInfo.cs" />
+    <Compile Include="QTAppSetting.cs" />
+    <Compile Include="QTLibraryFunction.cs" />
     <Compile Include="QTMessageConst.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

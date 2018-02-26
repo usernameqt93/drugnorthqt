@@ -12,3 +12,9 @@ full man hinh hien tai 1357, 720
 FormDanhSachDonHang  1349, 538
 
 groupbox chuc nang 196, 223
+
+
+button tim ten khach hang nay 170, 34
+
+khi tao class library o VS 2015, phien ban la 4.5.2 lech so voi 4.5 o VS 2012 nen run loi --> chu y dieu nay
+-->Toan bo project phai chuyen het theo 1 thang, o day chuyen het len 4.5.2
