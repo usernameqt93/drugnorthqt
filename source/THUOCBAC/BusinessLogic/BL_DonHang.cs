@@ -29,7 +29,7 @@ namespace BusinessLogic {
 	 // dt.Columns.Add("STT");
 	 // for(int i=0;i<dt.Rows.Count;i++)
 		//dt.Rows[i]["STT"]=i+1;
-	  QTLibraryFunction.VOID_ADD_STT_COL_TO_DATATABLE(ref dt);
+	  QTLibraryFunction.STATIC_VOID_ADD_STT_COL_TO_DATATABLE(ref dt);
 	  return dt;
 	}
 	public DataTable dataTable_DANHSACH_DH_THEONGAY(DateTime dtThoiGianTimKiem) {
@@ -37,7 +37,7 @@ namespace BusinessLogic {
 	 // dt.Columns.Add("STT");
 	 // for(int i=0;i<dt.Rows.Count;i++)
 		//dt.Rows[i]["STT"]=i+1;
-	  QTLibraryFunction.VOID_ADD_STT_COL_TO_DATATABLE(ref dt);
+	  QTLibraryFunction.STATIC_VOID_ADD_STT_COL_TO_DATATABLE(ref dt);
 	  return dt;
 	}
 	public int intTongDonHangTrongDanhSach(ref string strLoi) {

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
+using QTCommon;
 
 namespace THUOCBAC.FormDanhSach {
   public partial class FormDanhSachDonHang:Form {
@@ -21,6 +22,12 @@ namespace THUOCBAC.FormDanhSach {
 	private DataTable DT_KHACHHANG;
 	private string STR_NUT_VUABAM="NutHienTatCa";
 
+	private const string CONST_STR_THOIGIAN_VIET = "Thời gian viết";
+	private const string CONST_STR_TONG_VITHUOC = "Tổng số vị thuốc";
+	private const string CONST_STR_TONG_KHOILUONG = "Tổng khối lượng";
+	private const string CONST_STR_TONG_GIATRI_DH = "Tổng giá trị đơn hàng";
+	private const string CONST_STR_TEN_KHACHHANG = "Tên khách hàng";
+
 	public FormDanhSachDonHang() {
 	  InitializeComponent();
 	}
@@ -30,59 +37,77 @@ namespace THUOCBAC.FormDanhSach {
 	  formThemDonHang.ShowDialog();
 	  //dataGridViewXCacDonHang.DataSource=BL_DONHANG.dataTableBangDanhSachDonHang();
 	  voidHIENTHI_DGV_DH_CO_STT("ViTriCuoiCung","TatCa",-1);
-	  voidCAPNHAT_COMBOBOX_TENKH();
+	  //voidCAPNHAT_COMBOBOX_TENKH();
 	}
 	private void FormDanhSachDonHang_Load(object sender,EventArgs e) {
 	  //dataGridViewXCacDonHang.DataSource=BL_DONHANG.dataTableBangDanhSachDonHang();
 	  dateTimeInputThoiGian.Value=DateTime.Now;
-	  voidCAPNHAT_COMBOBOX_TENKH();
+	  //voidCAPNHAT_COMBOBOX_TENKH();
 	  //comboBoxExTenKhachHang.SelectedValue=0;
 	  voidHIENTHI_DGV_DH_CO_STT("ViTriCuoiCung","TatCa",-1);
-	  dataGridViewXCacDonHang.Columns["ThoiGianVietDonHangNay"].HeaderText="Thời gian viết";
-	  dataGridViewXCacDonHang.Columns["TongViThuoc"].HeaderText="Tổng số vị thuốc";
-	  dataGridViewXCacDonHang.Columns["TongKhoiLuong"].HeaderText="Tổng khối lượng";
-	  dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].HeaderText="Tổng giá trị đơn hàng";
-	  dataGridViewXCacDonHang.Columns["TenKhachHang"].HeaderText="Tên khách hàng";
-	  dataGridViewXCacDonHang.Columns["MaDonHang"].Visible=false;
-	  dataGridViewXCacDonHang.Columns["IdBangKhachHang"].Visible=false;
-	  dataGridViewXCacDonHang.Columns["SDTKhachHang"].Visible=false;
-	  dataGridViewXCacDonHang.Columns["TienNoCu"].Visible=false;
+	  //dataGridViewXCacDonHang.Columns["ThoiGianVietDonHangNay"].HeaderText=CONST_STR_THOIGIAN_VIET;
+	  //dataGridViewXCacDonHang.Columns["TongViThuoc"].HeaderText=CONST_STR_TONG_VITHUOC;
+	  //dataGridViewXCacDonHang.Columns["TongKhoiLuong"].HeaderText=CONST_STR_TONG_KHOILUONG;
+	  //dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].HeaderText=CONST_STR_TONG_GIATRI_DH;
+	  //dataGridViewXCacDonHang.Columns["TenKhachHang"].HeaderText=CONST_STR_TEN_KHACHHANG;
+	  //dataGridViewXCacDonHang.Columns["ThoiGianVietDonHangNay"].HeaderText="Thời gian viết";
+	  //dataGridViewXCacDonHang.Columns["TongViThuoc"].HeaderText="Tổng số vị thuốc";
+	  //dataGridViewXCacDonHang.Columns["TongKhoiLuong"].HeaderText="Tổng khối lượng";
+	  //dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].HeaderText="Tổng giá trị đơn hàng";
+	  //dataGridViewXCacDonHang.Columns["TenKhachHang"].HeaderText="Tên khách hàng";
+
+	  //dataGridViewXCacDonHang.Columns["MaDonHang"].Visible=false;
+	  //dataGridViewXCacDonHang.Columns["IdBangKhachHang"].Visible=false;
+	  //dataGridViewXCacDonHang.Columns["SDTKhachHang"].Visible=false;
+	  //dataGridViewXCacDonHang.Columns["TienNoCu"].Visible=false;
+
+	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dataGridViewXCacDonHang,new List<string>() { "MaDonHang","IdBangKhachHang","SDTKhachHang","TienNoCu" });
+	  //QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dataGridViewXCacDonHang,new List<string>() { "MaDonHang","IdBangKhachHang","SDTKhachHang" });
+
 	  dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].DefaultCellStyle.Format="#,###.### vnđ";
 	  dataGridViewXCacDonHang.Columns["TongViThuoc"].DefaultCellStyle.Format="#,###.### vị thuốc";
 	  dataGridViewXCacDonHang.Columns["TongKhoiLuong"].DefaultCellStyle.Format="#,###.### Kg";
 	}
 
-	private void VOID_SET_WIDTH_ALIGN_COLUMN(string _strTenCot,int _intWidth,DataGridViewContentAlignment _dgvContentAlign) {
-	  dataGridViewXCacDonHang.Columns[_strTenCot].Width=_intWidth;
-	  dataGridViewXCacDonHang.Columns[_strTenCot].DefaultCellStyle.Alignment=_dgvContentAlign;
-	  dataGridViewXCacDonHang.Columns[_strTenCot].HeaderCell.Style.Alignment=_dgvContentAlign;
-	}
+	//private void VOID_SET_WIDTH_ALIGN_COLUMN(string _strTenCot,int _intWidth,DataGridViewContentAlignment _dgvContentAlign) {
+	//  dataGridViewXCacDonHang.Columns[_strTenCot].Width=_intWidth;
+	//  dataGridViewXCacDonHang.Columns[_strTenCot].DefaultCellStyle.Alignment=_dgvContentAlign;
+	//  dataGridViewXCacDonHang.Columns[_strTenCot].HeaderCell.Style.Alignment=_dgvContentAlign;
+	//}
 
-	private void VOID_SET_WIDTH_ALIGN_COLUMN(string _strTenCot,int _intWidth,DataGridViewContentAlignment _dgvContentAlign,DataGridViewAutoSizeColumnMode _dgvAutoSizeColumnMode) {
-	  dataGridViewXCacDonHang.Columns[_strTenCot].Width=_intWidth;
-	  dataGridViewXCacDonHang.Columns[_strTenCot].DefaultCellStyle.Alignment=_dgvContentAlign;
-	  dataGridViewXCacDonHang.Columns[_strTenCot].HeaderCell.Style.Alignment=_dgvContentAlign;
-	  dataGridViewXCacDonHang.Columns[_strTenCot].AutoSizeMode=_dgvAutoSizeColumnMode;
-	}
+	//private void VOID_SET_WIDTH_ALIGN_COLUMN(string _strTenCot,int _intWidth,DataGridViewContentAlignment _dgvContentAlign,DataGridViewAutoSizeColumnMode _dgvAutoSizeColumnMode) {
+	//  dataGridViewXCacDonHang.Columns[_strTenCot].Width=_intWidth;
+	//  dataGridViewXCacDonHang.Columns[_strTenCot].DefaultCellStyle.Alignment=_dgvContentAlign;
+	//  dataGridViewXCacDonHang.Columns[_strTenCot].HeaderCell.Style.Alignment=_dgvContentAlign;
+	//  dataGridViewXCacDonHang.Columns[_strTenCot].AutoSizeMode=_dgvAutoSizeColumnMode;
+	//}
 
 	private void voidHIENTHI_DGV_DH_CO_STT(string strViTriTroDen,string strDieuKien,int intIdBangKhachHang) {
 	  dataGridViewXCacDonHang.DataSource=BL_DONHANG.dataTableBangDanhSachDonHang(strDieuKien,intIdBangKhachHang);
 
-	  foreach(DataGridViewColumn column in dataGridViewXCacDonHang.Columns) {
-		column.SortMode=DataGridViewColumnSortMode.NotSortable;
-	  }
-	  VOID_SET_WIDTH_ALIGN_COLUMN("STT",60,DataGridViewContentAlignment.MiddleCenter);
-	  VOID_SET_WIDTH_ALIGN_COLUMN("TongKhoiLuong",150,DataGridViewContentAlignment.MiddleCenter);
-	  VOID_SET_WIDTH_ALIGN_COLUMN("TongGiaTriDonHang",150,DataGridViewContentAlignment.MiddleCenter);
-	  VOID_SET_WIDTH_ALIGN_COLUMN("ThoiGianVietDonHangNay",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
-	  VOID_SET_WIDTH_ALIGN_COLUMN("TongViThuoc",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
-	  VOID_SET_WIDTH_ALIGN_COLUMN("TenKhachHang",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	 // foreach(DataGridViewColumn column in dataGridViewXCacDonHang.Columns) {
+		//column.SortMode=DataGridViewColumnSortMode.NotSortable;
+	 // }
+	  QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dataGridViewXCacDonHang);
+	  //VOID_SET_WIDTH_ALIGN_COLUMN("STT",60,DataGridViewContentAlignment.MiddleCenter);
+	  //VOID_SET_WIDTH_ALIGN_COLUMN("TongKhoiLuong",150,DataGridViewContentAlignment.MiddleCenter);
+	  //VOID_SET_WIDTH_ALIGN_COLUMN("TongGiaTriDonHang",150,DataGridViewContentAlignment.MiddleCenter);
+	  //VOID_SET_WIDTH_ALIGN_COLUMN("ThoiGianVietDonHangNay",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  //VOID_SET_WIDTH_ALIGN_COLUMN("TongViThuoc",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  //VOID_SET_WIDTH_ALIGN_COLUMN("TenKhachHang",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"STT",60,DataGridViewContentAlignment.MiddleCenter);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TongKhoiLuong",CONST_STR_TONG_KHOILUONG,150,DataGridViewContentAlignment.MiddleCenter);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TongGiaTriDonHang",CONST_STR_TONG_GIATRI_DH,150,DataGridViewContentAlignment.MiddleCenter);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"ThoiGianVietDonHangNay",CONST_STR_THOIGIAN_VIET,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TongViThuoc",CONST_STR_TONG_VITHUOC,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TenKhachHang",CONST_STR_TEN_KHACHHANG,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
 
 	  dataGridViewXCacDonHang.Columns["STT"].DisplayIndex=0;
 	  if(strDieuKien.Equals("TatCa"))
 		groupBoxDanhSachDH.Text="Danh sách đơn hàng (Đang hiển thị tất cả đơn hàng)";
 	  if(strDieuKien.Equals("TheoIdBangKhachHang"))
-		groupBoxDanhSachDH.Text="Danh sách đơn hàng (Đang hiển thị những đơn hàng có TÊN KHÁCH HÀNG là '"+comboBoxExTenKhachHang.Text+"' )";
+		groupBoxDanhSachDH.Text="Danh sách đơn hàng (Đang hiển thị những đơn hàng có TÊN KHÁCH HÀNG là '"+txtXNameCustomer.Text+"' )";
 	  if(strViTriTroDen.Equals("ViTriCuoiCung")) {
 		//chuyển xuống dòng dưới cùng
 		int intSoThuTuHangMuonTroVao=0;
@@ -152,10 +177,13 @@ namespace THUOCBAC.FormDanhSach {
 	  if(STR_NUT_VUABAM.Equals("NutTimTheoNgay"))
 		btnXTimKiemTheoNgay.PerformClick();
 	  if(STR_NUT_VUABAM.Equals("NutTimTheoTen")) {
-		int intIdBangKH=Convert.ToInt32(comboBoxExTenKhachHang.SelectedValue);
+		//int intIdBangKH=Convert.ToInt32(comboBoxExTenKhachHang.SelectedValue);
+		//voidHIENTHI_DGV_DH_CO_STT("ViTriCuoiCung","TheoIdBangKhachHang",intIdBangKH);
+		int intIdBangKH = Convert.ToInt32(QTAppInfo.STATIC_STR_ID_CHOOSE);
 		voidHIENTHI_DGV_DH_CO_STT("ViTriCuoiCung","TheoIdBangKhachHang",intIdBangKH);
+		//btnXTimKiemTheoTenKH.PerformClick();
 	  }
-	  voidCAPNHAT_COMBOBOX_TENKH();
+	  //voidCAPNHAT_COMBOBOX_TENKH();
 	}
 
 	private void btnXXoaDH_Click(object sender,EventArgs e) {
@@ -172,10 +200,10 @@ namespace THUOCBAC.FormDanhSach {
 	}
 	private void voidCAPNHAT_COMBOBOX_TENKH() {
 	  DT_KHACHHANG=BL_KHACHHANG.DATATABLE_BANG_KHACHHANG_XEPTHEOTEN();
-	  comboBoxExTenKhachHang.DataSource=DT_KHACHHANG;
-	  comboBoxExTenKhachHang.DisplayMember="TenKhachHang";
-	  comboBoxExTenKhachHang.ValueMember="IdBangKhachHang";
-	  comboBoxExTenKhachHang.SelectedIndex=0;
+	  //comboBoxExTenKhachHang.DataSource=DT_KHACHHANG;
+	  //comboBoxExTenKhachHang.DisplayMember="TenKhachHang";
+	  //comboBoxExTenKhachHang.ValueMember="IdBangKhachHang";
+	  //comboBoxExTenKhachHang.SelectedIndex=0;
 	}
 
 	private void comboBoxExTenKhachHang_DropDownClosed(object sender,EventArgs e) {
@@ -183,7 +211,14 @@ namespace THUOCBAC.FormDanhSach {
 	}
 
 	private void btnXTimKiemTheoTenKH_Click(object sender,EventArgs e) {
-	  int intIdBangKH=Convert.ToInt32(comboBoxExTenKhachHang.SelectedValue);
+	  if(QTAppInfo.STATIC_STR_ID_CHOOSE.Equals("")) {
+		btnXTimKiemTheoTenKH.Enabled=false;
+		MessageBox.Show("Tên khách hàng đang để trống, bạn vui lòng chọn lại tên khách hàng !");
+		btnXChonTenKhachHang.PerformClick();
+		return;
+	  }
+	  //int intIdBangKH=Convert.ToInt32(comboBoxExTenKhachHang.SelectedValue);
+	  int intIdBangKH = Convert.ToInt32(QTAppInfo.STATIC_STR_ID_CHOOSE);
 	  voidHIENTHI_DGV_DH_CO_STT("ViTriCuoiCung","TheoIdBangKhachHang",intIdBangKH);
 	  btnXTimKiemTheoTenKH.Enabled=false;
 	  STR_NUT_VUABAM="NutTimTheoTen";
@@ -201,8 +236,16 @@ namespace THUOCBAC.FormDanhSach {
 	}
 
 	private void btnXChonTenKhachHang_Click(object sender,EventArgs e) {
-	  FormDialogPhu.frmChonTenTrongDanhSach frm = new FormDialogPhu.frmChonTenTrongDanhSach();
+	  FormDialogPhu.frmChonTenTrongDanhSach frm = new FormDialogPhu.frmChonTenTrongDanhSach("Chọn tên khách hàng",450);
+	  frm.FormBorderStyle=FormBorderStyle.FixedToolWindow;
 	  frm.ShowDialog();
+
+	  if(!QTAppInfo.STATIC_STR_ID_CHOOSE.Equals("")) {
+		txtXNameCustomer.Text=QTAppInfo.STATIC_STR_NAME_CHOOSE;
+		btnXTimKiemTheoTenKH.Enabled=true;
+		//btnXTimKiemTheoTenKH.PerformClick();
+	  } else
+		btnXTimKiemTheoTenKH.Enabled=false;
 	}
   }
 }
