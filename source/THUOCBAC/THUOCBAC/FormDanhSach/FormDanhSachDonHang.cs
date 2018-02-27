@@ -110,13 +110,14 @@ namespace THUOCBAC.FormDanhSach {
 		groupBoxDanhSachDH.Text="Danh sách đơn hàng (Đang hiển thị những đơn hàng có TÊN KHÁCH HÀNG là '"+txtXNameCustomer.Text+"' )";
 	  if(strViTriTroDen.Equals("ViTriCuoiCung")) {
 		//chuyển xuống dòng dưới cùng
-		int intSoThuTuHangMuonTroVao=0;
-		if(dataGridViewXCacDonHang.RowCount>1) { 
-		  intSoThuTuHangMuonTroVao=dataGridViewXCacDonHang.RowCount-1;
-		dataGridViewXCacDonHang.CurrentCell=dataGridViewXCacDonHang.Rows[intSoThuTuHangMuonTroVao].Cells["TongKhoiLuong"];// Đưa Control về vị trí của nó
-		//dataGridViewXCacDonHang.CurrentCell=dataGridViewXCacDonHang.Rows[intSoThuTuHangMuonTroVao];
-		dataGridViewXCacDonHang.CurrentRow.Selected=true;// Set trạng thái Selected
-		}
+		//int intSoThuTuHangMuonTroVao=0;
+		//if(dataGridViewXCacDonHang.RowCount>1) { 
+		//  intSoThuTuHangMuonTroVao=dataGridViewXCacDonHang.RowCount-1;
+		//dataGridViewXCacDonHang.CurrentCell=dataGridViewXCacDonHang.Rows[intSoThuTuHangMuonTroVao].Cells["TongKhoiLuong"];// Đưa Control về vị trí của nó
+		////dataGridViewXCacDonHang.CurrentCell=dataGridViewXCacDonHang.Rows[intSoThuTuHangMuonTroVao];
+		//dataGridViewXCacDonHang.CurrentRow.Selected=true;// Set trạng thái Selected
+		//}
+		QTLibraryFunction.STATIC_VOID_FOCUS_LAST_ROW_DGV(ref dataGridViewXCacDonHang,"TongKhoiLuong");
 	  }
 	}
 	private void voidHIENTHI_DGV_THEONGAY(string strViTriTroDen,DateTime dtThoiGianTimKiem) {

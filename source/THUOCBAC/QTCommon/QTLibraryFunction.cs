@@ -54,5 +54,27 @@ namespace QTCommon {
 		column.SortMode=DataGridViewColumnSortMode.NotSortable;
 	  }
 	}
+
+	public static void STATIC_VOID_FOCUS_LAST_ROW_DGV(ref DataGridViewX _dgvXTemp,string _strIdColumnFocus) {
+	  int intSoThuTuHangMuonTroVao = 0;
+	  if(_dgvXTemp.RowCount>1) {
+		intSoThuTuHangMuonTroVao=_dgvXTemp.RowCount-1;
+		_dgvXTemp.CurrentCell=_dgvXTemp.Rows[intSoThuTuHangMuonTroVao].Cells[_strIdColumnFocus];
+		// Đưa Control về vị trí của nó
+		_dgvXTemp.CurrentRow.Selected=true;
+		// Set trạng thái Selected
+	  }
+	}
+
+	public static void STATIC_VOID_FOCUS_ROW_X_IN_DGV(ref DataGridViewX _dgvXTemp,string _strIdColumnFocus,int _intIndexFocus) {
+	  int intSoThuTuHangMuonTroVao = 0;
+	  if(_dgvXTemp.RowCount>1) {
+		intSoThuTuHangMuonTroVao=_dgvXTemp.RowCount-1;
+		_dgvXTemp.CurrentCell=_dgvXTemp.Rows[_intIndexFocus].Cells[_strIdColumnFocus];
+		// Đưa Control về vị trí của nó
+		_dgvXTemp.CurrentRow.Selected=true;
+		// Set trạng thái Selected
+	  }
+	}
   }
 }
