@@ -42,9 +42,11 @@
 	  this.numericDonGiaVT = new System.Windows.Forms.NumericUpDown();
 	  this.groupBoxTenViThuoc = new System.Windows.Forms.GroupBox();
 	  this.comboBoxExDanhSachCacViThuoc = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-	  this.groupBox1 = new System.Windows.Forms.GroupBox();
+	  this.grpTrangThaiHoatDong = new System.Windows.Forms.GroupBox();
 	  this.labelXTrangThaiGanNhat = new DevComponents.DotNetBar.LabelX();
 	  this.labelXTrangThaiTruocDo = new DevComponents.DotNetBar.LabelX();
+	  this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
+	  this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 	  this.groupBoxChiTietDonHang.SuspendLayout();
 	  ((System.ComponentModel.ISupportInitialize)(this.dataGridViewXChiTietDonHang)).BeginInit();
 	  this.groupBoxTongGiaDonHang.SuspendLayout();
@@ -55,7 +57,9 @@
 	  this.groupBox10.SuspendLayout();
 	  ((System.ComponentModel.ISupportInitialize)(this.numericDonGiaVT)).BeginInit();
 	  this.groupBoxTenViThuoc.SuspendLayout();
-	  this.groupBox1.SuspendLayout();
+	  this.grpTrangThaiHoatDong.SuspendLayout();
+	  this.tlpMain.SuspendLayout();
+	  this.tableLayoutPanel1.SuspendLayout();
 	  this.SuspendLayout();
 	  // 
 	  // labelXDonViTinh
@@ -67,16 +71,19 @@
 	  this.labelXDonViTinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
 	  this.labelXDonViTinh.Location = new System.Drawing.Point(191, 14);
 	  this.labelXDonViTinh.Name = "labelXDonViTinh";
-	  this.labelXDonViTinh.Size = new System.Drawing.Size(64, 31);
+	  this.labelXDonViTinh.Size = new System.Drawing.Size(58, 31);
 	  this.labelXDonViTinh.TabIndex = 1;
 	  this.labelXDonViTinh.Text = "(Cân)";
 	  // 
 	  // groupBoxChiTietDonHang
 	  // 
 	  this.groupBoxChiTietDonHang.Controls.Add(this.dataGridViewXChiTietDonHang);
-	  this.groupBoxChiTietDonHang.Location = new System.Drawing.Point(293, 91);
+	  this.groupBoxChiTietDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.groupBoxChiTietDonHang.Location = new System.Drawing.Point(308, 95);
+	  this.groupBoxChiTietDonHang.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
 	  this.groupBoxChiTietDonHang.Name = "groupBoxChiTietDonHang";
-	  this.groupBoxChiTietDonHang.Size = new System.Drawing.Size(979, 513);
+	  this.tlpMain.SetRowSpan(this.groupBoxChiTietDonHang, 4);
+	  this.groupBoxChiTietDonHang.Size = new System.Drawing.Size(943, 501);
 	  this.groupBoxChiTietDonHang.TabIndex = 2;
 	  this.groupBoxChiTietDonHang.TabStop = false;
 	  this.groupBoxChiTietDonHang.Text = "Chi tiết đơn hàng";
@@ -85,7 +92,7 @@
 	  // 
 	  this.dataGridViewXChiTietDonHang.AllowUserToAddRows = false;
 	  this.dataGridViewXChiTietDonHang.AllowUserToDeleteRows = false;
-	  this.dataGridViewXChiTietDonHang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+	  this.dataGridViewXChiTietDonHang.AllowUserToResizeColumns = false;
 	  this.dataGridViewXChiTietDonHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 	  dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 	  dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
@@ -95,12 +102,13 @@
 	  dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
 	  dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
 	  this.dataGridViewXChiTietDonHang.DefaultCellStyle = dataGridViewCellStyle1;
+	  this.dataGridViewXChiTietDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.dataGridViewXChiTietDonHang.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-	  this.dataGridViewXChiTietDonHang.Location = new System.Drawing.Point(6, 19);
+	  this.dataGridViewXChiTietDonHang.Location = new System.Drawing.Point(3, 16);
 	  this.dataGridViewXChiTietDonHang.Name = "dataGridViewXChiTietDonHang";
 	  this.dataGridViewXChiTietDonHang.ReadOnly = true;
 	  this.dataGridViewXChiTietDonHang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-	  this.dataGridViewXChiTietDonHang.Size = new System.Drawing.Size(967, 488);
+	  this.dataGridViewXChiTietDonHang.Size = new System.Drawing.Size(937, 482);
 	  this.dataGridViewXChiTietDonHang.TabIndex = 0;
 	  this.dataGridViewXChiTietDonHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewXChiTietDonHang_CellClick);
 	  // 
@@ -108,9 +116,10 @@
 	  // 
 	  this.groupBoxTongGiaDonHang.Controls.Add(this.btnXXemReportCTHD);
 	  this.groupBoxTongGiaDonHang.Controls.Add(this.labelXTongTienDonHang);
-	  this.groupBoxTongGiaDonHang.Location = new System.Drawing.Point(12, 444);
+	  this.groupBoxTongGiaDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.groupBoxTongGiaDonHang.Location = new System.Drawing.Point(33, 443);
 	  this.groupBoxTongGiaDonHang.Name = "groupBoxTongGiaDonHang";
-	  this.groupBoxTongGiaDonHang.Size = new System.Drawing.Size(275, 160);
+	  this.groupBoxTongGiaDonHang.Size = new System.Drawing.Size(269, 154);
 	  this.groupBoxTongGiaDonHang.TabIndex = 3;
 	  this.groupBoxTongGiaDonHang.TabStop = false;
 	  this.groupBoxTongGiaDonHang.Text = "Tổng giá đơn hàng hiện tại";
@@ -122,7 +131,7 @@
 	  this.btnXXemReportCTHD.Image = global::THUOCBAC.Properties.Resources.print;
 	  this.btnXXemReportCTHD.Location = new System.Drawing.Point(6, 72);
 	  this.btnXXemReportCTHD.Name = "btnXXemReportCTHD";
-	  this.btnXXemReportCTHD.Size = new System.Drawing.Size(263, 47);
+	  this.btnXXemReportCTHD.Size = new System.Drawing.Size(255, 47);
 	  this.btnXXemReportCTHD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 	  this.btnXXemReportCTHD.TabIndex = 0;
 	  this.btnXXemReportCTHD.Text = "Xem bản in hóa đơn này";
@@ -137,7 +146,7 @@
 	  this.labelXTongTienDonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
 	  this.labelXTongTienDonHang.Location = new System.Drawing.Point(6, 19);
 	  this.labelXTongTienDonHang.Name = "labelXTongTienDonHang";
-	  this.labelXTongTienDonHang.Size = new System.Drawing.Size(263, 47);
+	  this.labelXTongTienDonHang.Size = new System.Drawing.Size(255, 47);
 	  this.labelXTongTienDonHang.TabIndex = 0;
 	  this.labelXTongTienDonHang.Text = "0 đ";
 	  this.labelXTongTienDonHang.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -146,11 +155,12 @@
 	  // 
 	  this.btnXXoaViThuoc.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 	  this.btnXXoaViThuoc.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXXoaViThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.btnXXoaViThuoc.Enabled = false;
 	  this.btnXXoaViThuoc.Image = global::THUOCBAC.Properties.Resources.Xoa;
-	  this.btnXXoaViThuoc.Location = new System.Drawing.Point(12, 397);
+	  this.btnXXoaViThuoc.Location = new System.Drawing.Point(33, 402);
 	  this.btnXXoaViThuoc.Name = "btnXXoaViThuoc";
-	  this.btnXXoaViThuoc.Size = new System.Drawing.Size(275, 41);
+	  this.btnXXoaViThuoc.Size = new System.Drawing.Size(269, 35);
 	  this.btnXXoaViThuoc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 	  this.btnXXoaViThuoc.TabIndex = 5;
 	  this.btnXXoaViThuoc.Text = "Xóa vị thuốc đang chọn ra khỏi đơn hàng";
@@ -163,9 +173,11 @@
 	  this.groupBoxThemViThuoc.Controls.Add(this.groupBox11);
 	  this.groupBoxThemViThuoc.Controls.Add(this.groupBox10);
 	  this.groupBoxThemViThuoc.Controls.Add(this.groupBoxTenViThuoc);
-	  this.groupBoxThemViThuoc.Location = new System.Drawing.Point(12, 12);
+	  this.groupBoxThemViThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.groupBoxThemViThuoc.Location = new System.Drawing.Point(33, 23);
 	  this.groupBoxThemViThuoc.Name = "groupBoxThemViThuoc";
-	  this.groupBoxThemViThuoc.Size = new System.Drawing.Size(275, 379);
+	  this.tlpMain.SetRowSpan(this.groupBoxThemViThuoc, 2);
+	  this.groupBoxThemViThuoc.Size = new System.Drawing.Size(269, 373);
 	  this.groupBoxThemViThuoc.TabIndex = 6;
 	  this.groupBoxThemViThuoc.TabStop = false;
 	  this.groupBoxThemViThuoc.Text = "Thêm vị thuốc";
@@ -177,7 +189,7 @@
 	  this.btnXThemViThuocVaoDH.Image = global::THUOCBAC.Properties.Resources.add;
 	  this.btnXThemViThuocVaoDH.Location = new System.Drawing.Point(6, 280);
 	  this.btnXThemViThuocVaoDH.Name = "btnXThemViThuocVaoDH";
-	  this.btnXThemViThuocVaoDH.Size = new System.Drawing.Size(262, 41);
+	  this.btnXThemViThuocVaoDH.Size = new System.Drawing.Size(255, 41);
 	  this.btnXThemViThuocVaoDH.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 	  this.btnXThemViThuocVaoDH.TabIndex = 4;
 	  this.btnXThemViThuocVaoDH.Text = "Thêm số lượng vị thuốc trên vào đơn hàng";
@@ -189,7 +201,7 @@
 	  this.groupBoxThanhTien.Controls.Add(this.labelXTinhThanhTien);
 	  this.groupBoxThanhTien.Location = new System.Drawing.Point(6, 209);
 	  this.groupBoxThanhTien.Name = "groupBoxThanhTien";
-	  this.groupBoxThanhTien.Size = new System.Drawing.Size(262, 65);
+	  this.groupBoxThanhTien.Size = new System.Drawing.Size(255, 65);
 	  this.groupBoxThanhTien.TabIndex = 3;
 	  this.groupBoxThanhTien.TabStop = false;
 	  this.groupBoxThanhTien.Text = "Thành tiền (Di chuột vào đây để tính đúng giá)";
@@ -204,7 +216,7 @@
 	  this.labelXTinhThanhTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
 	  this.labelXTinhThanhTien.Location = new System.Drawing.Point(6, 17);
 	  this.labelXTinhThanhTien.Name = "labelXTinhThanhTien";
-	  this.labelXTinhThanhTien.Size = new System.Drawing.Size(249, 36);
+	  this.labelXTinhThanhTien.Size = new System.Drawing.Size(243, 36);
 	  this.labelXTinhThanhTien.TabIndex = 0;
 	  this.labelXTinhThanhTien.Text = "= đ";
 	  this.labelXTinhThanhTien.MouseHover += new System.EventHandler(this.labelXTinhThanhTien_MouseHover);
@@ -215,7 +227,7 @@
 	  this.groupBox11.Controls.Add(this.numericSoLuongVT);
 	  this.groupBox11.Location = new System.Drawing.Point(6, 79);
 	  this.groupBox11.Name = "groupBox11";
-	  this.groupBox11.Size = new System.Drawing.Size(262, 65);
+	  this.groupBox11.Size = new System.Drawing.Size(255, 65);
 	  this.groupBox11.TabIndex = 1;
 	  this.groupBox11.TabStop = false;
 	  this.groupBox11.Text = "Số lượng muốn thêm vào đơn hàng (F6)";
@@ -254,7 +266,7 @@
 	  this.groupBox10.Controls.Add(this.numericDonGiaVT);
 	  this.groupBox10.Location = new System.Drawing.Point(6, 151);
 	  this.groupBox10.Name = "groupBox10";
-	  this.groupBox10.Size = new System.Drawing.Size(262, 52);
+	  this.groupBox10.Size = new System.Drawing.Size(255, 52);
 	  this.groupBox10.TabIndex = 2;
 	  this.groupBox10.TabStop = false;
 	  this.groupBox10.Text = "Đơn giá (F7) (nhấn \'N\' để thêm 3 số 0)";
@@ -268,7 +280,7 @@
 	  this.labelX1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
 	  this.labelX1.Location = new System.Drawing.Point(191, 14);
 	  this.labelX1.Name = "labelX1";
-	  this.labelX1.Size = new System.Drawing.Size(64, 31);
+	  this.labelX1.Size = new System.Drawing.Size(58, 31);
 	  this.labelX1.TabIndex = 1;
 	  this.labelX1.Text = "vnđ";
 	  // 
@@ -304,7 +316,7 @@
 	  this.groupBoxTenViThuoc.Controls.Add(this.comboBoxExDanhSachCacViThuoc);
 	  this.groupBoxTenViThuoc.Location = new System.Drawing.Point(6, 19);
 	  this.groupBoxTenViThuoc.Name = "groupBoxTenViThuoc";
-	  this.groupBoxTenViThuoc.Size = new System.Drawing.Size(262, 53);
+	  this.groupBoxTenViThuoc.Size = new System.Drawing.Size(255, 53);
 	  this.groupBoxTenViThuoc.TabIndex = 0;
 	  this.groupBoxTenViThuoc.TabStop = false;
 	  this.groupBoxTenViThuoc.Text = "Tên vị thuốc (F5)";
@@ -327,16 +339,16 @@
 	  this.comboBoxExDanhSachCacViThuoc.DropDownClosed += new System.EventHandler(this.comboBoxExDanhSachCacViThuoc_DropDownClosed);
 	  this.comboBoxExDanhSachCacViThuoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxExDanhSachCacViThuoc_KeyDown);
 	  // 
-	  // groupBox1
+	  // grpTrangThaiHoatDong
 	  // 
-	  this.groupBox1.Controls.Add(this.labelXTrangThaiGanNhat);
-	  this.groupBox1.Controls.Add(this.labelXTrangThaiTruocDo);
-	  this.groupBox1.Location = new System.Drawing.Point(293, 12);
-	  this.groupBox1.Name = "groupBox1";
-	  this.groupBox1.Size = new System.Drawing.Size(979, 72);
-	  this.groupBox1.TabIndex = 7;
-	  this.groupBox1.TabStop = false;
-	  this.groupBox1.Text = "Trạng thái hoạt động gần nhất của bạn";
+	  this.grpTrangThaiHoatDong.Controls.Add(this.tableLayoutPanel1);
+	  this.grpTrangThaiHoatDong.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.grpTrangThaiHoatDong.Location = new System.Drawing.Point(308, 23);
+	  this.grpTrangThaiHoatDong.Name = "grpTrangThaiHoatDong";
+	  this.grpTrangThaiHoatDong.Size = new System.Drawing.Size(943, 66);
+	  this.grpTrangThaiHoatDong.TabIndex = 7;
+	  this.grpTrangThaiHoatDong.TabStop = false;
+	  this.grpTrangThaiHoatDong.Text = "Trạng thái hoạt động gần nhất của bạn";
 	  // 
 	  // labelXTrangThaiGanNhat
 	  // 
@@ -344,9 +356,10 @@
 	  // 
 	  // 
 	  this.labelXTrangThaiGanNhat.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.labelXTrangThaiGanNhat.Location = new System.Drawing.Point(6, 38);
+	  this.labelXTrangThaiGanNhat.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.labelXTrangThaiGanNhat.Location = new System.Drawing.Point(3, 26);
 	  this.labelXTrangThaiGanNhat.Name = "labelXTrangThaiGanNhat";
-	  this.labelXTrangThaiGanNhat.Size = new System.Drawing.Size(967, 23);
+	  this.labelXTrangThaiGanNhat.Size = new System.Drawing.Size(931, 18);
 	  this.labelXTrangThaiGanNhat.TabIndex = 0;
 	  // 
 	  // labelXTrangThaiTruocDo
@@ -355,23 +368,62 @@
 	  // 
 	  // 
 	  this.labelXTrangThaiTruocDo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.labelXTrangThaiTruocDo.Location = new System.Drawing.Point(6, 19);
+	  this.labelXTrangThaiTruocDo.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.labelXTrangThaiTruocDo.Location = new System.Drawing.Point(3, 3);
 	  this.labelXTrangThaiTruocDo.Name = "labelXTrangThaiTruocDo";
-	  this.labelXTrangThaiTruocDo.Size = new System.Drawing.Size(967, 23);
+	  this.labelXTrangThaiTruocDo.Size = new System.Drawing.Size(931, 17);
 	  this.labelXTrangThaiTruocDo.TabIndex = 0;
+	  // 
+	  // tlpMain
+	  // 
+	  this.tlpMain.ColumnCount = 4;
+	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 275F));
+	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+	  this.tlpMain.Controls.Add(this.grpTrangThaiHoatDong, 2, 1);
+	  this.tlpMain.Controls.Add(this.groupBoxTongGiaDonHang, 1, 4);
+	  this.tlpMain.Controls.Add(this.btnXXoaViThuoc, 1, 3);
+	  this.tlpMain.Controls.Add(this.groupBoxThemViThuoc, 1, 1);
+	  this.tlpMain.Controls.Add(this.groupBoxChiTietDonHang, 2, 2);
+	  this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.tlpMain.Location = new System.Drawing.Point(0, 0);
+	  this.tlpMain.Name = "tlpMain";
+	  this.tlpMain.RowCount = 7;
+	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 307F));
+	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+	  this.tlpMain.Size = new System.Drawing.Size(1284, 616);
+	  this.tlpMain.TabIndex = 8;
+	  // 
+	  // tableLayoutPanel1
+	  // 
+	  this.tableLayoutPanel1.ColumnCount = 1;
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+	  this.tableLayoutPanel1.Controls.Add(this.labelXTrangThaiTruocDo, 0, 0);
+	  this.tableLayoutPanel1.Controls.Add(this.labelXTrangThaiGanNhat, 0, 1);
+	  this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+	  this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+	  this.tableLayoutPanel1.RowCount = 2;
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+	  this.tableLayoutPanel1.Size = new System.Drawing.Size(937, 47);
+	  this.tableLayoutPanel1.TabIndex = 1;
 	  // 
 	  // FormThemDonHang
 	  // 
 	  this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 	  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 	  this.ClientSize = new System.Drawing.Size(1284, 616);
-	  this.Controls.Add(this.groupBox1);
-	  this.Controls.Add(this.groupBoxThemViThuoc);
-	  this.Controls.Add(this.btnXXoaViThuoc);
-	  this.Controls.Add(this.groupBoxTongGiaDonHang);
-	  this.Controls.Add(this.groupBoxChiTietDonHang);
-	  this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+	  this.Controls.Add(this.tlpMain);
 	  this.KeyPreview = true;
+	  this.MinimumSize = new System.Drawing.Size(1300, 655);
 	  this.Name = "FormThemDonHang";
 	  this.ShowInTaskbar = false;
 	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -388,7 +440,9 @@
 	  this.groupBox10.ResumeLayout(false);
 	  ((System.ComponentModel.ISupportInitialize)(this.numericDonGiaVT)).EndInit();
 	  this.groupBoxTenViThuoc.ResumeLayout(false);
-	  this.groupBox1.ResumeLayout(false);
+	  this.grpTrangThaiHoatDong.ResumeLayout(false);
+	  this.tlpMain.ResumeLayout(false);
+	  this.tableLayoutPanel1.ResumeLayout(false);
 	  this.ResumeLayout(false);
 
 	}
@@ -413,8 +467,10 @@
 	private System.Windows.Forms.NumericUpDown numericDonGiaVT;
 	private DevComponents.DotNetBar.LabelX labelXTinhThanhTien;
 	private DevComponents.DotNetBar.LabelX labelX1;
-	private System.Windows.Forms.GroupBox groupBox1;
+	private System.Windows.Forms.GroupBox grpTrangThaiHoatDong;
 	private DevComponents.DotNetBar.LabelX labelXTrangThaiTruocDo;
 	private DevComponents.DotNetBar.LabelX labelXTrangThaiGanNhat;
+	private System.Windows.Forms.TableLayoutPanel tlpMain;
+	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
   }
 }
