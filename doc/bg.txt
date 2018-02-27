@@ -4,6 +4,10 @@ https://github.com/usernameqt93/drugnorthqt/commits/master
 project link github
 https://github.com/usernameqt93/drugnorthqt
 
+key passphrase
+Rtmngqt93
+
+
 file putty luu o H CONGVIEC
 
 
@@ -25,8 +29,15 @@ btnXXoaViThuoc 275, 41
 groupBoxTongGiaDonHang 275, 160
 groupboxTrangThaiHoatDong 979, 72
 
+FormReportChiTietDonHang 1357, 712
+grpNoiDungBanIn 953, 648
+groupBoxChucNang 358, 147
+grpThongTin 358, 249
+groupBoxThongTinThem 358, 240
 
 
+FormXemThongTinTienNo 1221, 532
+grpTienNoHienTai 444, 52
 
 
 

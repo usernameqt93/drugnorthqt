@@ -24,6 +24,7 @@
 	/// </summary>
 	private void InitializeComponent() {
 	  System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+	  System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormThemDonHang));
 	  this.labelXDonViTinh = new DevComponents.DotNetBar.LabelX();
 	  this.groupBoxChiTietDonHang = new System.Windows.Forms.GroupBox();
 	  this.dataGridViewXChiTietDonHang = new DevComponents.DotNetBar.Controls.DataGridViewX();
@@ -43,10 +44,10 @@
 	  this.groupBoxTenViThuoc = new System.Windows.Forms.GroupBox();
 	  this.comboBoxExDanhSachCacViThuoc = new DevComponents.DotNetBar.Controls.ComboBoxEx();
 	  this.grpTrangThaiHoatDong = new System.Windows.Forms.GroupBox();
-	  this.labelXTrangThaiGanNhat = new DevComponents.DotNetBar.LabelX();
-	  this.labelXTrangThaiTruocDo = new DevComponents.DotNetBar.LabelX();
-	  this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
 	  this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+	  this.labelXTrangThaiTruocDo = new DevComponents.DotNetBar.LabelX();
+	  this.labelXTrangThaiGanNhat = new DevComponents.DotNetBar.LabelX();
+	  this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
 	  this.groupBoxChiTietDonHang.SuspendLayout();
 	  ((System.ComponentModel.ISupportInitialize)(this.dataGridViewXChiTietDonHang)).BeginInit();
 	  this.groupBoxTongGiaDonHang.SuspendLayout();
@@ -58,8 +59,8 @@
 	  ((System.ComponentModel.ISupportInitialize)(this.numericDonGiaVT)).BeginInit();
 	  this.groupBoxTenViThuoc.SuspendLayout();
 	  this.grpTrangThaiHoatDong.SuspendLayout();
-	  this.tlpMain.SuspendLayout();
 	  this.tableLayoutPanel1.SuspendLayout();
+	  this.tlpMain.SuspendLayout();
 	  this.SuspendLayout();
 	  // 
 	  // labelXDonViTinh
@@ -350,17 +351,21 @@
 	  this.grpTrangThaiHoatDong.TabStop = false;
 	  this.grpTrangThaiHoatDong.Text = "Trạng thái hoạt động gần nhất của bạn";
 	  // 
-	  // labelXTrangThaiGanNhat
+	  // tableLayoutPanel1
 	  // 
-	  // 
-	  // 
-	  // 
-	  this.labelXTrangThaiGanNhat.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.labelXTrangThaiGanNhat.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.labelXTrangThaiGanNhat.Location = new System.Drawing.Point(3, 26);
-	  this.labelXTrangThaiGanNhat.Name = "labelXTrangThaiGanNhat";
-	  this.labelXTrangThaiGanNhat.Size = new System.Drawing.Size(931, 18);
-	  this.labelXTrangThaiGanNhat.TabIndex = 0;
+	  this.tableLayoutPanel1.ColumnCount = 1;
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+	  this.tableLayoutPanel1.Controls.Add(this.labelXTrangThaiTruocDo, 0, 0);
+	  this.tableLayoutPanel1.Controls.Add(this.labelXTrangThaiGanNhat, 0, 1);
+	  this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+	  this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+	  this.tableLayoutPanel1.RowCount = 2;
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+	  this.tableLayoutPanel1.Size = new System.Drawing.Size(937, 47);
+	  this.tableLayoutPanel1.TabIndex = 1;
 	  // 
 	  // labelXTrangThaiTruocDo
 	  // 
@@ -373,6 +378,18 @@
 	  this.labelXTrangThaiTruocDo.Name = "labelXTrangThaiTruocDo";
 	  this.labelXTrangThaiTruocDo.Size = new System.Drawing.Size(931, 17);
 	  this.labelXTrangThaiTruocDo.TabIndex = 0;
+	  // 
+	  // labelXTrangThaiGanNhat
+	  // 
+	  // 
+	  // 
+	  // 
+	  this.labelXTrangThaiGanNhat.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.labelXTrangThaiGanNhat.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.labelXTrangThaiGanNhat.Location = new System.Drawing.Point(3, 26);
+	  this.labelXTrangThaiGanNhat.Name = "labelXTrangThaiGanNhat";
+	  this.labelXTrangThaiGanNhat.Size = new System.Drawing.Size(931, 18);
+	  this.labelXTrangThaiGanNhat.TabIndex = 0;
 	  // 
 	  // tlpMain
 	  // 
@@ -400,28 +417,13 @@
 	  this.tlpMain.Size = new System.Drawing.Size(1284, 616);
 	  this.tlpMain.TabIndex = 8;
 	  // 
-	  // tableLayoutPanel1
-	  // 
-	  this.tableLayoutPanel1.ColumnCount = 1;
-	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-	  this.tableLayoutPanel1.Controls.Add(this.labelXTrangThaiTruocDo, 0, 0);
-	  this.tableLayoutPanel1.Controls.Add(this.labelXTrangThaiGanNhat, 0, 1);
-	  this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
-	  this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-	  this.tableLayoutPanel1.RowCount = 2;
-	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-	  this.tableLayoutPanel1.Size = new System.Drawing.Size(937, 47);
-	  this.tableLayoutPanel1.TabIndex = 1;
-	  // 
 	  // FormThemDonHang
 	  // 
 	  this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 	  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 	  this.ClientSize = new System.Drawing.Size(1284, 616);
 	  this.Controls.Add(this.tlpMain);
+	  this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 	  this.KeyPreview = true;
 	  this.MinimumSize = new System.Drawing.Size(1300, 655);
 	  this.Name = "FormThemDonHang";
@@ -441,8 +443,8 @@
 	  ((System.ComponentModel.ISupportInitialize)(this.numericDonGiaVT)).EndInit();
 	  this.groupBoxTenViThuoc.ResumeLayout(false);
 	  this.grpTrangThaiHoatDong.ResumeLayout(false);
-	  this.tlpMain.ResumeLayout(false);
 	  this.tableLayoutPanel1.ResumeLayout(false);
+	  this.tlpMain.ResumeLayout(false);
 	  this.ResumeLayout(false);
 
 	}

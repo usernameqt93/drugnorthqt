@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QTCommon;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace THUOCBAC.FormChucNang {
 	private string STR_TENKHACHHANG="";
 	private decimal DEC_TIENNO_HIENTAI=0;
 	private string STR_LUUY_FORM_TRUOC="";
+
+	private const string CONST_STR_THOIGIAN = "Thời gian";
+	private const string CONST_STR_TRUOC_KHI_SUA = "Trước khi sửa";
+	private const string CONST_STR_SOTIEN_SUA = "Số tiền sửa";
+	private const string CONST_STR_SAU_KHI_SUA = "Sau khi sửa";
+	private const string CONST_STR_CHITIET = "Chi tiết";
+
 	public FormXemThongTinTienNo() {
 	  InitializeComponent();
 	}
@@ -48,18 +56,38 @@ namespace THUOCBAC.FormChucNang {
 		btnXXacNhanTienNo.Visible=false;
 	  labelXTienNoHienTai.Text=(DEC_TIENNO_HIENTAI==0)?"0 đ":DEC_TIENNO_HIENTAI.ToString("#,###.#")+" đ";
 	  voidHIENTHI_DGV_LICHSU_CO_STT();
-	  dataGridViewXLichSuTienNo.Columns["STT"].Width=22;
-	  dataGridViewXLichSuTienNo.Columns["ThoiGianThayDoiTienNo"].HeaderText="Thời gian";
-	  dataGridViewXLichSuTienNo.Columns["TienNoTruocKhiSua"].HeaderText="Trước khi sửa";
-	  dataGridViewXLichSuTienNo.Columns["SoTienSuaCuThe"].HeaderText="Số tiền sửa";
-	  dataGridViewXLichSuTienNo.Columns["TienNoSauKhiSua"].HeaderText="Sau khi sửa";
-	  dataGridViewXLichSuTienNo.Columns["LyDoSuaTienNo"].HeaderText="Chi tiết";
+	  //dataGridViewXLichSuTienNo.Columns["STT"].Width=22;
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"STT",60,DataGridViewContentAlignment.MiddleCenter);
+
+	  //dataGridViewXLichSuTienNo.Columns["ThoiGianThayDoiTienNo"].HeaderText="Thời gian";
+	  //dataGridViewXLichSuTienNo.Columns["TienNoTruocKhiSua"].HeaderText="Trước khi sửa";
+	  //dataGridViewXLichSuTienNo.Columns["SoTienSuaCuThe"].HeaderText="Số tiền sửa";
+	  //dataGridViewXLichSuTienNo.Columns["TienNoSauKhiSua"].HeaderText="Sau khi sửa";
+	  //dataGridViewXLichSuTienNo.Columns["LyDoSuaTienNo"].HeaderText="Chi tiết";
+
+	  //dataGridViewXLichSuTienNo.Columns["ThoiGianThayDoiTienNo"].HeaderText=CONST_STR_THOIGIAN;
+	  //dataGridViewXLichSuTienNo.Columns["LyDoSuaTienNo"].HeaderText=CONST_STR_CHITIET;
+	  //dataGridViewXLichSuTienNo.Columns["TienNoTruocKhiSua"].HeaderText=CONST_STR_TRUOC_KHI_SUA;
+	  //dataGridViewXLichSuTienNo.Columns["TienNoTruocKhiSua"].DefaultCellStyle.Format="#,###.### đ";
+	  //dataGridViewXLichSuTienNo.Columns["TienNoTruocKhiSua"].Width=88;
+	  //dataGridViewXLichSuTienNo.Columns["SoTienSuaCuThe"].HeaderText=CONST_STR_SOTIEN_SUA;
+	  //dataGridViewXLichSuTienNo.Columns["SoTienSuaCuThe"].DefaultCellStyle.Format="#,###.### đ";
+	  //dataGridViewXLichSuTienNo.Columns["SoTienSuaCuThe"].Width=88;
+	  //dataGridViewXLichSuTienNo.Columns["TienNoSauKhiSua"].HeaderText=CONST_STR_SAU_KHI_SUA;
+	  //dataGridViewXLichSuTienNo.Columns["TienNoSauKhiSua"].DefaultCellStyle.Format="#,###.### đ";
+	  //dataGridViewXLichSuTienNo.Columns["TienNoSauKhiSua"].Width=88;
+
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"ThoiGianThayDoiTienNo",CONST_STR_THOIGIAN,150,DataGridViewContentAlignment.MiddleCenter);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"LyDoSuaTienNo",CONST_STR_CHITIET,150,DataGridViewContentAlignment.MiddleLeft,DataGridViewAutoSizeColumnMode.Fill);
+
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"TienNoTruocKhiSua",CONST_STR_TRUOC_KHI_SUA,100,DataGridViewContentAlignment.MiddleRight);
 	  dataGridViewXLichSuTienNo.Columns["TienNoTruocKhiSua"].DefaultCellStyle.Format="#,###.### đ";
-	  dataGridViewXLichSuTienNo.Columns["TienNoTruocKhiSua"].Width=88;
+
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"SoTienSuaCuThe",CONST_STR_SOTIEN_SUA,100,DataGridViewContentAlignment.MiddleRight);
 	  dataGridViewXLichSuTienNo.Columns["SoTienSuaCuThe"].DefaultCellStyle.Format="#,###.### đ";
-	  dataGridViewXLichSuTienNo.Columns["SoTienSuaCuThe"].Width=88;
+
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"TienNoSauKhiSua",CONST_STR_SAU_KHI_SUA,100,DataGridViewContentAlignment.MiddleRight);
 	  dataGridViewXLichSuTienNo.Columns["TienNoSauKhiSua"].DefaultCellStyle.Format="#,###.### đ";
-	  dataGridViewXLichSuTienNo.Columns["TienNoSauKhiSua"].Width=88;
 
 	  voidTRO_XUONG_VITRI_CUOICUNG();
 	}
@@ -70,6 +98,7 @@ namespace THUOCBAC.FormChucNang {
 		dtSTT.Rows[i]["STT"]=i+1;
 	  dataGridViewXLichSuTienNo.DataSource=dtSTT;
 	  dataGridViewXLichSuTienNo.Columns["STT"].DisplayIndex=0;
+	  QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dataGridViewXLichSuTienNo);
 	}
 	private void voidTRO_XUONG_VITRI_CUOICUNG() {
 	  int intSoThuTuHangMuonTroVao=0;
