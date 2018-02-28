@@ -5,9 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace QTCommon {
-  public static class QTAppInfo {
-	public static string STATIC_STR_NAME_CHOOSE;
-	public static string STATIC_STR_ID_CHOOSE;
+  public static class QTAppTemp {
+	public static string STATIC_STR_TEMP;
 	public static string STATIC_STR_NAME_ADD_SUCCESS;
+
+	public static void QT_RESET_APP_TEMP() {
+	  STATIC_STR_TEMP="";
+	  STATIC_STR_NAME_ADD_SUCCESS="";
+	}
   }
 }

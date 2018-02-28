@@ -41,6 +41,7 @@ namespace THUOCBAC.FormDanhSach {
 	  //dataGridViewXDanhSachKH.Columns["IdBangKhachHang"].Visible=false;
 	  //dataGridViewXDanhSachKH.Columns["TienNoHienTai"].DefaultCellStyle.Format="#,###.### vnđ";
 	  //QTLibraryFunction.STATIC_VOID_FOCUS_LAST_COLUMN_DGV(ref dataGridViewXDanhSachKH,"TenKhachHang");
+	  QTAppTemp.QT_RESET_APP_TEMP();
 	  VOID_LOAD_FORM_FOCUS_LAST_ROW();
 	}
 
@@ -48,15 +49,11 @@ namespace THUOCBAC.FormDanhSach {
 	  voidHIENTHI_DGV_KHACHHANG();
 	  QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dataGridViewXDanhSachKH);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,"STT",60,DataGridViewContentAlignment.MiddleCenter);
-
-	  //dataGridViewXDanhSachKH.Columns["TenKhachHang"].HeaderText="Tên khách hàng";
-	  //dataGridViewXDanhSachKH.Columns["TienNoHienTai"].HeaderText="Tiền nợ hiện tại";
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,"TenKhachHang",CONST_STR_TEN_KHACHHANG,150,DataGridViewContentAlignment.MiddleCenter);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,"TienNoHienTai",CONST_STR_TIENNO_HIENTAI,150,DataGridViewContentAlignment.MiddleRight);
 
 	  dataGridViewXDanhSachKH.Columns["IdBangKhachHang"].Visible=false;
 	  dataGridViewXDanhSachKH.Columns["TienNoHienTai"].DefaultCellStyle.Format="#,###.### vnđ";
-	  //QTLibraryFunction.STATIC_VOID_FOCUS_LAST_ROW_DGV(ref dataGridViewXDanhSachKH,"TenKhachHang");
 	}
 
 	private void VOID_LOAD_FORM_FOCUS_LAST_ROW() {
@@ -66,6 +63,20 @@ namespace THUOCBAC.FormDanhSach {
 
 	private void VOID_LOAD_FORM_FOCUS_CURRENT_ROW() {
 	  VOID_LOAD_FORM();
+	  QTLibraryFunction.STATIC_VOID_FOCUS_ROW_X_IN_DGV(ref dataGridViewXDanhSachKH,"TenKhachHang",INT_INDEX_ROW_DANGCHON);
+	}
+
+	private void VOID_LOAD_FORM_FOCUS_ROW_ADD_SUCCESS() {
+	  if(QTAppTemp.STATIC_STR_NAME_ADD_SUCCESS.Equals("")) {
+		VOID_LOAD_FORM_FOCUS_LAST_ROW();
+		return;
+	  }
+	  VOID_LOAD_FORM();
+	  DataTable dtMain = new DataTable();
+	  dtMain=(DataTable)dataGridViewXDanhSachKH.DataSource;
+	  INT_INDEX_ROW_DANGCHON=QTLibraryFunction.STATIC_INT_INDEX_VALUE_EXIST_IN_COLUMN(QTAppTemp.STATIC_STR_NAME_ADD_SUCCESS,"TenKhachHang",dtMain);
+	  if(INT_INDEX_ROW_DANGCHON==-1311)
+		return;
 	  QTLibraryFunction.STATIC_VOID_FOCUS_ROW_X_IN_DGV(ref dataGridViewXDanhSachKH,"TenKhachHang",INT_INDEX_ROW_DANGCHON);
 	}
 
@@ -130,6 +141,7 @@ namespace THUOCBAC.FormDanhSach {
 	  dtMain=(DataTable)dataGridViewXDanhSachKH.DataSource;
 	  FormDialogPhu.frmThemTenVaoDanhSach frm = new FormDialogPhu.frmThemTenVaoDanhSach("Thêm tên khách hàng mới",491,157,dtMain);
 	  frm.ShowDialog();
+	  VOID_LOAD_FORM_FOCUS_ROW_ADD_SUCCESS();
 	}
   }
 }

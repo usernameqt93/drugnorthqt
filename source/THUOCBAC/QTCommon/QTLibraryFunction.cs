@@ -10,10 +10,6 @@ using System.Windows.Forms;
 namespace QTCommon {
   public static class QTLibraryFunction {
 
-	public static string GetValue(string str) {
-	  return "'"+str+"'";
-	}
-
 	public static void STATIC_VOID_ADD_STT_COL_TO_DATATABLE(ref DataTable _dt) {
 	  _dt.Columns.Add("STT");
 	  for(int i = 0;i<_dt.Rows.Count;i++)
@@ -59,22 +55,35 @@ namespace QTCommon {
 	  int intSoThuTuHangMuonTroVao = 0;
 	  if(_dgvXTemp.RowCount>1) {
 		intSoThuTuHangMuonTroVao=_dgvXTemp.RowCount-1;
-		_dgvXTemp.CurrentCell=_dgvXTemp.Rows[intSoThuTuHangMuonTroVao].Cells[_strIdColumnFocus];
 		// Đưa Control về vị trí của nó
-		_dgvXTemp.CurrentRow.Selected=true;
+		_dgvXTemp.CurrentCell=_dgvXTemp.Rows[intSoThuTuHangMuonTroVao].Cells[_strIdColumnFocus];
 		// Set trạng thái Selected
+		_dgvXTemp.CurrentRow.Selected=true;
 	  }
 	}
 
 	public static void STATIC_VOID_FOCUS_ROW_X_IN_DGV(ref DataGridViewX _dgvXTemp,string _strIdColumnFocus,int _intIndexFocus) {
 	  int intSoThuTuHangMuonTroVao = 0;
-	  if(_dgvXTemp.RowCount>1) {
+	  if(_dgvXTemp.RowCount>1&&_intIndexFocus>=0) {
 		intSoThuTuHangMuonTroVao=_dgvXTemp.RowCount-1;
-		_dgvXTemp.CurrentCell=_dgvXTemp.Rows[_intIndexFocus].Cells[_strIdColumnFocus];
 		// Đưa Control về vị trí của nó
-		_dgvXTemp.CurrentRow.Selected=true;
+		_dgvXTemp.CurrentCell=_dgvXTemp.Rows[_intIndexFocus].Cells[_strIdColumnFocus];
 		// Set trạng thái Selected
+		_dgvXTemp.CurrentRow.Selected=true;
 	  }
+	}
+
+	public static int STATIC_INT_INDEX_VALUE_EXIST_IN_COLUMN(string _strValue,string _strIdColumn,DataTable _dtMain) {
+	  int intCountDtMain = _dtMain.Rows.Count;
+	  if(intCountDtMain>0) {
+		for(int i = 0;i<intCountDtMain;i++) {
+		  string strTemp = _dtMain.Rows[i][_strIdColumn].ToString();
+		  if(strTemp.Equals(_strValue)) {
+			return i;
+		  }
+		}
+	  }
+	  return -1311;
 	}
   }
 }

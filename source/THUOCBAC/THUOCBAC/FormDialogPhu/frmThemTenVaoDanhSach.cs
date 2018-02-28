@@ -1,4 +1,5 @@
-﻿using QTCommon;
+﻿using BusinessLogic;
+using QTCommon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,7 @@ using System.Windows.Forms;
 namespace THUOCBAC.FormDialogPhu {
   public partial class frmThemTenVaoDanhSach:Form {
 	private DataTable DT_MAIN;
+	private BL_KhachHang BL_KHACHHANG = new BL_KhachHang();
 
 	public frmThemTenVaoDanhSach() {
 	  InitializeComponent();
@@ -34,20 +36,35 @@ namespace THUOCBAC.FormDialogPhu {
 	}
 
 	private void btnXAccept_Click(object sender,EventArgs e) {
-	  if(txtXValue.Text.Equals("")) {
-		QTMessageConst.CUSTOMER_NAME_MUSTNOT_BE_EMPTY();
-		txtXValue.Focus();
-		return;
-	  }
-	  if(txtXValue.Text.Length<3) {
+	  // if(txtXValue.Text.Equals("")) {
+	  //QTMessageConst.CUSTOMER_NAME_MUSTNOT_BE_EMPTY();
+	  //txtXValue.Focus();
+	  //return;
+	  // }
+	  string strValue = txtXValue.Text.Trim();
+	  if(strValue.Length<3) {
 		QTMessageConst.CUSTOMER_NAME_MUST_CONTAIN_MORE_X_CHAR(3);
 		txtXValue.Focus();
 		return;
 	  }
-	  if(BOOL_VALUE_EXIST_IN_COLUMN(txtXValue.Text,"TenKhachHang",DT_MAIN)) {
-		QTMessageConst.CUSTOMER_NAME_EXIST_IN_DB();
+	  if(BOOL_VALUE_EXIST_IN_COLUMN(strValue,"TenKhachHang",DT_MAIN)) {
+		QTMessageConst.CUSTOMER_NAME_EXIST_IN_DB(strValue);
 		txtXValue.Focus();
 		return;
+	  }
+
+	  string strNameCustomerUpper = ""+strValue.ElementAt(0).ToString().ToUpper()+strValue.Substring(1);
+	  string strLoi = "";
+	  string strTrangThaiThemKH = BL_KHACHHANG.STR_INSERT_KHACHHANG_LANDAU(ref strLoi,strNameCustomerUpper);
+	  if(strTrangThaiThemKH.Equals("false")&&!strLoi.Equals("2")) {
+		MessageBox.Show("Thêm tên khách hàng bị LỖI ("+strLoi+")");
+	  } else {
+		//if(voidHIENTHI_TENKH_RA_COMBOBOX!=null)
+		//  voidHIENTHI_TENKH_RA_COMBOBOX(strTenKhachHangDaVietHoaChuCaiDau);
+		//MessageBox.Show("Thêm tên khách hàng '"+strNameCustomerUpper+"' vào danh sách THÀNH CÔNG !");
+		QTAppTemp.STATIC_STR_NAME_ADD_SUCCESS=strNameCustomerUpper;
+		QTMessageConst.CUSTOMER_NAME_ADD_SUCCESS(strNameCustomerUpper);
+		this.Close();
 	  }
 	}
 

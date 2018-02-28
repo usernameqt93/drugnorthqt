@@ -21,6 +21,10 @@ namespace QTCommon {
 	  MessageBox.Show(_strTemp+" đã tồn tại trong danh sách !");
 	}
 
+	public static void STATIC_VOID_SHOW_ADD_SUCCESS(string _strTemp) {
+	  MessageBox.Show("Thêm "+_strTemp+" thành công !");
+	}
+
 	public static void CUSTOMER_NAME_MUSTNOT_BE_EMPTY() {
 	  STATIC_VOID_SHOW_MUSTNOT_BE_EMPTY(CONST_STR_TEN_KHACHHANG);
 	}
@@ -31,6 +35,14 @@ namespace QTCommon {
 
 	public static void CUSTOMER_NAME_EXIST_IN_DB() {
 	  STATIC_VOID_SHOW_EXIST(CONST_STR_TEN_KHACHHANG);
+	}
+
+	public static void CUSTOMER_NAME_EXIST_IN_DB(string _strText) {
+	  STATIC_VOID_SHOW_EXIST(CONST_STR_TEN_KHACHHANG + " '"+_strText+"'");
+	}
+
+	public static void CUSTOMER_NAME_ADD_SUCCESS(string _strText) {
+	  STATIC_VOID_SHOW_ADD_SUCCESS(CONST_STR_TEN_KHACHHANG+" '"+_strText+"'");
 	}
   }
 }
