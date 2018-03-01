@@ -99,6 +99,7 @@ namespace THUOCBAC.FormDanhSach {
 		  INT_INDEX_ROW_DANGCHON=e.RowIndex;
 		  btnXThayDoiTienNo.Enabled=(STR_TEN_KH_DANGCHON.Equals(" --Không ghi vào--"))?false:true;
 		  btnXXemChiTiet.Enabled=(STR_TEN_KH_DANGCHON.Equals(" --Không ghi vào--"))?false:true;
+		  btnXChangeNameCustomer.Enabled=(STR_TEN_KH_DANGCHON.Equals(" --Không ghi vào--")) ? false : true;
 		  //DEC_TIENNO_CU_DANGCHON=(r.Cells["TienNoCu"].Value.ToString().Equals(""))?0:Convert.ToDecimal(r.Cells["TienNoCu"].Value);
 		  //DT_THOIGIAN_VIETDH_DANGCHON=(r.Cells["ThoiGianVietDonHangNay"].Value.ToString().Equals(""))?DateTime.Now:Convert.ToDateTime(r.Cells["ThoiGianVietDonHangNay"].Value);
 		}
@@ -145,7 +146,13 @@ namespace THUOCBAC.FormDanhSach {
 	}
 
 	private void btnXChangeNameCustomer_Click(object sender,EventArgs e) {
+	  DataTable dtMain = new DataTable();
+	  dtMain=(DataTable)dataGridViewXDanhSachKH.DataSource;
+	  FormDialogPhu.frmSuaTenTrongDanhSach frm = new FormDialogPhu.frmSuaTenTrongDanhSach("Tên khách hàng",491,230,INT_ID_KH_DANGCHON,STR_TEN_KH_DANGCHON,dtMain);
+	  frm.ShowDialog();
 
+	  VOID_LOAD_FORM_FOCUS_CURRENT_ROW();
+	  btnXChangeNameCustomer.Enabled=false;
 	}
   }
 }

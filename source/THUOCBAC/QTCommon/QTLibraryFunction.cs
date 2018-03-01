@@ -85,5 +85,18 @@ namespace QTCommon {
 	  }
 	  return -1311;
 	}
+
+	public static bool STATIC_BOOL_VALUE_EXIST_IN_COLUMN(string _strValue,string _strIdColumn,DataTable _dtMain) {
+	  int intCountDtMain = _dtMain.Rows.Count;
+	  if(intCountDtMain>0) {
+		for(int i = 0;i<intCountDtMain;i++) {
+		  string strTemp = _dtMain.Rows[i][_strIdColumn].ToString();
+		  if(strTemp.Equals(_strValue)) {
+			return true;
+		  }
+		}
+	  }
+	  return false;
+	}
   }
 }

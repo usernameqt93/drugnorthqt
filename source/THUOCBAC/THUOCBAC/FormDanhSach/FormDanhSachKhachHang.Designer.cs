@@ -23,15 +23,15 @@
 	/// the contents of this method with the code editor.
 	/// </summary>
 	private void InitializeComponent() {
-	  System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+	  System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 	  this.grpChucNang = new System.Windows.Forms.GroupBox();
+	  this.btnXChangeNameCustomer = new DevComponents.DotNetBar.ButtonX();
 	  this.btnXAddCustomer = new DevComponents.DotNetBar.ButtonX();
 	  this.btnXXemChiTiet = new DevComponents.DotNetBar.ButtonX();
 	  this.btnXThayDoiTienNo = new DevComponents.DotNetBar.ButtonX();
 	  this.grpDanhSach = new System.Windows.Forms.GroupBox();
 	  this.dataGridViewXDanhSachKH = new DevComponents.DotNetBar.Controls.DataGridViewX();
 	  this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
-	  this.btnXChangeNameCustomer = new DevComponents.DotNetBar.ButtonX();
 	  this.grpChucNang.SuspendLayout();
 	  this.grpDanhSach.SuspendLayout();
 	  ((System.ComponentModel.ISupportInitialize)(this.dataGridViewXDanhSachKH)).BeginInit();
@@ -51,6 +51,20 @@
 	  this.grpChucNang.TabIndex = 0;
 	  this.grpChucNang.TabStop = false;
 	  this.grpChucNang.Text = "Chức năng";
+	  // 
+	  // btnXChangeNameCustomer
+	  // 
+	  this.btnXChangeNameCustomer.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXChangeNameCustomer.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXChangeNameCustomer.Enabled = false;
+	  this.btnXChangeNameCustomer.Image = global::THUOCBAC.Properties.Resources.update;
+	  this.btnXChangeNameCustomer.Location = new System.Drawing.Point(6, 69);
+	  this.btnXChangeNameCustomer.Name = "btnXChangeNameCustomer";
+	  this.btnXChangeNameCustomer.Size = new System.Drawing.Size(183, 44);
+	  this.btnXChangeNameCustomer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXChangeNameCustomer.TabIndex = 2;
+	  this.btnXChangeNameCustomer.Text = "Thay đổi tên khách hàng";
+	  this.btnXChangeNameCustomer.Click += new System.EventHandler(this.btnXChangeNameCustomer_Click);
 	  // 
 	  // btnXAddCustomer
 	  // 
@@ -111,14 +125,14 @@
 	  this.dataGridViewXDanhSachKH.AllowUserToAddRows = false;
 	  this.dataGridViewXDanhSachKH.AllowUserToDeleteRows = false;
 	  this.dataGridViewXDanhSachKH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-	  dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-	  dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-	  dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-	  dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-	  dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-	  dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-	  dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-	  this.dataGridViewXDanhSachKH.DefaultCellStyle = dataGridViewCellStyle3;
+	  dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+	  dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+	  dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+	  dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+	  dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+	  dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+	  dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+	  this.dataGridViewXDanhSachKH.DefaultCellStyle = dataGridViewCellStyle1;
 	  this.dataGridViewXDanhSachKH.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.dataGridViewXDanhSachKH.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
 	  this.dataGridViewXDanhSachKH.Location = new System.Drawing.Point(6, 19);
@@ -143,19 +157,6 @@
 	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 	  this.tlpMain.Size = new System.Drawing.Size(1349, 538);
 	  this.tlpMain.TabIndex = 2;
-	  // 
-	  // btnXChangeNameCustomer
-	  // 
-	  this.btnXChangeNameCustomer.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-	  this.btnXChangeNameCustomer.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.btnXChangeNameCustomer.Image = global::THUOCBAC.Properties.Resources.update;
-	  this.btnXChangeNameCustomer.Location = new System.Drawing.Point(6, 69);
-	  this.btnXChangeNameCustomer.Name = "btnXChangeNameCustomer";
-	  this.btnXChangeNameCustomer.Size = new System.Drawing.Size(183, 44);
-	  this.btnXChangeNameCustomer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.btnXChangeNameCustomer.TabIndex = 2;
-	  this.btnXChangeNameCustomer.Text = "Thay đổi tên khách hàng";
-	  this.btnXChangeNameCustomer.Click += new System.EventHandler(this.btnXChangeNameCustomer_Click);
 	  // 
 	  // FormDanhSachKhachHang
 	  // 

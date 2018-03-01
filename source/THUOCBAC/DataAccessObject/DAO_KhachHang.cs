@@ -68,6 +68,7 @@ namespace DataAccessObject {
 	  } catch { }
 	  return "false";
 	}
+
 	public string STR_SUA_TIENNO_KH(ref string err,decimal decTienNoHienTai,int intIdKhachHang,DateTime dtThoiGianThayDoi,decimal decTienNoTruocKhiSua,
 	  string strLyDoSuaTienNo,decimal decSoTienSuaCuThe,decimal decTienNoSauKhiSua) {
 	  try {
@@ -91,6 +92,30 @@ namespace DataAccessObject {
 	  } catch { }
 	  return "false";
 	}
+
+	public string STR_SUA_TEN_KHACHHANG(ref string err,string _strTenKhachHangSua,int intIdKhachHang) {
+	  try {
+		//string strLyDoSuaTienNo="Thay đổi tiền nợ";
+		string strSql = @"update BangKhachHang set TenKhachHang=@TenKhachHang where IdBangKhachHang=@IdBangKhachHang; ";
+		//strSql+="set @IdBangKhachHangVuaThem = (select @@IDENTITY);";
+		//strSql+=@"Insert into BangChiTietTienNo(IdBangKhachHang,ThoiGianThayDoiTienNo,TienNoTruocKhiSua,LyDoSuaTienNo,SoTienSuaCuThe,TienNoSauKhiSua) 
+		//	values (@IdBangKhachHang,@ThoiGianThayDoiTienNo,@TienNoTruocKhiSua,@LyDoSuaTienNo,@SoTienSuaCuThe,@TienNoSauKhiSua);";
+		SqlParameter TenKhachHangSua = new SqlParameter("@TenKhachHang",_strTenKhachHangSua);
+		SqlParameter IdBangKhachHang = new SqlParameter("@IdBangKhachHang",intIdKhachHang);
+		//SqlParameter ThoiGianThayDoiTienNo = new SqlParameter("@ThoiGianThayDoiTienNo",dtThoiGianThayDoi);
+		//SqlParameter TienNoTruocKhiSua = new SqlParameter("@TienNoTruocKhiSua",decTienNoTruocKhiSua);
+		//SqlParameter LyDoSuaTienNo = new SqlParameter("@LyDoSuaTienNo",strLyDoSuaTienNo);
+		//SqlParameter SoTienSuaCuThe = new SqlParameter("@SoTienSuaCuThe",decSoTienSuaCuThe);
+		//SqlParameter TienNoSauKhiSua = new SqlParameter("@TienNoSauKhiSua",decTienNoSauKhiSua);
+		if(blnThucThiNonQuery(strSql,CommandType.Text,ref err,new SqlParameter[] {
+		  TenKhachHangSua,IdBangKhachHang }))
+		  return "pass";
+		else
+		  return "false";
+	  } catch { }
+	  return "false";
+	}
+
 	public string STR_CAPNHAT_TIENNO_KH(
 	  ref string err,int intMaDonHang,decimal decTienNoHienTai,int intIdKhachHang,DateTime dtThoiGianThayDoi,decimal decTienNoTruocKhiSua,
 	  string strLyDoSuaTienNo,decimal decSoTienSuaCuThe,decimal decTienNoSauKhiSua) {

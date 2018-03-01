@@ -47,7 +47,12 @@ namespace THUOCBAC.FormDialogPhu {
 		txtXValue.Focus();
 		return;
 	  }
-	  if(BOOL_VALUE_EXIST_IN_COLUMN(strValue,"TenKhachHang",DT_MAIN)) {
+	  // if(BOOL_VALUE_EXIST_IN_COLUMN(strValue,"TenKhachHang",DT_MAIN)) {
+	  //QTMessageConst.CUSTOMER_NAME_EXIST_IN_DB(strValue);
+	  //txtXValue.Focus();
+	  //return;
+	  // }
+	  if(QTLibraryFunction.STATIC_BOOL_VALUE_EXIST_IN_COLUMN(strValue,"TenKhachHang",DT_MAIN)) {
 		QTMessageConst.CUSTOMER_NAME_EXIST_IN_DB(strValue);
 		txtXValue.Focus();
 		return;
@@ -68,17 +73,17 @@ namespace THUOCBAC.FormDialogPhu {
 	  }
 	}
 
-	private bool BOOL_VALUE_EXIST_IN_COLUMN(string _strValue,string _strIdColumn,DataTable _dtMain) {
-	  int intCountDtMain = _dtMain.Rows.Count;
-	  if(intCountDtMain>0) {
-		for(int i = 0;i<intCountDtMain;i++) {
-		  string strTemp = _dtMain.Rows[i][_strIdColumn].ToString();
-		  if(strTemp.Equals(_strValue)) {
-			return true;
-		  }
-		}
-	  }
-	  return false;
-	}
+	//private bool BOOL_VALUE_EXIST_IN_COLUMN(string _strValue,string _strIdColumn,DataTable _dtMain) {
+	//  int intCountDtMain = _dtMain.Rows.Count;
+	//  if(intCountDtMain>0) {
+	//	for(int i = 0;i<intCountDtMain;i++) {
+	//	  string strTemp = _dtMain.Rows[i][_strIdColumn].ToString();
+	//	  if(strTemp.Equals(_strValue)) {
+	//		return true;
+	//	  }
+	//	}
+	//  }
+	//  return false;
+	//}
   }
 }

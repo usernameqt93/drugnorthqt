@@ -53,6 +53,13 @@ namespace BusinessLogic {
 	  return DAO_KHACHHANG.STR_SUA_TIENNO_KH(ref err,decSoTienSuaCuThe,intIdKhachHang,
 		dtThoiGianThayDoi,decTienNoHienTai,strLyDoSuaTienNo,decSoTienSuaCuThe,decSoTienSuaCuThe);
 	}
+
+	public string STR_SUA_TEN_KHACHHANG(ref string err,string _strTenKhachHangSua,int intIdKhachHang) {
+	  //DateTime dtThoiGianThayDoi = DateTime.Now;
+	  //string strLyDoSuaTienNo="Thay đổi tiền nợ";
+	  return DAO_KHACHHANG.STR_SUA_TEN_KHACHHANG(ref err,_strTenKhachHangSua,intIdKhachHang);
+	}
+
 	public string STR_DATRA_TIENNO_KH(ref string err,decimal decTienNoHienTaiForm,int intIdKhachHangForm,decimal decSoTienSuaCuTheForm,string strLyDoSuaTienNoForm) {
 	  DateTime dtThoiGianThayDoi=DateTime.Now;
 	  //string strLyDoSuaTienNo="Thay đổi tiền nợ";
