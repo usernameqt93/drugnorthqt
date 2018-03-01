@@ -61,12 +61,11 @@ namespace THUOCBAC.FormDanhSach {
 	  //dataGridViewXCacDonHang.Columns["SDTKhachHang"].Visible=false;
 	  //dataGridViewXCacDonHang.Columns["TienNoCu"].Visible=false;
 
-	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dataGridViewXCacDonHang,new List<string>() { "MaDonHang","IdBangKhachHang","SDTKhachHang","TienNoCu" });
-	  //QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dataGridViewXCacDonHang,new List<string>() { "MaDonHang","IdBangKhachHang","SDTKhachHang" });
+	  //QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dataGridViewXCacDonHang,new List<string>() { "MaDonHang","IdBangKhachHang","SDTKhachHang","TienNoCu" });
 
-	  dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].DefaultCellStyle.Format="#,###.### vnđ";
-	  dataGridViewXCacDonHang.Columns["TongViThuoc"].DefaultCellStyle.Format="#,###.### vị thuốc";
-	  dataGridViewXCacDonHang.Columns["TongKhoiLuong"].DefaultCellStyle.Format="#,###.### Kg";
+	  //dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].DefaultCellStyle.Format="#,###.### vnđ";
+	  //dataGridViewXCacDonHang.Columns["TongViThuoc"].DefaultCellStyle.Format="#,###.### vị thuốc";
+	  //dataGridViewXCacDonHang.Columns["TongKhoiLuong"].DefaultCellStyle.Format="#,###.### Kg";
 	}
 
 	//private void VOID_SET_WIDTH_ALIGN_COLUMN(string _strTenCot,int _intWidth,DataGridViewContentAlignment _dgvContentAlign) {
@@ -96,11 +95,19 @@ namespace THUOCBAC.FormDanhSach {
 	  //VOID_SET_WIDTH_ALIGN_COLUMN("TongViThuoc",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
 	  //VOID_SET_WIDTH_ALIGN_COLUMN("TenKhachHang",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
 
+	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dataGridViewXCacDonHang,new List<string>() { "MaDonHang","IdBangKhachHang","SDTKhachHang","TienNoCu" });
+
+	  dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].DefaultCellStyle.Format="#,###.### vnđ";
+	  dataGridViewXCacDonHang.Columns["TongViThuoc"].DefaultCellStyle.Format="#,###.### vị thuốc";
+	  dataGridViewXCacDonHang.Columns["TongKhoiLuong"].DefaultCellStyle.Format="#,###.### Kg";
+
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"STT",60,DataGridViewContentAlignment.MiddleCenter);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TongKhoiLuong",CONST_STR_TONG_KHOILUONG,150,DataGridViewContentAlignment.MiddleCenter);
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TongGiaTriDonHang",CONST_STR_TONG_GIATRI_DH,150,DataGridViewContentAlignment.MiddleCenter);
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"ThoiGianVietDonHangNay",CONST_STR_THOIGIAN_VIET,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TongViThuoc",CONST_STR_TONG_VITHUOC,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TongGiaTriDonHang",CONST_STR_TONG_GIATRI_DH,150,DataGridViewContentAlignment.MiddleRight);
+	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"ThoiGianVietDonHangNay",CONST_STR_THOIGIAN_VIET,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TongViThuoc",CONST_STR_TONG_VITHUOC,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"ThoiGianVietDonHangNay",CONST_STR_THOIGIAN_VIET,150,DataGridViewContentAlignment.MiddleCenter);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TongViThuoc",CONST_STR_TONG_VITHUOC,150,DataGridViewContentAlignment.MiddleCenter);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TenKhachHang",CONST_STR_TEN_KHACHHANG,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
 
 	  dataGridViewXCacDonHang.Columns["STT"].DisplayIndex=0;

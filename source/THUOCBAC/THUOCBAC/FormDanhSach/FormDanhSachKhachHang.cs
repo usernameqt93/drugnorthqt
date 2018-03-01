@@ -143,5 +143,9 @@ namespace THUOCBAC.FormDanhSach {
 	  frm.ShowDialog();
 	  VOID_LOAD_FORM_FOCUS_ROW_ADD_SUCCESS();
 	}
+
+	private void btnXChangeNameCustomer_Click(object sender,EventArgs e) {
+
+	}
   }
 }

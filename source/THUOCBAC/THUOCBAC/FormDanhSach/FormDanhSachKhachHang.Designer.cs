@@ -23,14 +23,15 @@
 	/// the contents of this method with the code editor.
 	/// </summary>
 	private void InitializeComponent() {
-	  System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+	  System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 	  this.grpChucNang = new System.Windows.Forms.GroupBox();
+	  this.btnXAddCustomer = new DevComponents.DotNetBar.ButtonX();
 	  this.btnXXemChiTiet = new DevComponents.DotNetBar.ButtonX();
 	  this.btnXThayDoiTienNo = new DevComponents.DotNetBar.ButtonX();
 	  this.grpDanhSach = new System.Windows.Forms.GroupBox();
 	  this.dataGridViewXDanhSachKH = new DevComponents.DotNetBar.Controls.DataGridViewX();
 	  this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
-	  this.btnXAddCustomer = new DevComponents.DotNetBar.ButtonX();
+	  this.btnXChangeNameCustomer = new DevComponents.DotNetBar.ButtonX();
 	  this.grpChucNang.SuspendLayout();
 	  this.grpDanhSach.SuspendLayout();
 	  ((System.ComponentModel.ISupportInitialize)(this.dataGridViewXDanhSachKH)).BeginInit();
@@ -39,6 +40,7 @@
 	  // 
 	  // grpChucNang
 	  // 
+	  this.grpChucNang.Controls.Add(this.btnXChangeNameCustomer);
 	  this.grpChucNang.Controls.Add(this.btnXAddCustomer);
 	  this.grpChucNang.Controls.Add(this.btnXXemChiTiet);
 	  this.grpChucNang.Controls.Add(this.btnXThayDoiTienNo);
@@ -50,13 +52,26 @@
 	  this.grpChucNang.TabStop = false;
 	  this.grpChucNang.Text = "Chức năng";
 	  // 
+	  // btnXAddCustomer
+	  // 
+	  this.btnXAddCustomer.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXAddCustomer.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXAddCustomer.Image = global::THUOCBAC.Properties.Resources.add;
+	  this.btnXAddCustomer.Location = new System.Drawing.Point(6, 19);
+	  this.btnXAddCustomer.Name = "btnXAddCustomer";
+	  this.btnXAddCustomer.Size = new System.Drawing.Size(183, 44);
+	  this.btnXAddCustomer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXAddCustomer.TabIndex = 1;
+	  this.btnXAddCustomer.Text = "Thêm tên khách hàng mới";
+	  this.btnXAddCustomer.Click += new System.EventHandler(this.btnXAddCustomer_Click);
+	  // 
 	  // btnXXemChiTiet
 	  // 
 	  this.btnXXemChiTiet.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 	  this.btnXXemChiTiet.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 	  this.btnXXemChiTiet.Enabled = false;
 	  this.btnXXemChiTiet.Image = global::THUOCBAC.Properties.Resources._goto;
-	  this.btnXXemChiTiet.Location = new System.Drawing.Point(6, 119);
+	  this.btnXXemChiTiet.Location = new System.Drawing.Point(6, 169);
 	  this.btnXXemChiTiet.Name = "btnXXemChiTiet";
 	  this.btnXXemChiTiet.Size = new System.Drawing.Size(183, 44);
 	  this.btnXXemChiTiet.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -69,8 +84,8 @@
 	  this.btnXThayDoiTienNo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 	  this.btnXThayDoiTienNo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 	  this.btnXThayDoiTienNo.Enabled = false;
-	  this.btnXThayDoiTienNo.Image = global::THUOCBAC.Properties.Resources.clear2;
-	  this.btnXThayDoiTienNo.Location = new System.Drawing.Point(6, 69);
+	  this.btnXThayDoiTienNo.Image = global::THUOCBAC.Properties.Resources.update;
+	  this.btnXThayDoiTienNo.Location = new System.Drawing.Point(6, 119);
 	  this.btnXThayDoiTienNo.Name = "btnXThayDoiTienNo";
 	  this.btnXThayDoiTienNo.Size = new System.Drawing.Size(183, 44);
 	  this.btnXThayDoiTienNo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -96,14 +111,14 @@
 	  this.dataGridViewXDanhSachKH.AllowUserToAddRows = false;
 	  this.dataGridViewXDanhSachKH.AllowUserToDeleteRows = false;
 	  this.dataGridViewXDanhSachKH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-	  dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-	  dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-	  dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-	  dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-	  dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-	  dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-	  dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-	  this.dataGridViewXDanhSachKH.DefaultCellStyle = dataGridViewCellStyle2;
+	  dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+	  dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+	  dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+	  dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+	  dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+	  dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+	  dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+	  this.dataGridViewXDanhSachKH.DefaultCellStyle = dataGridViewCellStyle3;
 	  this.dataGridViewXDanhSachKH.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.dataGridViewXDanhSachKH.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
 	  this.dataGridViewXDanhSachKH.Location = new System.Drawing.Point(6, 19);
@@ -129,18 +144,18 @@
 	  this.tlpMain.Size = new System.Drawing.Size(1349, 538);
 	  this.tlpMain.TabIndex = 2;
 	  // 
-	  // btnXAddCustomer
+	  // btnXChangeNameCustomer
 	  // 
-	  this.btnXAddCustomer.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-	  this.btnXAddCustomer.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.btnXAddCustomer.Image = global::THUOCBAC.Properties.Resources.add;
-	  this.btnXAddCustomer.Location = new System.Drawing.Point(6, 19);
-	  this.btnXAddCustomer.Name = "btnXAddCustomer";
-	  this.btnXAddCustomer.Size = new System.Drawing.Size(183, 44);
-	  this.btnXAddCustomer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.btnXAddCustomer.TabIndex = 1;
-	  this.btnXAddCustomer.Text = "Thêm tên khách hàng mới";
-	  this.btnXAddCustomer.Click += new System.EventHandler(this.btnXAddCustomer_Click);
+	  this.btnXChangeNameCustomer.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXChangeNameCustomer.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXChangeNameCustomer.Image = global::THUOCBAC.Properties.Resources.update;
+	  this.btnXChangeNameCustomer.Location = new System.Drawing.Point(6, 69);
+	  this.btnXChangeNameCustomer.Name = "btnXChangeNameCustomer";
+	  this.btnXChangeNameCustomer.Size = new System.Drawing.Size(183, 44);
+	  this.btnXChangeNameCustomer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXChangeNameCustomer.TabIndex = 2;
+	  this.btnXChangeNameCustomer.Text = "Thay đổi tên khách hàng";
+	  this.btnXChangeNameCustomer.Click += new System.EventHandler(this.btnXChangeNameCustomer_Click);
 	  // 
 	  // FormDanhSachKhachHang
 	  // 
@@ -170,5 +185,6 @@
 	private DevComponents.DotNetBar.ButtonX btnXXemChiTiet;
 	private System.Windows.Forms.TableLayoutPanel tlpMain;
 	private DevComponents.DotNetBar.ButtonX btnXAddCustomer;
+	private DevComponents.DotNetBar.ButtonX btnXChangeNameCustomer;
   }
 }
