@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using BusinessLogic;
+using QTCommon;
 
 namespace THUOCBAC.FormReport {
   public partial class FormReportChiTietDonHang:Form {
@@ -41,6 +42,7 @@ namespace THUOCBAC.FormReport {
 	}
 
 	private void FormReportChiTietDonHang_Load(object sender,EventArgs e) {
+	  QTAppTemp.QT_RESET_APP_TEMP();
 	  comboBoxExTuyChonMauGiay.SelectedIndex=0;
 	  reportViewerChiTietDonHang.ProcessingMode=ProcessingMode.Local;
 	  string strHoTen="";
@@ -60,6 +62,9 @@ namespace THUOCBAC.FormReport {
 
 	  voidCAPNHAT_COMBOBOX_TENKH();
 	  comboBoxExTenKhachHang.SelectedValue=INT_IDKH_HIENTAI;
+
+	  //QTAppTemp.STATIC_INT_ID_CHOOSE=INT_IDKH_HIENTAI;
+
 	  if(!comboBoxExTenKhachHang.Text.Equals(" --Không ghi vào--"))
 	  DEC_TIENNO_HIENTAI_CUA_KH=BL_KHACHHANG.DEC_TIENNO_HIENTAI_KH(INT_IDKH_HIENTAI);
 	  txtXSDTKH.Text=STR_SDT_KH_HIENTAI;
@@ -258,8 +263,10 @@ namespace THUOCBAC.FormReport {
 		MessageBox.Show("Bạn chưa chọn tên khách hàng, chưa hiển thị thông tin được !");
 		return;
 	  }
-	  int intIdKHVuaChonTrongComboBox=Convert.ToInt32(comboBoxExTenKhachHang.SelectedValue.ToString());
-	  string strTenKhachHangDangChon=comboBoxExTenKhachHang.Text;
+	  int intIdKHVuaChonTrongComboBox = Convert.ToInt32(comboBoxExTenKhachHang.SelectedValue.ToString());
+	  string strTenKhachHangDangChon = comboBoxExTenKhachHang.Text;
+	  //int intIdKHVuaChonTrongComboBox = QTAppTemp.STATIC_INT_ID_CHOOSE;
+	  //string strTenKhachHangDangChon = txtXNameCustomer.Text;
 	  DataTable dtLichSuTienNo=BL_KHACHHANG.DATATABLE_LICHSU_TIENNO_THEO_IDKH(intIdKHVuaChonTrongComboBox);
 	  if(dtLichSuTienNo.Rows.Count==0) {
 		MessageBox.Show("Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là 0 đ\nBạn có thể xem lại thông tin chi tiết ở phần danh sách khách hàng !");
@@ -324,7 +331,10 @@ namespace THUOCBAC.FormReport {
 	}
 
 	private void btnXChooseCustomer_Click(object sender,EventArgs e) {
-
+	  FormDialogPhu.frmChonTenHoacThemMoi frm = new FormDialogPhu.frmChonTenHoacThemMoi("Tên khách hàng",500,700);
+	  frm.ShowDialog();
+	  txtXNameCustomer.Text=QTAppTemp.STATIC_STR_NAME_CHOOSE;
+	  numericUpDownTienNo.Value=QTAppTemp.STATIC_DEC_DEBT_CHOOSE;
 	}
   }
 }

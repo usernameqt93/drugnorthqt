@@ -8,7 +8,9 @@ using DataAccessObject;
 
 namespace BusinessLogic {
   public class BL_KhachHang {
+
 	private DAO_KhachHang DAO_KHACHHANG=new DAO_KhachHang();
+
 	public DataTable DATATABLE_BANG_KHACHHANG_XEPTHEOTEN() {
 	  return DAO_KHACHHANG.DATATABLE_BANG_KHACHHANG_XEPTHEOTEN();
 	}

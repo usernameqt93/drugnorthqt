@@ -40,7 +40,9 @@ FormXemThongTinTienNo 1221, 532
 grpTienNoHienTai 444, 52
 
 
-
+Them ham 
+QTAppTemp.QT_RESET_APP_TEMP(); 
+vao tat ca load cac form
 
 
 

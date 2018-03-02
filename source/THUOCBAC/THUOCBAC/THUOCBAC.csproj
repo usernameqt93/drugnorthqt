@@ -143,6 +143,12 @@
     <Compile Include="FormDanhSach\FormDanhSachViThuoc.Designer.cs">
       <DependentUpon>FormDanhSachViThuoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDialogPhu\frmChonTenHoacThemMoi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogPhu\frmChonTenHoacThemMoi.Designer.cs">
+      <DependentUpon>frmChonTenHoacThemMoi.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDialogPhu\frmChonTenTrongDanhSach.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDanhSach\FormDanhSachViThuoc.resx">
       <DependentUpon>FormDanhSachViThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogPhu\frmChonTenHoacThemMoi.resx">
+      <DependentUpon>frmChonTenHoacThemMoi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDialogPhu\frmChonTenTrongDanhSach.resx">
       <DependentUpon>frmChonTenTrongDanhSach.cs</DependentUpon>
