@@ -50,6 +50,12 @@
     <Compile Include="DAO_ViThuoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QTCommon\QTCommon.csproj">
+      <Project>{C8DDD53C-0914-44E1-B55D-08074AD22FDD}</Project>
+      <Name>QTCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

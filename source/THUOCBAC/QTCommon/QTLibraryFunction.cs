@@ -98,5 +98,34 @@ namespace QTCommon {
 	  }
 	  return false;
 	}
+
+	public static string STATIC_STR_SELECT_COLUMN(List<string> _lstColumnDb) {
+	  string strResult = "";
+	  if(_lstColumnDb.Count>0) {
+		for(int i = 0;i<_lstColumnDb.Count;i++) {
+		  strResult+=(i==0)? _lstColumnDb[i]:","+_lstColumnDb[i];
+		}
+	  }
+	  return strResult;
+	}
+
+	public static string STATIC_STR_WHERE_COLUMN(List<string> _lstColumnDb,string _strSplit) {
+	  string strResult = "";
+	  if(_lstColumnDb.Count>0) {
+		for(int i = 0;i<_lstColumnDb.Count;i++) {
+		  string strTemp = _lstColumnDb[i]+"=@"+_lstColumnDb[i];
+		  strResult+=(i==0) ? strTemp : _strSplit+strTemp;
+		}
+	  }
+	  return strResult;
+	}
+
+	public static string STATIC_STR_AT(string _strNameColumn) {
+	  return "@"+_strNameColumn;
+	}
+
+	public static string STATIC_STR_QUERY_SELECT(List<string> _lstColumnDbSelect,string _strTable,List<string> _lstColumnDbWhere,string _strSplit) {
+	  return "select "+STATIC_STR_SELECT_COLUMN(_lstColumnDbSelect)+" from "+_strTable+" where "+STATIC_STR_WHERE_COLUMN(_lstColumnDbWhere,_strSplit);
+	}
   }
 }

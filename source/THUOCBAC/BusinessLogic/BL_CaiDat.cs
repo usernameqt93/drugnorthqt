@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessObject;
+using QTCommon;
+using FValueObject.Models;
 
 namespace BusinessLogic {
   public class BL_CaiDat {
@@ -19,7 +21,7 @@ namespace BusinessLogic {
 	public void VOID_LAYTHONGTIN_BANGCAIDAT(ref string strHoTen,ref string strSDT,ref string strSoTK,ref string strSDTBan,ref string strNgheNghiep,ref string strDiaChi) {
 	  DataTable dtCaiDat=DAO_CAIDAT.DATATABLE_BANG_CAIDAT(1);
 	  if(dtCaiDat.Rows.Count>0) {
-		strHoTen=Convert.ToString(dtCaiDat.Rows[0]["HoTenCaiDat"].ToString());
+		strHoTen=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.HOTEN_CAIDAT.STR].ToString());
 		strSDT=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiCaiDat"].ToString());
 		strSoTK=Convert.ToString(dtCaiDat.Rows[0]["SoTaiKhoanCaiDat"].ToString());
 		strSDTBan=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiBanCaiDat"].ToString());
@@ -34,6 +36,26 @@ namespace BusinessLogic {
 		strNgheNghiep="";
 		strDiaChi="";
 	  }
+	}
+
+	public void VOID_LAYTHONGTIN_BANGCAIDAT(ref BangCaiDatModel mBangCaiDat) {
+	  DataTable dtCaiDat = DAO_CAIDAT.DATATABLE_BANG_CAIDAT(1);
+	  if(dtCaiDat.Rows.Count>0) {
+		mBangCaiDat.HOTEN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.HOTEN_CAIDAT.STR].ToString());
+		mBangCaiDat.SO_DIENTHOAI_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiCaiDat"].ToString());
+		mBangCaiDat.SO_TAIKHOAN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoTaiKhoanCaiDat"].ToString());
+		mBangCaiDat.SO_DIENTHOAIBAN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiBanCaiDat"].ToString());
+		mBangCaiDat.NGHENGHIEP_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["NgheNghiepCaiDat"].ToString());
+		mBangCaiDat.DIACHI_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["DiaChiCaiDat"].ToString());
+	  }
+	 // if(dtCaiDat.Rows.Count==0) {
+		//strHoTen="";
+		//strSDT="";
+		//strSoTK="";
+		//strSDTBan="";
+		//strNgheNghiep="";
+		//strDiaChi="";
+	 // }
 	}
   }
 }

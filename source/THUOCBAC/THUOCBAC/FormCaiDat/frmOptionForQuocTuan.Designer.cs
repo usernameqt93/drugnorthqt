@@ -25,13 +25,13 @@
 	private void InitializeComponent() {
 	  this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
 	  this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
-	  this.groupBox1 = new System.Windows.Forms.GroupBox();
-	  this.richTextBoxEx1 = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
-	  this.radioButton1 = new System.Windows.Forms.RadioButton();
-	  this.radioButton2 = new System.Windows.Forms.RadioButton();
 	  this.btnXSave = new DevComponents.DotNetBar.ButtonX();
 	  this.btnxCancel = new DevComponents.DotNetBar.ButtonX();
+	  this.groupBox1 = new System.Windows.Forms.GroupBox();
 	  this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+	  this.richTextBoxEx1 = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
+	  this.rdoXemBanInCach2 = new System.Windows.Forms.RadioButton();
+	  this.rdoXemBanInCach1 = new System.Windows.Forms.RadioButton();
 	  this.panelEx1.SuspendLayout();
 	  this.tlpMain.SuspendLayout();
 	  this.groupBox1.SuspendLayout();
@@ -81,56 +81,6 @@
 	  this.tlpMain.Size = new System.Drawing.Size(1045, 514);
 	  this.tlpMain.TabIndex = 0;
 	  // 
-	  // groupBox1
-	  // 
-	  this.tlpMain.SetColumnSpan(this.groupBox1, 2);
-	  this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-	  this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox1.Location = new System.Drawing.Point(33, 23);
-	  this.groupBox1.Name = "groupBox1";
-	  this.groupBox1.Size = new System.Drawing.Size(481, 69);
-	  this.groupBox1.TabIndex = 0;
-	  this.groupBox1.TabStop = false;
-	  this.groupBox1.Text = "Tùy chọn cách xem bản in";
-	  // 
-	  // richTextBoxEx1
-	  // 
-	  // 
-	  // 
-	  // 
-	  this.richTextBoxEx1.BackgroundStyle.Class = "RichTextBoxBorder";
-	  this.richTextBoxEx1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.richTextBoxEx1.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.richTextBoxEx1.Location = new System.Drawing.Point(123, 3);
-	  this.richTextBoxEx1.Name = "richTextBoxEx1";
-	  this.tableLayoutPanel1.SetRowSpan(this.richTextBoxEx1, 2);
-	  this.richTextBoxEx1.Size = new System.Drawing.Size(349, 44);
-	  this.richTextBoxEx1.TabIndex = 1;
-	  // 
-	  // radioButton1
-	  // 
-	  this.radioButton1.AutoSize = true;
-	  this.radioButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.radioButton1.Location = new System.Drawing.Point(3, 3);
-	  this.radioButton1.Name = "radioButton1";
-	  this.radioButton1.Size = new System.Drawing.Size(114, 19);
-	  this.radioButton1.TabIndex = 0;
-	  this.radioButton1.TabStop = true;
-	  this.radioButton1.Text = "Cách 1";
-	  this.radioButton1.UseVisualStyleBackColor = true;
-	  // 
-	  // radioButton2
-	  // 
-	  this.radioButton2.AutoSize = true;
-	  this.radioButton2.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.radioButton2.Location = new System.Drawing.Point(3, 28);
-	  this.radioButton2.Name = "radioButton2";
-	  this.radioButton2.Size = new System.Drawing.Size(114, 19);
-	  this.radioButton2.TabIndex = 1;
-	  this.radioButton2.TabStop = true;
-	  this.radioButton2.Text = "Cách 2";
-	  this.radioButton2.UseVisualStyleBackColor = true;
-	  // 
 	  // btnXSave
 	  // 
 	  this.btnXSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -159,14 +109,26 @@
 	  this.btnxCancel.Text = "Cancel";
 	  this.btnxCancel.Click += new System.EventHandler(this.btnxCancel_Click);
 	  // 
+	  // groupBox1
+	  // 
+	  this.tlpMain.SetColumnSpan(this.groupBox1, 2);
+	  this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+	  this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.groupBox1.Location = new System.Drawing.Point(33, 23);
+	  this.groupBox1.Name = "groupBox1";
+	  this.groupBox1.Size = new System.Drawing.Size(481, 69);
+	  this.groupBox1.TabIndex = 0;
+	  this.groupBox1.TabStop = false;
+	  this.groupBox1.Text = "Tùy chọn cách xem bản in";
+	  // 
 	  // tableLayoutPanel1
 	  // 
 	  this.tableLayoutPanel1.ColumnCount = 2;
-	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
 	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 	  this.tableLayoutPanel1.Controls.Add(this.richTextBoxEx1, 1, 0);
-	  this.tableLayoutPanel1.Controls.Add(this.radioButton2, 0, 1);
-	  this.tableLayoutPanel1.Controls.Add(this.radioButton1, 0, 0);
+	  this.tableLayoutPanel1.Controls.Add(this.rdoXemBanInCach2, 0, 1);
+	  this.tableLayoutPanel1.Controls.Add(this.rdoXemBanInCach1, 0, 0);
 	  this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
 	  this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -175,6 +137,44 @@
 	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
 	  this.tableLayoutPanel1.Size = new System.Drawing.Size(475, 50);
 	  this.tableLayoutPanel1.TabIndex = 0;
+	  // 
+	  // richTextBoxEx1
+	  // 
+	  // 
+	  // 
+	  // 
+	  this.richTextBoxEx1.BackgroundStyle.Class = "RichTextBoxBorder";
+	  this.richTextBoxEx1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.richTextBoxEx1.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.richTextBoxEx1.Location = new System.Drawing.Point(203, 3);
+	  this.richTextBoxEx1.Name = "richTextBoxEx1";
+	  this.tableLayoutPanel1.SetRowSpan(this.richTextBoxEx1, 2);
+	  this.richTextBoxEx1.Size = new System.Drawing.Size(269, 44);
+	  this.richTextBoxEx1.TabIndex = 1;
+	  // 
+	  // rdoXemBanInCach2
+	  // 
+	  this.rdoXemBanInCach2.AutoSize = true;
+	  this.rdoXemBanInCach2.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.rdoXemBanInCach2.Location = new System.Drawing.Point(3, 28);
+	  this.rdoXemBanInCach2.Name = "rdoXemBanInCach2";
+	  this.rdoXemBanInCach2.Size = new System.Drawing.Size(194, 19);
+	  this.rdoXemBanInCach2.TabIndex = 1;
+	  this.rdoXemBanInCach2.TabStop = true;
+	  this.rdoXemBanInCach2.Text = "2018030323h33XemBanInCach2";
+	  this.rdoXemBanInCach2.UseVisualStyleBackColor = true;
+	  // 
+	  // rdoXemBanInCach1
+	  // 
+	  this.rdoXemBanInCach1.AutoSize = true;
+	  this.rdoXemBanInCach1.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.rdoXemBanInCach1.Location = new System.Drawing.Point(3, 3);
+	  this.rdoXemBanInCach1.Name = "rdoXemBanInCach1";
+	  this.rdoXemBanInCach1.Size = new System.Drawing.Size(194, 19);
+	  this.rdoXemBanInCach1.TabIndex = 0;
+	  this.rdoXemBanInCach1.TabStop = true;
+	  this.rdoXemBanInCach1.Text = "Cách 1";
+	  this.rdoXemBanInCach1.UseVisualStyleBackColor = true;
 	  // 
 	  // frmOptionForQuocTuan
 	  // 
@@ -202,8 +202,8 @@
 	private System.Windows.Forms.TableLayoutPanel tlpMain;
 	private System.Windows.Forms.GroupBox groupBox1;
 	private DevComponents.DotNetBar.Controls.RichTextBoxEx richTextBoxEx1;
-	private System.Windows.Forms.RadioButton radioButton2;
-	private System.Windows.Forms.RadioButton radioButton1;
+	private System.Windows.Forms.RadioButton rdoXemBanInCach2;
+	private System.Windows.Forms.RadioButton rdoXemBanInCach1;
 	private DevComponents.DotNetBar.ButtonX btnXSave;
 	private DevComponents.DotNetBar.ButtonX btnxCancel;
 	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

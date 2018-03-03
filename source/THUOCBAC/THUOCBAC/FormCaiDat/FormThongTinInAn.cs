@@ -59,14 +59,14 @@ namespace THUOCBAC.FormCaiDat {
 	private void FormThongTinInAn_Load(object sender,EventArgs e) {
 	  //DT_THONGTIN_CAIDAT=BL_CAIDAT.DATATABLE_BANG_CAIDAT();
 	  //if(DT_THONGTIN_CAIDAT.Rows.Count>0) {  
-	  //txtXHoTen.Text=Convert.ToString(DT_THONGTIN_CAIDAT.Rows[0]["HoTenCaiDat"].ToString());
+	  //txtXHoTen.Text=Convert.ToString(DT_THONGTIN_CAIDAT.Rows[0][QTDbConst.HOTEN_CAIDAT.STR].ToString());
 	  //txtXSoDienThoai.Text=Convert.ToString(DT_THONGTIN_CAIDAT.Rows[0]["SoDienThoaiCaiDat"].ToString());
 	  //txtXSoTaiKhoan.Text=Convert.ToString(DT_THONGTIN_CAIDAT.Rows[0]["SoTaiKhoanCaiDat"].ToString());
 	  //txtXSoDienThoaiBan.Text=Convert.ToString(DT_THONGTIN_CAIDAT.Rows[0]["SoDienThoaiBanCaiDat"].ToString());
 	  //txtXChuyen.Text=Convert.ToString(DT_THONGTIN_CAIDAT.Rows[0]["NgheNghiepCaiDat"].ToString());
 	  //txtXDiaChi.Text=Convert.ToString(DT_THONGTIN_CAIDAT.Rows[0]["DiaChiCaiDat"].ToString());
 	  //}
-	  string strHoTen="";
+	  string strHoTen ="";
 	  string strSDT="";
 	  string strSoTK="";
 	  string strSDTBan="";

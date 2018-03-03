@@ -15,17 +15,19 @@ namespace THUOCBAC.FormCaiDat {
 	}
 
 	private void btnXExit_Click(object sender,EventArgs e) {
-	  if(txtXPassword.Text.Length<8) {
+	  if(txtXPassword.Text.Length<1) {
 		this.Close();
 		return;
 	  }
 
-	  if(txtXPassword.Text.Equals("adminpqt93")) {
+	  if(txtXPassword.Text.Equals("1")) {
 		FormCaiDat.frmOptionForQuocTuan frm = new frmOptionForQuocTuan();
 
 		frm.Show();
 		this.Close();
+		return;
 	  }
+	  this.Close();
 	}
 
 	private void frmLoginOption_Load(object sender,EventArgs e) {

@@ -53,6 +53,10 @@
       <Project>{87302e4f-547d-4865-8d09-e75a851da706}</Project>
       <Name>DataAccessObject</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FValueObject\FValueObject.csproj">
+      <Project>{3CDFD4AF-4543-45AC-A996-56F7706D95C4}</Project>
+      <Name>FValueObject</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QTCommon\QTCommon.csproj">
       <Project>{c8ddd53c-0914-44e1-b55d-08074ad22fdd}</Project>
       <Name>QTCommon</Name>
