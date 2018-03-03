@@ -149,7 +149,7 @@ namespace THUOCBAC.FormChucNang {
 	  dataGridViewXLichSuGDVT.Columns["DonViGiaThuoc"].HeaderText="Đơn vị";
 	  dataGridViewXLichSuGDVT.Columns["GiaViThuoc"].HeaderText="Đơn giá";
 	  dataGridViewXLichSuGDVT.Columns["ThanhTienTamThoi"].HeaderText="Thành tiền";
-	  dataGridViewXLichSuGDVT.Columns["TenKhachHang"].HeaderText="Tên khách hàng";
+	  dataGridViewXLichSuGDVT.Columns["TenKhachHang"].HeaderText=QTStringConst.TENKHACHHANG.STR;
 	  dataGridViewXLichSuGDVT.Columns["DonViGiaThuoc"].Width=44;
 	  dataGridViewXLichSuGDVT.Columns["GiaViThuoc"].Width=88;
 	  dataGridViewXLichSuGDVT.Columns["SoLuongViThuoc"].Width=77;

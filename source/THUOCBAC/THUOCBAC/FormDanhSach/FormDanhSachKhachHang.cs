@@ -18,7 +18,7 @@ namespace THUOCBAC.FormDanhSach {
 	private decimal DEC_TIENNO_DANGCHON=-1;
 	private int INT_INDEX_ROW_DANGCHON = -1;
 
-	private const string CONST_STR_TEN_KHACHHANG = "Tên khách hàng";
+	private const string CONST_STR_TEN_KHACHHANG = QTStringConst.TENKHACHHANG.STR;
 	private const string CONST_STR_TIENNO_HIENTAI = "Tiền nợ hiện tại";
 	//private const string CONST_STR_DONGIA = "Đơn giá";
 	//private const string CONST_STR_TEN_VITHUOC = "Tên vị thuốc";
@@ -33,7 +33,7 @@ namespace THUOCBAC.FormDanhSach {
 	  //QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dataGridViewXDanhSachKH);
 	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,"STT",60,DataGridViewContentAlignment.MiddleCenter);
 
-	  ////dataGridViewXDanhSachKH.Columns["TenKhachHang"].HeaderText="Tên khách hàng";
+	  ////dataGridViewXDanhSachKH.Columns["TenKhachHang"].HeaderText=QTStringConst.TENKHACHHANG.STR;
 	  ////dataGridViewXDanhSachKH.Columns["TienNoHienTai"].HeaderText="Tiền nợ hiện tại";
 	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,"TenKhachHang",CONST_STR_TEN_KHACHHANG,150,DataGridViewContentAlignment.MiddleCenter);
 	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,"TienNoHienTai",CONST_STR_TIENNO_HIENTAI,150,DataGridViewContentAlignment.MiddleRight);
@@ -148,7 +148,7 @@ namespace THUOCBAC.FormDanhSach {
 	private void btnXChangeNameCustomer_Click(object sender,EventArgs e) {
 	  DataTable dtMain = new DataTable();
 	  dtMain=(DataTable)dataGridViewXDanhSachKH.DataSource;
-	  FormDialogPhu.frmSuaTenTrongDanhSach frm = new FormDialogPhu.frmSuaTenTrongDanhSach("Tên khách hàng",491,230,INT_ID_KH_DANGCHON,STR_TEN_KH_DANGCHON,dtMain);
+	  FormDialogPhu.frmSuaTenTrongDanhSach frm = new FormDialogPhu.frmSuaTenTrongDanhSach(QTStringConst.TENKHACHHANG.STR,491,230,INT_ID_KH_DANGCHON,STR_TEN_KH_DANGCHON,dtMain);
 	  frm.ShowDialog();
 
 	  VOID_LOAD_FORM_FOCUS_CURRENT_ROW();

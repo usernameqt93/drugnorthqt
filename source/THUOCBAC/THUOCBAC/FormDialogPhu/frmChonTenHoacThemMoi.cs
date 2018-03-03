@@ -19,7 +19,7 @@ namespace THUOCBAC.FormDialogPhu {
 	private int INT_ID_CHOOSE = -1311;
 	private decimal DEC_DEBT_CHOOSE = 0;
 
-	private const string CONST_STR_TEN_KHACHHANG = "Tên khách hàng";
+	private const string CONST_STR_TEN_KHACHHANG = QTStringConst.TENKHACHHANG.STR;
 	private const string CONST_STR_TIENNO_HIENTAI = "Tiền nợ hiện tại";
 
 	public frmChonTenHoacThemMoi() {

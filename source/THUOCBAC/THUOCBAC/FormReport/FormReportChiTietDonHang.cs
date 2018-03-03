@@ -72,7 +72,7 @@ namespace THUOCBAC.FormReport {
 	  if(!comboBoxExTenKhachHang.Text.Equals(QTStringConst.KHONGGHIVAO.STR)) {
 		btnXXemThongTinNo.Enabled=true;
 		string strCapNhatChua=BL_DONHANG.STR_CAPNHAT_TIENNO_DH_CHUA(INT_MADH_HIENTAI);
-		if(strCapNhatChua.Equals("Chưa cập nhật"))
+		if(strCapNhatChua.Equals(QTStringConst.CHUACAPNHAT.STR))
 		  btnXCongTienDonHangKH.Enabled=true;
 	  }
 	  //comboBoxExTenKhachHang.SelectedIndex=0;
@@ -102,7 +102,7 @@ namespace THUOCBAC.FormReport {
 	  //}
 	  //string strTenKhachHangDangChon=comboBoxExTenKhachHang.Text;
 	  //decimal decTienNoCuDangGhi=numericUpDownTienNo.Value;
-	  //if(strCapNhatChua.Equals("Chưa cập nhật")&&!strTenKhachHangDangChon.Equals(QTStringConst.KHONGGHIVAO.STR)&&(DEC_TIENNO_HIENTAI_CUA_KH>-1)) {
+	  //if(strCapNhatChua.Equals(QTStringConst.CHUACAPNHAT.STR)&&!strTenKhachHangDangChon.Equals(QTStringConst.KHONGGHIVAO.STR)&&(DEC_TIENNO_HIENTAI_CUA_KH>-1)) {
 	  //  string strNoiDung=(DEC_TIENNO_HIENTAI_CUA_KH<1)?"Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là 0 đ":"Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là "+DEC_TIENNO_HIENTAI_CUA_KH.ToString("#,###.#")+" đ";
 	  //  strNoiDung+="\nBạn có muốn cộng tiền đơn hàng này ("+DEC_TONGTIEN.ToString("#,###.#")+" đ) vào tổng số tiền nợ của khách hàng này không ?";
 	  //  strNoiDung+="\n        "+((DEC_TIENNO_HIENTAI_CUA_KH==0)?"0":DEC_TIENNO_HIENTAI_CUA_KH.ToString("#,###.#"))+" + "+DEC_TONGTIEN.ToString("#,###.#")+" = "+(DEC_TIENNO_HIENTAI_CUA_KH+DEC_TONGTIEN).ToString("#,###.#")+" đ";
@@ -189,19 +189,19 @@ namespace THUOCBAC.FormReport {
 	  groupBoxThongTinThem.Enabled=true;
 	}
 	private void voidGAN_REPORTPATH() {
-	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals("Khổ A4")) {
+	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals(QTStringConst.KHO_A4.STR)) {
 		if(DEC_TIENNO_CU==0)
 		  reportViewerChiTietDonHang.LocalReport.ReportPath="FileReportRdlc/ReportChiTietDonHangKhoA4ChuTo.rdlc";
 		if(DEC_TIENNO_CU>0)
 		  reportViewerChiTietDonHang.LocalReport.ReportPath="FileReportRdlc/ReportCTDHKhoA4CoSoNoCu.rdlc";
 	  }
-	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals("Khổ A4 kiểu 2")) {
+	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals(QTStringConst.KHO_A4_KIEU_2.STR)) {
 		if(DEC_TIENNO_CU==0)
 		  reportViewerChiTietDonHang.LocalReport.ReportPath="FileReportRdlc/ReportChiTietDonHangKhoA4Kieu2.rdlc";
 		if(DEC_TIENNO_CU>0)
 		  reportViewerChiTietDonHang.LocalReport.ReportPath="FileReportRdlc/ReportCTDHKhoA4Kieu2CoSoNoCu.rdlc";
 	  }
-	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals("Khổ A5")) {
+	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals(QTStringConst.KHO_A5.STR)) {
 		if(DEC_TIENNO_CU==0)
 		  reportViewerChiTietDonHang.LocalReport.ReportPath="FileReportRdlc/ReportChiTietDonHangKhoA5.rdlc";
 		if(DEC_TIENNO_CU>0)
@@ -209,7 +209,7 @@ namespace THUOCBAC.FormReport {
 	  }
 	}
 	private void voidCAIDAT_KICHTHUOC_TRANG() {
-	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals("Khổ A5")) {
+	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals(QTStringConst.KHO_A5.STR)) {
 		PageSettings caiDatTrang=new PageSettings();
 		caiDatTrang.Margins.Top=39;
 		caiDatTrang.Margins.Bottom=39;
@@ -223,7 +223,7 @@ namespace THUOCBAC.FormReport {
 		reportViewerChiTietDonHang.SetPageSettings(caiDatTrang);
 		//rpt.SetPageSettings(new System.Drawing.Printing.PageSettings() { Landscape = true });
 	  }
-	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals("Khổ A4 kiểu 2")) {
+	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals(QTStringConst.KHO_A4_KIEU_2.STR)) {
 		PageSettings caiDatTrang=new PageSettings();
 		caiDatTrang.Margins.Top=79;
 		caiDatTrang.Margins.Bottom=79;
@@ -232,7 +232,7 @@ namespace THUOCBAC.FormReport {
 		caiDatTrang.PaperSize=new PaperSize("",830,1170);
 		reportViewerChiTietDonHang.SetPageSettings(caiDatTrang);
 	  }
-	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals("Khổ A4")) {
+	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals(QTStringConst.KHO_A4.STR)) {
 		PageSettings caiDatTrang=new PageSettings();
 		caiDatTrang.Margins.Top=79;
 		caiDatTrang.Margins.Bottom=79;
@@ -290,7 +290,7 @@ namespace THUOCBAC.FormReport {
 		  DEC_TIENNO_HIENTAI_CUA_KH=BL_KHACHHANG.DEC_TIENNO_HIENTAI_KH(intIdKHVuaChonTrongComboBox);
 		  btnXXemThongTinNo.Enabled=true;
 		  string strCapNhatChua=BL_DONHANG.STR_CAPNHAT_TIENNO_DH_CHUA(INT_MADH_HIENTAI);
-		  if(strCapNhatChua.Equals("Chưa cập nhật"))
+		  if(strCapNhatChua.Equals(QTStringConst.CHUACAPNHAT.STR))
 			btnXCongTienDonHangKH.Enabled=true;
 		}
 	  } catch(Exception ex) {
@@ -306,7 +306,7 @@ namespace THUOCBAC.FormReport {
 	  }
 	  string strTenKhachHangDangChon=comboBoxExTenKhachHang.Text;
 	  decimal decTienNoCuDangGhi=numericUpDownTienNo.Value;
-	  if(strCapNhatChua.Equals("Chưa cập nhật")&&!strTenKhachHangDangChon.Equals(QTStringConst.KHONGGHIVAO.STR)&&(DEC_TIENNO_HIENTAI_CUA_KH>-1)) {
+	  if(strCapNhatChua.Equals(QTStringConst.CHUACAPNHAT.STR)&&!strTenKhachHangDangChon.Equals(QTStringConst.KHONGGHIVAO.STR)&&(DEC_TIENNO_HIENTAI_CUA_KH>-1)) {
 		string strNoiDung=(DEC_TIENNO_HIENTAI_CUA_KH<1)?"Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là 0 đ":"Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là "+DEC_TIENNO_HIENTAI_CUA_KH.ToString("#,###.#")+" đ";
 		strNoiDung+="\nBạn có muốn cộng tiền đơn hàng này ("+DEC_TONGTIEN.ToString("#,###.#")+" đ) vào tổng số tiền nợ của khách hàng này không ?";
 		strNoiDung+="\n        "+((DEC_TIENNO_HIENTAI_CUA_KH==0)?"0":DEC_TIENNO_HIENTAI_CUA_KH.ToString("#,###.#"))+" + "+DEC_TONGTIEN.ToString("#,###.#")+" = "+(DEC_TIENNO_HIENTAI_CUA_KH+DEC_TONGTIEN).ToString("#,###.#")+" đ";
@@ -331,7 +331,7 @@ namespace THUOCBAC.FormReport {
 	}
 
 	private void btnXChooseCustomer_Click(object sender,EventArgs e) {
-	  FormDialogPhu.frmChonTenHoacThemMoi frm = new FormDialogPhu.frmChonTenHoacThemMoi("Tên khách hàng",500,700);
+	  FormDialogPhu.frmChonTenHoacThemMoi frm = new FormDialogPhu.frmChonTenHoacThemMoi(QTStringConst.TENKHACHHANG.STR,500,700);
 	  frm.ShowDialog();
 	  txtXNameCustomer.Text=QTAppTemp.STATIC_STR_NAME_CHOOSE;
 	  numericUpDownTienNo.Value=QTAppTemp.STATIC_DEC_DEBT_CHOOSE;

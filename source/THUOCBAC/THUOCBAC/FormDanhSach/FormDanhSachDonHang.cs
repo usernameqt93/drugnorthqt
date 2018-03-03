@@ -26,7 +26,7 @@ namespace THUOCBAC.FormDanhSach {
 	private const string CONST_STR_TONG_VITHUOC = "Tổng số vị thuốc";
 	private const string CONST_STR_TONG_KHOILUONG = "Tổng khối lượng";
 	private const string CONST_STR_TONG_GIATRI_DH = "Tổng giá trị đơn hàng";
-	private const string CONST_STR_TEN_KHACHHANG = "Tên khách hàng";
+	private const string CONST_STR_TEN_KHACHHANG = QTStringConst.TENKHACHHANG.STR;
 
 	public FormDanhSachDonHang() {
 	  InitializeComponent();
@@ -54,7 +54,7 @@ namespace THUOCBAC.FormDanhSach {
 	  //dataGridViewXCacDonHang.Columns["TongViThuoc"].HeaderText="Tổng số vị thuốc";
 	  //dataGridViewXCacDonHang.Columns["TongKhoiLuong"].HeaderText="Tổng khối lượng";
 	  //dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].HeaderText="Tổng giá trị đơn hàng";
-	  //dataGridViewXCacDonHang.Columns["TenKhachHang"].HeaderText="Tên khách hàng";
+	  //dataGridViewXCacDonHang.Columns["TenKhachHang"].HeaderText=QTStringConst.TENKHACHHANG.STR;
 
 	  //dataGridViewXCacDonHang.Columns["MaDonHang"].Visible=false;
 	  //dataGridViewXCacDonHang.Columns["IdBangKhachHang"].Visible=false;

@@ -36,7 +36,7 @@ namespace THUOCBAC.FormDialogPhu {
 	  dgvXMain.Columns["STT"].DisplayIndex=0;
 	  QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dgvXMain);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,"STT",60,DataGridViewContentAlignment.MiddleCenter);
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,"TenKhachHang","Tên khách hàng",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,"TenKhachHang",QTStringConst.TENKHACHHANG.STR,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
 	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dgvXMain,new List<string>() { "IdBangKhachHang" });
 	}
 
