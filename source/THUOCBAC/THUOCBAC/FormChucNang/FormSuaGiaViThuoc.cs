@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
+using QTCommon;
 
 namespace THUOCBAC.FormChucNang {
   public partial class FormSuaGiaViThuoc:Form {
@@ -66,7 +67,7 @@ namespace THUOCBAC.FormChucNang {
 		//  }
 		//}
 	  } catch(Exception ex) {
-		MessageBox.Show(@"Ex.Message: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(@"Ex.Message: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	}
   }

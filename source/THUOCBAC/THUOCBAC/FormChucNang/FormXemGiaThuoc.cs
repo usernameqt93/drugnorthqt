@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
+using QTCommon;
 
 namespace THUOCBAC.FormChucNang {
   public partial class FormXemGiaThuoc:Form {
@@ -94,7 +95,7 @@ namespace THUOCBAC.FormChucNang {
 		  //DT_THOIGIAN_VIETDH_DANGCHON=(r.Cells["ThoiGianVietDonHangNay"].Value.ToString().Equals(""))?DateTime.Now:Convert.ToDateTime(r.Cells["ThoiGianVietDonHangNay"].Value);
 		}
 	  } catch(Exception ex) {
-		MessageBox.Show(@"Lỗi: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(@"Lỗi: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	}
 
@@ -135,7 +136,7 @@ namespace THUOCBAC.FormChucNang {
 		  voidCAIDAT_HIENTHI_DGV_LICHSU();
 		}
 	  } catch(Exception ex) {
-		MessageBox.Show(@"Lỗi: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(@"Lỗi: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	}
 	private void voidCAIDAT_HIENTHI_DGV_LICHSU() {
@@ -177,7 +178,7 @@ namespace THUOCBAC.FormChucNang {
 
 		voidCAIDAT_HIENTHI_DGV_LICHSU();
 	  } catch(Exception ex) {
-		MessageBox.Show(@"Lỗi: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(@"Lỗi: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	  btnXTimTheoKiTu.Enabled=true;
 	}

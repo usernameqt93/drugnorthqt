@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
+using QTCommon;
 
 namespace THUOCBAC.FormDanhSach {
   public partial class FormDanhSachDonXinXacNhan:Form {
@@ -36,7 +37,7 @@ namespace THUOCBAC.FormDanhSach {
 		  INT_MADONXACNHAN_DANGCHON=Convert.ToInt32(r.Cells["MaDonXinXacNhan"].Value);
 		}
 	  } catch(Exception ex) {
-		MessageBox.Show(@"Lỗi: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(@"Lỗi: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	}
 

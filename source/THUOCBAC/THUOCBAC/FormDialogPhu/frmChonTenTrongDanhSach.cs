@@ -75,7 +75,7 @@ namespace THUOCBAC.FormDialogPhu {
 		  //dateTimePickerKetThucHoc.Value=Convert.ToDateTime(r.Cells["ThoiGianKetthuc"].Value);
 		}
 	  } catch(Exception ex) {
-		MessageBox.Show(this.Text+" - dgvXMain_CellClick - "+@"Lỗi: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(this.Text+" - dgvXMain_CellClick - "+@"Lỗi: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	}
 

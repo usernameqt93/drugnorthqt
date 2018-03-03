@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
+using QTCommon;
 
 namespace THUOCBAC.FormCaiDat {
   public partial class FormThongTinInAn:Form {
@@ -51,7 +52,7 @@ namespace THUOCBAC.FormCaiDat {
 		  }
 		}
 	  } catch(Exception ex) {
-		MessageBox.Show(@"Lỗi: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(@"Lỗi: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	}
 

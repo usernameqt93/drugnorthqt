@@ -176,14 +176,14 @@ namespace THUOCBAC.FormChucNang {
 		  STR_TEN_VITHUOC_DANGCHON=Convert.ToString(r.Cells["TenViThuoc"].Value);
 		}
 	  } catch(Exception ex) {
-		MessageBox.Show(@"Lỗi: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(@"Lỗi: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	}
 
 	private void btnXXoaViThuoc_Click(object sender,EventArgs e) {
 	  string strLoi="";
 	  DialogResult dlr=MessageBox.Show("Bạn chắc chắn muốn xóa vị thuốc '"+STR_TEN_VITHUOC_DANGCHON+"' ra khỏi đơn hàng ở dưới?",
-		"Thông báo",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+		QTStringConst.THONGBAO.STR,MessageBoxButtons.YesNo,MessageBoxIcon.Question);
 	  if(dlr==DialogResult.Yes) {
 		bool boolCoXoaDuocKo=BL_DONHANG.boolDeleteBangChiTietDonHangTheoMaCTDH(ref strLoi,INT_MA_CHITIET_DONHANG_DANGCHON);
 		if(boolCoXoaDuocKo) {
@@ -282,7 +282,7 @@ namespace THUOCBAC.FormChucNang {
 		  }
 		}
 	  } catch(Exception ex) {
-		MessageBox.Show(@"Ex.Message: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(@"Ex.Message: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	  groupBoxThemViThuoc.Enabled=true;
 	  comboBoxExDanhSachCacViThuoc.Focus();

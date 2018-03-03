@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
+using QTCommon;
 
 namespace THUOCBAC.FormReport {
   public partial class FormReportDonXacNhan:Form {
@@ -51,7 +52,7 @@ namespace THUOCBAC.FormReport {
 
 		reportViewerDonXacNhan.RefreshReport();
 	  } catch(Exception ex) {
-		MessageBox.Show(@"Ex.Message: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(@"Ex.Message: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	}
   }

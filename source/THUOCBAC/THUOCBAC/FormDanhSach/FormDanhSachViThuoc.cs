@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
+using QTCommon;
 
 namespace THUOCBAC.FormDanhSach {
   public partial class FormDanhSachViThuoc:Form {
@@ -88,7 +89,7 @@ namespace THUOCBAC.FormDanhSach {
 		  //dateTimePickerKetThucHoc.Value=Convert.ToDateTime(r.Cells["ThoiGianKetthuc"].Value);
 		}
 	  } catch(Exception ex) {
-		MessageBox.Show(@"Lỗi: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(@"Lỗi: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	}
 
@@ -111,7 +112,7 @@ namespace THUOCBAC.FormDanhSach {
 		btnXXoaViThuoc.Enabled=false;
 	  } else {
 		DialogResult dlr=MessageBox.Show(
-		  "Bạn muốn xóa vị thuốc '"+STR_TEN_VITHUOC+"' ra khỏi danh sách?","Thông báo",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+		  "Bạn muốn xóa vị thuốc '"+STR_TEN_VITHUOC+"' ra khỏi danh sách?",QTStringConst.THONGBAO.STR,MessageBoxButtons.YesNo,MessageBoxIcon.Question);
 		if(dlr==DialogResult.Yes) {
 		  bool boolCoXoaDuocKo=BL_VITHUOC.boolDeleteViThuocTheoIdViThuoc(ref strLoi,INT_MA_VITHUOC.ToString());
 		  if(boolCoXoaDuocKo) {

@@ -10,5 +10,9 @@ namespace QTCommon {
 	public static class KHONGGHIVAO {
 	  public const string STR = " --Không ghi vào--";
 	}
+
+	public static class THONGBAO {
+	  public const string STR = "Thông Báo";
+	}
   }
 }

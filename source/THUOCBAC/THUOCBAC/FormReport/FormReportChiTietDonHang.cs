@@ -182,8 +182,8 @@ namespace THUOCBAC.FormReport {
 		  MessageBox.Show("Có lỗi gì đó khi lưu tên khách hàng,tiền nợ cũ này vào đơn hàng ("+strLoi+")");
 		}
 	  } catch(Exception ex) {
-		//MessageBox.Show(@"Ex.Message: "+ex.Message,@"Thông Báo");
-		MessageBox.Show(this.Name+" - btnXHienThi_Click - "+@"Ex.Message: "+ex.Message,@"Thông Báo");
+		//MessageBox.Show(@"Ex.Message: "+ex.Message,QTStringConst.THONGBAO.STR);
+		MessageBox.Show(this.Name+" - btnXHienThi_Click - "+@"Ex.Message: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	  groupBoxChucNang.Enabled=true;
 	  groupBoxThongTinThem.Enabled=true;
@@ -294,7 +294,7 @@ namespace THUOCBAC.FormReport {
 			btnXCongTienDonHangKH.Enabled=true;
 		}
 	  } catch(Exception ex) {
-		MessageBox.Show(@"Ex.Message: "+ex.Message,@"Thông Báo");
+		MessageBox.Show(@"Ex.Message: "+ex.Message,QTStringConst.THONGBAO.STR);
 	  }
 	}
 
