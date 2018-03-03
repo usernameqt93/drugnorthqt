@@ -140,5 +140,10 @@ namespace THUOCBAC {
 	  FormDanhSach.FormDanhSachKhachHang formDanhSachKH=new FormDanhSach.FormDanhSachKhachHang();
 	  voidTaoTab(tabControlChinh,"Danh sách khách hàng",formDanhSachKH);
 	}
+
+	private void btnItemOption_Click(object sender,EventArgs e) {
+	  FormCaiDat.frmLoginOption frm = new FormCaiDat.frmLoginOption();
+	  frm.ShowDialog();
+	}
   }
 }

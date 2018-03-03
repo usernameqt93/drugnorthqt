@@ -154,10 +154,9 @@ namespace THUOCBAC.FormChucNang {
 		string strLoi="";
 		string strResult="";
 		decimal decTongTienDonHang=BL_DONHANG.decTongTienDonHangTheoMaDonHang(ref strLoi,ref strResult,INT_MA_DONHANG_HIENTAI);
-		FormReport.FormReportChiTietDonHang f=new FormReport.FormReportChiTietDonHang(
+		FormReport.FormReportChiTietDonHang frm=new FormReport.FormReportChiTietDonHang(
 		  dtChiTietDonHang,decTongTienDonHang,INT_MA_DONHANG_HIENTAI,INT_IDKH_HIENTAI,STR_SDT_KH_HIENTAI,DEC_TIENNO_CU_HIENTAI,DT_THOIGIAN_VIETDH);
-		//f.w
-		f.ShowDialog();
+		frm.ShowDialog();
 	  }
 	}
 

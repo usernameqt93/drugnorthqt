@@ -56,8 +56,8 @@
 	  this.buttonItem10 = new DevComponents.DotNetBar.ButtonItem();
 	  this.buttonItem11 = new DevComponents.DotNetBar.ButtonItem();
 	  this.itemContainer4 = new DevComponents.DotNetBar.ItemContainer();
-	  this.buttonItem12 = new DevComponents.DotNetBar.ButtonItem();
-	  this.buttonItem13 = new DevComponents.DotNetBar.ButtonItem();
+	  this.btnItemOption = new DevComponents.DotNetBar.ButtonItem();
+	  this.btnItemExit = new DevComponents.DotNetBar.ButtonItem();
 	  this.ribbonTabItem1 = new DevComponents.DotNetBar.RibbonTabItem();
 	  this.ribbonTabItem2 = new DevComponents.DotNetBar.RibbonTabItem();
 	  this.ribbonTabItem3 = new DevComponents.DotNetBar.RibbonTabItem();
@@ -66,11 +66,11 @@
 	  this.tabControlChinh = new System.Windows.Forms.TabControl();
 	  this.tabPage1 = new System.Windows.Forms.TabPage();
 	  this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
-	  this.btnXXemChiTietDSDonHang = new DevComponents.DotNetBar.ButtonX();
-	  this.btnXXemChiTietDSViThuoc = new DevComponents.DotNetBar.ButtonX();
-	  this.labelXTongSoDonHang = new DevComponents.DotNetBar.LabelX();
-	  this.labelXTongViThuoc = new DevComponents.DotNetBar.LabelX();
 	  this.tlpItem = new System.Windows.Forms.TableLayoutPanel();
+	  this.labelXTongViThuoc = new DevComponents.DotNetBar.LabelX();
+	  this.btnXXemChiTietDSDonHang = new DevComponents.DotNetBar.ButtonX();
+	  this.labelXTongSoDonHang = new DevComponents.DotNetBar.LabelX();
+	  this.btnXXemChiTietDSViThuoc = new DevComponents.DotNetBar.ButtonX();
 	  this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 	  this.ribbonControl1.SuspendLayout();
 	  this.ribbonPanel1.SuspendLayout();
@@ -568,30 +568,31 @@
 	  this.itemContainer4.HorizontalItemAlignment = DevComponents.DotNetBar.eHorizontalItemsAlignment.Right;
 	  this.itemContainer4.Name = "itemContainer4";
 	  this.itemContainer4.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.buttonItem12,
-            this.buttonItem13});
+            this.btnItemOption,
+            this.btnItemExit});
 	  // 
 	  // 
 	  // 
 	  this.itemContainer4.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 	  // 
-	  // buttonItem12
+	  // btnItemOption
 	  // 
-	  this.buttonItem12.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-	  this.buttonItem12.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.buttonItem12.Image = ((System.Drawing.Image)(resources.GetObject("buttonItem12.Image")));
-	  this.buttonItem12.Name = "buttonItem12";
-	  this.buttonItem12.SubItemsExpandWidth = 24;
-	  this.buttonItem12.Text = "Opt&ions";
+	  this.btnItemOption.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+	  this.btnItemOption.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnItemOption.Image = ((System.Drawing.Image)(resources.GetObject("btnItemOption.Image")));
+	  this.btnItemOption.Name = "btnItemOption";
+	  this.btnItemOption.SubItemsExpandWidth = 24;
+	  this.btnItemOption.Text = "Opt&ions";
+	  this.btnItemOption.Click += new System.EventHandler(this.btnItemOption_Click);
 	  // 
-	  // buttonItem13
+	  // btnItemExit
 	  // 
-	  this.buttonItem13.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-	  this.buttonItem13.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.buttonItem13.Image = ((System.Drawing.Image)(resources.GetObject("buttonItem13.Image")));
-	  this.buttonItem13.Name = "buttonItem13";
-	  this.buttonItem13.SubItemsExpandWidth = 24;
-	  this.buttonItem13.Text = "E&xit";
+	  this.btnItemExit.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+	  this.btnItemExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnItemExit.Image = ((System.Drawing.Image)(resources.GetObject("btnItemExit.Image")));
+	  this.btnItemExit.Name = "btnItemExit";
+	  this.btnItemExit.SubItemsExpandWidth = 24;
+	  this.btnItemExit.Text = "E&xit";
 	  // 
 	  // ribbonTabItem1
 	  // 
@@ -659,70 +660,6 @@
 	  this.panelEx1.Style.GradientAngle = 90;
 	  this.panelEx1.TabIndex = 0;
 	  // 
-	  // btnXXemChiTietDSDonHang
-	  // 
-	  this.btnXXemChiTietDSDonHang.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-	  this.btnXXemChiTietDSDonHang.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.btnXXemChiTietDSDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.btnXXemChiTietDSDonHang.Image = global::THUOCBAC.Properties.Resources._goto;
-	  this.btnXXemChiTietDSDonHang.Location = new System.Drawing.Point(674, 203);
-	  this.btnXXemChiTietDSDonHang.Name = "btnXXemChiTietDSDonHang";
-	  this.btnXXemChiTietDSDonHang.Size = new System.Drawing.Size(174, 29);
-	  this.btnXXemChiTietDSDonHang.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.btnXXemChiTietDSDonHang.TabIndex = 1;
-	  this.btnXXemChiTietDSDonHang.Text = "Xem chi tiết";
-	  this.btnXXemChiTietDSDonHang.Click += new System.EventHandler(this.btnXXemChiTietDSDonHang_Click);
-	  // 
-	  // btnXXemChiTietDSViThuoc
-	  // 
-	  this.btnXXemChiTietDSViThuoc.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-	  this.btnXXemChiTietDSViThuoc.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.btnXXemChiTietDSViThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.btnXXemChiTietDSViThuoc.Image = global::THUOCBAC.Properties.Resources._goto;
-	  this.btnXXemChiTietDSViThuoc.Location = new System.Drawing.Point(484, 203);
-	  this.btnXXemChiTietDSViThuoc.Name = "btnXXemChiTietDSViThuoc";
-	  this.btnXXemChiTietDSViThuoc.Size = new System.Drawing.Size(174, 29);
-	  this.btnXXemChiTietDSViThuoc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.btnXXemChiTietDSViThuoc.TabIndex = 1;
-	  this.btnXXemChiTietDSViThuoc.Text = "Xem chi tiết";
-	  this.btnXXemChiTietDSViThuoc.Click += new System.EventHandler(this.btnXXemChiTietDSViThuoc_Click);
-	  // 
-	  // labelXTongSoDonHang
-	  // 
-	  this.labelXTongSoDonHang.BackColor = System.Drawing.Color.PaleTurquoise;
-	  // 
-	  // 
-	  // 
-	  this.labelXTongSoDonHang.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.labelXTongSoDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.labelXTongSoDonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-	  this.labelXTongSoDonHang.Image = global::THUOCBAC.Properties.Resources.Document_Copy_icon128x128;
-	  this.labelXTongSoDonHang.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-	  this.labelXTongSoDonHang.Location = new System.Drawing.Point(674, 23);
-	  this.labelXTongSoDonHang.Name = "labelXTongSoDonHang";
-	  this.labelXTongSoDonHang.Size = new System.Drawing.Size(174, 164);
-	  this.labelXTongSoDonHang.TabIndex = 0;
-	  this.labelXTongSoDonHang.Text = "16 đơn hàng";
-	  this.labelXTongSoDonHang.TextAlignment = System.Drawing.StringAlignment.Center;
-	  // 
-	  // labelXTongViThuoc
-	  // 
-	  this.labelXTongViThuoc.BackColor = System.Drawing.Color.LightGreen;
-	  // 
-	  // 
-	  // 
-	  this.labelXTongViThuoc.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.labelXTongViThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.labelXTongViThuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-	  this.labelXTongViThuoc.Image = global::THUOCBAC.Properties.Resources.leaf_icon128x128;
-	  this.labelXTongViThuoc.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-	  this.labelXTongViThuoc.Location = new System.Drawing.Point(484, 23);
-	  this.labelXTongViThuoc.Name = "labelXTongViThuoc";
-	  this.labelXTongViThuoc.Size = new System.Drawing.Size(174, 164);
-	  this.labelXTongViThuoc.TabIndex = 0;
-	  this.labelXTongViThuoc.Text = "54 vị thuốc";
-	  this.labelXTongViThuoc.TextAlignment = System.Drawing.StringAlignment.Center;
-	  // 
 	  // tlpItem
 	  // 
 	  this.tlpItem.ColumnCount = 5;
@@ -746,6 +683,70 @@
 	  this.tlpItem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 	  this.tlpItem.Size = new System.Drawing.Size(1333, 531);
 	  this.tlpItem.TabIndex = 2;
+	  // 
+	  // labelXTongViThuoc
+	  // 
+	  this.labelXTongViThuoc.BackColor = System.Drawing.Color.LightGreen;
+	  // 
+	  // 
+	  // 
+	  this.labelXTongViThuoc.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.labelXTongViThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.labelXTongViThuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+	  this.labelXTongViThuoc.Image = global::THUOCBAC.Properties.Resources.leaf_icon128x128;
+	  this.labelXTongViThuoc.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+	  this.labelXTongViThuoc.Location = new System.Drawing.Point(484, 23);
+	  this.labelXTongViThuoc.Name = "labelXTongViThuoc";
+	  this.labelXTongViThuoc.Size = new System.Drawing.Size(174, 164);
+	  this.labelXTongViThuoc.TabIndex = 0;
+	  this.labelXTongViThuoc.Text = "54 vị thuốc";
+	  this.labelXTongViThuoc.TextAlignment = System.Drawing.StringAlignment.Center;
+	  // 
+	  // btnXXemChiTietDSDonHang
+	  // 
+	  this.btnXXemChiTietDSDonHang.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXXemChiTietDSDonHang.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXXemChiTietDSDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.btnXXemChiTietDSDonHang.Image = global::THUOCBAC.Properties.Resources._goto;
+	  this.btnXXemChiTietDSDonHang.Location = new System.Drawing.Point(674, 203);
+	  this.btnXXemChiTietDSDonHang.Name = "btnXXemChiTietDSDonHang";
+	  this.btnXXemChiTietDSDonHang.Size = new System.Drawing.Size(174, 29);
+	  this.btnXXemChiTietDSDonHang.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXXemChiTietDSDonHang.TabIndex = 1;
+	  this.btnXXemChiTietDSDonHang.Text = "Xem chi tiết";
+	  this.btnXXemChiTietDSDonHang.Click += new System.EventHandler(this.btnXXemChiTietDSDonHang_Click);
+	  // 
+	  // labelXTongSoDonHang
+	  // 
+	  this.labelXTongSoDonHang.BackColor = System.Drawing.Color.PaleTurquoise;
+	  // 
+	  // 
+	  // 
+	  this.labelXTongSoDonHang.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.labelXTongSoDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.labelXTongSoDonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+	  this.labelXTongSoDonHang.Image = global::THUOCBAC.Properties.Resources.Document_Copy_icon128x128;
+	  this.labelXTongSoDonHang.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+	  this.labelXTongSoDonHang.Location = new System.Drawing.Point(674, 23);
+	  this.labelXTongSoDonHang.Name = "labelXTongSoDonHang";
+	  this.labelXTongSoDonHang.Size = new System.Drawing.Size(174, 164);
+	  this.labelXTongSoDonHang.TabIndex = 0;
+	  this.labelXTongSoDonHang.Text = "16 đơn hàng";
+	  this.labelXTongSoDonHang.TextAlignment = System.Drawing.StringAlignment.Center;
+	  // 
+	  // btnXXemChiTietDSViThuoc
+	  // 
+	  this.btnXXemChiTietDSViThuoc.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXXemChiTietDSViThuoc.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXXemChiTietDSViThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.btnXXemChiTietDSViThuoc.Image = global::THUOCBAC.Properties.Resources._goto;
+	  this.btnXXemChiTietDSViThuoc.Location = new System.Drawing.Point(484, 203);
+	  this.btnXXemChiTietDSViThuoc.Name = "btnXXemChiTietDSViThuoc";
+	  this.btnXXemChiTietDSViThuoc.Size = new System.Drawing.Size(174, 29);
+	  this.btnXXemChiTietDSViThuoc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXXemChiTietDSViThuoc.TabIndex = 1;
+	  this.btnXXemChiTietDSViThuoc.Text = "Xem chi tiết";
+	  this.btnXXemChiTietDSViThuoc.Click += new System.EventHandler(this.btnXXemChiTietDSViThuoc_Click);
 	  // 
 	  // tableLayoutPanel1
 	  // 
@@ -812,8 +813,8 @@
 	private DevComponents.DotNetBar.ButtonItem buttonItem10;
 	private DevComponents.DotNetBar.ButtonItem buttonItem11;
 	private DevComponents.DotNetBar.ItemContainer itemContainer4;
-	private DevComponents.DotNetBar.ButtonItem buttonItem12;
-	private DevComponents.DotNetBar.ButtonItem buttonItem13;
+	private DevComponents.DotNetBar.ButtonItem btnItemOption;
+	private DevComponents.DotNetBar.ButtonItem btnItemExit;
 	private DevComponents.DotNetBar.RibbonTabItem ribbonTabItem1;
 	private DevComponents.DotNetBar.QatCustomizeItem qatCustomizeItem1;
 	private DevComponents.DotNetBar.StyleManager styleManager1;
