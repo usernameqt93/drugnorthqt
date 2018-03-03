@@ -52,7 +52,7 @@ namespace THUOCBAC.FormDialogPhu {
 		return;
 	  }
 
-	  if(QTLibraryFunction.STATIC_BOOL_VALUE_EXIST_IN_COLUMN(strValue,"TenKhachHang",DT_MAIN)) {
+	  if(QTLibraryFunction.STATIC_BOOL_VALUE_EXIST_IN_COLUMN(strValue,QTDbConst.TENKHACHHANG.STR,DT_MAIN)) {
 		QTMessageConst.CUSTOMER_NAME_EXIST_IN_DB(strValue);
 		txtXNewValue.Focus();
 		return;

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
+using QTCommon;
 
 namespace THUOCBAC.FormChucNang {
   public partial class FormThemTenKhachHang:Form {
@@ -30,8 +31,8 @@ namespace THUOCBAC.FormChucNang {
 	private void voidCAPNHAT_COMBOBOX_TENKH() {
 	  DT_KHACHHANG=BL_KHACHHANG.DATATABLE_BANG_KHACHHANG_XEPTHEOTEN();
 	  comboBoxExTenKhachHang.DataSource=DT_KHACHHANG;
-	  comboBoxExTenKhachHang.DisplayMember="TenKhachHang";
-	  comboBoxExTenKhachHang.ValueMember="IdBangKhachHang";
+	  comboBoxExTenKhachHang.DisplayMember=QTDbConst.TENKHACHHANG.STR;
+	  comboBoxExTenKhachHang.ValueMember=QTDbConst.ID_BANG_KHACHHANG.STR;
 	}
 
 	private void btnXThemTenKH_Click(object sender,EventArgs e) {

@@ -36,8 +36,8 @@ namespace THUOCBAC.FormDialogPhu {
 	  dgvXMain.Columns["STT"].DisplayIndex=0;
 	  QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dgvXMain);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,"STT",60,DataGridViewContentAlignment.MiddleCenter);
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,"TenKhachHang",QTStringConst.TENKHACHHANG.STR,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
-	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dgvXMain,new List<string>() { "IdBangKhachHang" });
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,QTDbConst.TENKHACHHANG.STR,QTStringConst.TENKHACHHANG.STR,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dgvXMain,new List<string>() { QTDbConst.ID_BANG_KHACHHANG.STR });
 	}
 
 	private void btnXClose_Click(object sender,EventArgs e) {
@@ -49,8 +49,8 @@ namespace THUOCBAC.FormDialogPhu {
 		if(e.ColumnIndex>=-1&&e.RowIndex>=0) {
 		  btnXChoose.Enabled=true;
 		  DataGridViewRow r = dgvXMain.Rows[e.RowIndex];
-		  STR_NAME_CHOOSE=Convert.ToString(r.Cells["TenKhachHang"].Value);
-		  STR_ID_CHOOSE=Convert.ToString(r.Cells["IdBangKhachHang"].Value);
+		  STR_NAME_CHOOSE=Convert.ToString(r.Cells[QTDbConst.TENKHACHHANG.STR].Value);
+		  STR_ID_CHOOSE=Convert.ToString(r.Cells[QTDbConst.ID_BANG_KHACHHANG.STR].Value);
 		  //MessageBox.Show(STR_NAME_CHOOSE+STR_ID_CHOOSE);
 
 		  //int intSoViThuocTrongDH = (r.Cells["TongViThuoc"].Value.ToString().Equals("")) ? 0 : Convert.ToInt32(r.Cells["TongViThuoc"].Value);

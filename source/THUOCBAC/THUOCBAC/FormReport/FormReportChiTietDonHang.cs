@@ -29,6 +29,7 @@ namespace THUOCBAC.FormReport {
 	private decimal DEC_TIENNO_CU=0;
 	private decimal DEC_TIENNO_HIENTAI_CUA_KH=-1;
 	private DateTime DT_THOIGIAN_VIETDH;
+
 	public FormReportChiTietDonHang(
 	  DataTable dtChiTietDonHang,decimal decTongTien,int intMaDonHangHienTai,int intIdKHHienTai,string strSDTKH,decimal decTienNoCu,DateTime dtThoiGianVietDH) {
 	  InitializeComponent();
@@ -79,19 +80,22 @@ namespace THUOCBAC.FormReport {
 	  //comboBoxExTenKhachHang.Items.Add("  --Để trống--  ");
 	  //comboBoxExTenKhachHang.SelectedItem=comboBoxExTenKhachHang.Items.Add("  --Để trống--");
 	}
+
 	private void voidHIENTHI_TENKH_RA_COMBOBOX(string strTenKhachHang) {
 	  voidCAPNHAT_COMBOBOX_TENKH();
 	  int intSTTCuaTenKHTrongCombobox=comboBoxExTenKhachHang.FindStringExact(strTenKhachHang);
 	  comboBoxExTenKhachHang.SelectedIndex=intSTTCuaTenKHTrongCombobox;
 	}
+
 	private void voidHIENTHI_TIENNOCU_RA_NUMBERIC(decimal decTienNoCu) {
 	  numericUpDownTienNo.Value=decTienNoCu;
 	}
+
 	private void voidCAPNHAT_COMBOBOX_TENKH() {
 	  DT_KHACHHANG=BL_KHACHHANG.DATATABLE_BANG_KHACHHANG_XEPTHEOTEN();
 	  comboBoxExTenKhachHang.DataSource=DT_KHACHHANG;
-	  comboBoxExTenKhachHang.DisplayMember="TenKhachHang";
-	  comboBoxExTenKhachHang.ValueMember="IdBangKhachHang";
+	  comboBoxExTenKhachHang.DisplayMember=QTDbConst.TENKHACHHANG.STR;
+	  comboBoxExTenKhachHang.ValueMember=QTDbConst.ID_BANG_KHACHHANG.STR;
 	}
 
 	private void btnXHienThi_Click(object sender,EventArgs e) {
@@ -188,6 +192,7 @@ namespace THUOCBAC.FormReport {
 	  groupBoxChucNang.Enabled=true;
 	  groupBoxThongTinThem.Enabled=true;
 	}
+
 	private void voidGAN_REPORTPATH() {
 	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals(QTStringConst.KHO_A4.STR)) {
 		if(DEC_TIENNO_CU==0)
@@ -208,6 +213,7 @@ namespace THUOCBAC.FormReport {
 		  reportViewerChiTietDonHang.LocalReport.ReportPath="FileReportRdlc/ReportCTDHKhoA5CoSoNoCu.rdlc";
 	  }
 	}
+
 	private void voidCAIDAT_KICHTHUOC_TRANG() {
 	  if(comboBoxExTuyChonMauGiay.SelectedItem.ToString().Equals(QTStringConst.KHO_A5.STR)) {
 		PageSettings caiDatTrang=new PageSettings();
@@ -242,6 +248,7 @@ namespace THUOCBAC.FormReport {
 		reportViewerChiTietDonHang.SetPageSettings(caiDatTrang);
 	  }
 	}
+
 
 	private void btnXThemTenKhachHang_Click(object sender,EventArgs e) {
 	  //int intSoThuTuABC=0;

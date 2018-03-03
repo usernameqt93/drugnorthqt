@@ -49,12 +49,12 @@ namespace THUOCBAC.FormDanhSach {
 	  //dataGridViewXCacDonHang.Columns["TongViThuoc"].HeaderText=CONST_STR_TONG_VITHUOC;
 	  //dataGridViewXCacDonHang.Columns["TongKhoiLuong"].HeaderText=CONST_STR_TONG_KHOILUONG;
 	  //dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].HeaderText=CONST_STR_TONG_GIATRI_DH;
-	  //dataGridViewXCacDonHang.Columns["TenKhachHang"].HeaderText=CONST_STR_TEN_KHACHHANG;
+	  //dataGridViewXCacDonHang.Columns[QTDbConst.TENKHACHHANG.STR].HeaderText=CONST_STR_TEN_KHACHHANG;
 	  //dataGridViewXCacDonHang.Columns["ThoiGianVietDonHangNay"].HeaderText="Thời gian viết";
 	  //dataGridViewXCacDonHang.Columns["TongViThuoc"].HeaderText="Tổng số vị thuốc";
 	  //dataGridViewXCacDonHang.Columns["TongKhoiLuong"].HeaderText="Tổng khối lượng";
 	  //dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].HeaderText="Tổng giá trị đơn hàng";
-	  //dataGridViewXCacDonHang.Columns["TenKhachHang"].HeaderText=QTStringConst.TENKHACHHANG.STR;
+	  //dataGridViewXCacDonHang.Columns[QTDbConst.TENKHACHHANG.STR].HeaderText=QTStringConst.TENKHACHHANG.STR;
 
 	  //dataGridViewXCacDonHang.Columns["MaDonHang"].Visible=false;
 	  //dataGridViewXCacDonHang.Columns["IdBangKhachHang"].Visible=false;
@@ -93,9 +93,9 @@ namespace THUOCBAC.FormDanhSach {
 	  //VOID_SET_WIDTH_ALIGN_COLUMN("TongGiaTriDonHang",150,DataGridViewContentAlignment.MiddleCenter);
 	  //VOID_SET_WIDTH_ALIGN_COLUMN("ThoiGianVietDonHangNay",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
 	  //VOID_SET_WIDTH_ALIGN_COLUMN("TongViThuoc",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
-	  //VOID_SET_WIDTH_ALIGN_COLUMN("TenKhachHang",150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  //VOID_SET_WIDTH_ALIGN_COLUMN(QTDbConst.TENKHACHHANG.STR,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
 
-	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dataGridViewXCacDonHang,new List<string>() { "MaDonHang","IdBangKhachHang","SDTKhachHang","TienNoCu" });
+	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dataGridViewXCacDonHang,new List<string>() { "MaDonHang",QTDbConst.ID_BANG_KHACHHANG.STR,"SDTKhachHang","TienNoCu" });
 
 	  dataGridViewXCacDonHang.Columns["TongGiaTriDonHang"].DefaultCellStyle.Format="#,###.### vnđ";
 	  dataGridViewXCacDonHang.Columns["TongViThuoc"].DefaultCellStyle.Format="#,###.### vị thuốc";
@@ -108,7 +108,7 @@ namespace THUOCBAC.FormDanhSach {
 	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TongViThuoc",CONST_STR_TONG_VITHUOC,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"ThoiGianVietDonHangNay",CONST_STR_THOIGIAN_VIET,150,DataGridViewContentAlignment.MiddleCenter);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TongViThuoc",CONST_STR_TONG_VITHUOC,150,DataGridViewContentAlignment.MiddleCenter);
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,"TenKhachHang",CONST_STR_TEN_KHACHHANG,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXCacDonHang,QTDbConst.TENKHACHHANG.STR,CONST_STR_TEN_KHACHHANG,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
 
 	  dataGridViewXCacDonHang.Columns["STT"].DisplayIndex=0;
 	  if(strDieuKien.Equals("TatCa"))
@@ -151,7 +151,7 @@ namespace THUOCBAC.FormDanhSach {
 		  int intSoViThuocTrongDH=(r.Cells["TongViThuoc"].Value.ToString().Equals(""))?0:Convert.ToInt32(r.Cells["TongViThuoc"].Value);
 		  btnXXoaDH.Enabled=(intSoViThuocTrongDH==0)?true:false;
 		  INT_MADONHANG_DANGCHON=Convert.ToInt32(r.Cells["MaDonHang"].Value);
-		  INT_ID_KH_DANGCHON=Convert.ToInt32(r.Cells["IdBangKhachHang"].Value);
+		  INT_ID_KH_DANGCHON=Convert.ToInt32(r.Cells[QTDbConst.ID_BANG_KHACHHANG.STR].Value);
 		  STR_SDT_KH_DANGCHON=Convert.ToString(r.Cells["SDTKhachHang"].Value);
 		  DEC_TIENNO_CU_DANGCHON=(r.Cells["TienNoCu"].Value.ToString().Equals(""))?0:Convert.ToDecimal(r.Cells["TienNoCu"].Value);
 		  DT_THOIGIAN_VIETDH_DANGCHON=(r.Cells["ThoiGianVietDonHangNay"].Value.ToString().Equals(""))?DateTime.Now:Convert.ToDateTime(r.Cells["ThoiGianVietDonHangNay"].Value);
@@ -209,7 +209,7 @@ namespace THUOCBAC.FormDanhSach {
 	private void voidCAPNHAT_COMBOBOX_TENKH() {
 	  DT_KHACHHANG=BL_KHACHHANG.DATATABLE_BANG_KHACHHANG_XEPTHEOTEN();
 	  //comboBoxExTenKhachHang.DataSource=DT_KHACHHANG;
-	  //comboBoxExTenKhachHang.DisplayMember="TenKhachHang";
+	  //comboBoxExTenKhachHang.DisplayMember=QTDbConst.TENKHACHHANG.STR;
 	  //comboBoxExTenKhachHang.ValueMember="IdBangKhachHang";
 	  //comboBoxExTenKhachHang.SelectedIndex=0;
 	}

@@ -35,8 +35,8 @@ namespace THUOCBAC.FormChucNang {
 	  DT_KHACHHANG=BL_KHACHHANG.DATATABLE_BANG_KHACHHANG_XEPTHEOTEN();
 	  if(DT_KHACHHANG.Rows.Count>0) {
 		comboBoxExTenKhachHang.DataSource=DT_KHACHHANG;
-		comboBoxExTenKhachHang.DisplayMember="TenKhachHang";
-		comboBoxExTenKhachHang.ValueMember="IdBangKhachHang";
+		comboBoxExTenKhachHang.DisplayMember=QTDbConst.TENKHACHHANG.STR;
+		comboBoxExTenKhachHang.ValueMember=QTDbConst.ID_BANG_KHACHHANG.STR;
 		comboBoxExTenKhachHang.SelectedIndex=0;
 	  }
 	}
@@ -149,7 +149,7 @@ namespace THUOCBAC.FormChucNang {
 	  dataGridViewXLichSuGDVT.Columns["DonViGiaThuoc"].HeaderText="Đơn vị";
 	  dataGridViewXLichSuGDVT.Columns["GiaViThuoc"].HeaderText="Đơn giá";
 	  dataGridViewXLichSuGDVT.Columns["ThanhTienTamThoi"].HeaderText="Thành tiền";
-	  dataGridViewXLichSuGDVT.Columns["TenKhachHang"].HeaderText=QTStringConst.TENKHACHHANG.STR;
+	  dataGridViewXLichSuGDVT.Columns[QTDbConst.TENKHACHHANG.STR].HeaderText=QTStringConst.TENKHACHHANG.STR;
 	  dataGridViewXLichSuGDVT.Columns["DonViGiaThuoc"].Width=44;
 	  dataGridViewXLichSuGDVT.Columns["GiaViThuoc"].Width=88;
 	  dataGridViewXLichSuGDVT.Columns["SoLuongViThuoc"].Width=77;

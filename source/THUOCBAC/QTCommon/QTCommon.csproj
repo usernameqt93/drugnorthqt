@@ -48,6 +48,7 @@
     <Compile Include="QTAppInfo.cs" />
     <Compile Include="QTAppSetting.cs" />
     <Compile Include="QTAppTemp.cs" />
+    <Compile Include="QTDbConst.cs" />
     <Compile Include="QTLibraryFunction.cs" />
     <Compile Include="QTMessageConst.cs" />
     <Compile Include="QTStringConst.cs" />
