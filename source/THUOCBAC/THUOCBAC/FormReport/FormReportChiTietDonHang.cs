@@ -65,11 +65,11 @@ namespace THUOCBAC.FormReport {
 
 	  //QTAppTemp.STATIC_INT_ID_CHOOSE=INT_IDKH_HIENTAI;
 
-	  if(!comboBoxExTenKhachHang.Text.Equals(" --Không ghi vào--"))
+	  if(!comboBoxExTenKhachHang.Text.Equals(QTStringConst.KHONGGHIVAO.STR))
 	  DEC_TIENNO_HIENTAI_CUA_KH=BL_KHACHHANG.DEC_TIENNO_HIENTAI_KH(INT_IDKH_HIENTAI);
 	  txtXSDTKH.Text=STR_SDT_KH_HIENTAI;
 	  numericUpDownTienNo.Value=DEC_TIENNO_CU;
-	  if(!comboBoxExTenKhachHang.Text.Equals(" --Không ghi vào--")) {
+	  if(!comboBoxExTenKhachHang.Text.Equals(QTStringConst.KHONGGHIVAO.STR)) {
 		btnXXemThongTinNo.Enabled=true;
 		string strCapNhatChua=BL_DONHANG.STR_CAPNHAT_TIENNO_DH_CHUA(INT_MADH_HIENTAI);
 		if(strCapNhatChua.Equals("Chưa cập nhật"))
@@ -102,7 +102,7 @@ namespace THUOCBAC.FormReport {
 	  //}
 	  //string strTenKhachHangDangChon=comboBoxExTenKhachHang.Text;
 	  //decimal decTienNoCuDangGhi=numericUpDownTienNo.Value;
-	  //if(strCapNhatChua.Equals("Chưa cập nhật")&&!strTenKhachHangDangChon.Equals(" --Không ghi vào--")&&(DEC_TIENNO_HIENTAI_CUA_KH>-1)) {
+	  //if(strCapNhatChua.Equals("Chưa cập nhật")&&!strTenKhachHangDangChon.Equals(QTStringConst.KHONGGHIVAO.STR)&&(DEC_TIENNO_HIENTAI_CUA_KH>-1)) {
 	  //  string strNoiDung=(DEC_TIENNO_HIENTAI_CUA_KH<1)?"Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là 0 đ":"Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là "+DEC_TIENNO_HIENTAI_CUA_KH.ToString("#,###.#")+" đ";
 	  //  strNoiDung+="\nBạn có muốn cộng tiền đơn hàng này ("+DEC_TONGTIEN.ToString("#,###.#")+" đ) vào tổng số tiền nợ của khách hàng này không ?";
 	  //  strNoiDung+="\n        "+((DEC_TIENNO_HIENTAI_CUA_KH==0)?"0":DEC_TIENNO_HIENTAI_CUA_KH.ToString("#,###.#"))+" + "+DEC_TONGTIEN.ToString("#,###.#")+" = "+(DEC_TIENNO_HIENTAI_CUA_KH+DEC_TONGTIEN).ToString("#,###.#")+" đ";
@@ -131,7 +131,7 @@ namespace THUOCBAC.FormReport {
 		string strSoTaiKhoan=txtXSoTaiKhoanNganHang.Text;
 		string strSoDienThoaiBan=txtXDienThoaiBan.Text;
 		string strTongTien=""+DEC_TONGTIEN.ToString("#,###.#")+" đ";
-		string strTenKhachHang=(comboBoxExTenKhachHang.Text.Equals(" --Không ghi vào--"))?" ":comboBoxExTenKhachHang.Text;
+		string strTenKhachHang=(comboBoxExTenKhachHang.Text.Equals(QTStringConst.KHONGGHIVAO.STR))?" ":comboBoxExTenKhachHang.Text;
 		string strSDTKH=(txtXSDTKH.Text.Equals(""))?" ":txtXSDTKH.Text;
 		DEC_TIENNO_CU=numericUpDownTienNo.Value;
 		string strTienNoCu=""+DEC_TIENNO_CU.ToString("#,###.#")+" đ";
@@ -259,7 +259,7 @@ namespace THUOCBAC.FormReport {
 
 	private void btnXXemThongTinNo_Click(object sender,EventArgs e) {
 	  btnXXemThongTinNo.Enabled=false;
-	  if(comboBoxExTenKhachHang.Text.Equals(" --Không ghi vào--")) {
+	  if(comboBoxExTenKhachHang.Text.Equals(QTStringConst.KHONGGHIVAO.STR)) {
 		MessageBox.Show("Bạn chưa chọn tên khách hàng, chưa hiển thị thông tin được !");
 		return;
 	  }
@@ -282,7 +282,7 @@ namespace THUOCBAC.FormReport {
 
 	private void comboBoxExTenKhachHang_DropDownClosed(object sender,EventArgs e) {
 	  try {
-		if(comboBoxExTenKhachHang.Text.Equals(" --Không ghi vào--")) {
+		if(comboBoxExTenKhachHang.Text.Equals(QTStringConst.KHONGGHIVAO.STR)) {
 		  btnXXemThongTinNo.Enabled=false;
 		  return;
 		} else {
@@ -306,7 +306,7 @@ namespace THUOCBAC.FormReport {
 	  }
 	  string strTenKhachHangDangChon=comboBoxExTenKhachHang.Text;
 	  decimal decTienNoCuDangGhi=numericUpDownTienNo.Value;
-	  if(strCapNhatChua.Equals("Chưa cập nhật")&&!strTenKhachHangDangChon.Equals(" --Không ghi vào--")&&(DEC_TIENNO_HIENTAI_CUA_KH>-1)) {
+	  if(strCapNhatChua.Equals("Chưa cập nhật")&&!strTenKhachHangDangChon.Equals(QTStringConst.KHONGGHIVAO.STR)&&(DEC_TIENNO_HIENTAI_CUA_KH>-1)) {
 		string strNoiDung=(DEC_TIENNO_HIENTAI_CUA_KH<1)?"Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là 0 đ":"Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là "+DEC_TIENNO_HIENTAI_CUA_KH.ToString("#,###.#")+" đ";
 		strNoiDung+="\nBạn có muốn cộng tiền đơn hàng này ("+DEC_TONGTIEN.ToString("#,###.#")+" đ) vào tổng số tiền nợ của khách hàng này không ?";
 		strNoiDung+="\n        "+((DEC_TIENNO_HIENTAI_CUA_KH==0)?"0":DEC_TIENNO_HIENTAI_CUA_KH.ToString("#,###.#"))+" + "+DEC_TONGTIEN.ToString("#,###.#")+" = "+(DEC_TIENNO_HIENTAI_CUA_KH+DEC_TONGTIEN).ToString("#,###.#")+" đ";

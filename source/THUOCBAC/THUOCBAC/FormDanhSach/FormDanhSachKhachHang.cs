@@ -97,9 +97,9 @@ namespace THUOCBAC.FormDanhSach {
 		  STR_TEN_KH_DANGCHON=Convert.ToString(r.Cells["TenKhachHang"].Value);
 		  //INT_INDEX_ROW_DANGCHON=Convert.ToInt32(r.Cells["STT"].Value);
 		  INT_INDEX_ROW_DANGCHON=e.RowIndex;
-		  btnXThayDoiTienNo.Enabled=(STR_TEN_KH_DANGCHON.Equals(" --Không ghi vào--"))?false:true;
-		  btnXXemChiTiet.Enabled=(STR_TEN_KH_DANGCHON.Equals(" --Không ghi vào--"))?false:true;
-		  btnXChangeNameCustomer.Enabled=(STR_TEN_KH_DANGCHON.Equals(" --Không ghi vào--")) ? false : true;
+		  btnXThayDoiTienNo.Enabled=(STR_TEN_KH_DANGCHON.Equals(QTStringConst.KHONGGHIVAO.STR))?false:true;
+		  btnXXemChiTiet.Enabled=(STR_TEN_KH_DANGCHON.Equals(QTStringConst.KHONGGHIVAO.STR))?false:true;
+		  btnXChangeNameCustomer.Enabled=(STR_TEN_KH_DANGCHON.Equals(QTStringConst.KHONGGHIVAO.STR)) ? false : true;
 		  //DEC_TIENNO_CU_DANGCHON=(r.Cells["TienNoCu"].Value.ToString().Equals(""))?0:Convert.ToDecimal(r.Cells["TienNoCu"].Value);
 		  //DT_THOIGIAN_VIETDH_DANGCHON=(r.Cells["ThoiGianVietDonHangNay"].Value.ToString().Equals(""))?DateTime.Now:Convert.ToDateTime(r.Cells["ThoiGianVietDonHangNay"].Value);
 		}
@@ -118,7 +118,7 @@ namespace THUOCBAC.FormDanhSach {
 
 	private void btnXXemChiTiet_Click(object sender,EventArgs e) {
 	  btnXXemChiTiet.Enabled=false;
-	  if(STR_TEN_KH_DANGCHON.Equals(" --Không ghi vào--")) {
+	  if(STR_TEN_KH_DANGCHON.Equals(QTStringConst.KHONGGHIVAO.STR)) {
 		MessageBox.Show("Bạn vui lòng chọn lại tên khách hàng !");
 		return;
 	  }
