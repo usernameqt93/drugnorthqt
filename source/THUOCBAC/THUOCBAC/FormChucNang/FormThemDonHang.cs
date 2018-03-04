@@ -146,6 +146,12 @@ namespace THUOCBAC.FormChucNang {
 	  groupBoxTongGiaDonHang.Text=(decTongKhoiLuong==0)?"Tổng giá đơn hàng hiện tại (0 Kg)":"Tổng giá đơn hàng hiện tại ("+decTongKhoiLuong.ToString("#,###.##")+" Kg)";
 	}
 	private void btnXXemReportCTHD_Click(object sender,EventArgs e) {
+
+	  if(QTAppSetting.STATIC_STR_CACHXEM_BANIN.Equals(QTDbConst.XEM_BANIN_CACH_2.STR)) {
+		MessageBox.Show("fdgfdgfdgfdgfdgfdg");
+		return;
+	  }
+
 	  DataTable dtChiTietDonHang=BL_DONHANG.dataTableBangChiTietDonHangTheoMaDonHang(INT_MA_DONHANG_HIENTAI);
 
 	  if(dtChiTietDonHang.Rows.Count<1)

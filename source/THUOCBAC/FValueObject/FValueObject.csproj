@@ -44,6 +44,7 @@
     <Compile Include="lopChiTietDonHangTamThoi.cs" />
     <Compile Include="lopTenViThuoc.cs" />
     <Compile Include="Models\BangCaiDatModel.cs" />
+    <Compile Include="Models\BangSettingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

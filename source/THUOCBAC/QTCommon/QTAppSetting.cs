@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace QTCommon {
   public static class QTAppSetting {
-	public static string ClientScreenID = "";
+	//public static string ClientScreenID = "";
+
+	public static string STATIC_STR_CACHXEM_BANIN { get; set; }
+
   }
 }

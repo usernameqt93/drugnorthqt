@@ -45,6 +45,7 @@
     <Compile Include="BL_DonXacNhan.cs" />
     <Compile Include="BL_GiaViThuoc.cs" />
     <Compile Include="BL_KhachHang.cs" />
+    <Compile Include="BL_Setting.cs" />
     <Compile Include="BL_ViThuoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

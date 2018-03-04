@@ -8,9 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
+using QTCommon;
+using FValueObject.Models;
 
 namespace THUOCBAC {
   public partial class FormMain:DevComponents.DotNetBar.Office2007RibbonForm {
+
+	private BL_Setting BL_SETTING = new BL_Setting();
 	BL_ViThuoc BL_VITHUOC=new BL_ViThuoc();
 	BL_DonHang BL_DONHANG=new BL_DonHang();
 	private const string CONST_STR_DS_DONHANG = "Danh sách các đơn hàng";
@@ -129,6 +133,15 @@ namespace THUOCBAC {
 		formThongBaoHetHan.ShowDialog();
 		Application.Exit();
 	  }
+
+	  VOID_LOAD_APP_SETTING();
+	}
+
+	private void VOID_LOAD_APP_SETTING() {
+
+	  BangSettingModel mBangSetting = new BangSettingModel();
+	  BL_SETTING.VOID_LAYTHONGTIN_BANGSETTING(ref mBangSetting);
+	  QTAppSetting.STATIC_STR_CACHXEM_BANIN=mBangSetting.CACHXEM_BANIN;
 	}
 
 	private void buttonItemXemGiaThuoc_Click(object sender,EventArgs e) {

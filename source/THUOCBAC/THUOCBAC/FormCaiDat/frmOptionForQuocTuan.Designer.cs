@@ -23,6 +23,7 @@
 	/// the contents of this method with the code editor.
 	/// </summary>
 	private void InitializeComponent() {
+	  System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOptionForQuocTuan));
 	  this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
 	  this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
 	  this.btnXSave = new DevComponents.DotNetBar.ButtonX();
@@ -182,6 +183,7 @@
 	  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 	  this.ClientSize = new System.Drawing.Size(1045, 514);
 	  this.Controls.Add(this.panelEx1);
+	  this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 	  this.Name = "frmOptionForQuocTuan";
 	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 	  this.Text = "Main option - Power by Pham Quoc Tuan - 01667 002 325";

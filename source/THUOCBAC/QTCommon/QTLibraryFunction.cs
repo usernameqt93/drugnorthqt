@@ -10,6 +10,8 @@ using System.Windows.Forms;
 namespace QTCommon {
   public static class QTLibraryFunction {
 
+	//QTLibraryFunction.STATIC_INT_INDEX_VALUE_EXIST_IN_COLUMN
+
 	public static void STATIC_VOID_ADD_STT_COL_TO_DATATABLE(ref DataTable _dt) {
 	  _dt.Columns.Add("STT");
 	  for(int i = 0;i<_dt.Rows.Count;i++)
@@ -109,15 +111,23 @@ namespace QTCommon {
 	  return strResult;
 	}
 
-	public static string STATIC_STR_WHERE_COLUMN(List<string> _lstColumnDb,string _strSplit) {
+	public static string STATIC_STR_COLUMN_EQUAL_AT_COLUMN(List<string> _lstColumnDb,string _strSplitList) {
 	  string strResult = "";
 	  if(_lstColumnDb.Count>0) {
 		for(int i = 0;i<_lstColumnDb.Count;i++) {
 		  string strTemp = _lstColumnDb[i]+"=@"+_lstColumnDb[i];
-		  strResult+=(i==0) ? strTemp : _strSplit+strTemp;
+		  strResult+=(i==0) ? strTemp : _strSplitList+strTemp;
 		}
 	  }
 	  return strResult;
+	}
+
+	public static string STATIC_STR_COLUMN_WHERE_COLUMN(List<string> _lstWhereColumnDb,string _strSplitList) {
+	  return STATIC_STR_COLUMN_EQUAL_AT_COLUMN(_lstWhereColumnDb,_strSplitList);
+	}
+
+	public static string STATIC_STR_COLUMN_SET_COLUMN(List<string> _lstSetColumnDb) {
+	  return STATIC_STR_COLUMN_EQUAL_AT_COLUMN(_lstSetColumnDb,",");
 	}
 
 	public static string STATIC_STR_AT(string _strNameColumn) {
@@ -125,7 +135,17 @@ namespace QTCommon {
 	}
 
 	public static string STATIC_STR_QUERY_SELECT(List<string> _lstColumnDbSelect,string _strTable,List<string> _lstColumnDbWhere,string _strSplit) {
-	  return "select "+STATIC_STR_SELECT_COLUMN(_lstColumnDbSelect)+" from "+_strTable+" where "+STATIC_STR_WHERE_COLUMN(_lstColumnDbWhere,_strSplit);
+	  return "select "+STATIC_STR_SELECT_COLUMN(_lstColumnDbSelect)
+		+" from "+_strTable
+		+" where "+STATIC_STR_COLUMN_WHERE_COLUMN(_lstColumnDbWhere,_strSplit);
 	}
+
+	public static string STATIC_STR_QUERY_UPDATE(string _strTable,List<string> _lstSetColumnDb,List<string> _lstColumnDbWhere,string _strSplit) {
+	  return "update "+_strTable
+		+" set "+STATIC_STR_COLUMN_SET_COLUMN(_lstSetColumnDb)
+		+" where "+STATIC_STR_COLUMN_WHERE_COLUMN(_lstColumnDbWhere,_strSplit);
+	}
+
+	//QTLibraryFunction.STATIC_INT_INDEX_VALUE_EXIST_IN_COLUMN
   }
 }

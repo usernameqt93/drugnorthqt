@@ -47,6 +47,7 @@
     <Compile Include="DAO_DonXacNhan.cs" />
     <Compile Include="DAO_GiaViThuoc.cs" />
     <Compile Include="DAO_KhachHang.cs" />
+    <Compile Include="DAO_Setting.cs" />
     <Compile Include="DAO_ViThuoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
