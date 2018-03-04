@@ -1,7 +1,7 @@
 2018030414h00
 them bang BangSetting :
 IdBangSetting	int	primary key	identity 1 1
-CachXemBanIn	nvarchar(50) defaultvalue-2018030323h33XemBanInCach2
+CachXemBanIn	nvarchar(50) null defaultvalue-2018030323h33XemBanInCach2
 
 insert row dau tien giong default
 insert into BangSetting values('2018030323h33XemBanInCach2')
