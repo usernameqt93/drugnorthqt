@@ -129,6 +129,12 @@
     <Compile Include="FormChucNang\FormXemThongTinTienNo.Designer.cs">
       <DependentUpon>FormXemThongTinTienNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormChucNang\frmAddInfoCustomerToOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChucNang\frmAddInfoCustomerToOrder.Designer.cs">
+      <DependentUpon>frmAddInfoCustomerToOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDanhSach\FormDanhSachDonHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormChucNang\FormXemThongTinTienNo.resx">
       <DependentUpon>FormXemThongTinTienNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChucNang\frmAddInfoCustomerToOrder.resx">
+      <DependentUpon>frmAddInfoCustomerToOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDanhSach\FormDanhSachDonHang.resx">
       <DependentUpon>FormDanhSachDonHang.cs</DependentUpon>

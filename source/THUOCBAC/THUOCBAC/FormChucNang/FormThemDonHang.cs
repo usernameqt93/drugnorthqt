@@ -148,7 +148,8 @@ namespace THUOCBAC.FormChucNang {
 	private void btnXXemReportCTHD_Click(object sender,EventArgs e) {
 
 	  if(QTAppSetting.STATIC_STR_CACHXEM_BANIN.Equals(QTDbConst.XEM_BANIN_CACH_2.STR)) {
-		MessageBox.Show("fdgfdgfdgfdgfdgfdg");
+		frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder();
+		frm.ShowDialog();
 		return;
 	  }
 

@@ -44,9 +44,11 @@ namespace THUOCBAC.FormCaiDat {
 	  //BL_SETTING.VOID_LAYTHONGTIN_BANGSETTING(ref mBangSetting);
 	  if(QTAppSetting.STATIC_STR_CACHXEM_BANIN.Equals(QTDbConst.XEM_BANIN_CACH_2.STR)) {
 		rdoXemBanInCach2.Checked=true;
+		rtxtENoteCachXemBanIn.Text=QTDbConst.NOTE_BANIN_CACH_2.STR;
 	  }
 	  if(QTAppSetting.STATIC_STR_CACHXEM_BANIN.Equals(QTDbConst.XEM_BANIN_CACH_1.STR)) {
 		rdoXemBanInCach1.Checked=true;
+		rtxtENoteCachXemBanIn.Text=QTDbConst.NOTE_BANIN_CACH_1.STR;
 	  }
 	  //txtXHoTen.Text=strHoTen;
 	  //txtXSoDienThoai.Text=strSDT;

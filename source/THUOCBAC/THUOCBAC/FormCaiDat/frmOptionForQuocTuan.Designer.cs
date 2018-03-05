@@ -30,7 +30,7 @@
 	  this.btnxCancel = new DevComponents.DotNetBar.ButtonX();
 	  this.groupBox1 = new System.Windows.Forms.GroupBox();
 	  this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-	  this.richTextBoxEx1 = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
+	  this.rtxtENoteCachXemBanIn = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
 	  this.rdoXemBanInCach2 = new System.Windows.Forms.RadioButton();
 	  this.rdoXemBanInCach1 = new System.Windows.Forms.RadioButton();
 	  this.panelEx1.SuspendLayout();
@@ -127,7 +127,7 @@
 	  this.tableLayoutPanel1.ColumnCount = 2;
 	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
 	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-	  this.tableLayoutPanel1.Controls.Add(this.richTextBoxEx1, 1, 0);
+	  this.tableLayoutPanel1.Controls.Add(this.rtxtENoteCachXemBanIn, 1, 0);
 	  this.tableLayoutPanel1.Controls.Add(this.rdoXemBanInCach2, 0, 1);
 	  this.tableLayoutPanel1.Controls.Add(this.rdoXemBanInCach1, 0, 0);
 	  this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -139,19 +139,19 @@
 	  this.tableLayoutPanel1.Size = new System.Drawing.Size(475, 50);
 	  this.tableLayoutPanel1.TabIndex = 0;
 	  // 
-	  // richTextBoxEx1
+	  // rtxtENoteCachXemBanIn
 	  // 
 	  // 
 	  // 
 	  // 
-	  this.richTextBoxEx1.BackgroundStyle.Class = "RichTextBoxBorder";
-	  this.richTextBoxEx1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.richTextBoxEx1.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.richTextBoxEx1.Location = new System.Drawing.Point(203, 3);
-	  this.richTextBoxEx1.Name = "richTextBoxEx1";
-	  this.tableLayoutPanel1.SetRowSpan(this.richTextBoxEx1, 2);
-	  this.richTextBoxEx1.Size = new System.Drawing.Size(269, 44);
-	  this.richTextBoxEx1.TabIndex = 1;
+	  this.rtxtENoteCachXemBanIn.BackgroundStyle.Class = "RichTextBoxBorder";
+	  this.rtxtENoteCachXemBanIn.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.rtxtENoteCachXemBanIn.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.rtxtENoteCachXemBanIn.Location = new System.Drawing.Point(203, 3);
+	  this.rtxtENoteCachXemBanIn.Name = "rtxtENoteCachXemBanIn";
+	  this.tableLayoutPanel1.SetRowSpan(this.rtxtENoteCachXemBanIn, 2);
+	  this.rtxtENoteCachXemBanIn.Size = new System.Drawing.Size(269, 44);
+	  this.rtxtENoteCachXemBanIn.TabIndex = 1;
 	  // 
 	  // rdoXemBanInCach2
 	  // 
@@ -203,7 +203,7 @@
 	private DevComponents.DotNetBar.PanelEx panelEx1;
 	private System.Windows.Forms.TableLayoutPanel tlpMain;
 	private System.Windows.Forms.GroupBox groupBox1;
-	private DevComponents.DotNetBar.Controls.RichTextBoxEx richTextBoxEx1;
+	private DevComponents.DotNetBar.Controls.RichTextBoxEx rtxtENoteCachXemBanIn;
 	private System.Windows.Forms.RadioButton rdoXemBanInCach2;
 	private System.Windows.Forms.RadioButton rdoXemBanInCach1;
 	private DevComponents.DotNetBar.ButtonX btnXSave;

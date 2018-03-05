@@ -63,6 +63,14 @@ namespace QTCommon {
 	  public const string STR = "2017030323h33XemBanInCach1";
 	}
 
+	public static class NOTE_BANIN_CACH_1 {
+	  public const string STR = "2017030323h33XemBanInCach1 - Day la cach ban dau su dung";
+	}
+
+	public static class NOTE_BANIN_CACH_2 {
+	  public const string STR = "2018030323h33XemBanInCach2 - Day la cach cai tien";
+	}
+
 	public static class CACHXEM_BANIN {
 	  public const string STR = "CachXemBanIn";
 	}
