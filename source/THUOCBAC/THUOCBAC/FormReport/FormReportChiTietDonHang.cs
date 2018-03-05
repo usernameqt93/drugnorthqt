@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Reporting.WinForms;
 using BusinessLogic;
 using QTCommon;
+using Microsoft.Reporting.WinForms;
 
 namespace THUOCBAC.FormReport {
   public partial class FormReportChiTietDonHang:Form {
