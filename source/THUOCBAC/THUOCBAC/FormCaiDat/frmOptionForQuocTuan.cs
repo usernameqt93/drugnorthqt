@@ -26,8 +26,8 @@ namespace THUOCBAC.FormCaiDat {
 	}
 
 	private void frmOptionForQuocTuan_Load(object sender,EventArgs e) {
-	  rdoXemBanInCach1.Text=QTDbConst.XEM_BANIN_CACH_1.STR;
-	  rdoXemBanInCach2.Text=QTDbConst.XEM_BANIN_CACH_2.STR;
+	  rdoXemBanInCach1.Text=QTLibraryFunction.STATIC_STR_UNLOCK(QTDbConst.XEM_BANIN_CACH_1.STR);
+	  rdoXemBanInCach2.Text=QTLibraryFunction.STATIC_STR_UNLOCK(QTDbConst.XEM_BANIN_CACH_2.STR);
 
 	  //string strHoTen = "";
 	  //string strSDT = "";
@@ -59,9 +59,9 @@ namespace THUOCBAC.FormCaiDat {
 	}
 
 	private void btnXSave_Click(object sender,EventArgs e) {
-	  string strCachXemBanIn = rdoXemBanInCach1.Text;
+	  string strCachXemBanIn = QTDbConst.XEM_BANIN_CACH_1.STR;
 	  if(rdoXemBanInCach2.Checked) {
-		strCachXemBanIn=rdoXemBanInCach2.Text;
+		strCachXemBanIn=QTDbConst.XEM_BANIN_CACH_2.STR;
 	  }
 
 	  string strLoi = "";

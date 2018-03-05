@@ -1,4 +1,5 @@
 ﻿using DevComponents.DotNetBar.Controls;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -146,6 +147,16 @@ namespace QTCommon {
 		+" where "+STATIC_STR_COLUMN_WHERE_COLUMN(_lstColumnDbWhere,_strSplit);
 	}
 
-	//QTLibraryFunction.STATIC_INT_INDEX_VALUE_EXIST_IN_COLUMN
+	public static void STATIC_VOID_SET_PARAMETERS_TO_REPORT(ref ReportViewer _reportViewer,List<string> _lstParameters,List<string> _lstValue) {
+	  for(int i = 0;i<_lstParameters.Count;i++) {
+		_reportViewer.LocalReport.SetParameters(new ReportParameter(_lstParameters[i],_lstValue[i]));
+	  }
+	}
+
+	public static string STATIC_STR_UNLOCK(string _strNameColumn) {
+	  return "Unlock "+_strNameColumn;
+	}
+
+	//QTLibraryFunction.STATIC_STR_UNLOCK
   }
 }

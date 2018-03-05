@@ -125,7 +125,7 @@
 	  // tableLayoutPanel1
 	  // 
 	  this.tableLayoutPanel1.ColumnCount = 2;
-	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 240F));
 	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 	  this.tableLayoutPanel1.Controls.Add(this.rtxtENoteCachXemBanIn, 1, 0);
 	  this.tableLayoutPanel1.Controls.Add(this.rdoXemBanInCach2, 0, 1);
@@ -147,10 +147,10 @@
 	  this.rtxtENoteCachXemBanIn.BackgroundStyle.Class = "RichTextBoxBorder";
 	  this.rtxtENoteCachXemBanIn.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 	  this.rtxtENoteCachXemBanIn.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.rtxtENoteCachXemBanIn.Location = new System.Drawing.Point(203, 3);
+	  this.rtxtENoteCachXemBanIn.Location = new System.Drawing.Point(243, 3);
 	  this.rtxtENoteCachXemBanIn.Name = "rtxtENoteCachXemBanIn";
 	  this.tableLayoutPanel1.SetRowSpan(this.rtxtENoteCachXemBanIn, 2);
-	  this.rtxtENoteCachXemBanIn.Size = new System.Drawing.Size(269, 44);
+	  this.rtxtENoteCachXemBanIn.Size = new System.Drawing.Size(229, 44);
 	  this.rtxtENoteCachXemBanIn.TabIndex = 1;
 	  // 
 	  // rdoXemBanInCach2
@@ -159,7 +159,7 @@
 	  this.rdoXemBanInCach2.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.rdoXemBanInCach2.Location = new System.Drawing.Point(3, 28);
 	  this.rdoXemBanInCach2.Name = "rdoXemBanInCach2";
-	  this.rdoXemBanInCach2.Size = new System.Drawing.Size(194, 19);
+	  this.rdoXemBanInCach2.Size = new System.Drawing.Size(234, 19);
 	  this.rdoXemBanInCach2.TabIndex = 1;
 	  this.rdoXemBanInCach2.TabStop = true;
 	  this.rdoXemBanInCach2.Text = "2018030323h33XemBanInCach2";
@@ -171,7 +171,7 @@
 	  this.rdoXemBanInCach1.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.rdoXemBanInCach1.Location = new System.Drawing.Point(3, 3);
 	  this.rdoXemBanInCach1.Name = "rdoXemBanInCach1";
-	  this.rdoXemBanInCach1.Size = new System.Drawing.Size(194, 19);
+	  this.rdoXemBanInCach1.Size = new System.Drawing.Size(234, 19);
 	  this.rdoXemBanInCach1.TabIndex = 0;
 	  this.rdoXemBanInCach1.TabStop = true;
 	  this.rdoXemBanInCach1.Text = "Cách 1";

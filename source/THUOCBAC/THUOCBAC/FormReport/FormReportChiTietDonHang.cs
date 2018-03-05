@@ -147,21 +147,31 @@ namespace THUOCBAC.FormReport {
 		reportDataSourceGiDo.Name="DataSetChiTietHoaDonTamThoi";
 		
 		reportDataSourceGiDo.Value=DT_CHITIET_DONHANG;
-		ReportParameter reportParameter=new ReportParameter("ReportParameterTongTien",strTongTien);
-		reportViewerChiTietDonHang.LocalReport.SetParameters(reportParameter);
 		if(DEC_TIENNO_CU>0) {
-		  reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTienNoCu",strTienNoCu));
-		  reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTienCongDon",strTienCongDon));
+		  //reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTienNoCu",strTienNoCu));
+		  //reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTienCongDon",strTienCongDon));
+
+		  QTLibraryFunction.STATIC_VOID_SET_PARAMETERS_TO_REPORT(ref reportViewerChiTietDonHang
+		  ,new List<string>() { "ReportParameterTienNoCu","ReportParameterTienCongDon" }
+		  ,new List<string>() { strTienNoCu ,strTienCongDon });
 		}
-		reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterThoiGian",strThoiGian));
-		reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSDTKhachHang",strSDTKH));
-		reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTenKhachHang",strTenKhachHang));
-		reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTenNhaThuoc",strTenNhaThuoc));
-		reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterNganhNghe",strNganhNghe));
-		reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterDiaChi",strDiaChi));
-		reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSoDienThoai",strSoDienThoai));
-		reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSoDienThoaiBan",strSoDienThoaiBan));
-		reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSoTaiKhoan",strSoTaiKhoan));
+
+		//ReportParameter reportParameter = new ReportParameter("ReportParameterTongTien",strTongTien);
+		//reportViewerChiTietDonHang.LocalReport.SetParameters(reportParameter);
+		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterThoiGian",strThoiGian));
+		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSDTKhachHang",strSDTKH));
+		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTenKhachHang",strTenKhachHang));
+		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTenNhaThuoc",strTenNhaThuoc));
+		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterNganhNghe",strNganhNghe));
+		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterDiaChi",strDiaChi));
+		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSoDienThoai",strSoDienThoai));
+		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSoDienThoaiBan",strSoDienThoaiBan));
+		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSoTaiKhoan",strSoTaiKhoan));
+
+		QTLibraryFunction.STATIC_VOID_SET_PARAMETERS_TO_REPORT(ref reportViewerChiTietDonHang
+		  ,new List<string>() { "ReportParameterTongTien","ReportParameterThoiGian","ReportParameterSDTKhachHang","ReportParameterTenKhachHang","ReportParameterTenNhaThuoc","ReportParameterNganhNghe","ReportParameterDiaChi","ReportParameterSoDienThoai","ReportParameterSoDienThoaiBan","ReportParameterSoTaiKhoan" }
+		  ,new List<string>() { strTongTien,strThoiGian,strSDTKH,strTenKhachHang,strTenNhaThuoc,strNganhNghe,strDiaChi,strSoDienThoai,strSoDienThoaiBan,strSoTaiKhoan });
+
 		reportViewerChiTietDonHang.LocalReport.DataSources.Clear();
 		reportViewerChiTietDonHang.LocalReport.DataSources.Add(reportDataSourceGiDo);
 
