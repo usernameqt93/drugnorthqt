@@ -85,6 +85,52 @@ namespace QTCommon {
 
 	#endregion
 
+	#region BangChiTietDonHang
+
+	public static class ID_BANG_CHITIET_DONHANG {
+	  public const string STR = "MaChiTietDonHang";
+	}
+
+	public static class SOLUONG_VITHUOC {
+	  public const string STR = "SoLuongViThuoc";
+	}
+
+	public static class THANHTIEN_TAMTHOI {
+	  public const string STR = "ThanhTienTamThoi";
+	}
+
+
+
+	#endregion
+
+	#region BangGiaViThuoc
+
+	public static class GIA_VITHUOC {
+	  public const string STR = "GiaViThuoc";
+	}
+
+	public static class DONVI_GIATHUOC {
+	  public const string STR = "DonViGiaThuoc";
+	}
+
+
+
+	#endregion
+
+	#region BangViThuoc
+
+	public static class ID_BANG_VITHUOC {
+	  public const string STR = "MaViThuoc";
+	}
+
+	public static class TEN_VITHUOC {
+	  public const string STR = "TenViThuoc";
+	}
+
+
+
+	#endregion
+
 	//QTDbConst.HOTEN_CAIDAT.STR
   }
 }
