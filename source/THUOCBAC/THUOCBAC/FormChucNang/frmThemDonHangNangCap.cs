@@ -28,6 +28,9 @@ namespace THUOCBAC.FormChucNang {
 	private decimal DEC_TIENNO_CU_HIENTAI = 0;
 	private DateTime DT_THOIGIAN_VIETDH = DateTime.Now;
 
+	private int pos_xy_mouse_row = -1;
+	private int pos_xy_mouse_col = -1;
+
 	#endregion
 
 	#region " Handle "
@@ -158,20 +161,7 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void btnXXoaViThuoc_Click(object sender,EventArgs e) {
-	  string strLoi = "";
-	  DialogResult dlr = MessageBox.Show("Bạn chắc chắn muốn xóa vị thuốc '"+STR_TEN_VITHUOC_DANGCHON+"' ra khỏi đơn hàng ở dưới?",
-		QTStringConst.THONGBAO.STR,MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-	  if(dlr==DialogResult.Yes) {
-		bool boolCoXoaDuocKo = BL_DONHANG.boolDeleteBangChiTietDonHangTheoMaCTDH(ref strLoi,INT_MA_CHITIET_DONHANG_DANGCHON);
-		if(boolCoXoaDuocKo) {
-		  voidHIENTHI_DGV_CO_STT();
-		  voidCAPNHAT_TONGTIEN_DH_THEO_MADONHANG();
-		  MessageBox.Show("Xóa vị thuốc '"+STR_TEN_VITHUOC_DANGCHON+"' ra khỏi đơn hàng thành công!");
-		  btnXXoaViThuoc.Enabled=false;
-		} else {
-		  MessageBox.Show("Xóa thất bại, có lỗi ("+strLoi+")");
-		}
-	  }
+	  VOID_DELETE_PRODUCT_SELECTED();
 	}
 
 	private void btnXThemViThuocVaoDH_Click(object sender,EventArgs e) {
@@ -304,9 +294,69 @@ namespace THUOCBAC.FormChucNang {
 	  }
 	}
 
+	private void dataGridViewXChiTietDonHang_MouseClick(object sender,MouseEventArgs e) {
+	  if(e.Button==MouseButtons.Right) {
+		pos_xy_mouse_row=dataGridViewXChiTietDonHang.HitTest(e.X,e.Y).RowIndex;
+		pos_xy_mouse_col=dataGridViewXChiTietDonHang.HitTest(e.X,e.Y).ColumnIndex;
+
+		if(pos_xy_mouse_row>=0&&pos_xy_mouse_col>=0) {
+		  dataGridViewXChiTietDonHang.CurrentCell=dataGridViewXChiTietDonHang.Rows[pos_xy_mouse_row].Cells[pos_xy_mouse_col];
+		  DataGridViewRow r = dataGridViewXChiTietDonHang.Rows[pos_xy_mouse_row];
+		  INT_MA_CHITIET_DONHANG_DANGCHON=Convert.ToInt32(r.Cells[QTDbConst.ID_BANG_CHITIET_DONHANG.STR].Value);
+		  STR_TEN_VITHUOC_DANGCHON=Convert.ToString(r.Cells[QTDbConst.TEN_VITHUOC.STR].Value);
+
+		  ContextMenuStrip mnu = new ContextMenuStrip();
+
+		  ToolStripMenuItem mnuEdit = new ToolStripMenuItem("Sửa giá và số lượng vị thuốc này");
+		  ToolStripMenuItem mnuDelete = new ToolStripMenuItem("Xóa '"+STR_TEN_VITHUOC_DANGCHON+"' ra khỏi đơn");
+		  mnuDelete.Image=Properties.Resources.Xoa;
+		  mnuEdit.Image=Properties.Resources.update;
+
+		  mnuEdit.Click+=new EventHandler(mnuEdit_Click);
+		  mnuDelete.Click+=new EventHandler(mnuDelete_Click);
+
+		  mnu.Items.AddRange(new ToolStripItem[] { mnuEdit,mnuDelete });
+
+		  mnu.Show(dataGridViewXChiTietDonHang,new Point(e.X,e.Y));
+
+		}
+
+	  }
+	}
+
+	private void mnuDelete_Click(object sender,EventArgs e) {
+	  VOID_DELETE_PRODUCT_SELECTED();
+	}
+
+	private void mnuEdit_Click(object sender,EventArgs e) {
+	  string strTemp = "";
+	  strTemp+="\npos_xy_mouse_row = "+pos_xy_mouse_row;
+	  strTemp+="\npos_xy_mouse_col = "+pos_xy_mouse_col;
+	  //strTemp+="\nvalueCell = "+dataGridViewX1.Rows[pos_xy_mouse_row].Cells[pos_xy_mouse_col].ToString();
+	  strTemp+="\nvalueCell = "+dataGridViewXChiTietDonHang.Rows[pos_xy_mouse_row].Cells[pos_xy_mouse_col].Value.ToString();
+	  MessageBox.Show(strTemp);
+	}
+
 	#endregion
 
 	#region " Other "  
+
+	private void VOID_DELETE_PRODUCT_SELECTED() {
+	  string strLoi = "";
+	  DialogResult dlr = MessageBox.Show("Bạn chắc chắn muốn xóa vị thuốc '"+STR_TEN_VITHUOC_DANGCHON+"' ra khỏi đơn hàng ở dưới?",
+		QTStringConst.THONGBAO.STR,MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+	  if(dlr==DialogResult.Yes) {
+		bool boolCoXoaDuocKo = BL_DONHANG.boolDeleteBangChiTietDonHangTheoMaCTDH(ref strLoi,INT_MA_CHITIET_DONHANG_DANGCHON);
+		if(boolCoXoaDuocKo) {
+		  voidHIENTHI_DGV_CO_STT();
+		  voidCAPNHAT_TONGTIEN_DH_THEO_MADONHANG();
+		  MessageBox.Show("Xóa vị thuốc '"+STR_TEN_VITHUOC_DANGCHON+"' ra khỏi đơn hàng thành công!");
+		  btnXXoaViThuoc.Enabled=false;
+		} else {
+		  MessageBox.Show("Xóa thất bại, có lỗi ("+strLoi+")");
+		}
+	  }
+	}
 
 	private void voidCAPNHAT_COMBOBOX_TENVITHUOC() {
 	  DT_VITHUOC=BL_DONHANG.dataTableBangDanhSachViThuocXepTheoTenThuoc();

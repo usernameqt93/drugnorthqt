@@ -31,8 +31,11 @@
 	  this.labelXTrangThaiTruocDo = new DevComponents.DotNetBar.LabelX();
 	  this.labelXTrangThaiGanNhat = new DevComponents.DotNetBar.LabelX();
 	  this.groupBoxTongGiaDonHang = new System.Windows.Forms.GroupBox();
+	  this.btnXXemReportCTHD = new DevComponents.DotNetBar.ButtonX();
 	  this.labelXTongTienDonHang = new DevComponents.DotNetBar.LabelX();
+	  this.btnXXoaViThuoc = new DevComponents.DotNetBar.ButtonX();
 	  this.groupBoxThemViThuoc = new System.Windows.Forms.GroupBox();
+	  this.btnXThemViThuocVaoDH = new DevComponents.DotNetBar.ButtonX();
 	  this.groupBoxThanhTien = new System.Windows.Forms.GroupBox();
 	  this.labelXTinhThanhTien = new DevComponents.DotNetBar.LabelX();
 	  this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -45,9 +48,7 @@
 	  this.comboBoxExDanhSachCacViThuoc = new DevComponents.DotNetBar.Controls.ComboBoxEx();
 	  this.groupBoxChiTietDonHang = new System.Windows.Forms.GroupBox();
 	  this.dataGridViewXChiTietDonHang = new DevComponents.DotNetBar.Controls.DataGridViewX();
-	  this.btnXXemReportCTHD = new DevComponents.DotNetBar.ButtonX();
-	  this.btnXXoaViThuoc = new DevComponents.DotNetBar.ButtonX();
-	  this.btnXThemViThuocVaoDH = new DevComponents.DotNetBar.ButtonX();
+	  this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
 	  this.tlpMain.SuspendLayout();
 	  this.grpTrangThaiHoatDong.SuspendLayout();
 	  this.tableLayoutPanel1.SuspendLayout();
@@ -61,6 +62,7 @@
 	  this.groupBoxTenViThuoc.SuspendLayout();
 	  this.groupBoxChiTietDonHang.SuspendLayout();
 	  ((System.ComponentModel.ISupportInitialize)(this.dataGridViewXChiTietDonHang)).BeginInit();
+	  this.panelEx1.SuspendLayout();
 	  this.SuspendLayout();
 	  // 
 	  // tlpMain
@@ -152,6 +154,19 @@
 	  this.groupBoxTongGiaDonHang.TabStop = false;
 	  this.groupBoxTongGiaDonHang.Text = "Tổng giá đơn hàng hiện tại";
 	  // 
+	  // btnXXemReportCTHD
+	  // 
+	  this.btnXXemReportCTHD.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXXemReportCTHD.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXXemReportCTHD.Image = global::THUOCBAC.Properties.Resources.print;
+	  this.btnXXemReportCTHD.Location = new System.Drawing.Point(6, 72);
+	  this.btnXXemReportCTHD.Name = "btnXXemReportCTHD";
+	  this.btnXXemReportCTHD.Size = new System.Drawing.Size(255, 47);
+	  this.btnXXemReportCTHD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXXemReportCTHD.TabIndex = 0;
+	  this.btnXXemReportCTHD.Text = "Xem bản in hóa đơn này";
+	  this.btnXXemReportCTHD.Click += new System.EventHandler(this.btnXXemReportCTHD_Click);
+	  // 
 	  // labelXTongTienDonHang
 	  // 
 	  // 
@@ -165,6 +180,21 @@
 	  this.labelXTongTienDonHang.TabIndex = 0;
 	  this.labelXTongTienDonHang.Text = "0 đ";
 	  this.labelXTongTienDonHang.TextAlignment = System.Drawing.StringAlignment.Center;
+	  // 
+	  // btnXXoaViThuoc
+	  // 
+	  this.btnXXoaViThuoc.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXXoaViThuoc.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXXoaViThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.btnXXoaViThuoc.Enabled = false;
+	  this.btnXXoaViThuoc.Image = global::THUOCBAC.Properties.Resources.Xoa;
+	  this.btnXXoaViThuoc.Location = new System.Drawing.Point(33, 402);
+	  this.btnXXoaViThuoc.Name = "btnXXoaViThuoc";
+	  this.btnXXoaViThuoc.Size = new System.Drawing.Size(269, 35);
+	  this.btnXXoaViThuoc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXXoaViThuoc.TabIndex = 5;
+	  this.btnXXoaViThuoc.Text = "Xóa vị thuốc đang chọn ra khỏi đơn hàng";
+	  this.btnXXoaViThuoc.Click += new System.EventHandler(this.btnXXoaViThuoc_Click);
 	  // 
 	  // groupBoxThemViThuoc
 	  // 
@@ -181,6 +211,19 @@
 	  this.groupBoxThemViThuoc.TabIndex = 6;
 	  this.groupBoxThemViThuoc.TabStop = false;
 	  this.groupBoxThemViThuoc.Text = "Thêm vị thuốc";
+	  // 
+	  // btnXThemViThuocVaoDH
+	  // 
+	  this.btnXThemViThuocVaoDH.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXThemViThuocVaoDH.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXThemViThuocVaoDH.Image = global::THUOCBAC.Properties.Resources.add;
+	  this.btnXThemViThuocVaoDH.Location = new System.Drawing.Point(6, 280);
+	  this.btnXThemViThuocVaoDH.Name = "btnXThemViThuocVaoDH";
+	  this.btnXThemViThuocVaoDH.Size = new System.Drawing.Size(255, 41);
+	  this.btnXThemViThuocVaoDH.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXThemViThuocVaoDH.TabIndex = 4;
+	  this.btnXThemViThuocVaoDH.Text = "Thêm số lượng vị thuốc trên vào đơn hàng";
+	  this.btnXThemViThuocVaoDH.Click += new System.EventHandler(this.btnXThemViThuocVaoDH_Click);
 	  // 
 	  // groupBoxThanhTien
 	  // 
@@ -370,54 +413,32 @@
 	  this.dataGridViewXChiTietDonHang.Size = new System.Drawing.Size(937, 482);
 	  this.dataGridViewXChiTietDonHang.TabIndex = 0;
 	  this.dataGridViewXChiTietDonHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewXChiTietDonHang_CellClick);
+	  this.dataGridViewXChiTietDonHang.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewXChiTietDonHang_MouseClick);
 	  // 
-	  // btnXXemReportCTHD
+	  // panelEx1
 	  // 
-	  this.btnXXemReportCTHD.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-	  this.btnXXemReportCTHD.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.btnXXemReportCTHD.Image = global::THUOCBAC.Properties.Resources.print;
-	  this.btnXXemReportCTHD.Location = new System.Drawing.Point(6, 72);
-	  this.btnXXemReportCTHD.Name = "btnXXemReportCTHD";
-	  this.btnXXemReportCTHD.Size = new System.Drawing.Size(255, 47);
-	  this.btnXXemReportCTHD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.btnXXemReportCTHD.TabIndex = 0;
-	  this.btnXXemReportCTHD.Text = "Xem bản in hóa đơn này";
-	  this.btnXXemReportCTHD.Click += new System.EventHandler(this.btnXXemReportCTHD_Click);
-	  // 
-	  // btnXXoaViThuoc
-	  // 
-	  this.btnXXoaViThuoc.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-	  this.btnXXoaViThuoc.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.btnXXoaViThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.btnXXoaViThuoc.Enabled = false;
-	  this.btnXXoaViThuoc.Image = global::THUOCBAC.Properties.Resources.Xoa;
-	  this.btnXXoaViThuoc.Location = new System.Drawing.Point(33, 402);
-	  this.btnXXoaViThuoc.Name = "btnXXoaViThuoc";
-	  this.btnXXoaViThuoc.Size = new System.Drawing.Size(269, 35);
-	  this.btnXXoaViThuoc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.btnXXoaViThuoc.TabIndex = 5;
-	  this.btnXXoaViThuoc.Text = "Xóa vị thuốc đang chọn ra khỏi đơn hàng";
-	  this.btnXXoaViThuoc.Click += new System.EventHandler(this.btnXXoaViThuoc_Click);
-	  // 
-	  // btnXThemViThuocVaoDH
-	  // 
-	  this.btnXThemViThuocVaoDH.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-	  this.btnXThemViThuocVaoDH.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.btnXThemViThuocVaoDH.Image = global::THUOCBAC.Properties.Resources.add;
-	  this.btnXThemViThuocVaoDH.Location = new System.Drawing.Point(6, 280);
-	  this.btnXThemViThuocVaoDH.Name = "btnXThemViThuocVaoDH";
-	  this.btnXThemViThuocVaoDH.Size = new System.Drawing.Size(255, 41);
-	  this.btnXThemViThuocVaoDH.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.btnXThemViThuocVaoDH.TabIndex = 4;
-	  this.btnXThemViThuocVaoDH.Text = "Thêm số lượng vị thuốc trên vào đơn hàng";
-	  this.btnXThemViThuocVaoDH.Click += new System.EventHandler(this.btnXThemViThuocVaoDH_Click);
+	  this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
+	  this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.panelEx1.Controls.Add(this.tlpMain);
+	  this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.panelEx1.Location = new System.Drawing.Point(0, 0);
+	  this.panelEx1.Name = "panelEx1";
+	  this.panelEx1.Size = new System.Drawing.Size(1284, 616);
+	  this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
+	  this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+	  this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+	  this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+	  this.panelEx1.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+	  this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+	  this.panelEx1.Style.GradientAngle = 90;
+	  this.panelEx1.TabIndex = 10;
 	  // 
 	  // frmThemDonHangNangCap
 	  // 
 	  this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 	  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 	  this.ClientSize = new System.Drawing.Size(1284, 616);
-	  this.Controls.Add(this.tlpMain);
+	  this.Controls.Add(this.panelEx1);
 	  this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 	  this.KeyPreview = true;
 	  this.MinimumSize = new System.Drawing.Size(1300, 655);
@@ -440,6 +461,7 @@
 	  this.groupBoxTenViThuoc.ResumeLayout(false);
 	  this.groupBoxChiTietDonHang.ResumeLayout(false);
 	  ((System.ComponentModel.ISupportInitialize)(this.dataGridViewXChiTietDonHang)).EndInit();
+	  this.panelEx1.ResumeLayout(false);
 	  this.ResumeLayout(false);
 
 	}
@@ -469,5 +491,6 @@
 	private DevComponents.DotNetBar.Controls.ComboBoxEx comboBoxExDanhSachCacViThuoc;
 	private System.Windows.Forms.GroupBox groupBoxChiTietDonHang;
 	private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewXChiTietDonHang;
+	private DevComponents.DotNetBar.PanelEx panelEx1;
   }
 }

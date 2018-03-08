@@ -12,9 +12,9 @@ namespace BusinessLogic {
   public class BL_Setting {
 	private DAO_Setting DAO_CAIDAT = new DAO_Setting();
 
-	public string STR_UPDATE_BANG_SETTING( ref string err,string strCachXemBanIn,int _intIdBangSetting) {
-	  return DAO_CAIDAT.STR_UPDATE_BANG_SETTING(ref err,strCachXemBanIn,_intIdBangSetting);
-	}
+	//public string STR_UPDATE_BANG_SETTING( ref string err,string strCachXemBanIn,int _intIdBangSetting) {
+	//  return DAO_CAIDAT.STR_UPDATE_BANG_SETTING(ref err,strCachXemBanIn,_intIdBangSetting);
+	//}
 
 	public string STR_UPDATE_BANG_SETTING(ref string err,BangSettingModel _mSetting,int _intIdBangSetting) {
 	  return DAO_CAIDAT.STR_UPDATE_BANG_SETTING(ref err,_mSetting,_intIdBangSetting);

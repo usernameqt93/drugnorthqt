@@ -33,11 +33,17 @@ namespace THUOCBAC.FormDanhSach {
 	}
 
 	private void btnXThemDonHang_Click(object sender,EventArgs e) {
+
+	  if(QTAppSetting.STATIC_STR_CACHVIET_DONHANG.Equals(QTDbConst.VIET_DONHANG_CACH_2.STR)) {
+		FormChucNang.frmThemDonHangNangCap frm = new FormChucNang.frmThemDonHangNangCap();
+		frm.ShowDialog();
+		voidHIENTHI_DGV_DH_CO_STT("ViTriCuoiCung","TatCa",-1);
+		return;
+	  }
+
 	  FormChucNang.FormThemDonHang formThemDonHang=new FormChucNang.FormThemDonHang();
 	  formThemDonHang.ShowDialog();
-	  //dataGridViewXCacDonHang.DataSource=BL_DONHANG.dataTableBangDanhSachDonHang();
 	  voidHIENTHI_DGV_DH_CO_STT("ViTriCuoiCung","TatCa",-1);
-	  //voidCAPNHAT_COMBOBOX_TENKH();
 	}
 	private void FormDanhSachDonHang_Load(object sender,EventArgs e) {
 	  //dataGridViewXCacDonHang.DataSource=BL_DONHANG.dataTableBangDanhSachDonHang();
@@ -176,9 +182,16 @@ namespace THUOCBAC.FormDanhSach {
 
 	private void btnXXemChiTietDonHang_Click(object sender,EventArgs e) {
 	  btnXXemChiTietDonHang.Enabled=false;
-	  FormChucNang.FormThemDonHang formXemChiTietDonHang=new FormChucNang.FormThemDonHang(
-		INT_MADONHANG_DANGCHON,INT_ID_KH_DANGCHON,STR_SDT_KH_DANGCHON,DEC_TIENNO_CU_DANGCHON,"XemChiTiet",DT_THOIGIAN_VIETDH_DANGCHON);
-	  formXemChiTietDonHang.ShowDialog();
+
+	  if(QTAppSetting.STATIC_STR_CACHVIET_DONHANG.Equals(QTDbConst.VIET_DONHANG_CACH_2.STR)) {
+		FormChucNang.frmThemDonHangNangCap formXemChiTietDonHangNangCap = new FormChucNang.frmThemDonHangNangCap(
+		  INT_MADONHANG_DANGCHON,INT_ID_KH_DANGCHON,STR_SDT_KH_DANGCHON,DEC_TIENNO_CU_DANGCHON,"XemChiTiet",DT_THOIGIAN_VIETDH_DANGCHON);
+		formXemChiTietDonHangNangCap.ShowDialog();
+	  } else {
+		FormChucNang.FormThemDonHang formXemChiTietDonHang = new FormChucNang.FormThemDonHang(
+		  INT_MADONHANG_DANGCHON,INT_ID_KH_DANGCHON,STR_SDT_KH_DANGCHON,DEC_TIENNO_CU_DANGCHON,"XemChiTiet",DT_THOIGIAN_VIETDH_DANGCHON);
+		formXemChiTietDonHang.ShowDialog();
+	  }
 	  //dataGridViewXCacDonHang.DataSource=BL_DONHANG.dataTableBangDanhSachDonHang();
 	  if(STR_NUT_VUABAM.Equals("NutHienTatCa"))
 	  voidHIENTHI_DGV_DH_CO_STT("ViTriCuoiCung","TatCa",-1);
