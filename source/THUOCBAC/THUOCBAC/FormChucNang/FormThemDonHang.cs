@@ -16,7 +16,6 @@ namespace THUOCBAC.FormChucNang {
 	private decimal DEC_GIA_VITHUOC=0;
 	private DataTable DT_VITHUOC;
 	private decimal DEC_THANHTIEN=0;
-	//private int INT_MA_VITHUOC_DANGCHON=-1;
 	private int INT_MA_DONHANG_HIENTAI=-1;
 	private int INT_MA_CHITIET_DONHANG_DANGCHON=-1;
 	private int INT_IDKH_HIENTAI=1;
@@ -25,12 +24,6 @@ namespace THUOCBAC.FormChucNang {
 	private string STR_SDT_KH_HIENTAI="";
 	private decimal DEC_TIENNO_CU_HIENTAI=0;
 	private DateTime DT_THOIGIAN_VIETDH=DateTime.Now;
-
-	//private const string CONST_STR_SOLUONG = "Số lượng";
-	//private const string CONST_STR_DONVI = "Đơn vị";
-	//private const string CONST_STR_DONGIA = "Đơn giá";
-	//private const string CONST_STR_TEN_VITHUOC = "Tên vị thuốc";
-	//private const string CONST_STR_THANHTIEN = "Thành tiền";
 
 	public FormThemDonHang() {
 	  InitializeComponent();
@@ -54,7 +47,6 @@ namespace THUOCBAC.FormChucNang {
 	  if(INT_IDKH_HIENTAI==-2&&DEC_TIENNO_CU_HIENTAI==-2) {
 		groupBoxThemViThuoc.Visible=false;
 		btnXXoaViThuoc.Visible=false;
-		//groupBoxTongGiaDonHang.Visible=false;
 		btnXXemReportCTHD.Visible=false;
 	  }
 
@@ -67,31 +59,9 @@ namespace THUOCBAC.FormChucNang {
 	  }
 
 	  voidHIENTHI_DGV_CO_STT();
-	  //dataGridViewXChiTietDonHang.Columns[QTDbConst.ID_BANG_CHITIET_DONHANG.STR].Visible=false;
-	  //dataGridViewXChiTietDonHang.Columns["MaViThuoc"].Visible=false;
 	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dataGridViewXChiTietDonHang,new List<string>() { QTDbConst.ID_BANG_CHITIET_DONHANG.STR,QTDbConst.ID_BANG_VITHUOC.STR });
 
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXChiTietDonHang,"STT",60,DataGridViewContentAlignment.MiddleCenter);
-	  //dataGridViewXChiTietDonHang.Columns["SoLuongViThuoc"].HeaderText="Số lượng";
-	  //dataGridViewXChiTietDonHang.Columns["SoLuongViThuoc"].Width=77;
-	  //dataGridViewXChiTietDonHang.Columns["DonViGiaThuoc"].HeaderText="Đơn vị";
-	  //dataGridViewXChiTietDonHang.Columns["DonViGiaThuoc"].Width=44;
-	  //dataGridViewXChiTietDonHang.Columns["GiaViThuoc"].HeaderText="Đơn giá";
-	  //dataGridViewXChiTietDonHang.Columns["GiaViThuoc"].Width=88;
-	  //dataGridViewXChiTietDonHang.Columns["TenViThuoc"].HeaderText="Tên vị thuốc";
-	  //dataGridViewXChiTietDonHang.Columns["GiaViThuoc"].DefaultCellStyle.Format="#,###.### đ";
-	  //dataGridViewXChiTietDonHang.Columns["ThanhTienTamThoi"].HeaderText="Thành tiền";
-	  //dataGridViewXChiTietDonHang.Columns["ThanhTienTamThoi"].Width=88;
-
-	  //dataGridViewXChiTietDonHang.Columns["SoLuongViThuoc"].HeaderText=CONST_STR_SOLUONG;
-	  //dataGridViewXChiTietDonHang.Columns["SoLuongViThuoc"].Width=77;
-	  //dataGridViewXChiTietDonHang.Columns["DonViGiaThuoc"].HeaderText=CONST_STR_DONVI;
-	  //dataGridViewXChiTietDonHang.Columns["DonViGiaThuoc"].Width=44;
-	  //dataGridViewXChiTietDonHang.Columns["GiaViThuoc"].HeaderText=CONST_STR_DONGIA;
-	  //dataGridViewXChiTietDonHang.Columns["GiaViThuoc"].Width=88;
-	  //dataGridViewXChiTietDonHang.Columns["TenViThuoc"].HeaderText=CONST_STR_TEN_VITHUOC;
-	  //dataGridViewXChiTietDonHang.Columns["GiaViThuoc"].DefaultCellStyle.Format="#,###.### đ";
-	  //dataGridViewXChiTietDonHang.Columns["ThanhTienTamThoi"].HeaderText=CONST_STR_THANHTIEN;
 
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXChiTietDonHang,QTDbConst.SOLUONG_VITHUOC.STR,QTStringConst.SOLUONG.STR,77,DataGridViewContentAlignment.MiddleRight);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXChiTietDonHang,QTDbConst.DONVI_GIATHUOC.STR,QTStringConst.DONVI.STR,44,DataGridViewContentAlignment.MiddleLeft);
@@ -99,25 +69,18 @@ namespace THUOCBAC.FormChucNang {
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXChiTietDonHang,QTDbConst.GIA_VITHUOC.STR,QTStringConst.DONGIA.STR,88,DataGridViewContentAlignment.MiddleRight);
 	  dataGridViewXChiTietDonHang.Columns[QTDbConst.GIA_VITHUOC.STR].DefaultCellStyle.Format="#,###.### đ";
 
-	  //dataGridViewXChiTietDonHang.Columns["TenViThuoc"].HeaderText=CONST_STR_TEN_VITHUOC;
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXChiTietDonHang,QTDbConst.TEN_VITHUOC.STR,QTStringConst.TENVITHUOC.STR,176,DataGridViewContentAlignment.MiddleLeft);
-	  //dataGridViewXChiTietDonHang.Columns["ThanhTienTamThoi"].HeaderText=CONST_STR_THANHTIEN;
 
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXChiTietDonHang,QTDbConst.THANHTIEN_TAMTHOI.STR,QTStringConst.THANHTIEN.STR,88,DataGridViewContentAlignment.MiddleLeft,DataGridViewAutoSizeColumnMode.Fill);
 	  dataGridViewXChiTietDonHang.Columns[QTDbConst.THANHTIEN_TAMTHOI.STR].DefaultCellStyle.Format="#,###.### đ";
 
-	  //labelXDonViTinh.Text="("+strDonViTinh+")";
 	  labelXDonViTinh.Text="("+"Kg"+")";
 
 	  voidCAPNHAT_THANHTIEN_SAUKHISUA_SOLUONG();
 	  voidCAPNHAT_TONGTIEN_DH_THEO_MADONHANG();
-	  //voidTRODEN_VITRI_CUOI_DGV();
 	  voidTRODEN_VITRI_CHIDINH(DEC_TIENNO_CU_HIENTAI,STR_SDT_KH_HIENTAI);
 	  if(dataGridViewXChiTietDonHang.RowCount<1)
 		btnXXemReportCTHD.Enabled=false;
-
-	  //comboBoxExDanhSachCacViThuoc.Focus();
-	  //comboBoxExDanhSachCacViThuoc.SelectAll();
 	}
 	private void voidCAPNHAT_COMBOBOX_TENVITHUOC() {
 	  DT_VITHUOC=BL_DONHANG.dataTableBangDanhSachViThuocXepTheoTenThuoc();
@@ -134,8 +97,6 @@ namespace THUOCBAC.FormChucNang {
 	}
 	public void voidCAPNHAT_TONGTIEN_DH_THEO_MADONHANG() {
 	  string strLoi="";
-	  //string strResult="";
-	  //decimal decTongTienDonHang=BL_DONHANG.decTongTienDonHangTheoMaDonHang(ref strLoi,ref strResult,INT_MA_DONHANG_HIENTAI);
 	  decimal decTongTienDonHang=0;
 	  int intTongViThuoc=0;
 	  decimal decTongKhoiLuong=0;
@@ -300,7 +261,6 @@ namespace THUOCBAC.FormChucNang {
 	private void voidTRODEN_VITRI_CUOI_DGV() {
 	  int intSoThuTuHangMuonTroVao=0;
 	  if(dataGridViewXChiTietDonHang.RowCount>1) {
-		//intSoThuTuHangMuonTroVao=dataGridViewXChiTietDonHang.RowCount-1;
 		dataGridViewXChiTietDonHang.CurrentCell=dataGridViewXChiTietDonHang.Rows[intSoThuTuHangMuonTroVao].Cells[QTDbConst.GIA_VITHUOC.STR];// Đưa Control về vị trí của nó
 		dataGridViewXChiTietDonHang.CurrentRow.Selected=true;// Set trạng thái Selected
 	  }
@@ -324,8 +284,6 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void btnXThemViThuocVaoDH_MouseHover(object sender,EventArgs e) {
-	  //numericSoLuongVT.Select(0,22);
-	  //numericDonGiaVT.Select(0,22);
 	  voidCAPNHAT_THANHTIEN_SAUKHISUA_SOLUONG();
 	}
 
@@ -339,15 +297,6 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void comboBoxExDanhSachCacViThuoc_DropDownClosed(object sender,EventArgs e) {
-	  //int intMaThuocHienTai=comboBoxExDanhSachCacViThuoc.SelectedIndex;
-	  //DEC_GIA_VITHUOC=Convert.ToDecimal(DT_VITHUOC.Rows[intMaThuocHienTai]["GiaViThuoc"]);
-	  //string strDonViTinh=Convert.ToString(DT_VITHUOC.Rows[intMaThuocHienTai]["DonViGiaThuoc"]);
-	  //numericDonGiaVT.Value=DEC_GIA_VITHUOC;
-
-	  //labelXDonViTinh.Text="("+strDonViTinh+")";
-
-	  //voidCAPNHAT_THANHTIEN_SAUKHISUA_SOLUONG();
-	  //btnXThemViThuocVaoDH.Enabled=true;
 	}
 
 	private void groupBoxThanhTien_MouseHover(object sender,EventArgs e) {
@@ -373,15 +322,11 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void groupBoxTenViThuoc_MouseHover(object sender,EventArgs e) {
-	  //numericSoLuongVT.Select(0,22);
-	  //numericDonGiaVT.Select(0,22);
 	}
 
 	private void numericDonGiaVT_KeyDown(object sender,KeyEventArgs e) {
 	  if(e.KeyCode==Keys.N) {
 		numericDonGiaVT.Value*=1000;
-		//string strThanhTien=""+"= 0 đ";
-		//labelXTinhThanhTien.Text=strThanhTien;
 		voidCAPNHAT_THANHTIEN_SAUKHISUA_SOLUONG();
 		numericDonGiaVT.Focus();
 		numericDonGiaVT.Select(0,22);
