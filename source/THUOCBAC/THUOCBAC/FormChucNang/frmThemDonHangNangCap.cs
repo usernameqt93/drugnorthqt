@@ -68,6 +68,10 @@ namespace THUOCBAC.FormChucNang {
 		btnXXemReportCTHD.Visible=false;
 	  }
 
+	  if(QTAppSetting.STATIC_STR_VISIBLE_NUT_DELETE_VITHUOC.Equals(QTDbConst.ANNUT_XOA_VITHUOC.STR)) {
+		btnXXoaViThuoc.Visible=false;
+	  }
+
 	  voidCAPNHAT_COMBOBOX_TENVITHUOC();
 
 	  if(DT_VITHUOC.Rows.Count>0) {
@@ -171,12 +175,12 @@ namespace THUOCBAC.FormChucNang {
 		  MessageBox.Show("Số lượng vị thuốc này phải lớn hơn 0");
 		else if(numericDonGiaVT.Value<1000)
 		  MessageBox.Show("Đơn giá vị thuốc phải lớn hơn 1000");
-		else if(comboBoxExDanhSachCacViThuoc.Text.Equals(""))
+		else if(comboBoxExDanhSachCacViThuoc.Text.Trim().Equals(""))
 		  MessageBox.Show("Bạn hãy điền lại tên vị thuốc cho đúng!");
 		else {
 		  string strLoi = "";
 		  string strResult = "";
-		  string strTenViThuocOComBoBox = Convert.ToString(comboBoxExDanhSachCacViThuoc.Text);
+		  string strTenViThuocOComBoBox = Convert.ToString(comboBoxExDanhSachCacViThuoc.Text).Trim();
 		  string strTenViThuocNayDaVietHoaChuCaiDau = ""+strTenViThuocOComBoBox.ElementAt(0).ToString().ToUpper()+strTenViThuocOComBoBox.Substring(1);
 		  int intMaChiTietDHCuaTenViThuocThem = BL_DONHANG.intMaChiTietDHCuaTenViThuoc(
 			ref strLoi,ref strResult,strTenViThuocNayDaVietHoaChuCaiDau,INT_MA_DONHANG_HIENTAI);

@@ -56,6 +56,10 @@ namespace QTCommon {
 
 	#region BangSetting
 
+	public static class ANNUT_XOA_VITHUOC {
+	  public const string STR = "2018030817h00AnNutXoaViThuoc";
+	}
+
 	public static class VIET_DONHANG_CACH_1 {
 	  public const string STR = "2017030815h00VietDonHangCach1";
 	}
