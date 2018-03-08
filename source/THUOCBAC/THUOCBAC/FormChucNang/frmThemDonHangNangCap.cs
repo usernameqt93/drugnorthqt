@@ -310,8 +310,9 @@ namespace THUOCBAC.FormChucNang {
 		  STR_TEN_VITHUOC_DANGCHON=Convert.ToString(r.Cells[QTDbConst.TEN_VITHUOC.STR].Value);
 
 		  ContextMenuStrip mnu = new ContextMenuStrip();
-
 		  ToolStripMenuItem mnuEdit = new ToolStripMenuItem("Sửa giá và số lượng vị thuốc này");
+		  ToolStripMenuItem mnuBlank1 = new ToolStripMenuItem("   ");
+		  ToolStripMenuItem mnuBlank2 = new ToolStripMenuItem("   ");
 		  ToolStripMenuItem mnuDelete = new ToolStripMenuItem("Xóa '"+STR_TEN_VITHUOC_DANGCHON+"' ra khỏi đơn");
 		  mnuDelete.Image=Properties.Resources.Xoa;
 		  mnuEdit.Image=Properties.Resources.update;
@@ -319,10 +320,9 @@ namespace THUOCBAC.FormChucNang {
 		  mnuEdit.Click+=new EventHandler(mnuEdit_Click);
 		  mnuDelete.Click+=new EventHandler(mnuDelete_Click);
 
-		  mnu.Items.AddRange(new ToolStripItem[] { mnuEdit,mnuDelete });
+		  mnu.Items.AddRange(new ToolStripItem[] { mnuBlank1,mnuEdit,mnuBlank2,mnuDelete });
 
 		  mnu.Show(dataGridViewXChiTietDonHang,new Point(e.X,e.Y));
-
 		}
 
 	  }
@@ -336,9 +336,16 @@ namespace THUOCBAC.FormChucNang {
 	  string strTemp = "";
 	  strTemp+="\npos_xy_mouse_row = "+pos_xy_mouse_row;
 	  strTemp+="\npos_xy_mouse_col = "+pos_xy_mouse_col;
-	  //strTemp+="\nvalueCell = "+dataGridViewX1.Rows[pos_xy_mouse_row].Cells[pos_xy_mouse_col].ToString();
 	  strTemp+="\nvalueCell = "+dataGridViewXChiTietDonHang.Rows[pos_xy_mouse_row].Cells[pos_xy_mouse_col].Value.ToString();
-	  MessageBox.Show(strTemp);
+	  //MessageBox.Show(strTemp);
+	  DataGridViewRow r = dataGridViewXChiTietDonHang.Rows[pos_xy_mouse_row];
+	  INT_MA_CHITIET_DONHANG_DANGCHON=Convert.ToInt32(r.Cells[QTDbConst.ID_BANG_CHITIET_DONHANG.STR].Value);
+	  STR_TEN_VITHUOC_DANGCHON=Convert.ToString(r.Cells[QTDbConst.TEN_VITHUOC.STR].Value);
+
+	  decimal sdfdsfdsfds= Convert.ToDecimal(r.Cells[QTDbConst.SOLUONG_VITHUOC.STR].Value);
+	  decimal fdgfdgfdg = Convert.ToDecimal(r.Cells[QTDbConst.GIA_VITHUOC.STR].Value);
+	  frmSuaGiaVaSoLuong frm = new frmSuaGiaVaSoLuong(STR_TEN_VITHUOC_DANGCHON,sdfdsfdsfds,fdgfdgfdg);
+	  frm.ShowDialog();
 	}
 
 	#endregion
