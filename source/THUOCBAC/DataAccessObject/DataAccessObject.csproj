@@ -52,6 +52,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FValueObject\FValueObject.csproj">
+      <Project>{3CDFD4AF-4543-45AC-A996-56F7706D95C4}</Project>
+      <Name>FValueObject</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QTCommon\QTCommon.csproj">
       <Project>{C8DDD53C-0914-44E1-B55D-08074AD22FDD}</Project>
       <Name>QTCommon</Name>

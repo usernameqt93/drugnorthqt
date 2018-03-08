@@ -33,10 +33,16 @@
 	  this.rtxtENoteCachXemBanIn = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
 	  this.rdoXemBanInCach2 = new System.Windows.Forms.RadioButton();
 	  this.rdoXemBanInCach1 = new System.Windows.Forms.RadioButton();
+	  this.groupBox2 = new System.Windows.Forms.GroupBox();
+	  this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+	  this.rdoVietDHCach1 = new System.Windows.Forms.RadioButton();
+	  this.rdoVietDHCach2 = new System.Windows.Forms.RadioButton();
 	  this.panelEx1.SuspendLayout();
 	  this.tlpMain.SuspendLayout();
 	  this.groupBox1.SuspendLayout();
 	  this.tableLayoutPanel1.SuspendLayout();
+	  this.groupBox2.SuspendLayout();
+	  this.tableLayoutPanel2.SuspendLayout();
 	  this.SuspendLayout();
 	  // 
 	  // panelEx1
@@ -70,6 +76,7 @@
 	  this.tlpMain.Controls.Add(this.btnXSave, 2, 3);
 	  this.tlpMain.Controls.Add(this.btnxCancel, 4, 3);
 	  this.tlpMain.Controls.Add(this.groupBox1, 1, 1);
+	  this.tlpMain.Controls.Add(this.groupBox2, 4, 1);
 	  this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.tlpMain.Location = new System.Drawing.Point(0, 0);
 	  this.tlpMain.Name = "tlpMain";
@@ -177,6 +184,58 @@
 	  this.rdoXemBanInCach1.Text = "Cách 1";
 	  this.rdoXemBanInCach1.UseVisualStyleBackColor = true;
 	  // 
+	  // groupBox2
+	  // 
+	  this.tlpMain.SetColumnSpan(this.groupBox2, 2);
+	  this.groupBox2.Controls.Add(this.tableLayoutPanel2);
+	  this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.groupBox2.Location = new System.Drawing.Point(530, 23);
+	  this.groupBox2.Name = "groupBox2";
+	  this.groupBox2.Size = new System.Drawing.Size(481, 69);
+	  this.groupBox2.TabIndex = 4;
+	  this.groupBox2.TabStop = false;
+	  this.groupBox2.Text = "Tùy chọn cách viết đơn hàng";
+	  // 
+	  // tableLayoutPanel2
+	  // 
+	  this.tableLayoutPanel2.ColumnCount = 2;
+	  this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 260F));
+	  this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+	  this.tableLayoutPanel2.Controls.Add(this.rdoVietDHCach1, 0, 0);
+	  this.tableLayoutPanel2.Controls.Add(this.rdoVietDHCach2, 0, 1);
+	  this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
+	  this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+	  this.tableLayoutPanel2.RowCount = 2;
+	  this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+	  this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+	  this.tableLayoutPanel2.Size = new System.Drawing.Size(475, 50);
+	  this.tableLayoutPanel2.TabIndex = 0;
+	  // 
+	  // rdoVietDHCach1
+	  // 
+	  this.rdoVietDHCach1.AutoSize = true;
+	  this.rdoVietDHCach1.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.rdoVietDHCach1.Location = new System.Drawing.Point(3, 3);
+	  this.rdoVietDHCach1.Name = "rdoVietDHCach1";
+	  this.rdoVietDHCach1.Size = new System.Drawing.Size(254, 19);
+	  this.rdoVietDHCach1.TabIndex = 0;
+	  this.rdoVietDHCach1.TabStop = true;
+	  this.rdoVietDHCach1.Text = "radioButton1";
+	  this.rdoVietDHCach1.UseVisualStyleBackColor = true;
+	  // 
+	  // rdoVietDHCach2
+	  // 
+	  this.rdoVietDHCach2.AutoSize = true;
+	  this.rdoVietDHCach2.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.rdoVietDHCach2.Location = new System.Drawing.Point(3, 28);
+	  this.rdoVietDHCach2.Name = "rdoVietDHCach2";
+	  this.rdoVietDHCach2.Size = new System.Drawing.Size(254, 19);
+	  this.rdoVietDHCach2.TabIndex = 1;
+	  this.rdoVietDHCach2.TabStop = true;
+	  this.rdoVietDHCach2.Text = "2018030815h00VietDonHangCach2";
+	  this.rdoVietDHCach2.UseVisualStyleBackColor = true;
+	  // 
 	  // frmOptionForQuocTuan
 	  // 
 	  this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,6 +253,9 @@
 	  this.groupBox1.ResumeLayout(false);
 	  this.tableLayoutPanel1.ResumeLayout(false);
 	  this.tableLayoutPanel1.PerformLayout();
+	  this.groupBox2.ResumeLayout(false);
+	  this.tableLayoutPanel2.ResumeLayout(false);
+	  this.tableLayoutPanel2.PerformLayout();
 	  this.ResumeLayout(false);
 
 	}
@@ -209,5 +271,9 @@
 	private DevComponents.DotNetBar.ButtonX btnXSave;
 	private DevComponents.DotNetBar.ButtonX btnxCancel;
 	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+	private System.Windows.Forms.GroupBox groupBox2;
+	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+	private System.Windows.Forms.RadioButton rdoVietDHCach1;
+	private System.Windows.Forms.RadioButton rdoVietDHCach2;
   }
 }

@@ -142,6 +142,7 @@ namespace THUOCBAC {
 	  BangSettingModel mBangSetting = new BangSettingModel();
 	  BL_SETTING.VOID_LAYTHONGTIN_BANGSETTING(ref mBangSetting);
 	  QTAppSetting.STATIC_STR_CACHXEM_BANIN=mBangSetting.CACHXEM_BANIN;
+	  QTAppSetting.STATIC_STR_CACHVIET_DONHANG=mBangSetting.CACHVIET_DONHANG;
 	}
 
 	private void buttonItemXemGiaThuoc_Click(object sender,EventArgs e) {

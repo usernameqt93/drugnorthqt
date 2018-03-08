@@ -5,3 +5,46 @@ CachXemBanIn	nvarchar(50) null defaultvalue-2018030323h33XemBanInCach2
 
 insert row dau tien giong default
 insert into BangSetting values('2018030323h33XemBanInCach2')
+
+2018030815h00
+them cot o bangSetting
+CachVietDonHang nvarchar(50) null defaultvalue-2018030815h00VietDonHangCach2
+
+neu insert row dau tien giong default
+insert into BangSetting values('2018030323h33XemBanInCach2','2018030815h00VietDonHangCach2')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

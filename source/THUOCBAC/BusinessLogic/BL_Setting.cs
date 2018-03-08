@@ -16,10 +16,16 @@ namespace BusinessLogic {
 	  return DAO_CAIDAT.STR_UPDATE_BANG_SETTING(ref err,strCachXemBanIn,_intIdBangSetting);
 	}
 
+	public string STR_UPDATE_BANG_SETTING(ref string err,BangSettingModel _mSetting,int _intIdBangSetting) {
+	  return DAO_CAIDAT.STR_UPDATE_BANG_SETTING(ref err,_mSetting,_intIdBangSetting);
+	}
+
 	public void VOID_LAYTHONGTIN_BANGSETTING(ref BangSettingModel mBangCaiDat) {
 	  DataTable dtCaiDat = DAO_CAIDAT.DATATABLE_BANG_SETTING(1);
 	  if(dtCaiDat.Rows.Count>0) {
 		mBangCaiDat.CACHXEM_BANIN=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.CACHXEM_BANIN.STR].ToString());
+		mBangCaiDat.CACHVIET_DONHANG=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.CACHVIET_DONHANG.STR].ToString());
+
 		//mBangCaiDat.SO_DIENTHOAI_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiCaiDat"].ToString());
 		//mBangCaiDat.SO_TAIKHOAN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoTaiKhoanCaiDat"].ToString());
 		//mBangCaiDat.SO_DIENTHOAIBAN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiBanCaiDat"].ToString());

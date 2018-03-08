@@ -1,4 +1,5 @@
-﻿using QTCommon;
+﻿using FValueObject.Models;
+using QTCommon;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,7 +17,8 @@ namespace DataAccessObject {
 		//	from BangCaiDat where IdBangCaiDat=@IdBangCaiDat";
 		string strSql = QTLibraryFunction.STATIC_STR_QUERY_SELECT(
 		  new List<string>() {
-			QTDbConst.CACHXEM_BANIN.STR }
+			QTDbConst.CACHXEM_BANIN.STR
+		  ,QTDbConst.CACHVIET_DONHANG.STR }
 		  ,QTDbConst.BANG_SETTING.STR
 		  ,new List<string>() {
 			QTDbConst.ID_BANG_SETTING.STR }
@@ -51,6 +53,28 @@ namespace DataAccessObject {
 		//SqlParameter DiaChiCaiDat = new SqlParameter("@DiaChiCaiDat",strDiaChi);
 		if(blnThucThiNonQuery(strSql,CommandType.Text,ref err,new SqlParameter[] {
 		  CachXemBanIn,IdBangSetting }))
+		  return "pass";
+		else
+		  return "false";
+	  } catch { }
+	  return "false";
+	}
+
+	public string STR_UPDATE_BANG_SETTING(ref string err,BangSettingModel _mSetting,int _intIdBangSetting) {
+	  try {
+		string strSql = QTLibraryFunction.STATIC_STR_QUERY_UPDATE(
+		  QTDbConst.BANG_SETTING.STR
+		  ,new List<string>() {
+			QTDbConst.CACHXEM_BANIN.STR
+		  ,QTDbConst.CACHVIET_DONHANG.STR }
+		  ,new List<string>() {
+			QTDbConst.ID_BANG_SETTING.STR }
+		  ,"and");
+		SqlParameter CachXemBanIn = new SqlParameter(QTLibraryFunction.STATIC_STR_AT(QTDbConst.CACHXEM_BANIN.STR),_mSetting.CACHXEM_BANIN);
+		SqlParameter CachVietDonHang = new SqlParameter(QTLibraryFunction.STATIC_STR_AT(QTDbConst.CACHVIET_DONHANG.STR),_mSetting.CACHVIET_DONHANG);
+		SqlParameter IdBangSetting = new SqlParameter(QTLibraryFunction.STATIC_STR_AT(QTDbConst.ID_BANG_SETTING.STR),_intIdBangSetting);
+		if(blnThucThiNonQuery(strSql,CommandType.Text,ref err,new SqlParameter[] {
+		  CachXemBanIn,CachVietDonHang,IdBangSetting }))
 		  return "pass";
 		else
 		  return "false";

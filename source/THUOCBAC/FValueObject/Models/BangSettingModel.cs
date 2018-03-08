@@ -9,5 +9,7 @@ namespace FValueObject.Models {
 
 	public string CACHXEM_BANIN { get; set; }
 
+	public string CACHVIET_DONHANG { get; set; }
+
   }
 }

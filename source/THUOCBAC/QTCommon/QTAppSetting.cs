@@ -10,5 +10,7 @@ namespace QTCommon {
 
 	public static string STATIC_STR_CACHXEM_BANIN { get; set; }
 
+	public static string STATIC_STR_CACHVIET_DONHANG { get; set; }
+
   }
 }

@@ -8,6 +8,7 @@ namespace QTCommon {
   public static class QTDbConst {
 
 	//QTDbConst.HOTEN_CAIDAT.STR
+
 	public static class TENKHACHHANG {
 	  public const string STR = "TenKhachHang";
 	}
@@ -55,6 +56,14 @@ namespace QTCommon {
 
 	#region BangSetting
 
+	public static class VIET_DONHANG_CACH_1 {
+	  public const string STR = "2017030815h00VietDonHangCach1";
+	}
+
+	public static class VIET_DONHANG_CACH_2 {
+	  public const string STR = "2018030815h00VietDonHangCach2";
+	}
+
 	public static class XEM_BANIN_CACH_2 {
 	  public const string STR = "2018030323h33XemBanInCach2";
 	}
@@ -73,6 +82,10 @@ namespace QTCommon {
 
 	public static class CACHXEM_BANIN {
 	  public const string STR = "CachXemBanIn";
+	}
+
+	public static class CACHVIET_DONHANG {
+	  public const string STR = "CachVietDonHang";
 	}
 
 	public static class BANG_SETTING {

@@ -29,19 +29,9 @@ namespace THUOCBAC.FormCaiDat {
 	  rdoXemBanInCach1.Text=QTLibraryFunction.STATIC_STR_UNLOCK(QTDbConst.XEM_BANIN_CACH_1.STR);
 	  rdoXemBanInCach2.Text=QTLibraryFunction.STATIC_STR_UNLOCK(QTDbConst.XEM_BANIN_CACH_2.STR);
 
-	  //string strHoTen = "";
-	  //string strSDT = "";
-	  //string strSoTK = "";
-	  //string strSDTBan = "";
-	  //string strNgheNghiep = "";
-	  //string strDiaChi = "";
-	  //BL_CAIDAT.VOID_LAYTHONGTIN_BANGCAIDAT(ref strHoTen,ref strSDT,ref strSoTK,ref strSDTBan,ref strNgheNghiep,ref strDiaChi);
+	  rdoVietDHCach1.Text=QTLibraryFunction.STATIC_STR_UNLOCK(QTDbConst.VIET_DONHANG_CACH_1.STR);
+	  rdoVietDHCach2.Text=QTLibraryFunction.STATIC_STR_UNLOCK(QTDbConst.VIET_DONHANG_CACH_2.STR);
 
-	  //BangCaiDatModel mBangCaiDat = new BangCaiDatModel();
-	  //BL_CAIDAT.VOID_LAYTHONGTIN_BANGCAIDAT(ref mBangCaiDat);
-
-	  //BangSettingModel mBangSetting = new BangSettingModel();
-	  //BL_SETTING.VOID_LAYTHONGTIN_BANGSETTING(ref mBangSetting);
 	  if(QTAppSetting.STATIC_STR_CACHXEM_BANIN.Equals(QTDbConst.XEM_BANIN_CACH_2.STR)) {
 		rdoXemBanInCach2.Checked=true;
 		rtxtENoteCachXemBanIn.Text=QTDbConst.NOTE_BANIN_CACH_2.STR;
@@ -50,27 +40,38 @@ namespace THUOCBAC.FormCaiDat {
 		rdoXemBanInCach1.Checked=true;
 		rtxtENoteCachXemBanIn.Text=QTDbConst.NOTE_BANIN_CACH_1.STR;
 	  }
-	  //txtXHoTen.Text=strHoTen;
-	  //txtXSoDienThoai.Text=strSDT;
-	  //txtXSoTaiKhoan.Text=strSoTK;
-	  //txtXSoDienThoaiBan.Text=strSDTBan;
-	  //txtXChuyen.Text=strNgheNghiep;
-	  //txtXDiaChi.Text=strDiaChi;
+
+	  if(QTAppSetting.STATIC_STR_CACHVIET_DONHANG.Equals(QTDbConst.VIET_DONHANG_CACH_1.STR)) {
+		rdoVietDHCach1.Checked=true;
+	  }
+	  if(QTAppSetting.STATIC_STR_CACHVIET_DONHANG.Equals(QTDbConst.VIET_DONHANG_CACH_2.STR)) {
+		rdoVietDHCach2.Checked=true;
+	  }
 	}
 
 	private void btnXSave_Click(object sender,EventArgs e) {
-	  string strCachXemBanIn = QTDbConst.XEM_BANIN_CACH_1.STR;
+	 // string strCachXemBanIn = QTDbConst.XEM_BANIN_CACH_1.STR;
+	 // if(rdoXemBanInCach2.Checked) {
+		//strCachXemBanIn=QTDbConst.XEM_BANIN_CACH_2.STR;
+	 // }
+
+	  BangSettingModel mSetting = new BangSettingModel() { CACHXEM_BANIN=QTDbConst.XEM_BANIN_CACH_1.STR
+		,CACHVIET_DONHANG=QTDbConst.VIET_DONHANG_CACH_1.STR };
 	  if(rdoXemBanInCach2.Checked) {
-		strCachXemBanIn=QTDbConst.XEM_BANIN_CACH_2.STR;
+		mSetting.CACHXEM_BANIN=QTDbConst.XEM_BANIN_CACH_2.STR;
+	  }
+	  if(rdoVietDHCach2.Checked) {
+		mSetting.CACHVIET_DONHANG=QTDbConst.VIET_DONHANG_CACH_2.STR;
 	  }
 
 	  string strLoi = "";
-	  string strTrangThaiUpdateCaiDat = BL_SETTING.STR_UPDATE_BANG_SETTING( ref strLoi,strCachXemBanIn,1);
+	  string strTrangThaiUpdateCaiDat = BL_SETTING.STR_UPDATE_BANG_SETTING(ref strLoi,mSetting,1);
 	  if(strTrangThaiUpdateCaiDat.Equals("false")&&!strLoi.Equals("1"))
 		MessageBox.Show("Trạng thái cập nhật thông tin cài đặt in ấn bị lỗi ("+strLoi+")");
 	  else {
 		//btnXLuuLai.Enabled=false;
-		QTAppSetting.STATIC_STR_CACHXEM_BANIN=strCachXemBanIn;
+		QTAppSetting.STATIC_STR_CACHXEM_BANIN=mSetting.CACHXEM_BANIN;
+		QTAppSetting.STATIC_STR_CACHVIET_DONHANG=mSetting.CACHVIET_DONHANG;
 		MessageBox.Show("Cập nhật thông tin cài đặt thành công !");
 	  }
 	}
