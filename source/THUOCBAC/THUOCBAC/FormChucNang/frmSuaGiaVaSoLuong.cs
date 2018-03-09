@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogic;
+using QTCommon;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,11 +13,14 @@ using System.Windows.Forms;
 namespace THUOCBAC.FormChucNang {
   public partial class frmSuaGiaVaSoLuong:Form {
 
+	private BL_DonHang BL_DONHANG = new BL_DonHang();
+	private int INT_MA_CHITIET_DONHANG_DANGCHON;
+
 	public frmSuaGiaVaSoLuong() {
 	  InitializeComponent();
 	}
 
-	public frmSuaGiaVaSoLuong(string _strName,decimal _decSoLuong,decimal _decDonGia) {
+	public frmSuaGiaVaSoLuong(int _intMaChiTietDonHang,string _strName,decimal _decSoLuong,decimal _decDonGia) {
 	  InitializeComponent();
 	  lblNameCurrent.Text=_strName;
 	  nudSoLuongHienTai.Value=_decSoLuong;
@@ -25,6 +30,7 @@ namespace THUOCBAC.FormChucNang {
 	  nudDonGiaMoi.Value=_decDonGia;
 
 	  lblThanhTienHienTai.Text=""+(_decSoLuong*_decDonGia).ToString("#,###.#")+" đ";
+	  INT_MA_CHITIET_DONHANG_DANGCHON=_intMaChiTietDonHang;
 	}
 
 	private void frmSuaGiaVaSoLuong_Load(object sender,EventArgs e) {
@@ -43,27 +49,41 @@ namespace THUOCBAC.FormChucNang {
 	  if(e.KeyCode==Keys.N) {
 		nudDonGiaMoi.Value*=1000;
 
-		voidTinhTien();
+		voidTinhTienVaHienNut();
 
 		nudDonGiaMoi.Focus();
 		nudDonGiaMoi.Select(0,22);
 	  }
 	  if(e.KeyCode==Keys.Enter) {
 		if(nudDonGiaMoi.Value<4001) {
-		  MessageBox.Show("Đơn giá vị thuốc bạn nhập hiện tại đang là '"+nudDonGiaMoi.Value+"' vnđ , hơi thấp so với bình thường, bạn nên kiểm tra lại !");
+		  QTMessageConst.UNIT_PRICE_IS_LOW(nudDonGiaMoi.Value);
 		  nudDonGiaMoi.Focus();
 		  nudDonGiaMoi.Select(0,22);
 		  btnXAccept.Enabled=false;
 		} else {
-		  voidTinhTien();
-		  btnXAccept.Enabled=true;
+		  voidTinhTienVaHienNut();
 		  btnXAccept.Focus();
 		}
 	  }
 	}
 
 	private void btnXAccept_Click(object sender,EventArgs e) {
-	  MessageBox.Show("mmmmmmmmmmmmmmmm");
+	  if(nudDonGiaMoi.Value<4001) {
+		QTMessageConst.UNIT_PRICE_IS_LOW(nudDonGiaMoi.Value);
+		nudDonGiaMoi.Focus();
+		nudDonGiaMoi.Select(0,22);
+		btnXAccept.Enabled=false;
+		return;
+	  }
+
+	  string strLoi = "";
+	  string strTrangThaiCapNhatGiaViThuocVaoDH = BL_DONHANG.strCapNhatGiaCaViThuocVaoDH(ref strLoi,INT_MA_CHITIET_DONHANG_DANGCHON,nudDonGiaMoi.Value,nudSoLuongMoi.Value);
+	  if(strTrangThaiCapNhatGiaViThuocVaoDH.Equals("false")&&!strLoi.Equals("2"))
+		QTMessageConst.EDIT_PRICE_AMOUNT_ERROR(strLoi);
+	  else {
+		QTMessageConst.EDIT_PRICE_AMOUNT_SUCCESS();
+		this.Close();
+	  }
 	}
 
 	private void frmSuaGiaVaSoLuong_KeyDown(object sender,KeyEventArgs e) {
@@ -75,22 +95,28 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void grpThanhTienHienTai_MouseHover(object sender,EventArgs e) {
-	  voidTinhTien();
+	  voidTinhTienVaHienNut();
 	}
 
 	private void btnXAccept_MouseHover(object sender,EventArgs e) {
-	  voidTinhTien();
-	}
-
-	private void voidTinhTien(){
-	  decimal DEC_THANHTIEN = nudDonGiaMoi.Value*nudSoLuongMoi.Value;
-	  string strThanhTien = ""+""+DEC_THANHTIEN.ToString("#,###.#")+" đ";
-	  lblThanhTienMoi.Text=strThanhTien;
+	  voidTinhTienVaHienNut();
 	}
 
 	private void lblThanhTienMoi_MouseHover(object sender,EventArgs e) {
-	  voidTinhTien();
-	  btnXAccept.Enabled=true;
+	  voidTinhTienVaHienNut();
 	}
+
+	#region Other
+
+	private void voidTinhTienVaHienNut() {
+	  decimal DEC_THANHTIEN = nudDonGiaMoi.Value*nudSoLuongMoi.Value;
+	  string strThanhTien = (DEC_THANHTIEN>0) ? ""+DEC_THANHTIEN.ToString("#,###.#")+" đ" : "0 đ";
+	  lblThanhTienMoi.Text=strThanhTien;
+	  btnXAccept.Enabled=(DEC_THANHTIEN>0) ? true : false;
+	}
+
+
+
+	#endregion
   }
 }

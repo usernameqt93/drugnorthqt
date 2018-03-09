@@ -24,32 +24,32 @@
 	/// </summary>
 	private void InitializeComponent() {
 	  this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-	  this.btnXAccept = new DevComponents.DotNetBar.ButtonX();
-	  this.groupBox1 = new System.Windows.Forms.GroupBox();
-	  this.groupBox2 = new System.Windows.Forms.GroupBox();
-	  this.nudSoLuongHienTai = new System.Windows.Forms.NumericUpDown();
-	  this.nudDonGiaHienTai = new System.Windows.Forms.NumericUpDown();
-	  this.groupBox3 = new System.Windows.Forms.GroupBox();
-	  this.nudSoLuongMoi = new System.Windows.Forms.NumericUpDown();
-	  this.groupBox4 = new System.Windows.Forms.GroupBox();
 	  this.groupBox5 = new System.Windows.Forms.GroupBox();
 	  this.nudDonGiaMoi = new System.Windows.Forms.NumericUpDown();
-	  this.grpThanhTienHienTai = new System.Windows.Forms.GroupBox();
+	  this.groupBox4 = new System.Windows.Forms.GroupBox();
+	  this.nudSoLuongMoi = new System.Windows.Forms.NumericUpDown();
+	  this.btnXAccept = new DevComponents.DotNetBar.ButtonX();
+	  this.groupBox1 = new System.Windows.Forms.GroupBox();
 	  this.lblNameCurrent = new DevComponents.DotNetBar.LabelX();
+	  this.groupBox2 = new System.Windows.Forms.GroupBox();
+	  this.nudSoLuongHienTai = new System.Windows.Forms.NumericUpDown();
+	  this.groupBox3 = new System.Windows.Forms.GroupBox();
+	  this.nudDonGiaHienTai = new System.Windows.Forms.NumericUpDown();
+	  this.grpThanhTienHienTai = new System.Windows.Forms.GroupBox();
 	  this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 	  this.labelX2 = new DevComponents.DotNetBar.LabelX();
 	  this.lblThanhTienHienTai = new DevComponents.DotNetBar.LabelX();
 	  this.lblThanhTienMoi = new DevComponents.DotNetBar.LabelX();
 	  this.tableLayoutPanel1.SuspendLayout();
+	  this.groupBox5.SuspendLayout();
+	  ((System.ComponentModel.ISupportInitialize)(this.nudDonGiaMoi)).BeginInit();
+	  this.groupBox4.SuspendLayout();
+	  ((System.ComponentModel.ISupportInitialize)(this.nudSoLuongMoi)).BeginInit();
 	  this.groupBox1.SuspendLayout();
 	  this.groupBox2.SuspendLayout();
 	  ((System.ComponentModel.ISupportInitialize)(this.nudSoLuongHienTai)).BeginInit();
-	  ((System.ComponentModel.ISupportInitialize)(this.nudDonGiaHienTai)).BeginInit();
 	  this.groupBox3.SuspendLayout();
-	  ((System.ComponentModel.ISupportInitialize)(this.nudSoLuongMoi)).BeginInit();
-	  this.groupBox4.SuspendLayout();
-	  this.groupBox5.SuspendLayout();
-	  ((System.ComponentModel.ISupportInitialize)(this.nudDonGiaMoi)).BeginInit();
+	  ((System.ComponentModel.ISupportInitialize)(this.nudDonGiaHienTai)).BeginInit();
 	  this.grpThanhTienHienTai.SuspendLayout();
 	  this.tableLayoutPanel2.SuspendLayout();
 	  this.SuspendLayout();
@@ -87,6 +87,87 @@
 	  this.tableLayoutPanel1.Size = new System.Drawing.Size(518, 373);
 	  this.tableLayoutPanel1.TabIndex = 0;
 	  // 
+	  // groupBox5
+	  // 
+	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox5, 2);
+	  this.groupBox5.Controls.Add(this.nudDonGiaMoi);
+	  this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.groupBox5.Location = new System.Drawing.Point(267, 158);
+	  this.groupBox5.Name = "groupBox5";
+	  this.groupBox5.Size = new System.Drawing.Size(218, 49);
+	  this.groupBox5.TabIndex = 4;
+	  this.groupBox5.TabStop = false;
+	  this.groupBox5.Text = "Đơn giá mới (nhấn \'N\' để thêm 3 số 0)";
+	  // 
+	  // nudDonGiaMoi
+	  // 
+	  this.nudDonGiaMoi.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.nudDonGiaMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+	  this.nudDonGiaMoi.ForeColor = System.Drawing.Color.OrangeRed;
+	  this.nudDonGiaMoi.Increment = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+	  this.nudDonGiaMoi.Location = new System.Drawing.Point(3, 16);
+	  this.nudDonGiaMoi.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+	  this.nudDonGiaMoi.Name = "nudDonGiaMoi";
+	  this.nudDonGiaMoi.Size = new System.Drawing.Size(212, 26);
+	  this.nudDonGiaMoi.TabIndex = 0;
+	  this.nudDonGiaMoi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+	  this.nudDonGiaMoi.ThousandsSeparator = true;
+	  this.nudDonGiaMoi.Value = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+	  this.nudDonGiaMoi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nudDonGiaMoi_KeyDown);
+	  // 
+	  // groupBox4
+	  // 
+	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox4, 2);
+	  this.groupBox4.Controls.Add(this.nudSoLuongMoi);
+	  this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.groupBox4.Location = new System.Drawing.Point(267, 103);
+	  this.groupBox4.Name = "groupBox4";
+	  this.groupBox4.Size = new System.Drawing.Size(218, 49);
+	  this.groupBox4.TabIndex = 3;
+	  this.groupBox4.TabStop = false;
+	  this.groupBox4.Text = "Số lượng mới (Đơn vị: Kg)(F5)";
+	  // 
+	  // nudSoLuongMoi
+	  // 
+	  this.nudSoLuongMoi.DecimalPlaces = 2;
+	  this.nudSoLuongMoi.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.nudSoLuongMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+	  this.nudSoLuongMoi.ForeColor = System.Drawing.Color.OrangeRed;
+	  this.nudSoLuongMoi.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+	  this.nudSoLuongMoi.Location = new System.Drawing.Point(3, 16);
+	  this.nudSoLuongMoi.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+	  this.nudSoLuongMoi.Name = "nudSoLuongMoi";
+	  this.nudSoLuongMoi.Size = new System.Drawing.Size(212, 26);
+	  this.nudSoLuongMoi.TabIndex = 0;
+	  this.nudSoLuongMoi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+	  this.nudSoLuongMoi.ThousandsSeparator = true;
+	  this.nudSoLuongMoi.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+	  this.nudSoLuongMoi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nudSoLuongMoi_KeyDown);
+	  // 
 	  // btnXAccept
 	  // 
 	  this.btnXAccept.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -115,6 +196,21 @@
 	  this.groupBox1.TabIndex = 1;
 	  this.groupBox1.TabStop = false;
 	  this.groupBox1.Text = "Tên vị thuốc";
+	  // 
+	  // lblNameCurrent
+	  // 
+	  // 
+	  // 
+	  // 
+	  this.lblNameCurrent.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.lblNameCurrent.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.lblNameCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+	  this.lblNameCurrent.Location = new System.Drawing.Point(3, 16);
+	  this.lblNameCurrent.Name = "lblNameCurrent";
+	  this.lblNameCurrent.PaddingLeft = 5;
+	  this.lblNameCurrent.Size = new System.Drawing.Size(446, 55);
+	  this.lblNameCurrent.TabIndex = 0;
+	  this.lblNameCurrent.Text = "labelX1";
 	  // 
 	  // groupBox2
 	  // 
@@ -157,6 +253,18 @@
             0,
             0});
 	  // 
+	  // groupBox3
+	  // 
+	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox3, 2);
+	  this.groupBox3.Controls.Add(this.nudDonGiaHienTai);
+	  this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.groupBox3.Location = new System.Drawing.Point(33, 158);
+	  this.groupBox3.Name = "groupBox3";
+	  this.groupBox3.Size = new System.Drawing.Size(218, 49);
+	  this.groupBox3.TabIndex = 3;
+	  this.groupBox3.TabStop = false;
+	  this.groupBox3.Text = "Đơn giá hiện tại (Đơn vị: vnđ)";
+	  // 
 	  // nudDonGiaHienTai
 	  // 
 	  this.nudDonGiaHienTai.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -185,99 +293,6 @@
             0,
             0});
 	  // 
-	  // groupBox3
-	  // 
-	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox3, 2);
-	  this.groupBox3.Controls.Add(this.nudDonGiaHienTai);
-	  this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox3.Location = new System.Drawing.Point(33, 158);
-	  this.groupBox3.Name = "groupBox3";
-	  this.groupBox3.Size = new System.Drawing.Size(218, 49);
-	  this.groupBox3.TabIndex = 3;
-	  this.groupBox3.TabStop = false;
-	  this.groupBox3.Text = "Đơn giá hiện tại (Đơn vị: vnđ)";
-	  // 
-	  // nudSoLuongMoi
-	  // 
-	  this.nudSoLuongMoi.DecimalPlaces = 2;
-	  this.nudSoLuongMoi.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.nudSoLuongMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-	  this.nudSoLuongMoi.ForeColor = System.Drawing.Color.OrangeRed;
-	  this.nudSoLuongMoi.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-	  this.nudSoLuongMoi.Location = new System.Drawing.Point(3, 16);
-	  this.nudSoLuongMoi.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-	  this.nudSoLuongMoi.Name = "nudSoLuongMoi";
-	  this.nudSoLuongMoi.Size = new System.Drawing.Size(212, 26);
-	  this.nudSoLuongMoi.TabIndex = 0;
-	  this.nudSoLuongMoi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-	  this.nudSoLuongMoi.ThousandsSeparator = true;
-	  this.nudSoLuongMoi.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-	  this.nudSoLuongMoi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nudSoLuongMoi_KeyDown);
-	  // 
-	  // groupBox4
-	  // 
-	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox4, 2);
-	  this.groupBox4.Controls.Add(this.nudSoLuongMoi);
-	  this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox4.Location = new System.Drawing.Point(267, 103);
-	  this.groupBox4.Name = "groupBox4";
-	  this.groupBox4.Size = new System.Drawing.Size(218, 49);
-	  this.groupBox4.TabIndex = 3;
-	  this.groupBox4.TabStop = false;
-	  this.groupBox4.Text = "Số lượng mới (Đơn vị: Kg)(F5)";
-	  // 
-	  // groupBox5
-	  // 
-	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox5, 2);
-	  this.groupBox5.Controls.Add(this.nudDonGiaMoi);
-	  this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox5.Location = new System.Drawing.Point(267, 158);
-	  this.groupBox5.Name = "groupBox5";
-	  this.groupBox5.Size = new System.Drawing.Size(218, 49);
-	  this.groupBox5.TabIndex = 4;
-	  this.groupBox5.TabStop = false;
-	  this.groupBox5.Text = "Đơn giá mới (Đơn vị: vnđ)";
-	  // 
-	  // nudDonGiaMoi
-	  // 
-	  this.nudDonGiaMoi.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.nudDonGiaMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-	  this.nudDonGiaMoi.ForeColor = System.Drawing.Color.OrangeRed;
-	  this.nudDonGiaMoi.Increment = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-	  this.nudDonGiaMoi.Location = new System.Drawing.Point(3, 16);
-	  this.nudDonGiaMoi.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-	  this.nudDonGiaMoi.Name = "nudDonGiaMoi";
-	  this.nudDonGiaMoi.Size = new System.Drawing.Size(212, 26);
-	  this.nudDonGiaMoi.TabIndex = 0;
-	  this.nudDonGiaMoi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-	  this.nudDonGiaMoi.ThousandsSeparator = true;
-	  this.nudDonGiaMoi.Value = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-	  this.nudDonGiaMoi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nudDonGiaMoi_KeyDown);
-	  // 
 	  // grpThanhTienHienTai
 	  // 
 	  this.tableLayoutPanel1.SetColumnSpan(this.grpThanhTienHienTai, 5);
@@ -290,21 +305,6 @@
 	  this.grpThanhTienHienTai.TabStop = false;
 	  this.grpThanhTienHienTai.Text = "Thành tiền hiện tại (Đơn vị: vnđ)";
 	  this.grpThanhTienHienTai.MouseHover += new System.EventHandler(this.grpThanhTienHienTai_MouseHover);
-	  // 
-	  // lblNameCurrent
-	  // 
-	  // 
-	  // 
-	  // 
-	  this.lblNameCurrent.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.lblNameCurrent.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.lblNameCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-	  this.lblNameCurrent.Location = new System.Drawing.Point(3, 16);
-	  this.lblNameCurrent.Name = "lblNameCurrent";
-	  this.lblNameCurrent.PaddingLeft = 5;
-	  this.lblNameCurrent.Size = new System.Drawing.Size(446, 55);
-	  this.lblNameCurrent.TabIndex = 0;
-	  this.lblNameCurrent.Text = "labelX1";
 	  // 
 	  // tableLayoutPanel2
 	  // 
@@ -383,15 +383,15 @@
 	  this.Load += new System.EventHandler(this.frmSuaGiaVaSoLuong_Load);
 	  this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSuaGiaVaSoLuong_KeyDown);
 	  this.tableLayoutPanel1.ResumeLayout(false);
+	  this.groupBox5.ResumeLayout(false);
+	  ((System.ComponentModel.ISupportInitialize)(this.nudDonGiaMoi)).EndInit();
+	  this.groupBox4.ResumeLayout(false);
+	  ((System.ComponentModel.ISupportInitialize)(this.nudSoLuongMoi)).EndInit();
 	  this.groupBox1.ResumeLayout(false);
 	  this.groupBox2.ResumeLayout(false);
 	  ((System.ComponentModel.ISupportInitialize)(this.nudSoLuongHienTai)).EndInit();
-	  ((System.ComponentModel.ISupportInitialize)(this.nudDonGiaHienTai)).EndInit();
 	  this.groupBox3.ResumeLayout(false);
-	  ((System.ComponentModel.ISupportInitialize)(this.nudSoLuongMoi)).EndInit();
-	  this.groupBox4.ResumeLayout(false);
-	  this.groupBox5.ResumeLayout(false);
-	  ((System.ComponentModel.ISupportInitialize)(this.nudDonGiaMoi)).EndInit();
+	  ((System.ComponentModel.ISupportInitialize)(this.nudDonGiaHienTai)).EndInit();
 	  this.grpThanhTienHienTai.ResumeLayout(false);
 	  this.tableLayoutPanel2.ResumeLayout(false);
 	  this.ResumeLayout(false);

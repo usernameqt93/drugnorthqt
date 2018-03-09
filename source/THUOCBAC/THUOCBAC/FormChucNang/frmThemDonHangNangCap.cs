@@ -333,19 +333,20 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void mnuEdit_Click(object sender,EventArgs e) {
-	  string strTemp = "";
-	  strTemp+="\npos_xy_mouse_row = "+pos_xy_mouse_row;
-	  strTemp+="\npos_xy_mouse_col = "+pos_xy_mouse_col;
-	  strTemp+="\nvalueCell = "+dataGridViewXChiTietDonHang.Rows[pos_xy_mouse_row].Cells[pos_xy_mouse_col].Value.ToString();
-	  //MessageBox.Show(strTemp);
-	  DataGridViewRow r = dataGridViewXChiTietDonHang.Rows[pos_xy_mouse_row];
-	  INT_MA_CHITIET_DONHANG_DANGCHON=Convert.ToInt32(r.Cells[QTDbConst.ID_BANG_CHITIET_DONHANG.STR].Value);
-	  STR_TEN_VITHUOC_DANGCHON=Convert.ToString(r.Cells[QTDbConst.TEN_VITHUOC.STR].Value);
+	  DataGridViewRow row = dataGridViewXChiTietDonHang.Rows[pos_xy_mouse_row];
+	  INT_MA_CHITIET_DONHANG_DANGCHON=Convert.ToInt32(row.Cells[QTDbConst.ID_BANG_CHITIET_DONHANG.STR].Value);
+	  STR_TEN_VITHUOC_DANGCHON=Convert.ToString(row.Cells[QTDbConst.TEN_VITHUOC.STR].Value);
 
-	  decimal sdfdsfdsfds= Convert.ToDecimal(r.Cells[QTDbConst.SOLUONG_VITHUOC.STR].Value);
-	  decimal fdgfdgfdg = Convert.ToDecimal(r.Cells[QTDbConst.GIA_VITHUOC.STR].Value);
-	  frmSuaGiaVaSoLuong frm = new frmSuaGiaVaSoLuong(STR_TEN_VITHUOC_DANGCHON,sdfdsfdsfds,fdgfdgfdg);
+	  decimal decSoLuong= Convert.ToDecimal(row.Cells[QTDbConst.SOLUONG_VITHUOC.STR].Value);
+	  decimal decDonGia = Convert.ToDecimal(row.Cells[QTDbConst.GIA_VITHUOC.STR].Value);
+	  frmSuaGiaVaSoLuong frm = new frmSuaGiaVaSoLuong(INT_MA_CHITIET_DONHANG_DANGCHON,STR_TEN_VITHUOC_DANGCHON,decSoLuong,decDonGia);
 	  frm.ShowDialog();
+
+	  voidHIENTHI_DGV_CO_STT();
+	  voidCAPNHAT_TONGTIEN_DH_THEO_MADONHANG();
+
+	  dataGridViewXChiTietDonHang.CurrentCell=dataGridViewXChiTietDonHang.Rows[pos_xy_mouse_row].Cells[QTDbConst.GIA_VITHUOC.STR];// Đưa Control về vị trí của nó
+	  dataGridViewXChiTietDonHang.CurrentRow.Selected=true;// Set trạng thái Selected
 	}
 
 	#endregion
