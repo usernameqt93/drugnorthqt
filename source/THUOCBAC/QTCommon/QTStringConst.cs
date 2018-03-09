@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace QTCommon {
   public static class QTStringConst {
 
-	//QTStringConst.SOLUONG.STR
+	//QTStringConst.TIENNO_HIENTAI.STR
 
 	#region For reportviewer file
 
@@ -37,6 +37,10 @@ namespace QTCommon {
 
 	public static class TENKHACHHANG {
 	  public const string STR = "Tên khách hàng";
+	}
+
+	public static class TIENNO_HIENTAI {
+	  public const string STR = "Tiền nợ hiện tại";
 	}
 
 	public static class SOLUONG {

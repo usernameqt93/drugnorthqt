@@ -235,6 +235,7 @@
 	  this.txtXNameCustomer.Name = "txtXNameCustomer";
 	  this.txtXNameCustomer.Size = new System.Drawing.Size(102, 20);
 	  this.txtXNameCustomer.TabIndex = 2;
+	  this.txtXNameCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 	  // 
 	  // btnXTimKiemTheoTenKH
 	  // 

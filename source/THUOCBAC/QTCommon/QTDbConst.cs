@@ -7,16 +7,23 @@ using System.Threading.Tasks;
 namespace QTCommon {
   public static class QTDbConst {
 
-	//QTDbConst.SO_DIENTHOAIBAN_CAIDAT.STR
+	//QTDbConst.TIENNO_HIENTAI.STR
 
-	public static class TENKHACHHANG {
-	  public const string STR = "TenKhachHang";
-	}
+	#region BangKhachHang
 
 	public static class ID_BANG_KHACHHANG {
 	  public const string STR = "IdBangKhachHang";
 	}
 
+	public static class TENKHACHHANG {
+	  public const string STR = "TenKhachHang";
+	}
+
+	public static class TIENNO_HIENTAI {
+	  public const string STR = "TienNoHienTai";
+	}
+
+	#endregion
 
 	#region BangCaiDat
 

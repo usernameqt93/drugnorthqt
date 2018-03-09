@@ -36,11 +36,9 @@ namespace BusinessLogic {
 	  decimal kq=0;
 	  try {
 		DataTable dt=DAO_KHACHHANG.DATATABLE_KHACHHANG_THEO_ID(intIdKhachHang);
-		//int intTemp=Convert.ToInt32(dt.Rows[0]["TienNoHienTai"].ToString());
-		string strTemp=dt.Rows[0]["TienNoHienTai"].ToString();
+		string strTemp=dt.Rows[0][QTDbConst.TIENNO_HIENTAI.STR].ToString();
 		if(!strTemp.Equals(""))
 		  kq=Convert.ToDecimal(strTemp);
-		//kq=Convert.ToDecimal(dt.Rows[0]["TienNoHienTai"].ToString());
 	  } catch { }
 	  return kq;
 	}

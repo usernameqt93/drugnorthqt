@@ -30,14 +30,18 @@ namespace THUOCBAC.FormDialogPhu {
 	private void frmChonTenTrongDanhSach_Load(object sender,EventArgs e) {
 	  QTAppInfo.STATIC_STR_NAME_CHOOSE=STR_NAME_CHOOSE;
 	  QTAppInfo.STATIC_STR_ID_CHOOSE=STR_ID_CHOOSE;
-	  DT_MAIN=BL_KHACHHANG.DATATABLE_BANG_KHACHHANG_XEPTHEOTEN();
-	  QTLibraryFunction.STATIC_VOID_ADD_STT_COL_TO_DATATABLE(ref DT_MAIN);
+	  //DT_MAIN=BL_KHACHHANG.DATATABLE_BANG_KHACHHANG_XEPTHEOTEN();
+	  DT_MAIN=BL_KHACHHANG.DATATABLE_DANHSACH_KHACHHANG();
+	  //QTLibraryFunction.STATIC_VOID_ADD_STT_COL_TO_DATATABLE(ref DT_MAIN);
 	  dgvXMain.DataSource=DT_MAIN;
 	  dgvXMain.Columns[QTStringConst.SO_THUTU.STR].DisplayIndex=0;
 	  QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dgvXMain);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,QTStringConst.SO_THUTU.STR,60,DataGridViewContentAlignment.MiddleCenter);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,QTDbConst.TENKHACHHANG.STR,QTStringConst.TENKHACHHANG.STR,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,QTDbConst.TIENNO_HIENTAI.STR,QTStringConst.TIENNO_HIENTAI.STR,110,DataGridViewContentAlignment.MiddleRight);
 	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dgvXMain,new List<string>() { QTDbConst.ID_BANG_KHACHHANG.STR });
+
+	  dgvXMain.Columns[QTDbConst.TIENNO_HIENTAI.STR].DefaultCellStyle.Format="#,###.### vnđ";
 	}
 
 	private void btnXClose_Click(object sender,EventArgs e) {
@@ -59,7 +63,6 @@ namespace THUOCBAC.FormDialogPhu {
 		  //STR_SDT_KH_DANGCHON=Convert.ToString(r.Cells["SDTKhachHang"].Value);
 		  //DEC_TIENNO_CU_DANGCHON=(r.Cells["TienNoCu"].Value.ToString().Equals("")) ? 0 : Convert.ToDecimal(r.Cells["TienNoCu"].Value);
 		  //DT_THOIGIAN_VIETDH_DANGCHON=(r.Cells["ThoiGianVietDonHangNay"].Value.ToString().Equals("")) ? DateTime.Now : Convert.ToDateTime(r.Cells["ThoiGianVietDonHangNay"].Value);
-		  //INT_MA_CHITIET_DONHANG_DANGCHON=Convert.ToInt32(r.Cells["MaChiTietDonHang"].Value);
 		  //STR_TEN_VITHUOC_DANGCHON=Convert.ToString(r.Cells["TenViThuoc"].Value);
 		  //STR_TEN_VITHUOC=Convert.ToString(r.Cells["TenViThuoc"].Value);
 		  //INT_MAGIATHUOC=Convert.ToInt32(r.Cells["MaGiaThuoc"].Value);
