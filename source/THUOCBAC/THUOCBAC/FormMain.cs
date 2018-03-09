@@ -14,6 +14,7 @@ using FValueObject.Models;
 namespace THUOCBAC {
   public partial class FormMain:DevComponents.DotNetBar.Office2007RibbonForm {
 
+	private BL_CaiDat BL_CAIDAT = new BL_CaiDat();
 	private BL_Setting BL_SETTING = new BL_Setting();
 	BL_ViThuoc BL_VITHUOC=new BL_ViThuoc();
 	BL_DonHang BL_DONHANG=new BL_DonHang();
@@ -92,6 +93,7 @@ namespace THUOCBAC {
 	  }
 
 	  VOID_LOAD_APP_SETTING();
+	  VOID_LOAD_APP_INFO();
 	}
 
 	private void buttonItemXemGiaThuoc_Click(object sender,EventArgs e) {
@@ -110,6 +112,10 @@ namespace THUOCBAC {
 	}
 
 	#region Other
+
+	private void VOID_LOAD_APP_INFO() {
+	  BL_CAIDAT.VOID_LAYTHONGTIN_BANGCAIDAT(ref QTAppInfo.FullName,ref QTAppInfo.Phone,ref QTAppInfo.AccountBank,ref QTAppInfo.PhoneDesk,ref QTAppInfo.JobInfo,ref QTAppInfo.Address);
+	}
 
 	private void VOID_LOAD_APP_SETTING() {
 

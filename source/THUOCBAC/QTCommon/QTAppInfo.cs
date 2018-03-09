@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace QTCommon {
   public static class QTAppInfo {
-	public static string STATIC_STR_NAME_CHOOSE;
-	public static string STATIC_STR_ID_CHOOSE;
-	public static string STATIC_STR_NAME_ADD_SUCCESS;
+
+	//QTAppInfo.FullName
+
+	public static string FullName;
+	public static string Phone;
+	public static string AccountBank;
+	public static string PhoneDesk;
+	public static string JobInfo;
+	public static string Address;
   }
 }

@@ -47,6 +47,14 @@ namespace THUOCBAC.FormCaiDat {
 			MessageBox.Show("Trạng thái cập nhật thông tin cài đặt in ấn bị lỗi ("+strLoi+")");
 			else {
 			  btnXLuuLai.Enabled=false;
+
+			  QTAppInfo.FullName=txtXHoTen.Text;
+			  QTAppInfo.Phone=txtXSoDienThoai.Text;
+			  QTAppInfo.AccountBank=txtXSoTaiKhoan.Text;
+			  QTAppInfo.PhoneDesk=txtXSoDienThoaiBan.Text;
+			  QTAppInfo.JobInfo=txtXChuyen.Text;
+			  QTAppInfo.Address=txtXDiaChi.Text;
+
 			  MessageBox.Show("Cập nhật thông tin cài đặt thành công !");
 			}
 		  }
@@ -57,19 +65,19 @@ namespace THUOCBAC.FormCaiDat {
 	}
 
 	private void FormThongTinInAn_Load(object sender,EventArgs e) {
-	  string strHoTen ="";
-	  string strSDT="";
-	  string strSoTK="";
-	  string strSDTBan="";
-	  string strNgheNghiep="";
-	  string strDiaChi="";
-	  BL_CAIDAT.VOID_LAYTHONGTIN_BANGCAIDAT(ref strHoTen,ref strSDT,ref strSoTK,ref strSDTBan,ref strNgheNghiep,ref strDiaChi);
-	  txtXHoTen.Text=strHoTen;
-	  txtXSoDienThoai.Text=strSDT;
-	  txtXSoTaiKhoan.Text=strSoTK;
-	  txtXSoDienThoaiBan.Text=strSDTBan;
-	  txtXChuyen.Text=strNgheNghiep;
-	  txtXDiaChi.Text=strDiaChi;
+	  //string strHoTen ="";
+	  //string strSDT="";
+	  //string strSoTK="";
+	  //string strSDTBan="";
+	  //string strNgheNghiep="";
+	  //string strDiaChi="";
+	  //BL_CAIDAT.VOID_LAYTHONGTIN_BANGCAIDAT(ref strHoTen,ref strSDT,ref strSoTK,ref strSDTBan,ref strNgheNghiep,ref strDiaChi);
+	  txtXHoTen.Text=QTAppInfo.FullName;
+	  txtXSoDienThoai.Text=QTAppInfo.Phone;
+	  txtXSoTaiKhoan.Text=QTAppInfo.AccountBank;
+	  txtXSoDienThoaiBan.Text=QTAppInfo.PhoneDesk;
+	  txtXChuyen.Text=QTAppInfo.JobInfo;
+	  txtXDiaChi.Text=QTAppInfo.Address;
 	}
   }
 }

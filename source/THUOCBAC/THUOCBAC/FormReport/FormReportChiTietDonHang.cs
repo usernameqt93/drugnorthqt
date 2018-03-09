@@ -14,7 +14,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace THUOCBAC.FormReport {
   public partial class FormReportChiTietDonHang:Form {
-	private BL_CaiDat BL_CAIDAT=new BL_CaiDat();
+	//private BL_CaiDat BL_CAIDAT=new BL_CaiDat();
 	private BL_KhachHang BL_KHACHHANG=new BL_KhachHang();
 	private BL_DonHang BL_DONHANG=new BL_DonHang();
 	private int INT_IDKH_HIENTAI=-1;
@@ -46,19 +46,19 @@ namespace THUOCBAC.FormReport {
 	  QTAppTemp.QT_RESET_APP_TEMP();
 	  comboBoxExTuyChonMauGiay.SelectedIndex=0;
 	  reportViewerChiTietDonHang.ProcessingMode=ProcessingMode.Local;
-	  string strHoTen="";
-	  string strSDT="";
-	  string strSoTK="";
-	  string strSDTBan="";
-	  string strNgheNghiep="";
-	  string strDiaChi="";
-	  BL_CAIDAT.VOID_LAYTHONGTIN_BANGCAIDAT(ref strHoTen,ref strSDT,ref strSoTK,ref strSDTBan,ref strNgheNghiep,ref strDiaChi);
-	  txtXNhaThuoc.Text=strHoTen;
-	  txtXSoDienThoai.Text=strSDT;
-	  txtXSoTaiKhoanNganHang.Text=strSoTK;
-	  txtXDienThoaiBan.Text=strSDTBan;
-	  txtXNgheNghiep.Text=strNgheNghiep;
-	  txtXDiaChi.Text=strDiaChi;
+	  //string strHoTen="";
+	  //string strSDT="";
+	  //string strSoTK="";
+	  //string strSDTBan="";
+	  //string strNgheNghiep="";
+	  //string strDiaChi="";
+	  //BL_CAIDAT.VOID_LAYTHONGTIN_BANGCAIDAT(ref strHoTen,ref strSDT,ref strSoTK,ref strSDTBan,ref strNgheNghiep,ref strDiaChi);
+	  txtXNhaThuoc.Text=QTAppInfo.FullName;
+	  txtXSoDienThoai.Text=QTAppInfo.Phone;
+	  txtXSoTaiKhoanNganHang.Text=QTAppInfo.AccountBank;
+	  txtXDienThoaiBan.Text=QTAppInfo.PhoneDesk;
+	  txtXNgheNghiep.Text=QTAppInfo.JobInfo;
+	  txtXDiaChi.Text=QTAppInfo.Address;
 	  dateTimeInputThoiGian.Value=DT_THOIGIAN_VIETDH;
 
 	  voidCAPNHAT_COMBOBOX_TENKH();
