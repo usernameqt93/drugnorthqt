@@ -131,24 +131,26 @@ namespace THUOCBAC.FormChucNang {
 
 	private void btnXXemReportCTHD_Click(object sender,EventArgs e) {
 
+	  DataTable dtChiTietDonHang = BL_DONHANG.dataTableBangChiTietDonHangTheoMaDonHang(INT_MA_DONHANG_HIENTAI);
+	  if(dtChiTietDonHang.Rows.Count<1) {
+		MessageBox.Show("Hiện tại đơn hàng chưa có vị thuốc nào, chưa xem được");
+		return;
+	  }
+
+	  string strLoi = "";
+	  string strResult = "";
+	  decimal decTongTienDonHang = BL_DONHANG.decTongTienDonHangTheoMaDonHang(ref strLoi,ref strResult,INT_MA_DONHANG_HIENTAI);
+
 	  if(QTAppSetting.STATIC_STR_CACHXEM_BANIN.Equals(QTDbConst.XEM_BANIN_CACH_2.STR)) {
-		frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder();
+		frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder(dtChiTietDonHang,decTongTienDonHang);
 		frm.ShowDialog();
 		return;
 	  }
 
-	  DataTable dtChiTietDonHang = BL_DONHANG.dataTableBangChiTietDonHangTheoMaDonHang(INT_MA_DONHANG_HIENTAI);
+	  FormReport.FormReportChiTietDonHang frmReport = new FormReport.FormReportChiTietDonHang(
+		dtChiTietDonHang,decTongTienDonHang,INT_MA_DONHANG_HIENTAI,INT_IDKH_HIENTAI,STR_SDT_KH_HIENTAI,DEC_TIENNO_CU_HIENTAI,DT_THOIGIAN_VIETDH);
+	  frmReport.ShowDialog();
 
-	  if(dtChiTietDonHang.Rows.Count<1)
-		MessageBox.Show("Hiện tại đơn hàng chưa có vị thuốc nào, chưa xem được");
-	  else {
-		string strLoi = "";
-		string strResult = "";
-		decimal decTongTienDonHang = BL_DONHANG.decTongTienDonHangTheoMaDonHang(ref strLoi,ref strResult,INT_MA_DONHANG_HIENTAI);
-		FormReport.FormReportChiTietDonHang frm = new FormReport.FormReportChiTietDonHang(
-		  dtChiTietDonHang,decTongTienDonHang,INT_MA_DONHANG_HIENTAI,INT_IDKH_HIENTAI,STR_SDT_KH_HIENTAI,DEC_TIENNO_CU_HIENTAI,DT_THOIGIAN_VIETDH);
-		frm.ShowDialog();
-	  }
 	}
 
 	private void dataGridViewXChiTietDonHang_CellClick(object sender,DataGridViewCellEventArgs e) {
@@ -345,7 +347,7 @@ namespace THUOCBAC.FormChucNang {
 	  INT_MA_CHITIET_DONHANG_DANGCHON=Convert.ToInt32(row.Cells[QTDbConst.ID_BANG_CHITIET_DONHANG.STR].Value);
 	  STR_TEN_VITHUOC_DANGCHON=Convert.ToString(row.Cells[QTDbConst.TEN_VITHUOC.STR].Value);
 
-	  decimal decSoLuong= Convert.ToDecimal(row.Cells[QTDbConst.SOLUONG_VITHUOC.STR].Value);
+	  decimal decSoLuong = Convert.ToDecimal(row.Cells[QTDbConst.SOLUONG_VITHUOC.STR].Value);
 	  decimal decDonGia = Convert.ToDecimal(row.Cells[QTDbConst.GIA_VITHUOC.STR].Value);
 	  frmSuaGiaVaSoLuong frm = new frmSuaGiaVaSoLuong(INT_MA_CHITIET_DONHANG_DANGCHON,STR_TEN_VITHUOC_DANGCHON,decSoLuong,decDonGia);
 	  frm.ShowDialog();

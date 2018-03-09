@@ -23,9 +23,11 @@
 	/// the contents of this method with the code editor.
 	/// </summary>
 	private void InitializeComponent() {
+	  System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReportInDonHang));
 	  this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
 	  this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-	  this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+	  this.btnXPrint = new DevComponents.DotNetBar.ButtonX();
+	  this.reportViewerChiTietDonHang = new Microsoft.Reporting.WinForms.ReportViewer();
 	  this.panelEx1.SuspendLayout();
 	  this.tableLayoutPanel1.SuspendLayout();
 	  this.SuspendLayout();
@@ -56,7 +58,8 @@
 	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
 	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-	  this.tableLayoutPanel1.Controls.Add(this.buttonX1, 2, 2);
+	  this.tableLayoutPanel1.Controls.Add(this.btnXPrint, 2, 2);
+	  this.tableLayoutPanel1.Controls.Add(this.reportViewerChiTietDonHang, 1, 1);
 	  this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 	  this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -68,17 +71,27 @@
 	  this.tableLayoutPanel1.Size = new System.Drawing.Size(964, 598);
 	  this.tableLayoutPanel1.TabIndex = 0;
 	  // 
-	  // buttonX1
+	  // btnXPrint
 	  // 
-	  this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-	  this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.buttonX1.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.buttonX1.Location = new System.Drawing.Point(407, 540);
-	  this.buttonX1.Name = "buttonX1";
-	  this.buttonX1.Size = new System.Drawing.Size(150, 35);
-	  this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.buttonX1.TabIndex = 0;
-	  this.buttonX1.Text = "In đơn hàng";
+	  this.btnXPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXPrint.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.btnXPrint.Location = new System.Drawing.Point(407, 540);
+	  this.btnXPrint.Name = "btnXPrint";
+	  this.btnXPrint.Size = new System.Drawing.Size(150, 35);
+	  this.btnXPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXPrint.TabIndex = 0;
+	  this.btnXPrint.Text = "Bắt đầu in";
+	  this.btnXPrint.Click += new System.EventHandler(this.btnXPrint_Click);
+	  // 
+	  // reportViewerChiTietDonHang
+	  // 
+	  this.tableLayoutPanel1.SetColumnSpan(this.reportViewerChiTietDonHang, 3);
+	  this.reportViewerChiTietDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.reportViewerChiTietDonHang.Location = new System.Drawing.Point(33, 23);
+	  this.reportViewerChiTietDonHang.Name = "reportViewerChiTietDonHang";
+	  this.reportViewerChiTietDonHang.Size = new System.Drawing.Size(898, 511);
+	  this.reportViewerChiTietDonHang.TabIndex = 1;
 	  // 
 	  // frmReportInDonHang
 	  // 
@@ -86,8 +99,12 @@
 	  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 	  this.ClientSize = new System.Drawing.Size(964, 598);
 	  this.Controls.Add(this.panelEx1);
+	  this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 	  this.Name = "frmReportInDonHang";
-	  this.Text = "frmReportInDonHang";
+	  this.ShowInTaskbar = false;
+	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+	  this.Text = "In đơn hàng";
+	  this.Load += new System.EventHandler(this.frmReportInDonHang_Load);
 	  this.panelEx1.ResumeLayout(false);
 	  this.tableLayoutPanel1.ResumeLayout(false);
 	  this.ResumeLayout(false);
@@ -98,6 +115,7 @@
 
 	private DevComponents.DotNetBar.PanelEx panelEx1;
 	private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-	private DevComponents.DotNetBar.ButtonX buttonX1;
+	private DevComponents.DotNetBar.ButtonX btnXPrint;
+	private Microsoft.Reporting.WinForms.ReportViewer reportViewerChiTietDonHang;
   }
 }

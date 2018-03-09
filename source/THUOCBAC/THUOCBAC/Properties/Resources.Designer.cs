@@ -143,6 +143,16 @@ namespace THUOCBAC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap get {
+            get {
+                object obj = ResourceManager.GetObject("get", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap leaf_icon128x128 {
             get {
                 object obj = ResourceManager.GetObject("leaf-icon128x128", resourceCulture);

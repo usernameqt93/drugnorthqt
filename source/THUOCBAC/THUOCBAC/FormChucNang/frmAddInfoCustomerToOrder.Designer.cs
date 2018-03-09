@@ -35,14 +35,15 @@
 	  this.numericUpDownTienNo = new System.Windows.Forms.NumericUpDown();
 	  this.groupBox3 = new System.Windows.Forms.GroupBox();
 	  this.checkBoxX1 = new DevComponents.DotNetBar.Controls.CheckBoxX();
-	  this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
+	  this.txtPhone = new DevComponents.DotNetBar.Controls.TextBoxX();
 	  this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
 	  this.groupBox4 = new System.Windows.Forms.GroupBox();
-	  this.groupBox5 = new System.Windows.Forms.GroupBox();
-	  this.groupBox6 = new System.Windows.Forms.GroupBox();
-	  this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-	  this.dateTimeInputThoiGian = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
 	  this.cboKhoGiay = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+	  this.groupBox5 = new System.Windows.Forms.GroupBox();
+	  this.dateTimeInputThoiGian = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+	  this.groupBox6 = new System.Windows.Forms.GroupBox();
+	  this.nudCopyNumber = new System.Windows.Forms.NumericUpDown();
+	  this.lblDuongKeNgang = new System.Windows.Forms.Label();
 	  this.panelEx1.SuspendLayout();
 	  this.tlpMain.SuspendLayout();
 	  this.groupBox1.SuspendLayout();
@@ -51,9 +52,9 @@
 	  this.groupBox3.SuspendLayout();
 	  this.groupBox4.SuspendLayout();
 	  this.groupBox5.SuspendLayout();
-	  this.groupBox6.SuspendLayout();
-	  ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 	  ((System.ComponentModel.ISupportInitialize)(this.dateTimeInputThoiGian)).BeginInit();
+	  this.groupBox6.SuspendLayout();
+	  ((System.ComponentModel.ISupportInitialize)(this.nudCopyNumber)).BeginInit();
 	  this.SuspendLayout();
 	  // 
 	  // panelEx1
@@ -64,7 +65,7 @@
 	  this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.panelEx1.Location = new System.Drawing.Point(0, 0);
 	  this.panelEx1.Name = "panelEx1";
-	  this.panelEx1.Size = new System.Drawing.Size(409, 511);
+	  this.panelEx1.Size = new System.Drawing.Size(412, 461);
 	  this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
 	  this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
 	  this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -76,47 +77,50 @@
 	  // 
 	  // tlpMain
 	  // 
-	  this.tlpMain.ColumnCount = 5;
+	  this.tlpMain.ColumnCount = 7;
 	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
-	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
-	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 	  this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-	  this.tlpMain.Controls.Add(this.btnXDisplayLayout, 1, 3);
-	  this.tlpMain.Controls.Add(this.groupBox1, 1, 5);
-	  this.tlpMain.Controls.Add(this.groupBox2, 1, 6);
-	  this.tlpMain.Controls.Add(this.groupBox3, 1, 7);
-	  this.tlpMain.Controls.Add(this.buttonX4, 1, 8);
-	  this.tlpMain.Controls.Add(this.groupBox4, 1, 1);
-	  this.tlpMain.Controls.Add(this.groupBox5, 2, 1);
-	  this.tlpMain.Controls.Add(this.groupBox6, 1, 2);
+	  this.tlpMain.Controls.Add(this.btnXDisplayLayout, 2, 2);
+	  this.tlpMain.Controls.Add(this.groupBox1, 2, 5);
+	  this.tlpMain.Controls.Add(this.groupBox2, 2, 6);
+	  this.tlpMain.Controls.Add(this.groupBox3, 2, 7);
+	  this.tlpMain.Controls.Add(this.buttonX4, 2, 8);
+	  this.tlpMain.Controls.Add(this.groupBox4, 2, 1);
+	  this.tlpMain.Controls.Add(this.groupBox5, 3, 1);
+	  this.tlpMain.Controls.Add(this.groupBox6, 4, 1);
+	  this.tlpMain.Controls.Add(this.lblDuongKeNgang, 0, 4);
 	  this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.tlpMain.Location = new System.Drawing.Point(0, 0);
 	  this.tlpMain.Name = "tlpMain";
 	  this.tlpMain.RowCount = 11;
 	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
 	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
 	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
 	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
 	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
 	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
 	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 	  this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-	  this.tlpMain.Size = new System.Drawing.Size(409, 511);
+	  this.tlpMain.Size = new System.Drawing.Size(412, 461);
 	  this.tlpMain.TabIndex = 0;
 	  // 
 	  // btnXDisplayLayout
 	  // 
 	  this.btnXDisplayLayout.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 	  this.btnXDisplayLayout.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.tlpMain.SetColumnSpan(this.btnXDisplayLayout, 2);
+	  this.tlpMain.SetColumnSpan(this.btnXDisplayLayout, 3);
 	  this.btnXDisplayLayout.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.btnXDisplayLayout.Image = global::THUOCBAC.Properties.Resources.print;
 	  this.btnXDisplayLayout.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-	  this.btnXDisplayLayout.Location = new System.Drawing.Point(33, 143);
+	  this.btnXDisplayLayout.Location = new System.Drawing.Point(36, 83);
 	  this.btnXDisplayLayout.Name = "btnXDisplayLayout";
 	  this.btnXDisplayLayout.Size = new System.Drawing.Size(340, 63);
 	  this.btnXDisplayLayout.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -126,11 +130,11 @@
 	  // 
 	  // groupBox1
 	  // 
-	  this.tlpMain.SetColumnSpan(this.groupBox1, 2);
+	  this.tlpMain.SetColumnSpan(this.groupBox1, 3);
 	  this.groupBox1.Controls.Add(this.btnXChooseCustomer);
 	  this.groupBox1.Controls.Add(this.txtXNameCustomer);
 	  this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox1.Location = new System.Drawing.Point(33, 232);
+	  this.groupBox1.Location = new System.Drawing.Point(36, 184);
 	  this.groupBox1.Name = "groupBox1";
 	  this.groupBox1.Size = new System.Drawing.Size(340, 54);
 	  this.groupBox1.TabIndex = 1;
@@ -141,6 +145,7 @@
 	  // 
 	  this.btnXChooseCustomer.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 	  this.btnXChooseCustomer.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXChooseCustomer.Image = global::THUOCBAC.Properties.Resources.get;
 	  this.btnXChooseCustomer.Location = new System.Drawing.Point(216, 20);
 	  this.btnXChooseCustomer.Name = "btnXChooseCustomer";
 	  this.btnXChooseCustomer.Size = new System.Drawing.Size(118, 26);
@@ -166,11 +171,11 @@
 	  // 
 	  // groupBox2
 	  // 
-	  this.tlpMain.SetColumnSpan(this.groupBox2, 2);
+	  this.tlpMain.SetColumnSpan(this.groupBox2, 3);
 	  this.groupBox2.Controls.Add(this.btnXShowDetailDebt);
 	  this.groupBox2.Controls.Add(this.numericUpDownTienNo);
 	  this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox2.Location = new System.Drawing.Point(33, 292);
+	  this.groupBox2.Location = new System.Drawing.Point(36, 244);
 	  this.groupBox2.Name = "groupBox2";
 	  this.groupBox2.Size = new System.Drawing.Size(340, 54);
 	  this.groupBox2.TabIndex = 2;
@@ -212,11 +217,11 @@
 	  // 
 	  // groupBox3
 	  // 
-	  this.tlpMain.SetColumnSpan(this.groupBox3, 2);
+	  this.tlpMain.SetColumnSpan(this.groupBox3, 3);
 	  this.groupBox3.Controls.Add(this.checkBoxX1);
-	  this.groupBox3.Controls.Add(this.textBoxX2);
+	  this.groupBox3.Controls.Add(this.txtPhone);
 	  this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox3.Location = new System.Drawing.Point(33, 352);
+	  this.groupBox3.Location = new System.Drawing.Point(36, 304);
 	  this.groupBox3.Name = "groupBox3";
 	  this.groupBox3.Size = new System.Drawing.Size(340, 84);
 	  this.groupBox3.TabIndex = 3;
@@ -236,29 +241,29 @@
 	  this.checkBoxX1.TabIndex = 1;
 	  this.checkBoxX1.Text = "Hiển thị số điện thoại in trên đơn hàng";
 	  // 
-	  // textBoxX2
+	  // txtPhone
 	  // 
 	  // 
 	  // 
 	  // 
-	  this.textBoxX2.Border.Class = "TextBoxBorder";
-	  this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.textBoxX2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-	  this.textBoxX2.Location = new System.Drawing.Point(7, 20);
-	  this.textBoxX2.Name = "textBoxX2";
-	  this.textBoxX2.Size = new System.Drawing.Size(203, 26);
-	  this.textBoxX2.TabIndex = 0;
-	  this.textBoxX2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+	  this.txtPhone.Border.Class = "TextBoxBorder";
+	  this.txtPhone.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+	  this.txtPhone.Location = new System.Drawing.Point(7, 20);
+	  this.txtPhone.Name = "txtPhone";
+	  this.txtPhone.Size = new System.Drawing.Size(203, 26);
+	  this.txtPhone.TabIndex = 0;
+	  this.txtPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 	  // 
 	  // buttonX4
 	  // 
 	  this.buttonX4.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 	  this.buttonX4.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.tlpMain.SetColumnSpan(this.buttonX4, 2);
+	  this.tlpMain.SetColumnSpan(this.buttonX4, 3);
 	  this.buttonX4.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.buttonX4.Enabled = false;
 	  this.buttonX4.Image = global::THUOCBAC.Properties.Resources.ok;
-	  this.buttonX4.Location = new System.Drawing.Point(33, 442);
+	  this.buttonX4.Location = new System.Drawing.Point(36, 394);
 	  this.buttonX4.Name = "buttonX4";
 	  this.buttonX4.Size = new System.Drawing.Size(340, 41);
 	  this.buttonX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -269,54 +274,37 @@
 	  // 
 	  this.groupBox4.Controls.Add(this.cboKhoGiay);
 	  this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox4.Location = new System.Drawing.Point(33, 23);
+	  this.groupBox4.Location = new System.Drawing.Point(36, 23);
 	  this.groupBox4.Name = "groupBox4";
-	  this.groupBox4.Size = new System.Drawing.Size(200, 54);
+	  this.groupBox4.Size = new System.Drawing.Size(120, 54);
 	  this.groupBox4.TabIndex = 5;
 	  this.groupBox4.TabStop = false;
 	  this.groupBox4.Text = "Tùy chọn khổ giấy";
+	  // 
+	  // cboKhoGiay
+	  // 
+	  this.cboKhoGiay.DisplayMember = "Text";
+	  this.cboKhoGiay.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.cboKhoGiay.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+	  this.cboKhoGiay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+	  this.cboKhoGiay.FormattingEnabled = true;
+	  this.cboKhoGiay.ItemHeight = 14;
+	  this.cboKhoGiay.Location = new System.Drawing.Point(3, 16);
+	  this.cboKhoGiay.Name = "cboKhoGiay";
+	  this.cboKhoGiay.Size = new System.Drawing.Size(114, 20);
+	  this.cboKhoGiay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.cboKhoGiay.TabIndex = 0;
 	  // 
 	  // groupBox5
 	  // 
 	  this.groupBox5.Controls.Add(this.dateTimeInputThoiGian);
 	  this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox5.Location = new System.Drawing.Point(239, 23);
+	  this.groupBox5.Location = new System.Drawing.Point(162, 23);
 	  this.groupBox5.Name = "groupBox5";
-	  this.groupBox5.Size = new System.Drawing.Size(134, 54);
+	  this.groupBox5.Size = new System.Drawing.Size(104, 54);
 	  this.groupBox5.TabIndex = 6;
 	  this.groupBox5.TabStop = false;
 	  this.groupBox5.Text = "Thời gian";
-	  // 
-	  // groupBox6
-	  // 
-	  this.groupBox6.Controls.Add(this.numericUpDown1);
-	  this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox6.Location = new System.Drawing.Point(33, 83);
-	  this.groupBox6.Name = "groupBox6";
-	  this.groupBox6.Size = new System.Drawing.Size(200, 54);
-	  this.groupBox6.TabIndex = 7;
-	  this.groupBox6.TabStop = false;
-	  this.groupBox6.Text = "Số bản muốn in";
-	  // 
-	  // numericUpDown1
-	  // 
-	  this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-	  this.numericUpDown1.Location = new System.Drawing.Point(3, 16);
-	  this.numericUpDown1.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-	  this.numericUpDown1.Name = "numericUpDown1";
-	  this.numericUpDown1.Size = new System.Drawing.Size(194, 26);
-	  this.numericUpDown1.TabIndex = 0;
-	  this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-	  this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
 	  // 
 	  // dateTimeInputThoiGian
 	  // 
@@ -365,48 +353,78 @@
 	  this.dateTimeInputThoiGian.MonthCalendar.TodayButtonVisible = true;
 	  this.dateTimeInputThoiGian.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
 	  this.dateTimeInputThoiGian.Name = "dateTimeInputThoiGian";
-	  this.dateTimeInputThoiGian.Size = new System.Drawing.Size(128, 20);
+	  this.dateTimeInputThoiGian.Size = new System.Drawing.Size(98, 20);
 	  this.dateTimeInputThoiGian.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 	  this.dateTimeInputThoiGian.TabIndex = 0;
 	  this.dateTimeInputThoiGian.Value = new System.DateTime(2017, 5, 22, 0, 0, 0, 0);
 	  // 
-	  // cboKhoGiay
+	  // groupBox6
 	  // 
-	  this.cboKhoGiay.DisplayMember = "Text";
-	  this.cboKhoGiay.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.cboKhoGiay.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-	  this.cboKhoGiay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-	  this.cboKhoGiay.FormattingEnabled = true;
-	  this.cboKhoGiay.ItemHeight = 14;
-	  this.cboKhoGiay.Location = new System.Drawing.Point(3, 16);
-	  this.cboKhoGiay.Name = "cboKhoGiay";
-	  this.cboKhoGiay.Size = new System.Drawing.Size(194, 20);
-	  this.cboKhoGiay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.cboKhoGiay.TabIndex = 0;
+	  this.groupBox6.Controls.Add(this.nudCopyNumber);
+	  this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.groupBox6.Location = new System.Drawing.Point(272, 23);
+	  this.groupBox6.Name = "groupBox6";
+	  this.groupBox6.Size = new System.Drawing.Size(104, 54);
+	  this.groupBox6.TabIndex = 7;
+	  this.groupBox6.TabStop = false;
+	  this.groupBox6.Text = "Số bản muốn in";
+	  // 
+	  // nudCopyNumber
+	  // 
+	  this.nudCopyNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.nudCopyNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+	  this.nudCopyNumber.Location = new System.Drawing.Point(3, 16);
+	  this.nudCopyNumber.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+	  this.nudCopyNumber.Name = "nudCopyNumber";
+	  this.nudCopyNumber.Size = new System.Drawing.Size(98, 20);
+	  this.nudCopyNumber.TabIndex = 0;
+	  this.nudCopyNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+	  this.nudCopyNumber.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+	  // 
+	  // lblDuongKeNgang
+	  // 
+	  this.lblDuongKeNgang.AutoSize = true;
+	  this.tlpMain.SetColumnSpan(this.lblDuongKeNgang, 7);
+	  this.lblDuongKeNgang.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.lblDuongKeNgang.Location = new System.Drawing.Point(3, 179);
+	  this.lblDuongKeNgang.Name = "lblDuongKeNgang";
+	  this.lblDuongKeNgang.Size = new System.Drawing.Size(406, 2);
+	  this.lblDuongKeNgang.TabIndex = 8;
+	  this.lblDuongKeNgang.Text = "label1";
 	  // 
 	  // frmAddInfoCustomerToOrder
 	  // 
 	  this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 	  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-	  this.ClientSize = new System.Drawing.Size(409, 511);
+	  this.ClientSize = new System.Drawing.Size(412, 461);
 	  this.Controls.Add(this.panelEx1);
+	  this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 	  this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 	  this.Name = "frmAddInfoCustomerToOrder";
 	  this.ShowInTaskbar = false;
 	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-	  this.Text = "frmAddInfoCustomerToOrder";
+	  this.Text = "Tùy chỉnh đơn hàng";
 	  this.Load += new System.EventHandler(this.frmAddInfoCustomerToOrder_Load);
 	  this.panelEx1.ResumeLayout(false);
 	  this.tlpMain.ResumeLayout(false);
+	  this.tlpMain.PerformLayout();
 	  this.groupBox1.ResumeLayout(false);
 	  this.groupBox2.ResumeLayout(false);
 	  ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTienNo)).EndInit();
 	  this.groupBox3.ResumeLayout(false);
 	  this.groupBox4.ResumeLayout(false);
 	  this.groupBox5.ResumeLayout(false);
-	  this.groupBox6.ResumeLayout(false);
-	  ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 	  ((System.ComponentModel.ISupportInitialize)(this.dateTimeInputThoiGian)).EndInit();
+	  this.groupBox6.ResumeLayout(false);
+	  ((System.ComponentModel.ISupportInitialize)(this.nudCopyNumber)).EndInit();
 	  this.ResumeLayout(false);
 
 	}
@@ -423,14 +441,15 @@
 	private System.Windows.Forms.NumericUpDown numericUpDownTienNo;
 	private DevComponents.DotNetBar.ButtonX btnXShowDetailDebt;
 	private System.Windows.Forms.GroupBox groupBox3;
-	private DevComponents.DotNetBar.Controls.TextBoxX textBoxX2;
+	private DevComponents.DotNetBar.Controls.TextBoxX txtPhone;
 	private DevComponents.DotNetBar.ButtonX buttonX4;
 	private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX1;
 	private System.Windows.Forms.GroupBox groupBox4;
 	private System.Windows.Forms.GroupBox groupBox5;
 	private System.Windows.Forms.GroupBox groupBox6;
-	private System.Windows.Forms.NumericUpDown numericUpDown1;
+	private System.Windows.Forms.NumericUpDown nudCopyNumber;
 	private DevComponents.Editors.DateTimeAdv.DateTimeInput dateTimeInputThoiGian;
 	private DevComponents.DotNetBar.Controls.ComboBoxEx cboKhoGiay;
+	private System.Windows.Forms.Label lblDuongKeNgang;
   }
 }

@@ -46,13 +46,7 @@ namespace THUOCBAC.FormReport {
 	  QTAppTemp.QT_RESET_APP_TEMP();
 	  comboBoxExTuyChonMauGiay.SelectedIndex=0;
 	  reportViewerChiTietDonHang.ProcessingMode=ProcessingMode.Local;
-	  //string strHoTen="";
-	  //string strSDT="";
-	  //string strSoTK="";
-	  //string strSDTBan="";
-	  //string strNgheNghiep="";
-	  //string strDiaChi="";
-	  //BL_CAIDAT.VOID_LAYTHONGTIN_BANGCAIDAT(ref strHoTen,ref strSDT,ref strSoTK,ref strSDTBan,ref strNgheNghiep,ref strDiaChi);
+
 	  txtXNhaThuoc.Text=QTAppInfo.FullName;
 	  txtXSoDienThoai.Text=QTAppInfo.Phone;
 	  txtXSoTaiKhoanNganHang.Text=QTAppInfo.AccountBank;
@@ -76,9 +70,6 @@ namespace THUOCBAC.FormReport {
 		if(strCapNhatChua.Equals(QTStringConst.CHUACAPNHAT.STR))
 		  btnXCongTienDonHangKH.Enabled=true;
 	  }
-	  //comboBoxExTenKhachHang.SelectedIndex=0;
-	  //comboBoxExTenKhachHang.Items.Add("  --Để trống--  ");
-	  //comboBoxExTenKhachHang.SelectedItem=comboBoxExTenKhachHang.Items.Add("  --Để trống--");
 	}
 
 	private void voidHIENTHI_TENKH_RA_COMBOBOX(string strTenKhachHang) {
@@ -99,31 +90,6 @@ namespace THUOCBAC.FormReport {
 	}
 
 	private void btnXHienThi_Click(object sender,EventArgs e) {
-	  //string strCapNhatChua=BL_DONHANG.STR_CAPNHAT_TIENNO_DH_CHUA(INT_MADH_HIENTAI);
-	  //if(strCapNhatChua.Equals("")) {
-	  //  MessageBox.Show("Cột 'CapNhatTienNoChua' hiện đang có giá trị khác 'Đã cập nhật' và 'Chưa cập nhật' !");
-	  //  return;
-	  //}
-	  //string strTenKhachHangDangChon=comboBoxExTenKhachHang.Text;
-	  //decimal decTienNoCuDangGhi=numericUpDownTienNo.Value;
-	  //if(strCapNhatChua.Equals(QTStringConst.CHUACAPNHAT.STR)&&!strTenKhachHangDangChon.Equals(QTStringConst.KHONGGHIVAO.STR)&&(DEC_TIENNO_HIENTAI_CUA_KH>-1)) {
-	  //  string strNoiDung=(DEC_TIENNO_HIENTAI_CUA_KH<1)?"Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là 0 đ":"Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là "+DEC_TIENNO_HIENTAI_CUA_KH.ToString("#,###.#")+" đ";
-	  //  strNoiDung+="\nBạn có muốn cộng tiền đơn hàng này ("+DEC_TONGTIEN.ToString("#,###.#")+" đ) vào tổng số tiền nợ của khách hàng này không ?";
-	  //  strNoiDung+="\n        "+((DEC_TIENNO_HIENTAI_CUA_KH==0)?"0":DEC_TIENNO_HIENTAI_CUA_KH.ToString("#,###.#"))+" + "+DEC_TONGTIEN.ToString("#,###.#")+" = "+(DEC_TIENNO_HIENTAI_CUA_KH+DEC_TONGTIEN).ToString("#,###.#")+" đ";
-	  //  DialogResult dlr=MessageBox.Show(strNoiDung, "Xác nhận",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-	  //  if(dlr==DialogResult.Yes) {
-	  //	string strLoiCapNhatTienNo="";
-	  //	int intIdKhachHangVuaChonComboBox=Convert.ToInt32(comboBoxExTenKhachHang.SelectedValue.ToString());
-	  //	string strLyDoSua="Cộng thêm tiền đơn hàng "+INT_MADH_HIENTAI+" ("+DT_THOIGIAN_VIETDH+")";
-	  //	string strTrangThaiCapNhat=BL_KHACHHANG.STR_CAPNHAT_TIENNO_KH(ref strLoiCapNhatTienNo,
-	  //	  INT_MADH_HIENTAI,DEC_TIENNO_HIENTAI_CUA_KH,intIdKhachHangVuaChonComboBox,strLyDoSua,DEC_TONGTIEN);
-	  //	if(strTrangThaiCapNhat.Equals("false")&&!(strLoiCapNhatTienNo.Equals("3"))) {
-	  //	  MessageBox.Show("Trạng thái cập nhật tiền nợ bị lỗi ("+strLoiCapNhatTienNo+")");
-	  //	} else {
-	  //	  MessageBox.Show("LƯU THÀNH CÔNG!\nHiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' là "+(DEC_TIENNO_HIENTAI_CUA_KH+DEC_TONGTIEN).ToString("#,###.#")+" đ");
-	  //	}
-	  //  }
-	  //}
 	  groupBoxChucNang.Enabled=false;
 	  groupBoxThongTinThem.Enabled=false;
 	  try {
@@ -148,25 +114,11 @@ namespace THUOCBAC.FormReport {
 		
 		reportDataSourceGiDo.Value=DT_CHITIET_DONHANG;
 		if(DEC_TIENNO_CU>0) {
-		  //reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTienNoCu",strTienNoCu));
-		  //reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTienCongDon",strTienCongDon));
 
 		  QTLibraryFunction.STATIC_VOID_SET_PARAMETERS_TO_REPORT(ref reportViewerChiTietDonHang
 		  ,new List<string>() { "ReportParameterTienNoCu","ReportParameterTienCongDon" }
 		  ,new List<string>() { strTienNoCu ,strTienCongDon });
 		}
-
-		//ReportParameter reportParameter = new ReportParameter("ReportParameterTongTien",strTongTien);
-		//reportViewerChiTietDonHang.LocalReport.SetParameters(reportParameter);
-		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterThoiGian",strThoiGian));
-		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSDTKhachHang",strSDTKH));
-		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTenKhachHang",strTenKhachHang));
-		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterTenNhaThuoc",strTenNhaThuoc));
-		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterNganhNghe",strNganhNghe));
-		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterDiaChi",strDiaChi));
-		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSoDienThoai",strSoDienThoai));
-		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSoDienThoaiBan",strSoDienThoaiBan));
-		//reportViewerChiTietDonHang.LocalReport.SetParameters(new ReportParameter("ReportParameterSoTaiKhoan",strSoTaiKhoan));
 
 		QTLibraryFunction.STATIC_VOID_SET_PARAMETERS_TO_REPORT(ref reportViewerChiTietDonHang
 		  ,new List<string>() { "ReportParameterTongTien","ReportParameterThoiGian","ReportParameterSDTKhachHang","ReportParameterTenKhachHang","ReportParameterTenNhaThuoc","ReportParameterNganhNghe","ReportParameterDiaChi","ReportParameterSoDienThoai","ReportParameterSoDienThoaiBan","ReportParameterSoTaiKhoan" }

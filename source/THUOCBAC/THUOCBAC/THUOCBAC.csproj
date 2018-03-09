@@ -424,6 +424,7 @@
     <Content Include="Resources\export_1.png" />
     <Content Include="Resources\find.png" />
     <None Include="Resources\find1.png" />
+    <Content Include="Resources\get.png" />
     <Content Include="Resources\goto.png" />
     <Content Include="Resources\icon.ico" />
     <Content Include="Resources\icon.png" />

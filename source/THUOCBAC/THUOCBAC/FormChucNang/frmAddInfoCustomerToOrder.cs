@@ -1,4 +1,5 @@
 ﻿using BusinessLogic;
+using FValueObject.Models;
 using QTCommon;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,17 @@ namespace THUOCBAC.FormChucNang {
   public partial class frmAddInfoCustomerToOrder:Form {
 
 	private BL_KhachHang BL_KHACHHANG = new BL_KhachHang();
+	private DataTable DT_CHITIET_DONHANG;
+	private decimal DEC_TONGTIEN;
 
 	public frmAddInfoCustomerToOrder() {
 	  InitializeComponent();
+	}
+
+	public frmAddInfoCustomerToOrder(DataTable _dtChiTietDonHang,decimal _decTongTien) {
+	  InitializeComponent();
+	  DT_CHITIET_DONHANG=_dtChiTietDonHang;
+	  DEC_TONGTIEN=_decTongTien;
 	}
 
 	private void frmAddInfoCustomerToOrder_Load(object sender,EventArgs e) {
@@ -25,6 +34,9 @@ namespace THUOCBAC.FormChucNang {
 	  cboKhoGiay.Items.Add(QTStringConst.KHO_A5.STR);
 	  cboKhoGiay.SelectedIndex=0;
 	  //cboKhoGiay.
+	  lblDuongKeNgang.AutoSize=false;
+	  lblDuongKeNgang.BorderStyle=BorderStyle.Fixed3D;
+	  //lblDuongKeNgang.Height=2;
 	}
 
 	private void btnXChooseCustomer_Click(object sender,EventArgs e) {
@@ -60,7 +72,20 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void btnXDisplayLayout_Click(object sender,EventArgs e) {
-	  FormReport.frmReportInDonHang frm = new FormReport.frmReportInDonHang();
+	  DateTime dtTemp = dateTimeInputThoiGian.Value;
+
+	  InfoOrderModel mInfoOrder = new InfoOrderModel();
+	  mInfoOrder.strSizePaper=cboKhoGiay.Text;
+	  mInfoOrder.strTime="Ngày   "+dtTemp.ToString("dd")+"   tháng   "+dtTemp.ToString("MM")+"   năm   "+dtTemp.Year;
+	  mInfoOrder.decCopyNumber=nudCopyNumber.Value;
+	  mInfoOrder.strCustomerName=(txtXNameCustomer.Text.Equals("")) ?" ":txtXNameCustomer.Text;
+	  mInfoOrder.decDebtNumber=numericUpDownTienNo.Value;
+	  mInfoOrder.strPhone=(txtPhone.Text.Equals("")) ?" ":txtPhone.Text;
+
+	  mInfoOrder.decSumMoney=DEC_TONGTIEN;
+	  mInfoOrder.dtDetailOrder=DT_CHITIET_DONHANG;
+
+	  FormReport.frmReportInDonHang frm = new FormReport.frmReportInDonHang(mInfoOrder);
 	  frm.ShowDialog();
 	}
   }
