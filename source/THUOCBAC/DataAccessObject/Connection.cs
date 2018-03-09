@@ -155,7 +155,7 @@ namespace DataAccessObject {
 	public object objectThucThiScalar(string strSQL,CommandType cmdT,ref string err,ref string result,params SqlParameter[] param) {
 	  cmd.Parameters.Clear();
 	  //bool f = false;
-	  object kq=null;
+	  //object kq=null;
 	  OpenConnection();
 	  cmd.Connection=con;
 	  cmd.Parameters.Clear();

@@ -148,7 +148,13 @@ namespace QTCommon {
 	  public const string STR = "TenViThuoc";
 	}
 
+	#endregion
 
+	#region BangDanhSachDonHang
+
+	public static class ID_BANG_DANHSACH_DONHANG {
+	  public const string STR = "MaDonHang";
+	}
 
 	#endregion
 

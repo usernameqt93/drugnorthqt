@@ -25,9 +25,7 @@ namespace QTCommon {
 
 	#endregion
 
-	public static class KHONGGHIVAO {
-	  public const string STR = " --Không ghi vào--";
-	}
+	#region Có thể sửa đổi để translate
 
 	public static class THONGBAO {
 	  public const string STR = "Thông Báo";
@@ -61,6 +59,51 @@ namespace QTCommon {
 	  public const string STR = "Thành tiền";
 	}
 
+	public static class THOIGIAN_VIET {
+	  public const string STR = "Thời gian viết";
+	}
+
+	public static class TONG_SO_VITHUOC {
+	  public const string STR = "Tổng số vị thuốc";
+	}
+
+	public static class TONG_KHOILUONG {
+	  public const string STR = "Tổng khối lượng";
+	}
+
+	public static class TONG_GIATRI_DONHANG {
+	  public const string STR = "Tổng giá trị đơn hàng";
+	}
+
+	#endregion
+
+	#region Không nên translate vì nó đại diện cho 1 giá trị gì đó để equal
+
+	public static class KHONGGHIVAO {
+	  public const string STR = " --Không ghi vào--";
+	}
+
+	public static class VITRI_CUOICUNG {
+	  public const string STR = "ViTriCuoiCung";
+	}
+
+	public static class TATCA {
+	  public const string STR = "TatCa";
+	}
+
+	public static class NUT_HIEN_TATCA {
+	  public const string STR = "NutHienTatCa";
+	}
+
+	public static class NUT_TIM_THEO_NGAY {
+	  public const string STR = "NutTimTheoNgay";
+	}
+
+	public static class NUT_TIM_THEO_TEN {
+	  public const string STR = "NutTimTheoTen";
+	}
+
+	#endregion
 
 	//QTStringConst.CHUACAPNHAT.STR
   }
