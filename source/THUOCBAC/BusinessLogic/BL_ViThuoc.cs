@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessObject;
+using QTCommon;
 
 namespace BusinessLogic {
   
@@ -36,16 +37,16 @@ namespace BusinessLogic {
 	}
 	public DataTable dataTableBangDanhSachViThuocCungGiaCoSTT() {
 	  DataTable dt=DAO_VITHUOC.dataTableBangDanhSachViThuocCungGiaCa();
-	  dt.Columns.Add("STT");
+	  dt.Columns.Add(QTStringConst.SO_THUTU.STR);
 	  for(int i=0;i<dt.Rows.Count;i++)
-		dt.Rows[i]["STT"]=i+1;
+		dt.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;
 	  return dt;
 	}
 	public DataTable dataTableBangDanhSachViThuocCungGiaCaTheoChuCai() {
 	  DataTable dt=DAO_VITHUOC.dataTableBangDanhSachViThuocCungGiaCaTheoChuCai();
-	  dt.Columns.Add("STT");
+	  dt.Columns.Add(QTStringConst.SO_THUTU.STR);
 	  for(int i=0;i<dt.Rows.Count;i++)
-		dt.Rows[i]["STT"]=i+1;
+		dt.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;
 	  return dt;
 	}
 	public int intTongSoViThuocTrongDanhSach(ref string strLoi) {

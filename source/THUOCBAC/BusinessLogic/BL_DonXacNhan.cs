@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessObject;
+using QTCommon;
 
 namespace BusinessLogic {
   public class BL_DonXacNhan {
@@ -30,9 +31,9 @@ namespace BusinessLogic {
 	public DataTable dataTableBangChiTietDonXacNhanTheoMaDonXacNhanCoSTT(int intMaDonXacNhan) {
 	  DataTable dtChiTietDonXacNhan=new DataTable();
 	  dtChiTietDonXacNhan=DAO_DONXACNHAN.dataTableBangChiTietDonXacNhanTheoMaDonXacNhan(intMaDonXacNhan);
-	  dtChiTietDonXacNhan.Columns.Add("STT");
+	  dtChiTietDonXacNhan.Columns.Add(QTStringConst.SO_THUTU.STR);
 	  for(int i=0;i<dtChiTietDonXacNhan.Rows.Count;i++)
-		dtChiTietDonXacNhan.Rows[i]["STT"]=i+1;
+		dtChiTietDonXacNhan.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;
 	  return dtChiTietDonXacNhan;
 	}
 	public int intCoBaoNhieuMaViThuocTrongMaDonXacNhan(ref string err,ref string result,int intMaViThuoc,int intMaDonXacNhan) {

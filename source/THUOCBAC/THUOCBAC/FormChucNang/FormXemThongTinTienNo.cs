@@ -56,8 +56,8 @@ namespace THUOCBAC.FormChucNang {
 		btnXXacNhanTienNo.Visible=false;
 	  labelXTienNoHienTai.Text=(DEC_TIENNO_HIENTAI==0)?"0 đ":DEC_TIENNO_HIENTAI.ToString("#,###.#")+" đ";
 	  voidHIENTHI_DGV_LICHSU_CO_STT();
-	  //dataGridViewXLichSuTienNo.Columns["STT"].Width=22;
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"STT",60,DataGridViewContentAlignment.MiddleCenter);
+	  //dataGridViewXLichSuTienNo.Columns[QTStringConst.SO_THUTU.STR].Width=22;
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,QTStringConst.SO_THUTU.STR,60,DataGridViewContentAlignment.MiddleCenter);
 
 	  //dataGridViewXLichSuTienNo.Columns["ThoiGianThayDoiTienNo"].HeaderText="Thời gian";
 	  //dataGridViewXLichSuTienNo.Columns["TienNoTruocKhiSua"].HeaderText="Trước khi sửa";
@@ -93,11 +93,11 @@ namespace THUOCBAC.FormChucNang {
 	}
 	private void voidHIENTHI_DGV_LICHSU_CO_STT() {
 	  DataTable dtSTT=DT_LICHSU_TIENNO;
-	  dtSTT.Columns.Add("STT");
+	  dtSTT.Columns.Add(QTStringConst.SO_THUTU.STR);
 	  for(int i=0;i<dtSTT.Rows.Count;i++)
-		dtSTT.Rows[i]["STT"]=i+1;
+		dtSTT.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;
 	  dataGridViewXLichSuTienNo.DataSource=dtSTT;
-	  dataGridViewXLichSuTienNo.Columns["STT"].DisplayIndex=0;
+	  dataGridViewXLichSuTienNo.Columns[QTStringConst.SO_THUTU.STR].DisplayIndex=0;
 	  QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dataGridViewXLichSuTienNo);
 	}
 	private void voidTRO_XUONG_VITRI_CUOICUNG() {

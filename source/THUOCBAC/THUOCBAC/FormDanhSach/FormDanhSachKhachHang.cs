@@ -31,7 +31,7 @@ namespace THUOCBAC.FormDanhSach {
 	private void FormDanhSachKhachHang_Load(object sender,EventArgs e) {
 	  //voidHIENTHI_DGV_KHACHHANG();
 	  //QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dataGridViewXDanhSachKH);
-	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,"STT",60,DataGridViewContentAlignment.MiddleCenter);
+	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,QTStringConst.SO_THUTU.STR,60,DataGridViewContentAlignment.MiddleCenter);
 
 	  ////dataGridViewXDanhSachKH.Columns[QTDbConst.TENKHACHHANG.STR].HeaderText=QTStringConst.TENKHACHHANG.STR;
 	  ////dataGridViewXDanhSachKH.Columns["TienNoHienTai"].HeaderText="Tiền nợ hiện tại";
@@ -48,7 +48,7 @@ namespace THUOCBAC.FormDanhSach {
 	private void VOID_LOAD_FORM() {
 	  voidHIENTHI_DGV_KHACHHANG();
 	  QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dataGridViewXDanhSachKH);
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,"STT",60,DataGridViewContentAlignment.MiddleCenter);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,QTStringConst.SO_THUTU.STR,60,DataGridViewContentAlignment.MiddleCenter);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,QTDbConst.TENKHACHHANG.STR,CONST_STR_TEN_KHACHHANG,150,DataGridViewContentAlignment.MiddleCenter);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,"TienNoHienTai",CONST_STR_TIENNO_HIENTAI,150,DataGridViewContentAlignment.MiddleRight);
 
@@ -82,7 +82,7 @@ namespace THUOCBAC.FormDanhSach {
 
 	private void voidHIENTHI_DGV_KHACHHANG() {
 	  dataGridViewXDanhSachKH.DataSource=BL_KHACHHANG.DATATABLE_DANHSACH_KHACHHANG();
-	  dataGridViewXDanhSachKH.Columns["STT"].DisplayIndex=0;
+	  dataGridViewXDanhSachKH.Columns[QTStringConst.SO_THUTU.STR].DisplayIndex=0;
 	}
 
 	private void dataGridViewXDanhSachKH_CellClick(object sender,DataGridViewCellEventArgs e) {
@@ -95,7 +95,7 @@ namespace THUOCBAC.FormDanhSach {
 		  DEC_TIENNO_DANGCHON=(r.Cells["TienNoHienTai"].Value.ToString().Equals(""))?0:Convert.ToDecimal(r.Cells["TienNoHienTai"].Value);
 		  INT_ID_KH_DANGCHON=Convert.ToInt32(r.Cells[QTDbConst.ID_BANG_KHACHHANG.STR].Value);
 		  STR_TEN_KH_DANGCHON=Convert.ToString(r.Cells[QTDbConst.TENKHACHHANG.STR].Value);
-		  //INT_INDEX_ROW_DANGCHON=Convert.ToInt32(r.Cells["STT"].Value);
+		  //INT_INDEX_ROW_DANGCHON=Convert.ToInt32(r.Cells[QTStringConst.SO_THUTU.STR].Value);
 		  INT_INDEX_ROW_DANGCHON=e.RowIndex;
 		  btnXThayDoiTienNo.Enabled=(STR_TEN_KH_DANGCHON.Equals(QTStringConst.KHONGGHIVAO.STR))?false:true;
 		  btnXXemChiTiet.Enabled=(STR_TEN_KH_DANGCHON.Equals(QTStringConst.KHONGGHIVAO.STR))?false:true;

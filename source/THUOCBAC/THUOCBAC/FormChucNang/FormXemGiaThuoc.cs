@@ -72,7 +72,7 @@ namespace THUOCBAC.FormChucNang {
 		if(intSTTCuaTenVTTrongComboBox>-1) {
 		  DataTable dtLichSuGD=BL_DONHANG.dataTableBANG_LICHSU_GD_VT(strTenViThuocDaVietHoaChuCaiDau);
 		  dataGridViewXLichSuGDVT.DataSource=dtLichSuGD;
-		  dataGridViewXLichSuGDVT.Columns["STT"].DisplayIndex=0;
+		  dataGridViewXLichSuGDVT.Columns[QTStringConst.SO_THUTU.STR].DisplayIndex=0;
 
 		  voidCAIDAT_HIENTHI_DGV_LICHSU();
 		}
@@ -131,7 +131,7 @@ namespace THUOCBAC.FormChucNang {
 		if(intSTTCuaTenVTTrongComboBox>-1) {
 		  DataTable dtLichSuGD=BL_DONHANG.dataTableBANG_LICHSU_GD_VT(strTenViThuocDaVietHoaChuCaiDau,strTenKhachHang);
 		  dataGridViewXLichSuGDVT.DataSource=dtLichSuGD;
-		  dataGridViewXLichSuGDVT.Columns["STT"].DisplayIndex=0;
+		  dataGridViewXLichSuGDVT.Columns[QTStringConst.SO_THUTU.STR].DisplayIndex=0;
 
 		  voidCAIDAT_HIENTHI_DGV_LICHSU();
 		}
@@ -174,7 +174,7 @@ namespace THUOCBAC.FormChucNang {
 	  try {
 		DataTable dtLichSuGD=BL_DONHANG.dataTableBANG_LICHSU_CO_CACKITU(strKiTuCanTim);
 		dataGridViewXLichSuGDVT.DataSource=dtLichSuGD;
-		dataGridViewXLichSuGDVT.Columns["STT"].DisplayIndex=0;
+		dataGridViewXLichSuGDVT.Columns[QTStringConst.SO_THUTU.STR].DisplayIndex=0;
 
 		voidCAIDAT_HIENTHI_DGV_LICHSU();
 	  } catch(Exception ex) {

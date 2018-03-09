@@ -43,9 +43,9 @@ namespace THUOCBAC.FormDanhSach {
 
 	private void btnXXemChiTietDonXacNhan_Click(object sender,EventArgs e) {
 	  btnXXemChiTietDonXacNhan.Enabled=false;
-	  //FormChucNang.FormThemDonHang formXemChiTietDonHang=new FormChucNang.FormThemDonHang(INT_MADONHANG_DANGCHON,"XemChiTiet");
+	  //FormChucNang.FormThemDonHang formXemChiTietDonHang=new FormChucNang.FormThemDonHang(INT_MADONHANG_DANGCHON,QTStringConst.XEM_CHITIET.STR);
 	  //formXemChiTietDonHang.ShowDialog();
-	  FormChucNang.FormThemDonXacNhan formXemChiTietDonXacNhan=new FormChucNang.FormThemDonXacNhan(INT_MADONXACNHAN_DANGCHON,"XemChiTiet");
+	  FormChucNang.FormThemDonXacNhan formXemChiTietDonXacNhan=new FormChucNang.FormThemDonXacNhan(INT_MADONXACNHAN_DANGCHON,QTStringConst.XEM_CHITIET.STR);
 	  formXemChiTietDonXacNhan.ShowDialog();
 	  dataGridViewXDSDonXacNhan.DataSource=BL_DONXACNHAN.dataTableBangDanhSachDonXacNhan();
 	}

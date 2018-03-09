@@ -14,9 +14,9 @@ namespace QTCommon {
 	//QTLibraryFunction.STATIC_INT_INDEX_VALUE_EXIST_IN_COLUMN
 
 	public static void STATIC_VOID_ADD_STT_COL_TO_DATATABLE(ref DataTable _dt) {
-	  _dt.Columns.Add("STT");
+	  _dt.Columns.Add(QTStringConst.SO_THUTU.STR);
 	  for(int i = 0;i<_dt.Rows.Count;i++)
-		_dt.Rows[i]["STT"]=i+1;
+		_dt.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;
 	}
 
 	public static void STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref DataGridViewX dgvXTemp,string _strMaCot,int _intWidth,DataGridViewContentAlignment _dgvContentAlign) {

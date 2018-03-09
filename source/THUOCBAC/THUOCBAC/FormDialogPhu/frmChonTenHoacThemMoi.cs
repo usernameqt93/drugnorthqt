@@ -42,22 +42,6 @@ namespace THUOCBAC.FormDialogPhu {
 
 	private void frmChonTenHoacThemMoi_Load(object sender,EventArgs e) {
 	  QTAppTemp.QT_RESET_APP_TEMP();
-	  //QTAppTemp.STATIC_STR_NAME_CHOOSE=STR_NAME_CHOOSE;
-	  //QTAppTemp.STATIC_INT_ID_CHOOSE=INT_ID_CHOOSE;
-	  //QTAppTemp.STATIC_DEC_DEBT_CHOOSE=DEC_DEBT_CHOOSE;
-
-	  //DT_MAIN=BL_KHACHHANG.DATATABLE_DANHSACH_KHACHHANG();
-
-	  //dgvXMain.DataSource=DT_MAIN;
-	  //dgvXMain.Columns["STT"].DisplayIndex=0;
-	  //QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dgvXMain);
-	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,"STT",60,DataGridViewContentAlignment.MiddleCenter);
-	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,"TienNoHienTai",CONST_STR_TIENNO_HIENTAI,120,DataGridViewContentAlignment.MiddleRight);
-	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,QTDbConst.TENKHACHHANG.STR,CONST_STR_TEN_KHACHHANG,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
-	  //QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dgvXMain,new List<string>() { "IdBangKhachHang" });
-
-	  //dgvXMain.Columns["TienNoHienTai"].DefaultCellStyle.Format="#,###.### vnđ";
-	  //dgvXMain.Focus();
 	  VOID_LOAD_FORM_FOCUS_LAST_ROW();
 	}
 
@@ -70,9 +54,9 @@ namespace THUOCBAC.FormDialogPhu {
 	  DT_MAIN=BL_KHACHHANG.DATATABLE_DANHSACH_KHACHHANG();
 
 	  dgvXMain.DataSource=DT_MAIN;
-	  dgvXMain.Columns["STT"].DisplayIndex=0;
+	  dgvXMain.Columns[QTStringConst.SO_THUTU.STR].DisplayIndex=0;
 	  QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dgvXMain);
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,"STT",60,DataGridViewContentAlignment.MiddleCenter);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,QTStringConst.SO_THUTU.STR,60,DataGridViewContentAlignment.MiddleCenter);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,"TienNoHienTai",CONST_STR_TIENNO_HIENTAI,120,DataGridViewContentAlignment.MiddleRight);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,QTDbConst.TENKHACHHANG.STR,CONST_STR_TEN_KHACHHANG,150,DataGridViewContentAlignment.MiddleCenter,DataGridViewAutoSizeColumnMode.Fill);
 	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dgvXMain,new List<string>() { QTDbConst.ID_BANG_KHACHHANG.STR });
@@ -103,11 +87,6 @@ namespace THUOCBAC.FormDialogPhu {
 		  DEC_DEBT_CHOOSE=(r.Cells["TienNoHienTai"].Value.ToString().Equals("")) ? 0 : Convert.ToDecimal(r.Cells["TienNoHienTai"].Value);
 		  INT_ID_CHOOSE=Convert.ToInt32(r.Cells[QTDbConst.ID_BANG_KHACHHANG.STR].Value);
 		  STR_NAME_CHOOSE=Convert.ToString(r.Cells[QTDbConst.TENKHACHHANG.STR].Value);
-		  //INT_INDEX_ROW_DANGCHON=Convert.ToInt32(r.Cells["STT"].Value);
-		  //INT_INDEX_ROW_DANGCHON=e.RowIndex;
-		  //btnXThayDoiTienNo.Enabled=(STR_TEN_KH_DANGCHON.Equals(QTStringConst.KHONGGHIVAO.STR)) ? false : true;
-		  //btnXXemChiTiet.Enabled=(STR_TEN_KH_DANGCHON.Equals(QTStringConst.KHONGGHIVAO.STR)) ? false : true;
-		  //btnXChangeNameCustomer.Enabled=(STR_TEN_KH_DANGCHON.Equals(QTStringConst.KHONGGHIVAO.STR)) ? false : true;
 		  btnXAccept.Enabled=true;
 		  //DEC_TIENNO_CU_DANGCHON=(r.Cells["TienNoCu"].Value.ToString().Equals(""))?0:Convert.ToDecimal(r.Cells["TienNoCu"].Value);
 		  //DT_THOIGIAN_VIETDH_DANGCHON=(r.Cells["ThoiGianVietDonHangNay"].Value.ToString().Equals(""))?DateTime.Now:Convert.ToDateTime(r.Cells["ThoiGianVietDonHangNay"].Value);

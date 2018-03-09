@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace QTCommon {
   public static class QTStringConst {
 
-	//QTStringConst.CHUACAPNHAT.STR
+	//QTStringConst.XEM_CHITIET.STR
 
 	#region For reportviewer file
 
@@ -117,6 +117,6 @@ namespace QTCommon {
 
 	#endregion
 
-	//QTStringConst.CHUACAPNHAT.STR
+	//QTStringConst.SO_THUTU.STR
   }
 }

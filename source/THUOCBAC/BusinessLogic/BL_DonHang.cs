@@ -22,21 +22,21 @@ namespace BusinessLogic {
 	}
 	public DataTable dataTableBangDanhSachDonHang(string strDieuKien,int intIdBangKhachHang) {
 	  DataTable dt=new DataTable();
-	  if(strDieuKien.Equals("TatCa")&&intIdBangKhachHang==-1)
+	  if(strDieuKien.Equals(QTStringConst.TATCA.STR)&&intIdBangKhachHang==-1)
 		dt=DAO_DONHANG.dataTableBangDanhSachDonHangCoTenKH();
-	  if(strDieuKien.Equals("TheoIdBangKhachHang"))
+	  if(strDieuKien.Equals(QTStringConst.THEO_ID_KHACHHANG.STR))
 		dt=DAO_DONHANG.dataTableBangDanhSachDHTheoIdKH(intIdBangKhachHang);
-	 // dt.Columns.Add("STT");
-	 // for(int i=0;i<dt.Rows.Count;i++)
-		//dt.Rows[i]["STT"]=i+1;
+	  // dt.Columns.Add(QTStringConst.SO_THUTU.STR);
+	  // for(int i=0;i<dt.Rows.Count;i++)
+	  //dt.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;
 	  QTLibraryFunction.STATIC_VOID_ADD_STT_COL_TO_DATATABLE(ref dt);
 	  return dt;
 	}
 	public DataTable dataTable_DANHSACH_DH_THEONGAY(DateTime dtThoiGianTimKiem) {
 	  DataTable dt=DAO_DONHANG.dataTableBANG_DANHSACH_DH_THEONGAY(dtThoiGianTimKiem);
-	 // dt.Columns.Add("STT");
-	 // for(int i=0;i<dt.Rows.Count;i++)
-		//dt.Rows[i]["STT"]=i+1;
+	  // dt.Columns.Add(QTStringConst.SO_THUTU.STR);
+	  // for(int i=0;i<dt.Rows.Count;i++)
+	  //dt.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;
 	  QTLibraryFunction.STATIC_VOID_ADD_STT_COL_TO_DATATABLE(ref dt);
 	  return dt;
 	}
@@ -69,23 +69,23 @@ namespace BusinessLogic {
 	}
 	public DataTable dataTableBANG_LICHSU_GD_VT(string strTenViThuoc) {
 	  DataTable dt=DAO_DONHANG.dataTableBANG_LICHSU_GD_VT(strTenViThuoc);
-	  dt.Columns.Add("STT");
+	  dt.Columns.Add(QTStringConst.SO_THUTU.STR);
 	  for(int i=0;i<dt.Rows.Count;i++)
-		dt.Rows[i]["STT"]=i+1;
+		dt.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;
 	  return dt;
 	}
 	public DataTable dataTableBANG_LICHSU_CO_CACKITU(string strKiTu) {
 	  DataTable dt=DAO_DONHANG.dataTableBANG_LICHSU_CO_CACKITU(strKiTu);
-	  dt.Columns.Add("STT");
+	  dt.Columns.Add(QTStringConst.SO_THUTU.STR);
 	  for(int i=0;i<dt.Rows.Count;i++)
-		dt.Rows[i]["STT"]=i+1;
+		dt.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;
 	  return dt;
 	}
 	public DataTable dataTableBANG_LICHSU_GD_VT(string strTenViThuoc,string strTenKhachHang) {
 	  DataTable dt=DAO_DONHANG.dataTableBANG_LICHSU_GD_VT(strTenViThuoc,strTenKhachHang);
-	  dt.Columns.Add("STT");
+	  dt.Columns.Add(QTStringConst.SO_THUTU.STR);
 	  for(int i=0;i<dt.Rows.Count;i++)
-		dt.Rows[i]["STT"]=i+1;
+		dt.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;
 	  return dt;
 	}
 	public DataTable dataTableBangChiTietDonHang() {
@@ -99,9 +99,9 @@ namespace BusinessLogic {
 	  DataTable dtChiTietDonHang=new DataTable();
 	  //dtChiTietDonHang=DAO_DONHANG.dataTableBangChiTietDonHangTheoMaDonHang(intMaDonHang);
 	  dtChiTietDonHang=DAO_DONHANG.dataTableBangChiTietDHMaGiaMaDH(intMaDonHang);
-	  dtChiTietDonHang.Columns.Add("STT");
+	  dtChiTietDonHang.Columns.Add(QTStringConst.SO_THUTU.STR);
 	  for(int i=0;i<dtChiTietDonHang.Rows.Count;i++)
-		dtChiTietDonHang.Rows[i]["STT"]=i+1;
+		dtChiTietDonHang.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;
 
 	  return dtChiTietDonHang;
 	}

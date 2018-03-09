@@ -68,7 +68,7 @@ namespace THUOCBAC.FormChucNang {
 	}
 	private void voidHIENTHI_DGV_CO_STT() {
 	  dataGridViewXDSThuocXacNhan.DataSource=BL_DON_XACNHAN.dataTableBangChiTietDonXacNhanTheoMaDonXacNhanCoSTT(INT_MA_DONXACNHAN_HIENTAI);
-	  dataGridViewXDSThuocXacNhan.Columns["STT"].DisplayIndex=0;
+	  dataGridViewXDSThuocXacNhan.Columns[QTStringConst.SO_THUTU.STR].DisplayIndex=0;
 	}
 
 	private void btnXXemBanIn_Click(object sender,EventArgs e) {

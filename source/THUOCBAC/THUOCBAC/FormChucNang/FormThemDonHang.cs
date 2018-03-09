@@ -61,7 +61,7 @@ namespace THUOCBAC.FormChucNang {
 	  voidHIENTHI_DGV_CO_STT();
 	  QTLibraryFunction.STATIC_VOID_HIDE_LIST_COLUMN(ref dataGridViewXChiTietDonHang,new List<string>() { QTDbConst.ID_BANG_CHITIET_DONHANG.STR,QTDbConst.ID_BANG_VITHUOC.STR });
 
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXChiTietDonHang,"STT",60,DataGridViewContentAlignment.MiddleCenter);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXChiTietDonHang,QTStringConst.SO_THUTU.STR,60,DataGridViewContentAlignment.MiddleCenter);
 
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXChiTietDonHang,QTDbConst.SOLUONG_VITHUOC.STR,QTStringConst.SOLUONG.STR,77,DataGridViewContentAlignment.MiddleRight);
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXChiTietDonHang,QTDbConst.DONVI_GIATHUOC.STR,QTStringConst.DONVI.STR,44,DataGridViewContentAlignment.MiddleLeft);
@@ -92,7 +92,7 @@ namespace THUOCBAC.FormChucNang {
 	}
 	private void voidHIENTHI_DGV_CO_STT() {
 	  dataGridViewXChiTietDonHang.DataSource=BL_DONHANG.dataTableBangChiTietDonHangTheoMaDonHangCoSTT(INT_MA_DONHANG_HIENTAI);
-	  dataGridViewXChiTietDonHang.Columns["STT"].DisplayIndex=0;
+	  dataGridViewXChiTietDonHang.Columns[QTStringConst.SO_THUTU.STR].DisplayIndex=0;
 	  QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dataGridViewXChiTietDonHang);
 	}
 	public void voidCAPNHAT_TONGTIEN_DH_THEO_MADONHANG() {

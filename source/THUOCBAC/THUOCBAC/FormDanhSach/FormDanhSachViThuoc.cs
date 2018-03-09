@@ -28,14 +28,14 @@ namespace THUOCBAC.FormDanhSach {
 	  FormChucNang.FormThemViThuoc formThemViThuoc=new FormChucNang.FormThemViThuoc();
 	  formThemViThuoc.ShowDialog();
 	  //dataGridViewXDanhSachViThuoc.DataSource=BL_VITHUOC.dataTableBangDanhSachViThuocCungGia();
-	  voidHIENTHI_DGV_VITHUOC_CO_STT("ViTriCuoiCung");
+	  voidHIENTHI_DGV_VITHUOC_CO_STT(QTStringConst.VITRI_CUOICUNG.STR);
 	  //dataGridViewXDanhSachViThuoc.FirstDisplayedScrollingRowIndex=dataGridViewXDanhSachViThuoc.RowCount-1;
 	  
 	}
 	private void voidHIENTHI_DGV_VITHUOC_CO_STT(string strViTriTroDen) {
 	  dataGridViewXDanhSachViThuoc.DataSource=BL_VITHUOC.dataTableBangDanhSachViThuocCungGiaCaTheoChuCai();
-	  dataGridViewXDanhSachViThuoc.Columns["STT"].DisplayIndex=0;
-	  if(strViTriTroDen.Equals("ViTriCuoiCung")) {
+	  dataGridViewXDanhSachViThuoc.Columns[QTStringConst.SO_THUTU.STR].DisplayIndex=0;
+	  if(strViTriTroDen.Equals(QTStringConst.VITRI_CUOICUNG.STR)) {
 		//chuyển xuống dòng dưới cùng
 		int intSoThuTuHangMuonTroVao=0;
 		if (dataGridViewXDanhSachViThuoc.RowCount>1)
@@ -58,7 +58,7 @@ namespace THUOCBAC.FormDanhSach {
 	private void FormDanhSachViThuoc_Load(object sender,EventArgs e) {
 
 	  //dataGridViewXDanhSachViThuoc.DataSource=BL_VITHUOC.dataTableBangDanhSachViThuocCungGia();
-	  voidHIENTHI_DGV_VITHUOC_CO_STT("ViTriCuoiCung");
+	  voidHIENTHI_DGV_VITHUOC_CO_STT(QTStringConst.VITRI_CUOICUNG.STR);
 	  dataGridViewXDanhSachViThuoc.Columns["MaGiaThuoc"].Visible=false;
 	  dataGridViewXDanhSachViThuoc.Columns["MaViThuoc"].Visible=false;
 	  dataGridViewXDanhSachViThuoc.Columns["GiaViThuoc"].Visible=false;
@@ -117,7 +117,7 @@ namespace THUOCBAC.FormDanhSach {
 		  bool boolCoXoaDuocKo=BL_VITHUOC.boolDeleteViThuocTheoIdViThuoc(ref strLoi,INT_MA_VITHUOC.ToString());
 		  if(boolCoXoaDuocKo) {
 			//dataGridViewXDanhSachViThuoc.DataSource=BL_VITHUOC.dataTableBangDanhSachViThuocCungGia();
-			voidHIENTHI_DGV_VITHUOC_CO_STT("ViTriCuoiCung");
+			voidHIENTHI_DGV_VITHUOC_CO_STT(QTStringConst.VITRI_CUOICUNG.STR);
 			MessageBox.Show("Xóa thành công, toàn bộ giá cùng tên vị thuốc này đã được xóa");
 			btnXXoaViThuoc.Enabled=false;
 			btnXSuaGiaViThuoc.Enabled=false;
