@@ -20,9 +20,6 @@ namespace THUOCBAC.FormDanhSach {
 
 	private const string CONST_STR_TEN_KHACHHANG = QTStringConst.TENKHACHHANG.STR;
 	private const string CONST_STR_TIENNO_HIENTAI = "Tiền nợ hiện tại";
-	//private const string CONST_STR_DONGIA = "Đơn giá";
-	//private const string CONST_STR_TEN_VITHUOC = "Tên vị thuốc";
-	//private const string CONST_STR_THANHTIEN = "Thành tiền";
 
 	public FormDanhSachKhachHang() {
 	  InitializeComponent();
@@ -38,9 +35,6 @@ namespace THUOCBAC.FormDanhSach {
 	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,QTDbConst.TENKHACHHANG.STR,CONST_STR_TEN_KHACHHANG,150,DataGridViewContentAlignment.MiddleCenter);
 	  //QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXDanhSachKH,"TienNoHienTai",CONST_STR_TIENNO_HIENTAI,150,DataGridViewContentAlignment.MiddleRight);
 
-	  //dataGridViewXDanhSachKH.Columns["IdBangKhachHang"].Visible=false;
-	  //dataGridViewXDanhSachKH.Columns["TienNoHienTai"].DefaultCellStyle.Format="#,###.### vnđ";
-	  //QTLibraryFunction.STATIC_VOID_FOCUS_LAST_COLUMN_DGV(ref dataGridViewXDanhSachKH,QTDbConst.TENKHACHHANG.STR);
 	  QTAppTemp.QT_RESET_APP_TEMP();
 	  VOID_LOAD_FORM_FOCUS_LAST_ROW();
 	}

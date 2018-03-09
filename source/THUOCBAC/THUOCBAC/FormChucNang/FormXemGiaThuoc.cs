@@ -89,7 +89,6 @@ namespace THUOCBAC.FormChucNang {
 		  //int intSoViThuocTrongDH=(r.Cells["TongViThuoc"].Value.ToString().Equals(""))?0:Convert.ToInt32(r.Cells["TongViThuoc"].Value);
 		  //btnXXoaDH.Enabled=(intSoViThuocTrongDH==0)?true:false;
 		  INT_MADONHANG_DANGCHON=Convert.ToInt32(r.Cells["MaDonHang"].Value);
-		  //INT_ID_KH_DANGCHON=Convert.ToInt32(r.Cells["IdBangKhachHang"].Value);
 		  STR_SDT_KH_DANGCHON="zz"+Convert.ToString(r.Cells["TenViThuoc"].Value);
 		  //DEC_TIENNO_CU_DANGCHON=(r.Cells["TienNoCu"].Value.ToString().Equals(""))?0:Convert.ToDecimal(r.Cells["TienNoCu"].Value);
 		  //DT_THOIGIAN_VIETDH_DANGCHON=(r.Cells["ThoiGianVietDonHangNay"].Value.ToString().Equals(""))?DateTime.Now:Convert.ToDateTime(r.Cells["ThoiGianVietDonHangNay"].Value);
@@ -142,21 +141,17 @@ namespace THUOCBAC.FormChucNang {
 	private void voidCAIDAT_HIENTHI_DGV_LICHSU() {
 	  dataGridViewXLichSuGDVT.Columns["ThoiGianVietDonHangNay"].HeaderText="Đơn hàng viết lúc";
 	  dataGridViewXLichSuGDVT.Columns["TongViThuoc"].HeaderText="Tổng vị thuốc trong đơn";
-	  //dataGridViewXLichSuGDVT.Columns["TongKhoiLuong"].HeaderText="Tổng khối lượng";
 	  dataGridViewXLichSuGDVT.Columns["TongGiaTriDonHang"].HeaderText="Tổng giá trị";
-	  dataGridViewXLichSuGDVT.Columns["TenViThuoc"].HeaderText="Tên vị thuốc";
-	  dataGridViewXLichSuGDVT.Columns["SoLuongViThuoc"].HeaderText="Số lượng";
-	  dataGridViewXLichSuGDVT.Columns["DonViGiaThuoc"].HeaderText="Đơn vị";
-	  dataGridViewXLichSuGDVT.Columns["GiaViThuoc"].HeaderText="Đơn giá";
-	  dataGridViewXLichSuGDVT.Columns["ThanhTienTamThoi"].HeaderText="Thành tiền";
+	  dataGridViewXLichSuGDVT.Columns["TenViThuoc"].HeaderText=QTStringConst.TENVITHUOC.STR;
+	  dataGridViewXLichSuGDVT.Columns["SoLuongViThuoc"].HeaderText=QTStringConst.SOLUONG.STR;
+	  dataGridViewXLichSuGDVT.Columns["DonViGiaThuoc"].HeaderText=QTStringConst.DONVI.STR;
+	  dataGridViewXLichSuGDVT.Columns["GiaViThuoc"].HeaderText=QTStringConst.DONGIA.STR;
+	  dataGridViewXLichSuGDVT.Columns["ThanhTienTamThoi"].HeaderText=QTStringConst.THANHTIEN.STR;
 	  dataGridViewXLichSuGDVT.Columns[QTDbConst.TENKHACHHANG.STR].HeaderText=QTStringConst.TENKHACHHANG.STR;
 	  dataGridViewXLichSuGDVT.Columns["DonViGiaThuoc"].Width=44;
 	  dataGridViewXLichSuGDVT.Columns["GiaViThuoc"].Width=88;
 	  dataGridViewXLichSuGDVT.Columns["SoLuongViThuoc"].Width=77;
 	  dataGridViewXLichSuGDVT.Columns["MaDonHang"].Visible=false;
-	  //dataGridViewXLichSuGDVT.Columns["IdBangKhachHang"].Visible=false;
-	  //dataGridViewXLichSuGDVT.Columns["SDTKhachHang"].Visible=false;
-	  //dataGridViewXLichSuGDVT.Columns["TienNoCu"].Visible=false;
 	  dataGridViewXLichSuGDVT.Columns["TongGiaTriDonHang"].DefaultCellStyle.Format="#,###.### vnđ";
 	  dataGridViewXLichSuGDVT.Columns["GiaViThuoc"].DefaultCellStyle.Format="#,###.### vnđ";
 	  dataGridViewXLichSuGDVT.Columns["ThanhTienTamThoi"].DefaultCellStyle.Format="#,###.### vnđ";

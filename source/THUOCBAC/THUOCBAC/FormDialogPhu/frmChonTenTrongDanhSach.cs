@@ -56,7 +56,6 @@ namespace THUOCBAC.FormDialogPhu {
 		  //int intSoViThuocTrongDH = (r.Cells["TongViThuoc"].Value.ToString().Equals("")) ? 0 : Convert.ToInt32(r.Cells["TongViThuoc"].Value);
 		  //btnXXoaDH.Enabled=(intSoViThuocTrongDH==0) ? true : false;
 		  //INT_MADONHANG_DANGCHON=Convert.ToInt32(r.Cells["MaDonHang"].Value);
-		  //INT_ID_KH_DANGCHON=Convert.ToInt32(r.Cells["IdBangKhachHang"].Value);
 		  //STR_SDT_KH_DANGCHON=Convert.ToString(r.Cells["SDTKhachHang"].Value);
 		  //DEC_TIENNO_CU_DANGCHON=(r.Cells["TienNoCu"].Value.ToString().Equals("")) ? 0 : Convert.ToDecimal(r.Cells["TienNoCu"].Value);
 		  //DT_THOIGIAN_VIETDH_DANGCHON=(r.Cells["ThoiGianVietDonHangNay"].Value.ToString().Equals("")) ? DateTime.Now : Convert.ToDateTime(r.Cells["ThoiGianVietDonHangNay"].Value);

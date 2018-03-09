@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QTCommon;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -333,7 +334,7 @@ namespace DataAccessObject {
 	}
 	public object objMaDonHangVuaThemCoThoiGianVietDH(ref string err,ref string result,DateTime dtThoiGianVietDonHang) {
 	  try {
-		string strDaCapNhatTienNoChua="Chưa cập nhật";
+		string strDaCapNhatTienNoChua= QTStringConst.CHUACAPNHAT.STR;
 		string strSql=@"insert into BangDanhSachDonHang(ThoiGianVietDonHangNay,TongGiaTriDonHang,IdBangKhachHang,CapNhatTienNoChua) values (@ThoiGianVietDonHangNay,0,1,N'"+strDaCapNhatTienNoChua+@"'); 
 			select @@IDENTITY as MaDonHangVuaThem;";
 		SqlParameter ThoiGianVietDonHangNay=new SqlParameter("@ThoiGianVietDonHangNay",dtThoiGianVietDonHang);

@@ -26,11 +26,6 @@ namespace BusinessLogic {
 		mBangCaiDat.CACHXEM_BANIN=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.CACHXEM_BANIN.STR].ToString());
 		mBangCaiDat.CACHVIET_DONHANG=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.CACHVIET_DONHANG.STR].ToString());
 
-		//mBangCaiDat.SO_DIENTHOAI_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiCaiDat"].ToString());
-		//mBangCaiDat.SO_TAIKHOAN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoTaiKhoanCaiDat"].ToString());
-		//mBangCaiDat.SO_DIENTHOAIBAN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiBanCaiDat"].ToString());
-		//mBangCaiDat.NGHENGHIEP_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["NgheNghiepCaiDat"].ToString());
-		//mBangCaiDat.DIACHI_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["DiaChiCaiDat"].ToString());
 	  }
 	}
   }

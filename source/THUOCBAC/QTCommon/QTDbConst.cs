@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace QTCommon {
   public static class QTDbConst {
 
-	//QTDbConst.HOTEN_CAIDAT.STR
+	//QTDbConst.SO_DIENTHOAIBAN_CAIDAT.STR
 
 	public static class TENKHACHHANG {
 	  public const string STR = "TenKhachHang";

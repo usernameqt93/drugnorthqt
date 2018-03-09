@@ -22,11 +22,11 @@ namespace BusinessLogic {
 	  DataTable dtCaiDat=DAO_CAIDAT.DATATABLE_BANG_CAIDAT(1);
 	  if(dtCaiDat.Rows.Count>0) {
 		strHoTen=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.HOTEN_CAIDAT.STR].ToString());
-		strSDT=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiCaiDat"].ToString());
-		strSoTK=Convert.ToString(dtCaiDat.Rows[0]["SoTaiKhoanCaiDat"].ToString());
-		strSDTBan=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiBanCaiDat"].ToString());
-		strNgheNghiep=Convert.ToString(dtCaiDat.Rows[0]["NgheNghiepCaiDat"].ToString());
-		strDiaChi=Convert.ToString(dtCaiDat.Rows[0]["DiaChiCaiDat"].ToString());
+		strSDT=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.SO_DIENTHOAI_CAIDAT.STR].ToString());
+		strSoTK=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.SO_TAIKHOAN_CAIDAT.STR].ToString());
+		strSDTBan=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.SO_DIENTHOAIBAN_CAIDAT.STR].ToString());
+		strNgheNghiep=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.NGHENGHIEP_CAIDAT.STR].ToString());
+		strDiaChi=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.DIACHI_CAIDAT.STR].ToString());
 	  }
 	  if(dtCaiDat.Rows.Count==0) {
 		strHoTen="";
@@ -42,11 +42,11 @@ namespace BusinessLogic {
 	  DataTable dtCaiDat = DAO_CAIDAT.DATATABLE_BANG_CAIDAT(1);
 	  if(dtCaiDat.Rows.Count>0) {
 		mBangCaiDat.HOTEN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.HOTEN_CAIDAT.STR].ToString());
-		mBangCaiDat.SO_DIENTHOAI_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiCaiDat"].ToString());
-		mBangCaiDat.SO_TAIKHOAN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoTaiKhoanCaiDat"].ToString());
-		mBangCaiDat.SO_DIENTHOAIBAN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["SoDienThoaiBanCaiDat"].ToString());
-		mBangCaiDat.NGHENGHIEP_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["NgheNghiepCaiDat"].ToString());
-		mBangCaiDat.DIACHI_CAIDAT=Convert.ToString(dtCaiDat.Rows[0]["DiaChiCaiDat"].ToString());
+		mBangCaiDat.SO_DIENTHOAI_CAIDAT=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.SO_DIENTHOAI_CAIDAT.STR].ToString());
+		mBangCaiDat.SO_TAIKHOAN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.SO_TAIKHOAN_CAIDAT.STR].ToString());
+		mBangCaiDat.SO_DIENTHOAIBAN_CAIDAT=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.SO_DIENTHOAIBAN_CAIDAT.STR].ToString());
+		mBangCaiDat.NGHENGHIEP_CAIDAT=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.NGHENGHIEP_CAIDAT.STR].ToString());
+		mBangCaiDat.DIACHI_CAIDAT=Convert.ToString(dtCaiDat.Rows[0][QTDbConst.DIACHI_CAIDAT.STR].ToString());
 	  }
 	 // if(dtCaiDat.Rows.Count==0) {
 		//strHoTen="";
