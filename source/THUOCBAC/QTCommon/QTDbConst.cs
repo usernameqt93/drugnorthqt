@@ -156,6 +156,30 @@ namespace QTCommon {
 	  public const string STR = "MaDonHang";
 	}
 
+	public static class SDT_KHACHHANG_LUU_VOI_DONHANG {
+	  public const string STR = "SDTKhachHang";
+	}
+
+	public static class TIENNO_CU_LUU_VOI_DONHANG {
+	  public const string STR = "TienNoCu";
+	}
+
+	public static class TONG_GIATRI_DONHANG {
+	  public const string STR = "TongGiaTriDonHang";
+	}
+
+	public static class TONG_VITHUOC {
+	  public const string STR = "TongViThuoc";
+	}
+
+	public static class TONG_KHOILUONG {
+	  public const string STR = "TongKhoiLuong";
+	}
+
+	public static class THOIGIAN_VIET_DONHANG {
+	  public const string STR = "ThoiGianVietDonHangNay";
+	}
+
 	#endregion
 
 	//QTDbConst.HOTEN_CAIDAT.STR

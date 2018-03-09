@@ -91,6 +91,14 @@ namespace QTCommon {
 	  public const string STR = "TatCa";
 	}
 
+	public static class THEO_ID_KHACHHANG {
+	  public const string STR = "TheoIdBangKhachHang";
+	}
+
+	public static class XEM_CHITIET {
+	  public const string STR = "XemChiTiet";
+	}
+
 	public static class NUT_HIEN_TATCA {
 	  public const string STR = "NutHienTatCa";
 	}
@@ -101,6 +109,10 @@ namespace QTCommon {
 
 	public static class NUT_TIM_THEO_TEN {
 	  public const string STR = "NutTimTheoTen";
+	}
+
+	public static class SO_THUTU {
+	  public const string STR = "STT";
 	}
 
 	#endregion

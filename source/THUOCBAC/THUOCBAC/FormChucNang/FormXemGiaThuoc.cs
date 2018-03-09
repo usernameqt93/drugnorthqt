@@ -102,7 +102,7 @@ namespace THUOCBAC.FormChucNang {
 	private void btnXXemChiTietDonHang_Click(object sender,EventArgs e) {
 	  btnXXemChiTietDonHang.Enabled=false;
 	  FormChucNang.FormThemDonHang formXemChiTietDonHang=new FormChucNang.FormThemDonHang(
-		INT_MADONHANG_DANGCHON,INT_ID_KH_DANGCHON,STR_SDT_KH_DANGCHON,DEC_TIENNO_CU_DANGCHON,"XemChiTiet",DT_THOIGIAN_VIETDH_DANGCHON);
+		INT_MADONHANG_DANGCHON,INT_ID_KH_DANGCHON,STR_SDT_KH_DANGCHON,DEC_TIENNO_CU_DANGCHON,QTStringConst.XEM_CHITIET.STR,DT_THOIGIAN_VIETDH_DANGCHON);
 	  formXemChiTietDonHang.ShowDialog();
 	}
 
