@@ -64,7 +64,7 @@ namespace THUOCBAC.FormDanhSach {
 	  DataTable dtMain = new DataTable();
 	  dtMain=(DataTable)dataGridViewXDanhSachKH.DataSource;
 	  INT_INDEX_ROW_DANGCHON=QTLibraryFunction.STATIC_INT_INDEX_VALUE_EXIST_IN_COLUMN(QTAppTemp.STATIC_STR_NAME_ADD_SUCCESS,QTDbConst.TENKHACHHANG.STR,dtMain);
-	  if(INT_INDEX_ROW_DANGCHON==-1311)
+	  if(INT_INDEX_ROW_DANGCHON==QTDbConst.SODACBIET.INT)
 		return;
 	  QTLibraryFunction.STATIC_VOID_FOCUS_ROW_X_IN_DGV(ref dataGridViewXDanhSachKH,QTDbConst.TENKHACHHANG.STR,INT_INDEX_ROW_DANGCHON);
 	}
@@ -120,7 +120,7 @@ namespace THUOCBAC.FormDanhSach {
 	  }
 	  if(dtLichSuTienNo.Rows.Count>0) {
 		//DEC_TIENNO_HIENTAI_CUA_KH=BL_KHACHHANG.DEC_TIENNO_HIENTAI_KH(intIdKHVuaChonTrongComboBox);
-		FormChucNang.FormXemThongTinTienNo formXemThongTinTienNo=new FormChucNang.FormXemThongTinTienNo(dtLichSuTienNo,INT_ID_KH_DANGCHON,STR_TEN_KH_DANGCHON,DEC_TIENNO_DANGCHON,"Ẩn nút Xác nhận");
+		FormChucNang.FormXemThongTinTienNo formXemThongTinTienNo=new FormChucNang.FormXemThongTinTienNo(dtLichSuTienNo,INT_ID_KH_DANGCHON,STR_TEN_KH_DANGCHON,DEC_TIENNO_DANGCHON,QTStringConst.HIDE_NUT_XACNHAN.STR);
 		//formXemThongTinTienNo.voidHIENTHI_TIENNOCU_RA_NUMBERIC=new FormChucNang.FormXemThongTinTienNo.DELEGATE_VOID_UYQUYEN_GIONG_HAMNAY(voidHIENTHI_TIENNOCU_RA_NUMBERIC);
 		formXemThongTinTienNo.ShowDialog();
 	  }

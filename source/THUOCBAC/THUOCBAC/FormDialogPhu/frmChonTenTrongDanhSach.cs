@@ -15,7 +15,7 @@ namespace THUOCBAC.FormDialogPhu {
 	private DataTable DT_MAIN;
 	private BL_KhachHang BL_KHACHHANG = new BL_KhachHang();
 	private string STR_NAME_CHOOSE="";
-	private string STR_ID_CHOOSE="";
+	private int INT_ID_CHOOSE= QTDbConst.SODACBIET.INT;
 
 	public frmChonTenTrongDanhSach() {
 	  InitializeComponent();
@@ -28,8 +28,9 @@ namespace THUOCBAC.FormDialogPhu {
 	}
 
 	private void frmChonTenTrongDanhSach_Load(object sender,EventArgs e) {
-	  QTAppInfo.STATIC_STR_NAME_CHOOSE=STR_NAME_CHOOSE;
-	  QTAppInfo.STATIC_STR_ID_CHOOSE=STR_ID_CHOOSE;
+	  QTAppTemp.QT_RESET_APP_TEMP();
+	  //QTAppInfo.STATIC_STR_NAME_CHOOSE=STR_NAME_CHOOSE;
+	  //QTAppInfo.STATIC_STR_ID_CHOOSE=STR_ID_CHOOSE;
 	  //DT_MAIN=BL_KHACHHANG.DATATABLE_BANG_KHACHHANG_XEPTHEOTEN();
 	  DT_MAIN=BL_KHACHHANG.DATATABLE_DANHSACH_KHACHHANG();
 	  //QTLibraryFunction.STATIC_VOID_ADD_STT_COL_TO_DATATABLE(ref DT_MAIN);
@@ -54,7 +55,7 @@ namespace THUOCBAC.FormDialogPhu {
 		  btnXChoose.Enabled=true;
 		  DataGridViewRow r = dgvXMain.Rows[e.RowIndex];
 		  STR_NAME_CHOOSE=Convert.ToString(r.Cells[QTDbConst.TENKHACHHANG.STR].Value);
-		  STR_ID_CHOOSE=Convert.ToString(r.Cells[QTDbConst.ID_BANG_KHACHHANG.STR].Value);
+		  INT_ID_CHOOSE=Convert.ToInt32(r.Cells[QTDbConst.ID_BANG_KHACHHANG.STR].Value);
 		  //MessageBox.Show(STR_NAME_CHOOSE+STR_ID_CHOOSE);
 
 		  //int intSoViThuocTrongDH = (r.Cells["TongViThuoc"].Value.ToString().Equals("")) ? 0 : Convert.ToInt32(r.Cells["TongViThuoc"].Value);
@@ -82,8 +83,8 @@ namespace THUOCBAC.FormDialogPhu {
 	}
 
 	private void btnXChoose_Click(object sender,EventArgs e) {
-	  QTAppInfo.STATIC_STR_NAME_CHOOSE=STR_NAME_CHOOSE;
-	  QTAppInfo.STATIC_STR_ID_CHOOSE=STR_ID_CHOOSE;
+	  QTAppTemp.STATIC_STR_NAME_CHOOSE=STR_NAME_CHOOSE;
+	  QTAppTemp.STATIC_INT_ID_CHOOSE=INT_ID_CHOOSE;
 	  this.Close();
 	}
   }

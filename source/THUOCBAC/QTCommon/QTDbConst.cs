@@ -189,6 +189,10 @@ namespace QTCommon {
 
 	#endregion
 
+	public static class SODACBIET {
+	  public const int INT = -1311;
+	}
+
 	//QTDbConst.HOTEN_CAIDAT.STR
   }
 }

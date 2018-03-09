@@ -16,7 +16,7 @@ namespace THUOCBAC.FormDialogPhu {
 	private DataTable DT_MAIN;
 	private BL_KhachHang BL_KHACHHANG = new BL_KhachHang();
 	private string STR_NAME_CHOOSE = "";
-	private int INT_ID_CHOOSE = -1311;
+	private int INT_ID_CHOOSE = QTDbConst.SODACBIET.INT;
 	private decimal DEC_DEBT_CHOOSE = 0;
 
 	private const string CONST_STR_TEN_KHACHHANG = QTStringConst.TENKHACHHANG.STR;

@@ -43,7 +43,7 @@ namespace THUOCBAC.FormDanhSach {
 	}
 
 	private void FormDanhSachDonHang_Load(object sender,EventArgs e) {
-	  //dataGridViewXCacDonHang.DataSource=BL_DONHANG.dataTableBangDanhSachDonHang();
+	  QTAppTemp.QT_RESET_APP_TEMP();
 	  dateTimeInputThoiGian.Value=DateTime.Now;
 	  voidHIENTHI_DGV_DH_CO_STT(QTStringConst.VITRI_CUOICUNG.STR,QTStringConst.TATCA.STR,-1);
 	}
@@ -128,7 +128,8 @@ namespace THUOCBAC.FormDanhSach {
 	  if(STR_NUT_VUABAM.Equals(QTStringConst.NUT_TIM_THEO_NGAY.STR))
 		btnXTimKiemTheoNgay.PerformClick();
 	  if(STR_NUT_VUABAM.Equals(QTStringConst.NUT_TIM_THEO_TEN.STR)) {
-		int intIdBangKH = Convert.ToInt32(QTAppInfo.STATIC_STR_ID_CHOOSE);
+		//int intIdBangKH = Convert.ToInt32(QTAppInfo.STATIC_STR_ID_CHOOSE);
+		int intIdBangKH = QTAppTemp.STATIC_INT_ID_CHOOSE;
 		voidHIENTHI_DGV_DH_CO_STT(QTStringConst.VITRI_CUOICUNG.STR,QTStringConst.THEO_ID_KHACHHANG.STR,intIdBangKH);
 	  }
 	}
@@ -155,13 +156,14 @@ namespace THUOCBAC.FormDanhSach {
 	//}
 
 	private void btnXTimKiemTheoTenKH_Click(object sender,EventArgs e) {
-	  if(QTAppInfo.STATIC_STR_ID_CHOOSE.Equals("")) {
+	  if(QTAppTemp.STATIC_STR_NAME_CHOOSE.Equals("")) {
 		btnXTimKiemTheoTenKH.Enabled=false;
 		MessageBox.Show("Tên khách hàng đang để trống, bạn vui lòng chọn lại tên khách hàng !");
 		btnXChonTenKhachHang.PerformClick();
 		return;
 	  }
-	  int intIdBangKH = Convert.ToInt32(QTAppInfo.STATIC_STR_ID_CHOOSE);
+	  //int intIdBangKH = Convert.ToInt32(QTAppInfo.STATIC_STR_ID_CHOOSE);
+	  int intIdBangKH = QTAppTemp.STATIC_INT_ID_CHOOSE;
 	  voidHIENTHI_DGV_DH_CO_STT(QTStringConst.VITRI_CUOICUNG.STR,QTStringConst.THEO_ID_KHACHHANG.STR,intIdBangKH);
 	  btnXTimKiemTheoTenKH.Enabled=false;
 	  STR_NUT_VUABAM=QTStringConst.NUT_TIM_THEO_TEN.STR;
@@ -183,8 +185,8 @@ namespace THUOCBAC.FormDanhSach {
 	  frm.FormBorderStyle=FormBorderStyle.FixedToolWindow;
 	  frm.ShowDialog();
 
-	  if(!QTAppInfo.STATIC_STR_ID_CHOOSE.Equals("")) {
-		txtXNameCustomer.Text=QTAppInfo.STATIC_STR_NAME_CHOOSE;
+	  if(!QTAppTemp.STATIC_STR_NAME_CHOOSE.Equals("")) {
+		txtXNameCustomer.Text=QTAppTemp.STATIC_STR_NAME_CHOOSE;
 		btnXTimKiemTheoTenKH.Enabled=true;
 	  } else
 		btnXTimKiemTheoTenKH.Enabled=false;

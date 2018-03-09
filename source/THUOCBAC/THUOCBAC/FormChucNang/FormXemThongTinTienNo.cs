@@ -45,14 +45,21 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void btnXXacNhanTienNo_Click(object sender,EventArgs e) {
-	  if(voidHIENTHI_TIENNOCU_RA_NUMBERIC!=null)
-		voidHIENTHI_TIENNOCU_RA_NUMBERIC(DEC_TIENNO_HIENTAI);
-	  Close();
+	  if(STR_LUUY_FORM_TRUOC.Equals("")) {
+		if(voidHIENTHI_TIENNOCU_RA_NUMBERIC!=null)
+		  voidHIENTHI_TIENNOCU_RA_NUMBERIC(DEC_TIENNO_HIENTAI);
+		this.Close();
+	  }
+	  if(STR_LUUY_FORM_TRUOC.Equals(QTStringConst.SUDUNG_APPTEMP.STR)) {
+
+		this.Close();
+
+	  }
 	}
 
 	private void FormXemThongTinTienNo_Load(object sender,EventArgs e) {
 	  labelXTenKhachHang.Text=STR_TENKHACHHANG;
-	  if(STR_LUUY_FORM_TRUOC.Equals("Ẩn nút Xác nhận"))
+	  if(STR_LUUY_FORM_TRUOC.Equals(QTStringConst.HIDE_NUT_XACNHAN.STR))
 		btnXXacNhanTienNo.Visible=false;
 	  labelXTienNoHienTai.Text=(DEC_TIENNO_HIENTAI==0)?"0 đ":DEC_TIENNO_HIENTAI.ToString("#,###.#")+" đ";
 	  voidHIENTHI_DGV_LICHSU_CO_STT();

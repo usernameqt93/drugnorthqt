@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace QTCommon {
   public static class QTStringConst {
 
-	//QTStringConst.TIENNO_HIENTAI.STR
+	//QTStringConst.SUDUNG_APPTEMP.STR
 
 	#region For reportviewer file
 
@@ -82,6 +82,14 @@ namespace QTCommon {
 	#endregion
 
 	#region Không nên translate vì nó đại diện cho 1 giá trị gì đó để equal
+
+	public static class SUDUNG_APPTEMP {
+	  public const string STR = "2018030915h55SuDungAppTemp";
+	}
+
+	public static class HIDE_NUT_XACNHAN {
+	  public const string STR = "Ẩn nút Xác nhận";
+	}
 
 	public static class KHONGGHIVAO {
 	  public const string STR = " --Không ghi vào--";

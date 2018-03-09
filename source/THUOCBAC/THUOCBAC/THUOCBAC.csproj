@@ -212,6 +212,12 @@
     <Compile Include="FormReport\FormReportDonXacNhan.Designer.cs">
       <DependentUpon>FormReportDonXacNhan.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReport\frmReportInDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReport\frmReportInDonHang.Designer.cs">
+      <DependentUpon>frmReportInDonHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReport\FormReportDonXacNhan.resx">
       <DependentUpon>FormReportDonXacNhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReport\frmReportInDonHang.resx">
+      <DependentUpon>frmReportInDonHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSplashScreen.resx">
       <DependentUpon>FormSplashScreen.cs</DependentUpon>

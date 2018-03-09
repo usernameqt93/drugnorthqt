@@ -26,6 +26,8 @@
 	  System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReportChiTietDonHang));
 	  this.reportViewerChiTietDonHang = new Microsoft.Reporting.WinForms.ReportViewer();
 	  this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+	  this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+	  this.grpNoiDungBanIn = new System.Windows.Forms.GroupBox();
 	  this.groupBoxThongTinThem = new System.Windows.Forms.GroupBox();
 	  this.btnXCongTienDonHangKH = new DevComponents.DotNetBar.ButtonX();
 	  this.groupBox14 = new System.Windows.Forms.GroupBox();
@@ -35,10 +37,21 @@
 	  this.groupBox13 = new System.Windows.Forms.GroupBox();
 	  this.txtXSDTKH = new DevComponents.DotNetBar.Controls.TextBoxX();
 	  this.groupBox12 = new System.Windows.Forms.GroupBox();
+	  this.btnXChooseCustomer = new DevComponents.DotNetBar.ButtonX();
+	  this.txtXNameCustomer = new DevComponents.DotNetBar.Controls.TextBoxX();
 	  this.btnXThemTenKhachHang = new DevComponents.DotNetBar.ButtonX();
 	  this.comboBoxExTenKhachHang = new DevComponents.DotNetBar.Controls.ComboBoxEx();
 	  this.comboItem5 = new DevComponents.Editors.ComboItem();
 	  this.comboItem6 = new DevComponents.Editors.ComboItem();
+	  this.groupBoxChucNang = new System.Windows.Forms.GroupBox();
+	  this.groupBox15 = new System.Windows.Forms.GroupBox();
+	  this.dateTimeInputThoiGian = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+	  this.groupBox10 = new System.Windows.Forms.GroupBox();
+	  this.comboBoxExTuyChonMauGiay = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+	  this.comboItem1 = new DevComponents.Editors.ComboItem();
+	  this.comboItem2 = new DevComponents.Editors.ComboItem();
+	  this.comboItem3 = new DevComponents.Editors.ComboItem();
+	  this.btnXHienThi = new DevComponents.DotNetBar.ButtonX();
 	  this.grpThongTin = new System.Windows.Forms.GroupBox();
 	  this.groupBox9 = new System.Windows.Forms.GroupBox();
 	  this.txtXDienThoaiBan = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -52,25 +65,18 @@
 	  this.txtXNgheNghiep = new DevComponents.DotNetBar.Controls.TextBoxX();
 	  this.groupBox4 = new System.Windows.Forms.GroupBox();
 	  this.txtXNhaThuoc = new DevComponents.DotNetBar.Controls.TextBoxX();
-	  this.groupBoxChucNang = new System.Windows.Forms.GroupBox();
-	  this.groupBox15 = new System.Windows.Forms.GroupBox();
-	  this.dateTimeInputThoiGian = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
-	  this.groupBox10 = new System.Windows.Forms.GroupBox();
-	  this.comboBoxExTuyChonMauGiay = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-	  this.comboItem1 = new DevComponents.Editors.ComboItem();
-	  this.comboItem2 = new DevComponents.Editors.ComboItem();
-	  this.comboItem3 = new DevComponents.Editors.ComboItem();
-	  this.btnXHienThi = new DevComponents.DotNetBar.ButtonX();
-	  this.grpNoiDungBanIn = new System.Windows.Forms.GroupBox();
-	  this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-	  this.txtXNameCustomer = new DevComponents.DotNetBar.Controls.TextBoxX();
-	  this.btnXChooseCustomer = new DevComponents.DotNetBar.ButtonX();
 	  this.panelEx1.SuspendLayout();
+	  this.tableLayoutPanel1.SuspendLayout();
+	  this.grpNoiDungBanIn.SuspendLayout();
 	  this.groupBoxThongTinThem.SuspendLayout();
 	  this.groupBox14.SuspendLayout();
 	  ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTienNo)).BeginInit();
 	  this.groupBox13.SuspendLayout();
 	  this.groupBox12.SuspendLayout();
+	  this.groupBoxChucNang.SuspendLayout();
+	  this.groupBox15.SuspendLayout();
+	  ((System.ComponentModel.ISupportInitialize)(this.dateTimeInputThoiGian)).BeginInit();
+	  this.groupBox10.SuspendLayout();
 	  this.grpThongTin.SuspendLayout();
 	  this.groupBox9.SuspendLayout();
 	  this.groupBox8.SuspendLayout();
@@ -78,12 +84,6 @@
 	  this.groupBox6.SuspendLayout();
 	  this.groupBox5.SuspendLayout();
 	  this.groupBox4.SuspendLayout();
-	  this.groupBoxChucNang.SuspendLayout();
-	  this.groupBox15.SuspendLayout();
-	  ((System.ComponentModel.ISupportInitialize)(this.dateTimeInputThoiGian)).BeginInit();
-	  this.groupBox10.SuspendLayout();
-	  this.grpNoiDungBanIn.SuspendLayout();
-	  this.tableLayoutPanel1.SuspendLayout();
 	  this.SuspendLayout();
 	  // 
 	  // reportViewerChiTietDonHang
@@ -91,7 +91,7 @@
 	  this.reportViewerChiTietDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.reportViewerChiTietDonHang.Location = new System.Drawing.Point(3, 16);
 	  this.reportViewerChiTietDonHang.Name = "reportViewerChiTietDonHang";
-	  this.reportViewerChiTietDonHang.Size = new System.Drawing.Size(971, 753);
+	  this.reportViewerChiTietDonHang.Size = new System.Drawing.Size(971, 650);
 	  this.reportViewerChiTietDonHang.TabIndex = 0;
 	  // 
 	  // panelEx1
@@ -102,7 +102,7 @@
 	  this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.panelEx1.Location = new System.Drawing.Point(0, 0);
 	  this.panelEx1.Name = "panelEx1";
-	  this.panelEx1.Size = new System.Drawing.Size(1401, 818);
+	  this.panelEx1.Size = new System.Drawing.Size(1401, 715);
 	  this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
 	  this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
 	  this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -111,6 +111,42 @@
 	  this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
 	  this.panelEx1.Style.GradientAngle = 90;
 	  this.panelEx1.TabIndex = 1;
+	  // 
+	  // tableLayoutPanel1
+	  // 
+	  this.tableLayoutPanel1.ColumnCount = 4;
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 358F));
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+	  this.tableLayoutPanel1.Controls.Add(this.grpNoiDungBanIn, 2, 1);
+	  this.tableLayoutPanel1.Controls.Add(this.groupBoxThongTinThem, 1, 3);
+	  this.tableLayoutPanel1.Controls.Add(this.groupBoxChucNang, 1, 1);
+	  this.tableLayoutPanel1.Controls.Add(this.grpThongTin, 1, 2);
+	  this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+	  this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+	  this.tableLayoutPanel1.RowCount = 6;
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 147F));
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 275F));
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+	  this.tableLayoutPanel1.Size = new System.Drawing.Size(1401, 715);
+	  this.tableLayoutPanel1.TabIndex = 5;
+	  // 
+	  // grpNoiDungBanIn
+	  // 
+	  this.grpNoiDungBanIn.Controls.Add(this.reportViewerChiTietDonHang);
+	  this.grpNoiDungBanIn.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.grpNoiDungBanIn.Location = new System.Drawing.Point(391, 23);
+	  this.grpNoiDungBanIn.Name = "grpNoiDungBanIn";
+	  this.tableLayoutPanel1.SetRowSpan(this.grpNoiDungBanIn, 4);
+	  this.grpNoiDungBanIn.Size = new System.Drawing.Size(977, 669);
+	  this.grpNoiDungBanIn.TabIndex = 0;
+	  this.grpNoiDungBanIn.TabStop = false;
+	  this.grpNoiDungBanIn.Text = "Nội dung bản in ( khi in ra, nội dung trên giấy sẽ giống hệt hình ở dưới )";
 	  // 
 	  // groupBoxThongTinThem
 	  // 
@@ -121,7 +157,7 @@
 	  this.groupBoxThongTinThem.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.groupBoxThongTinThem.Location = new System.Drawing.Point(33, 420);
 	  this.groupBoxThongTinThem.Name = "groupBoxThongTinThem";
-	  this.groupBoxThongTinThem.Size = new System.Drawing.Size(352, 304);
+	  this.groupBoxThongTinThem.Size = new System.Drawing.Size(352, 269);
 	  this.groupBoxThongTinThem.TabIndex = 4;
 	  this.groupBoxThongTinThem.TabStop = false;
 	  this.groupBoxThongTinThem.Text = "Thông tin thêm";
@@ -132,7 +168,7 @@
 	  this.btnXCongTienDonHangKH.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 	  this.btnXCongTienDonHangKH.Enabled = false;
 	  this.btnXCongTienDonHangKH.Image = global::THUOCBAC.Properties.Resources.ok;
-	  this.btnXCongTienDonHangKH.Location = new System.Drawing.Point(6, 254);
+	  this.btnXCongTienDonHangKH.Location = new System.Drawing.Point(6, 217);
 	  this.btnXCongTienDonHangKH.Name = "btnXCongTienDonHangKH";
 	  this.btnXCongTienDonHangKH.Size = new System.Drawing.Size(340, 41);
 	  this.btnXCongTienDonHangKH.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -145,7 +181,7 @@
 	  this.groupBox14.Controls.Add(this.btnXXemThongTinNo);
 	  this.groupBox14.Controls.Add(this.labelX1);
 	  this.groupBox14.Controls.Add(this.numericUpDownTienNo);
-	  this.groupBox14.Location = new System.Drawing.Point(6, 141);
+	  this.groupBox14.Location = new System.Drawing.Point(6, 104);
 	  this.groupBox14.Name = "groupBox14";
 	  this.groupBox14.Size = new System.Drawing.Size(340, 51);
 	  this.groupBox14.TabIndex = 1;
@@ -201,7 +237,7 @@
 	  // groupBox13
 	  // 
 	  this.groupBox13.Controls.Add(this.txtXSDTKH);
-	  this.groupBox13.Location = new System.Drawing.Point(6, 198);
+	  this.groupBox13.Location = new System.Drawing.Point(6, 161);
 	  this.groupBox13.Name = "groupBox13";
 	  this.groupBox13.Size = new System.Drawing.Size(340, 50);
 	  this.groupBox13.TabIndex = 1;
@@ -229,10 +265,37 @@
 	  this.groupBox12.Controls.Add(this.comboBoxExTenKhachHang);
 	  this.groupBox12.Location = new System.Drawing.Point(6, 19);
 	  this.groupBox12.Name = "groupBox12";
-	  this.groupBox12.Size = new System.Drawing.Size(340, 101);
+	  this.groupBox12.Size = new System.Drawing.Size(340, 79);
 	  this.groupBox12.TabIndex = 0;
 	  this.groupBox12.TabStop = false;
 	  this.groupBox12.Text = "Tên khách hàng (chọn dưới đây)";
+	  // 
+	  // btnXChooseCustomer
+	  // 
+	  this.btnXChooseCustomer.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXChooseCustomer.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXChooseCustomer.Location = new System.Drawing.Point(208, 46);
+	  this.btnXChooseCustomer.Name = "btnXChooseCustomer";
+	  this.btnXChooseCustomer.Size = new System.Drawing.Size(75, 20);
+	  this.btnXChooseCustomer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXChooseCustomer.TabIndex = 3;
+	  this.btnXChooseCustomer.Text = "Chọn...";
+	  this.btnXChooseCustomer.Visible = false;
+	  this.btnXChooseCustomer.Click += new System.EventHandler(this.btnXChooseCustomer_Click);
+	  // 
+	  // txtXNameCustomer
+	  // 
+	  // 
+	  // 
+	  // 
+	  this.txtXNameCustomer.Border.Class = "TextBoxBorder";
+	  this.txtXNameCustomer.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.txtXNameCustomer.Enabled = false;
+	  this.txtXNameCustomer.Location = new System.Drawing.Point(7, 46);
+	  this.txtXNameCustomer.Name = "txtXNameCustomer";
+	  this.txtXNameCustomer.Size = new System.Drawing.Size(191, 20);
+	  this.txtXNameCustomer.TabIndex = 2;
+	  this.txtXNameCustomer.Visible = false;
 	  // 
 	  // btnXThemTenKhachHang
 	  // 
@@ -270,6 +333,135 @@
 	  // comboItem6
 	  // 
 	  this.comboItem6.Text = "Nguyễn Văn A";
+	  // 
+	  // groupBoxChucNang
+	  // 
+	  this.groupBoxChucNang.Controls.Add(this.groupBox15);
+	  this.groupBoxChucNang.Controls.Add(this.groupBox10);
+	  this.groupBoxChucNang.Controls.Add(this.btnXHienThi);
+	  this.groupBoxChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.groupBoxChucNang.Location = new System.Drawing.Point(33, 23);
+	  this.groupBoxChucNang.Name = "groupBoxChucNang";
+	  this.groupBoxChucNang.Size = new System.Drawing.Size(352, 141);
+	  this.groupBoxChucNang.TabIndex = 2;
+	  this.groupBoxChucNang.TabStop = false;
+	  this.groupBoxChucNang.Text = "Chức năng";
+	  // 
+	  // groupBox15
+	  // 
+	  this.groupBox15.Controls.Add(this.dateTimeInputThoiGian);
+	  this.groupBox15.Location = new System.Drawing.Point(197, 88);
+	  this.groupBox15.Name = "groupBox15";
+	  this.groupBox15.Size = new System.Drawing.Size(149, 51);
+	  this.groupBox15.TabIndex = 2;
+	  this.groupBox15.TabStop = false;
+	  this.groupBox15.Text = "Thời gian";
+	  // 
+	  // dateTimeInputThoiGian
+	  // 
+	  // 
+	  // 
+	  // 
+	  this.dateTimeInputThoiGian.BackgroundStyle.Class = "DateTimeInputBackground";
+	  this.dateTimeInputThoiGian.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.dateTimeInputThoiGian.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
+	  this.dateTimeInputThoiGian.ButtonDropDown.Visible = true;
+	  this.dateTimeInputThoiGian.CustomFormat = "dd/ MM/ yyyy";
+	  this.dateTimeInputThoiGian.Format = DevComponents.Editors.eDateTimePickerFormat.Custom;
+	  this.dateTimeInputThoiGian.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Center;
+	  this.dateTimeInputThoiGian.IsPopupCalendarOpen = false;
+	  this.dateTimeInputThoiGian.Location = new System.Drawing.Point(6, 19);
+	  // 
+	  // 
+	  // 
+	  this.dateTimeInputThoiGian.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+	  // 
+	  // 
+	  // 
+	  this.dateTimeInputThoiGian.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.dateTimeInputThoiGian.MonthCalendar.CalendarDimensions = new System.Drawing.Size(1, 1);
+	  this.dateTimeInputThoiGian.MonthCalendar.ClearButtonVisible = true;
+	  // 
+	  // 
+	  // 
+	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.dateTimeInputThoiGian.MonthCalendar.DisplayMonth = new System.DateTime(2017, 5, 1, 0, 0, 0, 0);
+	  this.dateTimeInputThoiGian.MonthCalendar.FirstDayOfWeek = System.DayOfWeek.Monday;
+	  this.dateTimeInputThoiGian.MonthCalendar.MarkedDates = new System.DateTime[0];
+	  this.dateTimeInputThoiGian.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+	  // 
+	  // 
+	  // 
+	  this.dateTimeInputThoiGian.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+	  this.dateTimeInputThoiGian.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+	  this.dateTimeInputThoiGian.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+	  this.dateTimeInputThoiGian.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.dateTimeInputThoiGian.MonthCalendar.TodayButtonVisible = true;
+	  this.dateTimeInputThoiGian.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
+	  this.dateTimeInputThoiGian.Name = "dateTimeInputThoiGian";
+	  this.dateTimeInputThoiGian.Size = new System.Drawing.Size(137, 20);
+	  this.dateTimeInputThoiGian.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.dateTimeInputThoiGian.TabIndex = 0;
+	  this.dateTimeInputThoiGian.Value = new System.DateTime(2017, 5, 22, 18, 42, 25, 0);
+	  // 
+	  // groupBox10
+	  // 
+	  this.groupBox10.Controls.Add(this.comboBoxExTuyChonMauGiay);
+	  this.groupBox10.Location = new System.Drawing.Point(6, 88);
+	  this.groupBox10.Name = "groupBox10";
+	  this.groupBox10.Size = new System.Drawing.Size(185, 51);
+	  this.groupBox10.TabIndex = 7;
+	  this.groupBox10.TabStop = false;
+	  this.groupBox10.Text = "Tùy chọn mẫu giấy";
+	  // 
+	  // comboBoxExTuyChonMauGiay
+	  // 
+	  this.comboBoxExTuyChonMauGiay.DisplayMember = "Text";
+	  this.comboBoxExTuyChonMauGiay.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+	  this.comboBoxExTuyChonMauGiay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+	  this.comboBoxExTuyChonMauGiay.FormattingEnabled = true;
+	  this.comboBoxExTuyChonMauGiay.ItemHeight = 14;
+	  this.comboBoxExTuyChonMauGiay.Items.AddRange(new object[] {
+            this.comboItem1,
+            this.comboItem2,
+            this.comboItem3});
+	  this.comboBoxExTuyChonMauGiay.Location = new System.Drawing.Point(6, 19);
+	  this.comboBoxExTuyChonMauGiay.Name = "comboBoxExTuyChonMauGiay";
+	  this.comboBoxExTuyChonMauGiay.Size = new System.Drawing.Size(173, 20);
+	  this.comboBoxExTuyChonMauGiay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.comboBoxExTuyChonMauGiay.TabIndex = 0;
+	  // 
+	  // comboItem1
+	  // 
+	  this.comboItem1.Text = "Khổ A4";
+	  // 
+	  // comboItem2
+	  // 
+	  this.comboItem2.Text = "Khổ A5";
+	  // 
+	  // comboItem3
+	  // 
+	  this.comboItem3.Text = "Khổ A4 kiểu 2";
+	  // 
+	  // btnXHienThi
+	  // 
+	  this.btnXHienThi.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXHienThi.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXHienThi.Image = global::THUOCBAC.Properties.Resources.print;
+	  this.btnXHienThi.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+	  this.btnXHienThi.Location = new System.Drawing.Point(6, 19);
+	  this.btnXHienThi.Name = "btnXHienThi";
+	  this.btnXHienThi.Size = new System.Drawing.Size(340, 63);
+	  this.btnXHienThi.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXHienThi.TabIndex = 0;
+	  this.btnXHienThi.Text = "Hiển thị bản in xem trước";
+	  this.btnXHienThi.Click += new System.EventHandler(this.btnXHienThi_Click);
 	  // 
 	  // grpThongTin
 	  // 
@@ -431,215 +623,31 @@
 	  this.txtXNhaThuoc.TabIndex = 0;
 	  this.txtXNhaThuoc.Text = "KIM THOA";
 	  // 
-	  // groupBoxChucNang
-	  // 
-	  this.groupBoxChucNang.Controls.Add(this.groupBox15);
-	  this.groupBoxChucNang.Controls.Add(this.groupBox10);
-	  this.groupBoxChucNang.Controls.Add(this.btnXHienThi);
-	  this.groupBoxChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBoxChucNang.Location = new System.Drawing.Point(33, 23);
-	  this.groupBoxChucNang.Name = "groupBoxChucNang";
-	  this.groupBoxChucNang.Size = new System.Drawing.Size(352, 141);
-	  this.groupBoxChucNang.TabIndex = 2;
-	  this.groupBoxChucNang.TabStop = false;
-	  this.groupBoxChucNang.Text = "Chức năng";
-	  // 
-	  // groupBox15
-	  // 
-	  this.groupBox15.Controls.Add(this.dateTimeInputThoiGian);
-	  this.groupBox15.Location = new System.Drawing.Point(197, 88);
-	  this.groupBox15.Name = "groupBox15";
-	  this.groupBox15.Size = new System.Drawing.Size(149, 51);
-	  this.groupBox15.TabIndex = 2;
-	  this.groupBox15.TabStop = false;
-	  this.groupBox15.Text = "Thời gian";
-	  // 
-	  // dateTimeInputThoiGian
-	  // 
-	  // 
-	  // 
-	  // 
-	  this.dateTimeInputThoiGian.BackgroundStyle.Class = "DateTimeInputBackground";
-	  this.dateTimeInputThoiGian.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.dateTimeInputThoiGian.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
-	  this.dateTimeInputThoiGian.ButtonDropDown.Visible = true;
-	  this.dateTimeInputThoiGian.CustomFormat = "dd/ MM/ yyyy";
-	  this.dateTimeInputThoiGian.Format = DevComponents.Editors.eDateTimePickerFormat.Custom;
-	  this.dateTimeInputThoiGian.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Center;
-	  this.dateTimeInputThoiGian.IsPopupCalendarOpen = false;
-	  this.dateTimeInputThoiGian.Location = new System.Drawing.Point(6, 19);
-	  // 
-	  // 
-	  // 
-	  this.dateTimeInputThoiGian.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-	  // 
-	  // 
-	  // 
-	  this.dateTimeInputThoiGian.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.dateTimeInputThoiGian.MonthCalendar.CalendarDimensions = new System.Drawing.Size(1, 1);
-	  this.dateTimeInputThoiGian.MonthCalendar.ClearButtonVisible = true;
-	  // 
-	  // 
-	  // 
-	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-	  this.dateTimeInputThoiGian.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.dateTimeInputThoiGian.MonthCalendar.DisplayMonth = new System.DateTime(2017, 5, 1, 0, 0, 0, 0);
-	  this.dateTimeInputThoiGian.MonthCalendar.FirstDayOfWeek = System.DayOfWeek.Monday;
-	  this.dateTimeInputThoiGian.MonthCalendar.MarkedDates = new System.DateTime[0];
-	  this.dateTimeInputThoiGian.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-	  // 
-	  // 
-	  // 
-	  this.dateTimeInputThoiGian.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-	  this.dateTimeInputThoiGian.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-	  this.dateTimeInputThoiGian.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-	  this.dateTimeInputThoiGian.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.dateTimeInputThoiGian.MonthCalendar.TodayButtonVisible = true;
-	  this.dateTimeInputThoiGian.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
-	  this.dateTimeInputThoiGian.Name = "dateTimeInputThoiGian";
-	  this.dateTimeInputThoiGian.Size = new System.Drawing.Size(137, 20);
-	  this.dateTimeInputThoiGian.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.dateTimeInputThoiGian.TabIndex = 0;
-	  this.dateTimeInputThoiGian.Value = new System.DateTime(2017, 5, 22, 18, 42, 25, 0);
-	  // 
-	  // groupBox10
-	  // 
-	  this.groupBox10.Controls.Add(this.comboBoxExTuyChonMauGiay);
-	  this.groupBox10.Location = new System.Drawing.Point(6, 88);
-	  this.groupBox10.Name = "groupBox10";
-	  this.groupBox10.Size = new System.Drawing.Size(185, 51);
-	  this.groupBox10.TabIndex = 7;
-	  this.groupBox10.TabStop = false;
-	  this.groupBox10.Text = "Tùy chọn mẫu giấy";
-	  // 
-	  // comboBoxExTuyChonMauGiay
-	  // 
-	  this.comboBoxExTuyChonMauGiay.DisplayMember = "Text";
-	  this.comboBoxExTuyChonMauGiay.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-	  this.comboBoxExTuyChonMauGiay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-	  this.comboBoxExTuyChonMauGiay.FormattingEnabled = true;
-	  this.comboBoxExTuyChonMauGiay.ItemHeight = 14;
-	  this.comboBoxExTuyChonMauGiay.Items.AddRange(new object[] {
-            this.comboItem1,
-            this.comboItem2,
-            this.comboItem3});
-	  this.comboBoxExTuyChonMauGiay.Location = new System.Drawing.Point(6, 19);
-	  this.comboBoxExTuyChonMauGiay.Name = "comboBoxExTuyChonMauGiay";
-	  this.comboBoxExTuyChonMauGiay.Size = new System.Drawing.Size(173, 20);
-	  this.comboBoxExTuyChonMauGiay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.comboBoxExTuyChonMauGiay.TabIndex = 0;
-	  // 
-	  // comboItem1
-	  // 
-	  this.comboItem1.Text = "Khổ A4";
-	  // 
-	  // comboItem2
-	  // 
-	  this.comboItem2.Text = "Khổ A5";
-	  // 
-	  // comboItem3
-	  // 
-	  this.comboItem3.Text = "Khổ A4 kiểu 2";
-	  // 
-	  // btnXHienThi
-	  // 
-	  this.btnXHienThi.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-	  this.btnXHienThi.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.btnXHienThi.Image = global::THUOCBAC.Properties.Resources.print;
-	  this.btnXHienThi.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-	  this.btnXHienThi.Location = new System.Drawing.Point(6, 19);
-	  this.btnXHienThi.Name = "btnXHienThi";
-	  this.btnXHienThi.Size = new System.Drawing.Size(340, 63);
-	  this.btnXHienThi.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.btnXHienThi.TabIndex = 0;
-	  this.btnXHienThi.Text = "Hiển thị bản in xem trước";
-	  this.btnXHienThi.Click += new System.EventHandler(this.btnXHienThi_Click);
-	  // 
-	  // grpNoiDungBanIn
-	  // 
-	  this.grpNoiDungBanIn.Controls.Add(this.reportViewerChiTietDonHang);
-	  this.grpNoiDungBanIn.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.grpNoiDungBanIn.Location = new System.Drawing.Point(391, 23);
-	  this.grpNoiDungBanIn.Name = "grpNoiDungBanIn";
-	  this.tableLayoutPanel1.SetRowSpan(this.grpNoiDungBanIn, 4);
-	  this.grpNoiDungBanIn.Size = new System.Drawing.Size(977, 772);
-	  this.grpNoiDungBanIn.TabIndex = 0;
-	  this.grpNoiDungBanIn.TabStop = false;
-	  this.grpNoiDungBanIn.Text = "Nội dung bản in ( khi in ra, nội dung trên giấy sẽ giống hệt hình ở dưới )";
-	  // 
-	  // tableLayoutPanel1
-	  // 
-	  this.tableLayoutPanel1.ColumnCount = 4;
-	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 358F));
-	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-	  this.tableLayoutPanel1.Controls.Add(this.grpNoiDungBanIn, 2, 1);
-	  this.tableLayoutPanel1.Controls.Add(this.groupBoxThongTinThem, 1, 3);
-	  this.tableLayoutPanel1.Controls.Add(this.groupBoxChucNang, 1, 1);
-	  this.tableLayoutPanel1.Controls.Add(this.grpThongTin, 1, 2);
-	  this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-	  this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-	  this.tableLayoutPanel1.RowCount = 6;
-	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 147F));
-	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 310F));
-	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-	  this.tableLayoutPanel1.Size = new System.Drawing.Size(1401, 818);
-	  this.tableLayoutPanel1.TabIndex = 5;
-	  // 
-	  // txtXNameCustomer
-	  // 
-	  // 
-	  // 
-	  // 
-	  this.txtXNameCustomer.Border.Class = "TextBoxBorder";
-	  this.txtXNameCustomer.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.txtXNameCustomer.Enabled = false;
-	  this.txtXNameCustomer.Location = new System.Drawing.Point(7, 46);
-	  this.txtXNameCustomer.Name = "txtXNameCustomer";
-	  this.txtXNameCustomer.Size = new System.Drawing.Size(191, 20);
-	  this.txtXNameCustomer.TabIndex = 2;
-	  // 
-	  // btnXChooseCustomer
-	  // 
-	  this.btnXChooseCustomer.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-	  this.btnXChooseCustomer.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.btnXChooseCustomer.Location = new System.Drawing.Point(208, 46);
-	  this.btnXChooseCustomer.Name = "btnXChooseCustomer";
-	  this.btnXChooseCustomer.Size = new System.Drawing.Size(75, 20);
-	  this.btnXChooseCustomer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.btnXChooseCustomer.TabIndex = 3;
-	  this.btnXChooseCustomer.Text = "Chọn...";
-	  this.btnXChooseCustomer.Click += new System.EventHandler(this.btnXChooseCustomer_Click);
-	  // 
 	  // FormReportChiTietDonHang
 	  // 
 	  this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 	  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-	  this.ClientSize = new System.Drawing.Size(1401, 818);
+	  this.ClientSize = new System.Drawing.Size(1401, 715);
 	  this.Controls.Add(this.panelEx1);
 	  this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-	  this.MinimumSize = new System.Drawing.Size(1357, 712);
+	  this.MinimumSize = new System.Drawing.Size(1417, 754);
 	  this.Name = "FormReportChiTietDonHang";
 	  this.ShowInTaskbar = false;
 	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 	  this.Text = "In đơn hàng";
 	  this.Load += new System.EventHandler(this.FormReportChiTietDonHang_Load);
 	  this.panelEx1.ResumeLayout(false);
+	  this.tableLayoutPanel1.ResumeLayout(false);
+	  this.grpNoiDungBanIn.ResumeLayout(false);
 	  this.groupBoxThongTinThem.ResumeLayout(false);
 	  this.groupBox14.ResumeLayout(false);
 	  ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTienNo)).EndInit();
 	  this.groupBox13.ResumeLayout(false);
 	  this.groupBox12.ResumeLayout(false);
+	  this.groupBoxChucNang.ResumeLayout(false);
+	  this.groupBox15.ResumeLayout(false);
+	  ((System.ComponentModel.ISupportInitialize)(this.dateTimeInputThoiGian)).EndInit();
+	  this.groupBox10.ResumeLayout(false);
 	  this.grpThongTin.ResumeLayout(false);
 	  this.groupBox9.ResumeLayout(false);
 	  this.groupBox8.ResumeLayout(false);
@@ -647,12 +655,6 @@
 	  this.groupBox6.ResumeLayout(false);
 	  this.groupBox5.ResumeLayout(false);
 	  this.groupBox4.ResumeLayout(false);
-	  this.groupBoxChucNang.ResumeLayout(false);
-	  this.groupBox15.ResumeLayout(false);
-	  ((System.ComponentModel.ISupportInitialize)(this.dateTimeInputThoiGian)).EndInit();
-	  this.groupBox10.ResumeLayout(false);
-	  this.grpNoiDungBanIn.ResumeLayout(false);
-	  this.tableLayoutPanel1.ResumeLayout(false);
 	  this.ResumeLayout(false);
 
 	}

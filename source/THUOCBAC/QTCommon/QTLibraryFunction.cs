@@ -86,7 +86,7 @@ namespace QTCommon {
 		  }
 		}
 	  }
-	  return -1311;
+	  return QTDbConst.SODACBIET.INT;
 	}
 
 	public static bool STATIC_BOOL_VALUE_EXIST_IN_COLUMN(string _strValue,string _strIdColumn,DataTable _dtMain) {
