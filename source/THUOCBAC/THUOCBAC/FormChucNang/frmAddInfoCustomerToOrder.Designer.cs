@@ -34,7 +34,7 @@
 	  this.btnXShowDetailDebt = new DevComponents.DotNetBar.ButtonX();
 	  this.numericUpDownTienNo = new System.Windows.Forms.NumericUpDown();
 	  this.groupBox3 = new System.Windows.Forms.GroupBox();
-	  this.checkBoxX1 = new DevComponents.DotNetBar.Controls.CheckBoxX();
+	  this.chkDisplayPhone = new DevComponents.DotNetBar.Controls.CheckBoxX();
 	  this.txtPhone = new DevComponents.DotNetBar.Controls.TextBoxX();
 	  this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
 	  this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -139,7 +139,7 @@
 	  this.groupBox1.Size = new System.Drawing.Size(340, 54);
 	  this.groupBox1.TabIndex = 1;
 	  this.groupBox1.TabStop = false;
-	  this.groupBox1.Text = "Tên khách hàng";
+	  this.groupBox1.Text = "Tên khách hàng (Chọn dưới đây)";
 	  // 
 	  // btnXChooseCustomer
 	  // 
@@ -218,7 +218,7 @@
 	  // groupBox3
 	  // 
 	  this.tlpMain.SetColumnSpan(this.groupBox3, 3);
-	  this.groupBox3.Controls.Add(this.checkBoxX1);
+	  this.groupBox3.Controls.Add(this.chkDisplayPhone);
 	  this.groupBox3.Controls.Add(this.txtPhone);
 	  this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.groupBox3.Location = new System.Drawing.Point(36, 304);
@@ -228,18 +228,18 @@
 	  this.groupBox3.TabStop = false;
 	  this.groupBox3.Text = "Số điện thoại khách hàng";
 	  // 
-	  // checkBoxX1
+	  // chkDisplayPhone
 	  // 
 	  // 
 	  // 
 	  // 
-	  this.checkBoxX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.checkBoxX1.Location = new System.Drawing.Point(7, 53);
-	  this.checkBoxX1.Name = "checkBoxX1";
-	  this.checkBoxX1.Size = new System.Drawing.Size(242, 23);
-	  this.checkBoxX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.checkBoxX1.TabIndex = 1;
-	  this.checkBoxX1.Text = "Hiển thị số điện thoại in trên đơn hàng";
+	  this.chkDisplayPhone.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.chkDisplayPhone.Location = new System.Drawing.Point(7, 53);
+	  this.chkDisplayPhone.Name = "chkDisplayPhone";
+	  this.chkDisplayPhone.Size = new System.Drawing.Size(242, 23);
+	  this.chkDisplayPhone.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.chkDisplayPhone.TabIndex = 1;
+	  this.chkDisplayPhone.Text = "Hiển thị số điện thoại in trên đơn hàng";
 	  // 
 	  // txtPhone
 	  // 
@@ -443,7 +443,7 @@
 	private System.Windows.Forms.GroupBox groupBox3;
 	private DevComponents.DotNetBar.Controls.TextBoxX txtPhone;
 	private DevComponents.DotNetBar.ButtonX buttonX4;
-	private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX1;
+	private DevComponents.DotNetBar.Controls.CheckBoxX chkDisplayPhone;
 	private System.Windows.Forms.GroupBox groupBox4;
 	private System.Windows.Forms.GroupBox groupBox5;
 	private System.Windows.Forms.GroupBox groupBox6;

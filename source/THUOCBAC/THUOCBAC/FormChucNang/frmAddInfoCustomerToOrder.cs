@@ -80,7 +80,7 @@ namespace THUOCBAC.FormChucNang {
 	  mInfoOrder.decCopyNumber=nudCopyNumber.Value;
 	  mInfoOrder.strCustomerName=(txtXNameCustomer.Text.Equals("")) ?" ":txtXNameCustomer.Text;
 	  mInfoOrder.decDebtNumber=numericUpDownTienNo.Value;
-	  mInfoOrder.strPhone=(txtPhone.Text.Equals("")) ?" ":txtPhone.Text;
+	  mInfoOrder.strPhone=(txtPhone.Text.Equals("")||!chkDisplayPhone.Checked) ?" ":txtPhone.Text;
 
 	  mInfoOrder.decSumMoney=DEC_TONGTIEN;
 	  mInfoOrder.dtDetailOrder=DT_CHITIET_DONHANG;

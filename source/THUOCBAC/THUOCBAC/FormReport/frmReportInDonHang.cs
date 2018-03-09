@@ -147,6 +147,18 @@ namespace THUOCBAC.FormReport {
 	}
 
 	private void btnXPrint_Click(object sender,EventArgs e) {
+	  //reportViewerChiTietDonHang.PrinterSettings.Copies=(short)M_INFO_ORDER.decCopyNumber;
+
+	  //ShowThePrintDialog printD = new ShowThePrintDialog(printDialog1.ShowDialog);
+
+	  //this.BeginInvoke(printD);
+	  //reportViewerChiTietDonHang.PrintDialog();
+	  //string fdgfd = "";
+	  timer1.Start();
+	}
+
+	private void timer1_Tick(object sender,EventArgs e) {
+	  timer1.Stop();
 	  reportViewerChiTietDonHang.PrinterSettings.Copies=(short)M_INFO_ORDER.decCopyNumber;
 	  reportViewerChiTietDonHang.PrintDialog();
 	}
