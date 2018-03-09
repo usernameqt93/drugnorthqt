@@ -187,23 +187,31 @@ namespace THUOCBAC.FormChucNang {
 		  decimal decSoLuongViThuoc = Convert.ToDecimal(numericSoLuongVT.Value);
 		  decimal decDonGia = Convert.ToDecimal(numericDonGiaVT.Value);
 		  if(intMaChiTietDHCuaTenViThuocThem>0) {
-			#region nếu có tên vị thuốc này trong đơn hàng rồi thì chỉ sửa lại giá, số lượng của nó thôi
-			string strTrangThaiCapNhatGiaViThuocVaoDH = BL_DONHANG.strCapNhatGiaCaViThuocVaoDH(ref strLoi,intMaChiTietDHCuaTenViThuocThem,decDonGia,decSoLuongViThuoc);
-			if(strTrangThaiCapNhatGiaViThuocVaoDH.Equals("false")&&!strLoi.Equals("2"))
-			  MessageBox.Show("Trạng thái cập nhật thông tin vị thuốc vào đơn hàng lỗi ("+strLoi+")");
-			else {
-			  voidHIENTHI_DGV_CO_STT();
-			  voidCAPNHAT_TONGTIEN_DH_THEO_MADONHANG();
-			  voidTRODEN_VITRI_CUOI_DGV();
-			  MessageBox.Show("Vị thuốc '"+strTenViThuocNayDaVietHoaChuCaiDau
-				+"' đã được thêm vào đơn hàng lúc trước, giờ đã được sửa thành đơn giá '"+decDonGia+"' vnđ , số lượng '"+decSoLuongViThuoc+" Kg'");
-			  voidCAPNHAT_TRANGTHAI_HOATDONG("Bạn vừa thêm thông tin vị thuốc '"+strTenViThuocNayDaVietHoaChuCaiDau
-				+"'   đơn giá '"+decDonGia+"' vnđ , số lượng '"+decSoLuongViThuoc+" Kg' , thành tiền '"+(decDonGia*decSoLuongViThuoc)+"' vào đơn hàng");
-			  btnXThemViThuocVaoDH.Enabled=false;
-			  btnXXemReportCTHD.Enabled=true;
-			}
-			#endregion
+			if(QTAppSetting.STATIC_STR_EDIT_WHILE_CO_TEN_TRONG_DONHANG.Equals(QTDbConst.KHONG_SUA_KHI_CO_TEN_TRONG_DONHANG.STR)) {
 
+			  #region nếu có tên vị thuốc này trong đơn hàng rồi thì thông báo người dùng là hãy sửa nó
+			  QTMessageConst.NAME_IS_EXIST_SHOULD_EDIT(strTenViThuocNayDaVietHoaChuCaiDau);
+			  #endregion
+
+			} else {
+
+			  #region nếu có tên vị thuốc này trong đơn hàng rồi thì chỉ sửa lại giá, số lượng của nó thôi
+			  string strTrangThaiCapNhatGiaViThuocVaoDH = BL_DONHANG.strCapNhatGiaCaViThuocVaoDH(ref strLoi,intMaChiTietDHCuaTenViThuocThem,decDonGia,decSoLuongViThuoc);
+			  if(strTrangThaiCapNhatGiaViThuocVaoDH.Equals("false")&&!strLoi.Equals("2"))
+				MessageBox.Show("Trạng thái cập nhật thông tin vị thuốc vào đơn hàng lỗi ("+strLoi+")");
+			  else {
+				voidHIENTHI_DGV_CO_STT();
+				voidCAPNHAT_TONGTIEN_DH_THEO_MADONHANG();
+				voidTRODEN_VITRI_CUOI_DGV();
+				MessageBox.Show("Vị thuốc '"+strTenViThuocNayDaVietHoaChuCaiDau
+				  +"' đã được thêm vào đơn hàng lúc trước, giờ đã được sửa thành đơn giá '"+decDonGia+"' vnđ , số lượng '"+decSoLuongViThuoc+" Kg'");
+				voidCAPNHAT_TRANGTHAI_HOATDONG("Bạn vừa thêm thông tin vị thuốc '"+strTenViThuocNayDaVietHoaChuCaiDau
+				  +"'   đơn giá '"+decDonGia+"' vnđ , số lượng '"+decSoLuongViThuoc+" Kg' , thành tiền '"+(decDonGia*decSoLuongViThuoc)+"' vào đơn hàng");
+				btnXThemViThuocVaoDH.Enabled=false;
+				btnXXemReportCTHD.Enabled=true;
+			  }
+			  #endregion
+			}
 		  } else {
 			#region nếu chưa có thì làm như dưới
 			int intMaViThuocCuaTenVTVuaDien = BL_DONHANG.intMaViThuocCuaTenViThuocNay(ref strLoi,ref strResult,strTenViThuocNayDaVietHoaChuCaiDau);

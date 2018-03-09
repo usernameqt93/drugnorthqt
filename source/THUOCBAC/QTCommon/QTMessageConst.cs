@@ -59,6 +59,10 @@ namespace QTCommon {
 	  MessageBox.Show("Sửa đơn giá và số lượng THÀNH CÔNG");
 	}
 
+	public static void NAME_IS_EXIST_SHOULD_EDIT(string _strName) {
+	  MessageBox.Show("'"+_strName+"' đã được bạn thêm vào đơn hàng trước đó !\nĐể sửa giá và số lượng, bạn hãy bấm chuột phải vào dòng '"+_strName+"' rồi chọn sửa !");
+	}
+
 	//QTMessageConst.CUSTOMER_NAME_ADD_SUCCESS
   }
 }

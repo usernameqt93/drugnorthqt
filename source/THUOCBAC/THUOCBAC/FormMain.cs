@@ -27,49 +27,6 @@ namespace THUOCBAC {
 
 	}
 
-	static int intViTriTab(TabControl TabControlTen,string strTenTab) {
-	  int temp=-1;
-	  for(int i=0;i<TabControlTen.TabPages.Count;i++) {
-		if(TabControlTen.TabPages[i].Text==strTenTab) {
-		  temp=i;
-		  break;
-		}
-	  }
-	  return temp;
-	}
-
-	public void voidTaoTab(TabControl tabControlChinh,string strTenTab,Form Form) {
-	  int intSoThuTuTab=intViTriTab(tabControlChinh,strTenTab);
-	  if(intSoThuTuTab>=0) {
-		//tabControlChinh.TabPages[intSoThuTuTab].Refresh();
-		//for(int i=1;i<intSoThuTuTab;i++) {
-		//  tabControlChinh.TabPages[intSoThuTuTab].Dispose();
-		//}
-		tabControlChinh.TabPages[intSoThuTuTab].Dispose();
-		//tabControlChinh.SelectedTab=tabControlChinh.TabPages[intSoThuTuTab];
-		//tabControlChinh.SelectedTab.Text=strTenTab;
-
-		TabPage TabPage=new TabPage { Text=strTenTab };
-		tabControlChinh.TabPages.Add(TabPage);
-		tabControlChinh.SelectedTab=TabPage;
-		Form.TopLevel=false;
-		Form.Parent=TabPage;
-		Form.Show();
-		Form.Dock=DockStyle.Fill;
-	  } else {
-		if(tabControlChinh.TabCount==2)
-		  tabControlChinh.TabPages[1].Dispose();
-		TabPage TabPage=new TabPage { Text=strTenTab };
-		tabControlChinh.TabPages.Add(TabPage);
-		tabControlChinh.SelectedTab=TabPage;
-		Form.TopLevel=false;
-		Form.Parent=TabPage;
-		//Form.StartPosition=FormStartPosition.CenterParent;
-		Form.Show();
-		Form.Dock=DockStyle.Fill;
-	  }
-	}
-
 	private void btnIDanhSachViThuoc_Click(object sender,EventArgs e) {
 	  FormDanhSach.FormDanhSachViThuoc formDanhSachViThuoc=new FormDanhSach.FormDanhSachViThuoc();
 	  voidTaoTab(tabControlChinh,CONST_STR_DS_VITHUOC,formDanhSachViThuoc);
@@ -137,15 +94,6 @@ namespace THUOCBAC {
 	  VOID_LOAD_APP_SETTING();
 	}
 
-	private void VOID_LOAD_APP_SETTING() {
-
-	  BangSettingModel mBangSetting = new BangSettingModel();
-	  BL_SETTING.VOID_LAYTHONGTIN_BANGSETTING(ref mBangSetting);
-	  QTAppSetting.STATIC_STR_CACHXEM_BANIN=mBangSetting.CACHXEM_BANIN;
-	  QTAppSetting.STATIC_STR_CACHVIET_DONHANG=mBangSetting.CACHVIET_DONHANG;
-	  QTAppSetting.STATIC_STR_VISIBLE_NUT_DELETE_VITHUOC=QTDbConst.ANNUT_XOA_VITHUOC.STR;
-	}
-
 	private void buttonItemXemGiaThuoc_Click(object sender,EventArgs e) {
 	  FormChucNang.FormXemGiaThuoc formXemGiaThuoc=new FormChucNang.FormXemGiaThuoc();
 	  formXemGiaThuoc.ShowDialog();
@@ -160,5 +108,63 @@ namespace THUOCBAC {
 	  FormCaiDat.frmLoginOption frm = new FormCaiDat.frmLoginOption();
 	  frm.ShowDialog();
 	}
+
+	#region Other
+
+	private void VOID_LOAD_APP_SETTING() {
+
+	  BangSettingModel mBangSetting = new BangSettingModel();
+	  BL_SETTING.VOID_LAYTHONGTIN_BANGSETTING(ref mBangSetting);
+	  QTAppSetting.STATIC_STR_CACHXEM_BANIN=mBangSetting.CACHXEM_BANIN;
+	  QTAppSetting.STATIC_STR_CACHVIET_DONHANG=mBangSetting.CACHVIET_DONHANG;
+	  QTAppSetting.STATIC_STR_VISIBLE_NUT_DELETE_VITHUOC=QTDbConst.ANNUT_XOA_VITHUOC.STR;
+	  QTAppSetting.STATIC_STR_EDIT_WHILE_CO_TEN_TRONG_DONHANG=QTDbConst.KHONG_SUA_KHI_CO_TEN_TRONG_DONHANG.STR;
+	}
+
+	static int intViTriTab(TabControl TabControlTen,string strTenTab) {
+	  int temp = -1;
+	  for(int i = 0;i<TabControlTen.TabPages.Count;i++) {
+		if(TabControlTen.TabPages[i].Text==strTenTab) {
+		  temp=i;
+		  break;
+		}
+	  }
+	  return temp;
+	}
+
+	public void voidTaoTab(TabControl tabControlChinh,string strTenTab,Form Form) {
+	  int intSoThuTuTab = intViTriTab(tabControlChinh,strTenTab);
+	  if(intSoThuTuTab>=0) {
+		//tabControlChinh.TabPages[intSoThuTuTab].Refresh();
+		//for(int i=1;i<intSoThuTuTab;i++) {
+		//  tabControlChinh.TabPages[intSoThuTuTab].Dispose();
+		//}
+		tabControlChinh.TabPages[intSoThuTuTab].Dispose();
+		//tabControlChinh.SelectedTab=tabControlChinh.TabPages[intSoThuTuTab];
+		//tabControlChinh.SelectedTab.Text=strTenTab;
+
+		TabPage TabPage = new TabPage { Text=strTenTab };
+		tabControlChinh.TabPages.Add(TabPage);
+		tabControlChinh.SelectedTab=TabPage;
+		Form.TopLevel=false;
+		Form.Parent=TabPage;
+		Form.Show();
+		Form.Dock=DockStyle.Fill;
+	  } else {
+		if(tabControlChinh.TabCount==2)
+		  tabControlChinh.TabPages[1].Dispose();
+		TabPage TabPage = new TabPage { Text=strTenTab };
+		tabControlChinh.TabPages.Add(TabPage);
+		tabControlChinh.SelectedTab=TabPage;
+		Form.TopLevel=false;
+		Form.Parent=TabPage;
+		//Form.StartPosition=FormStartPosition.CenterParent;
+		Form.Show();
+		Form.Dock=DockStyle.Fill;
+	  }
+	}
+
+	#endregion
+
   }
 }

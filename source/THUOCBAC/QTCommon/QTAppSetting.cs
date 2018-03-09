@@ -14,6 +14,8 @@ namespace QTCommon {
 
 	public static string STATIC_STR_VISIBLE_NUT_DELETE_VITHUOC { get; set; }
 
+	public static string STATIC_STR_EDIT_WHILE_CO_TEN_TRONG_DONHANG { get; set; }
+
 	//QTAppSetting.STATIC_STR_VISIBLE_NUT_DELETE_VITHUOC
   }
 }
