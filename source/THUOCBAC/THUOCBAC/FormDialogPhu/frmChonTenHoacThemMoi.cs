@@ -74,7 +74,25 @@ namespace THUOCBAC.FormDialogPhu {
 	}
 
 	private void btnXAddNew_Click(object sender,EventArgs e) {
+	  DataTable dtMain = new DataTable();
+	  dtMain=(DataTable)dgvXMain.DataSource;
+	  FormDialogPhu.frmThemTenVaoDanhSach frm = new FormDialogPhu.frmThemTenVaoDanhSach("Thêm tên khách hàng mới",491,157,dtMain);
+	  frm.ShowDialog();
+	  VOID_LOAD_FORM_FOCUS_ROW_ADD_SUCCESS();
+	}
 
+	private void VOID_LOAD_FORM_FOCUS_ROW_ADD_SUCCESS() {
+	  if(QTAppTemp.STATIC_STR_NAME_ADD_SUCCESS.Equals("")) {
+		VOID_LOAD_FORM_FOCUS_LAST_ROW();
+		return;
+	  }
+	  VOID_LOAD_FORM();
+	  DataTable dtMain = new DataTable();
+	  dtMain=(DataTable)dgvXMain.DataSource;
+	  int INT_INDEX_ROW_DANGCHON=QTLibraryFunction.STATIC_INT_INDEX_VALUE_EXIST_IN_COLUMN(QTAppTemp.STATIC_STR_NAME_ADD_SUCCESS,QTDbConst.TENKHACHHANG.STR,dtMain);
+	  if(INT_INDEX_ROW_DANGCHON==QTDbConst.SODACBIET.INT)
+		return;
+	  QTLibraryFunction.STATIC_VOID_FOCUS_ROW_X_IN_DGV(ref dgvXMain,QTDbConst.TENKHACHHANG.STR,INT_INDEX_ROW_DANGCHON);
 	}
 
 	private void dgvXMain_CellClick(object sender,DataGridViewCellEventArgs e) {

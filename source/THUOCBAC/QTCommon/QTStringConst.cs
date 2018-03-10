@@ -27,6 +27,26 @@ namespace QTCommon {
 
 	#region Có thể sửa đổi để translate
 
+	public static class CHITIET {
+	  public const string STR = "Chi tiết";
+	}
+
+	public static class SAUKHISUA {
+	  public const string STR = "Sau khi sửa";
+	}
+
+	public static class SOTIEN_SUA {
+	  public const string STR = "Số tiền sửa";
+	}
+
+	public static class TRUOCKHISUA {
+	  public const string STR = "Trước khi sửa";
+	}
+
+	public static class THOIGIAN {
+	  public const string STR = "Thời gian";
+	}
+
 	public static class THONGBAO {
 	  public const string STR = "Thông Báo";
 	}

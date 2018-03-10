@@ -36,7 +36,7 @@
 	  this.groupBox3 = new System.Windows.Forms.GroupBox();
 	  this.chkDisplayPhone = new DevComponents.DotNetBar.Controls.CheckBoxX();
 	  this.txtPhone = new DevComponents.DotNetBar.Controls.TextBoxX();
-	  this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
+	  this.btnXUpdateDebt = new DevComponents.DotNetBar.ButtonX();
 	  this.groupBox4 = new System.Windows.Forms.GroupBox();
 	  this.cboKhoGiay = new DevComponents.DotNetBar.Controls.ComboBoxEx();
 	  this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -89,7 +89,7 @@
 	  this.tlpMain.Controls.Add(this.groupBox1, 2, 5);
 	  this.tlpMain.Controls.Add(this.groupBox2, 2, 6);
 	  this.tlpMain.Controls.Add(this.groupBox3, 2, 7);
-	  this.tlpMain.Controls.Add(this.buttonX4, 2, 8);
+	  this.tlpMain.Controls.Add(this.btnXUpdateDebt, 2, 8);
 	  this.tlpMain.Controls.Add(this.groupBox4, 2, 1);
 	  this.tlpMain.Controls.Add(this.groupBox5, 3, 1);
 	  this.tlpMain.Controls.Add(this.groupBox6, 4, 1);
@@ -255,20 +255,21 @@
 	  this.txtPhone.TabIndex = 0;
 	  this.txtPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 	  // 
-	  // buttonX4
+	  // btnXUpdateDebt
 	  // 
-	  this.buttonX4.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-	  this.buttonX4.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-	  this.tlpMain.SetColumnSpan(this.buttonX4, 3);
-	  this.buttonX4.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.buttonX4.Enabled = false;
-	  this.buttonX4.Image = global::THUOCBAC.Properties.Resources.ok;
-	  this.buttonX4.Location = new System.Drawing.Point(36, 394);
-	  this.buttonX4.Name = "buttonX4";
-	  this.buttonX4.Size = new System.Drawing.Size(340, 41);
-	  this.buttonX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-	  this.buttonX4.TabIndex = 4;
-	  this.buttonX4.Text = "Cộng tiền đơn hàng này vào sổ";
+	  this.btnXUpdateDebt.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXUpdateDebt.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.tlpMain.SetColumnSpan(this.btnXUpdateDebt, 3);
+	  this.btnXUpdateDebt.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.btnXUpdateDebt.Enabled = false;
+	  this.btnXUpdateDebt.Image = global::THUOCBAC.Properties.Resources.ok;
+	  this.btnXUpdateDebt.Location = new System.Drawing.Point(36, 394);
+	  this.btnXUpdateDebt.Name = "btnXUpdateDebt";
+	  this.btnXUpdateDebt.Size = new System.Drawing.Size(340, 41);
+	  this.btnXUpdateDebt.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXUpdateDebt.TabIndex = 4;
+	  this.btnXUpdateDebt.Text = "Cộng tiền đơn hàng này vào sổ";
+	  this.btnXUpdateDebt.Click += new System.EventHandler(this.btnXUpdateDebt_Click);
 	  // 
 	  // groupBox4
 	  // 
@@ -442,7 +443,7 @@
 	private DevComponents.DotNetBar.ButtonX btnXShowDetailDebt;
 	private System.Windows.Forms.GroupBox groupBox3;
 	private DevComponents.DotNetBar.Controls.TextBoxX txtPhone;
-	private DevComponents.DotNetBar.ButtonX buttonX4;
+	private DevComponents.DotNetBar.ButtonX btnXUpdateDebt;
 	private DevComponents.DotNetBar.Controls.CheckBoxX chkDisplayPhone;
 	private System.Windows.Forms.GroupBox groupBox4;
 	private System.Windows.Forms.GroupBox groupBox5;

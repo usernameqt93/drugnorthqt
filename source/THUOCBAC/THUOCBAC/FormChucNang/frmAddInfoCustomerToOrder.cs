@@ -46,6 +46,10 @@ namespace THUOCBAC.FormChucNang {
 	  //numericUpDownTienNo.Value=QTAppTemp.STATIC_DEC_DEBT_CHOOSE;
 
 	  btnXShowDetailDebt.Enabled=true;
+	  if(txtXNameCustomer.Text.Trim().Length>0) {
+		btnXUpdateDebt.Enabled=true;
+
+	  }
 	}
 
 	private void btnXShowDetailDebt_Click(object sender,EventArgs e) {
@@ -72,6 +76,7 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void btnXDisplayLayout_Click(object sender,EventArgs e) {
+	  this.Enabled=false;
 	  DateTime dtTemp = dateTimeInputThoiGian.Value;
 
 	  InfoOrderModel mInfoOrder = new InfoOrderModel();
@@ -86,6 +91,12 @@ namespace THUOCBAC.FormChucNang {
 	  mInfoOrder.dtDetailOrder=DT_CHITIET_DONHANG;
 
 	  FormReport.frmReportInDonHang frm = new FormReport.frmReportInDonHang(mInfoOrder);
+	  frm.ShowDialog();
+	  this.Enabled=true;
+	}
+
+	private void btnXUpdateDebt_Click(object sender,EventArgs e) {
+	  frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo();
 	  frm.ShowDialog();
 	}
   }

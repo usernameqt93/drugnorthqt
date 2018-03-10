@@ -78,6 +78,7 @@
 	  this.btnXPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 	  this.btnXPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 	  this.btnXPrint.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.btnXPrint.Image = global::THUOCBAC.Properties.Resources.print;
 	  this.btnXPrint.Location = new System.Drawing.Point(407, 639);
 	  this.btnXPrint.Name = "btnXPrint";
 	  this.btnXPrint.Size = new System.Drawing.Size(150, 35);
