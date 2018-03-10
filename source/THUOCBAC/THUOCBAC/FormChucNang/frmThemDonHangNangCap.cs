@@ -142,7 +142,7 @@ namespace THUOCBAC.FormChucNang {
 	  decimal decTongTienDonHang = BL_DONHANG.decTongTienDonHangTheoMaDonHang(ref strLoi,ref strResult,INT_MA_DONHANG_HIENTAI);
 
 	  if(QTAppSetting.STATIC_STR_CACHXEM_BANIN.Equals(QTDbConst.XEM_BANIN_CACH_2.STR)) {
-		frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder(dtChiTietDonHang,decTongTienDonHang);
+		frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder(dtChiTietDonHang,decTongTienDonHang,INT_MA_DONHANG_HIENTAI,DT_THOIGIAN_VIETDH);
 		frm.ShowDialog();
 		return;
 	  }

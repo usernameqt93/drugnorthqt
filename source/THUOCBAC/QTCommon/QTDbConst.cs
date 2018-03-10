@@ -9,6 +9,30 @@ namespace QTCommon {
 
 	//QTDbConst.TIENNO_HIENTAI.STR
 
+	#region dsfdsfdsf
+
+	public static class TIENNO_SAUKHISUA {
+	  public const string STR = "TienNoSauKhiSua";
+	}
+
+	public static class SOTIENSUA_CUTHE {
+	  public const string STR = "SoTienSuaCuThe";
+	}
+
+	public static class TIENNO_TRUOCKHISUA {
+	  public const string STR = "TienNoTruocKhiSua";
+	}
+
+	public static class LYDO_SUA_TIENNO {
+	  public const string STR = "LyDoSuaTienNo";
+	}
+
+	public static class THOIGIAN_THAYDOI_TIENNO {
+	  public const string STR = "ThoiGianThayDoiTienNo";
+	}
+
+	#endregion
+
 	#region BangKhachHang
 
 	public static class ID_BANG_KHACHHANG {

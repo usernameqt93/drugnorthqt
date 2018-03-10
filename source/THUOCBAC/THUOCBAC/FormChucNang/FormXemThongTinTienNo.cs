@@ -20,8 +20,11 @@ namespace THUOCBAC.FormChucNang {
 	public FormXemThongTinTienNo() {
 	  InitializeComponent();
 	}
+
 	public delegate void DELEGATE_VOID_UYQUYEN_GIONG_HAMNAY(decimal decTienNoCu);
+
 	public DELEGATE_VOID_UYQUYEN_GIONG_HAMNAY voidHIENTHI_TIENNOCU_RA_NUMBERIC;
+
 	public FormXemThongTinTienNo(DataTable dtLichSuTienNo,int intIdKhachHang,string strTenKhachHang,decimal decTienNoHienTai) {
 	  InitializeComponent();
 	  DT_LICHSU_TIENNO=dtLichSuTienNo;
@@ -29,6 +32,7 @@ namespace THUOCBAC.FormChucNang {
 	  STR_TENKHACHHANG=strTenKhachHang;
 	  DEC_TIENNO_HIENTAI=decTienNoHienTai;
 	}
+
 	public FormXemThongTinTienNo(DataTable dtLichSuTienNo,int intIdKhachHang,string strTenKhachHang,decimal decTienNoHienTai,string strLuuY) {
 	  InitializeComponent();
 	  DT_LICHSU_TIENNO=dtLichSuTienNo;
@@ -60,20 +64,21 @@ namespace THUOCBAC.FormChucNang {
 	  //dataGridViewXLichSuTienNo.Columns[QTStringConst.SO_THUTU.STR].Width=22;
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,QTStringConst.SO_THUTU.STR,60,DataGridViewContentAlignment.MiddleCenter);
 
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"ThoiGianThayDoiTienNo",QTStringConst.THOIGIAN.STR,150,DataGridViewContentAlignment.MiddleCenter);
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"LyDoSuaTienNo",QTStringConst.CHITIET.STR,150,DataGridViewContentAlignment.MiddleLeft,DataGridViewAutoSizeColumnMode.Fill);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,QTDbConst.THOIGIAN_THAYDOI_TIENNO.STR,QTStringConst.THOIGIAN.STR,150,DataGridViewContentAlignment.MiddleCenter);
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,QTDbConst.LYDO_SUA_TIENNO.STR,QTStringConst.CHITIET.STR,150,DataGridViewContentAlignment.MiddleLeft,DataGridViewAutoSizeColumnMode.Fill);
 
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"TienNoTruocKhiSua",QTStringConst.TRUOCKHISUA.STR,100,DataGridViewContentAlignment.MiddleRight);
-	  dataGridViewXLichSuTienNo.Columns["TienNoTruocKhiSua"].DefaultCellStyle.Format="#,###.### đ";
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,QTDbConst.TIENNO_TRUOCKHISUA.STR,QTStringConst.TRUOCKHISUA.STR,100,DataGridViewContentAlignment.MiddleRight);
+	  dataGridViewXLichSuTienNo.Columns[QTDbConst.TIENNO_TRUOCKHISUA.STR].DefaultCellStyle.Format="#,###.### đ";
 
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"SoTienSuaCuThe",QTStringConst.SOTIEN_SUA.STR,100,DataGridViewContentAlignment.MiddleRight);
-	  dataGridViewXLichSuTienNo.Columns["SoTienSuaCuThe"].DefaultCellStyle.Format="#,###.### đ";
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,QTDbConst.SOTIENSUA_CUTHE.STR,QTStringConst.SOTIEN_SUA.STR,100,DataGridViewContentAlignment.MiddleRight);
+	  dataGridViewXLichSuTienNo.Columns[QTDbConst.SOTIENSUA_CUTHE.STR].DefaultCellStyle.Format="#,###.### đ";
 
-	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,"TienNoSauKhiSua",QTStringConst.SAUKHISUA.STR,100,DataGridViewContentAlignment.MiddleRight);
-	  dataGridViewXLichSuTienNo.Columns["TienNoSauKhiSua"].DefaultCellStyle.Format="#,###.### đ";
+	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dataGridViewXLichSuTienNo,QTDbConst.TIENNO_SAUKHISUA.STR,QTStringConst.SAUKHISUA.STR,100,DataGridViewContentAlignment.MiddleRight);
+	  dataGridViewXLichSuTienNo.Columns[QTDbConst.TIENNO_SAUKHISUA.STR].DefaultCellStyle.Format="#,###.### đ";
 
 	  voidTRO_XUONG_VITRI_CUOICUNG();
 	}
+
 	private void voidHIENTHI_DGV_LICHSU_CO_STT() {
 	  DataTable dtSTT=DT_LICHSU_TIENNO;
 	  dtSTT.Columns.Add(QTStringConst.SO_THUTU.STR);
@@ -83,11 +88,12 @@ namespace THUOCBAC.FormChucNang {
 	  dataGridViewXLichSuTienNo.Columns[QTStringConst.SO_THUTU.STR].DisplayIndex=0;
 	  QTLibraryFunction.STATIC_VOID_NOT_SORT_DGV(ref dataGridViewXLichSuTienNo);
 	}
+
 	private void voidTRO_XUONG_VITRI_CUOICUNG() {
 	  int intSoThuTuHangMuonTroVao=0;
 	  if(dataGridViewXLichSuTienNo.RowCount>1)
 		intSoThuTuHangMuonTroVao=dataGridViewXLichSuTienNo.RowCount-1;
-	  dataGridViewXLichSuTienNo.CurrentCell=dataGridViewXLichSuTienNo.Rows[intSoThuTuHangMuonTroVao].Cells["ThoiGianThayDoiTienNo"];// Đưa Control về vị trí của nó
+	  dataGridViewXLichSuTienNo.CurrentCell=dataGridViewXLichSuTienNo.Rows[intSoThuTuHangMuonTroVao].Cells[QTDbConst.THOIGIAN_THAYDOI_TIENNO.STR];// Đưa Control về vị trí của nó
 	  dataGridViewXLichSuTienNo.CurrentRow.Selected=true;// Set trạng thái Selected
 	}
   }

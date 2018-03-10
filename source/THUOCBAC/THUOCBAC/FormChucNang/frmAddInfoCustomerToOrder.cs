@@ -17,15 +17,19 @@ namespace THUOCBAC.FormChucNang {
 	private BL_KhachHang BL_KHACHHANG = new BL_KhachHang();
 	private DataTable DT_CHITIET_DONHANG;
 	private decimal DEC_TONGTIEN;
+	private int INT_MADH_HIENTAI;
+	private DateTime DT_THOIGIAN_VIETDH;
 
 	public frmAddInfoCustomerToOrder() {
 	  InitializeComponent();
 	}
 
-	public frmAddInfoCustomerToOrder(DataTable _dtChiTietDonHang,decimal _decTongTien) {
+	public frmAddInfoCustomerToOrder(DataTable _dtChiTietDonHang,decimal _decTongTien,int _intMaDHHienTai,DateTime dtThoiGianVietDH) {
 	  InitializeComponent();
 	  DT_CHITIET_DONHANG=_dtChiTietDonHang;
 	  DEC_TONGTIEN=_decTongTien;
+	  INT_MADH_HIENTAI=_intMaDHHienTai;
+	  DT_THOIGIAN_VIETDH=dtThoiGianVietDH;
 	}
 
 	private void frmAddInfoCustomerToOrder_Load(object sender,EventArgs e) {
@@ -96,8 +100,27 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void btnXUpdateDebt_Click(object sender,EventArgs e) {
-	  frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo();
-	  frm.ShowDialog();
+	  //frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo();
+	  //frm.ShowDialog();
+	  string strTenKhachHangDangChon = txtXNameCustomer.Text;
+
+	  if(strTenKhachHangDangChon.Equals(QTStringConst.KHONGGHIVAO.STR)||strTenKhachHangDangChon.Trim().Equals("")) {
+		MessageBox.Show("Bạn chưa chọn tên khách hàng, chưa hiển thị thông tin được !");
+		return;
+	  }
+	  int intIdKHVuaChon = QTAppTemp.STATIC_INT_ID_CHOOSE;
+	  DataTable dtLichSuTienNo = BL_KHACHHANG.DATATABLE_LICHSU_TIENNO_THEO_IDKH(intIdKHVuaChon);
+	  if(dtLichSuTienNo.Rows.Count==0) {
+		MessageBox.Show("Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là 0 đ\nBạn có thể xem lại thông tin chi tiết ở phần danh sách khách hàng !");
+		return;
+	  }
+	  if(dtLichSuTienNo.Rows.Count>0) {
+		decimal DEC_TIENNO_HIENTAI_CUA_KH=BL_KHACHHANG.DEC_TIENNO_HIENTAI_KH(intIdKHVuaChon);
+		string strLyDoSua = "Cộng thêm tiền đơn hàng "+INT_MADH_HIENTAI+" ("+DT_THOIGIAN_VIETDH+")";
+		frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo(dtLichSuTienNo,intIdKHVuaChon,strTenKhachHangDangChon,DEC_TIENNO_HIENTAI_CUA_KH,strLyDoSua,DEC_TONGTIEN);
+		//formXemThongTinTienNo.voidHIENTHI_TIENNOCU_RA_NUMBERIC=new FormChucNang.FormXemThongTinTienNo.DELEGATE_VOID_UYQUYEN_GIONG_HAMNAY(voidHIENTHI_TIENNOCU_RA_NUMBERIC);
+		frm.ShowDialog();
+	  }
 	}
   }
 }
