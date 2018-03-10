@@ -32,15 +32,15 @@
 	  this.groupBox1 = new System.Windows.Forms.GroupBox();
 	  this.rtbNote = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
 	  this.groupBox2 = new System.Windows.Forms.GroupBox();
+	  this.lblDetailDebt = new DevComponents.DotNetBar.LabelX();
 	  this.groupBox3 = new System.Windows.Forms.GroupBox();
 	  this.lblXName = new DevComponents.DotNetBar.LabelX();
 	  this.dgvXMain = new DevComponents.DotNetBar.Controls.DataGridViewX();
 	  this.groupBox4 = new System.Windows.Forms.GroupBox();
 	  this.lblXDebtCurrent = new DevComponents.DotNetBar.LabelX();
 	  this.groupBox5 = new System.Windows.Forms.GroupBox();
-	  this.groupBox6 = new System.Windows.Forms.GroupBox();
-	  this.lblDetailDebt = new DevComponents.DotNetBar.LabelX();
 	  this.lblXTongTienDH = new DevComponents.DotNetBar.LabelX();
+	  this.groupBox6 = new System.Windows.Forms.GroupBox();
 	  this.lblXDebtUpdate = new DevComponents.DotNetBar.LabelX();
 	  this.lblXMessage = new DevComponents.DotNetBar.LabelX();
 	  this.panelEx1.SuspendLayout();
@@ -173,6 +173,19 @@
 	  this.groupBox2.TabStop = false;
 	  this.groupBox2.Text = "Chi tiết";
 	  // 
+	  // lblDetailDebt
+	  // 
+	  // 
+	  // 
+	  // 
+	  this.lblDetailDebt.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+	  this.lblDetailDebt.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.lblDetailDebt.Location = new System.Drawing.Point(3, 16);
+	  this.lblDetailDebt.Name = "lblDetailDebt";
+	  this.lblDetailDebt.Size = new System.Drawing.Size(430, 25);
+	  this.lblDetailDebt.TabIndex = 0;
+	  this.lblDetailDebt.Text = "labelX1";
+	  // 
 	  // groupBox3
 	  // 
 	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox3, 2);
@@ -257,31 +270,6 @@
 	  this.groupBox5.TabStop = false;
 	  this.groupBox5.Text = "Tổng tiền đơn hàng này";
 	  // 
-	  // groupBox6
-	  // 
-	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox6, 2);
-	  this.groupBox6.Controls.Add(this.lblXDebtUpdate);
-	  this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox6.Location = new System.Drawing.Point(495, 509);
-	  this.groupBox6.Name = "groupBox6";
-	  this.groupBox6.Size = new System.Drawing.Size(436, 74);
-	  this.groupBox6.TabIndex = 7;
-	  this.groupBox6.TabStop = false;
-	  this.groupBox6.Text = "Số nợ sau khi cộng tiền đơn hàng này";
-	  // 
-	  // lblDetailDebt
-	  // 
-	  // 
-	  // 
-	  // 
-	  this.lblDetailDebt.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-	  this.lblDetailDebt.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.lblDetailDebt.Location = new System.Drawing.Point(3, 16);
-	  this.lblDetailDebt.Name = "lblDetailDebt";
-	  this.lblDetailDebt.Size = new System.Drawing.Size(430, 25);
-	  this.lblDetailDebt.TabIndex = 0;
-	  this.lblDetailDebt.Text = "labelX1";
-	  // 
 	  // lblXTongTienDH
 	  // 
 	  // 
@@ -294,6 +282,18 @@
 	  this.lblXTongTienDH.TabIndex = 0;
 	  this.lblXTongTienDH.Text = "labelX1";
 	  this.lblXTongTienDH.TextAlignment = System.Drawing.StringAlignment.Far;
+	  // 
+	  // groupBox6
+	  // 
+	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox6, 2);
+	  this.groupBox6.Controls.Add(this.lblXDebtUpdate);
+	  this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.groupBox6.Location = new System.Drawing.Point(495, 509);
+	  this.groupBox6.Name = "groupBox6";
+	  this.groupBox6.Size = new System.Drawing.Size(436, 74);
+	  this.groupBox6.TabIndex = 7;
+	  this.groupBox6.TabStop = false;
+	  this.groupBox6.Text = "Số nợ sau khi cộng tiền đơn hàng này";
 	  // 
 	  // lblXDebtUpdate
 	  // 
@@ -335,6 +335,7 @@
 	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 	  this.Text = "frmXacNhanThemTienNo";
 	  this.Load += new System.EventHandler(this.frmXacNhanThemTienNo_Load);
+	  this.Shown += new System.EventHandler(this.frmXacNhanThemTienNo_Shown);
 	  this.panelEx1.ResumeLayout(false);
 	  this.tableLayoutPanel1.ResumeLayout(false);
 	  this.groupBox1.ResumeLayout(false);

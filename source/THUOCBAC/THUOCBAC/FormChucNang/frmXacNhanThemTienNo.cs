@@ -63,7 +63,6 @@ namespace THUOCBAC.FormChucNang {
 	  voidTRO_XUONG_VITRI_CUOICUNG();
 
 	  lblXMessage.Text=QTMessageConst.CONFIRM_CHANGE_DEBT(lblXName.Text,lblXDebtUpdate.Text);
-	  rtbNote.Focus();
 	}
 
 	private void voidHIENTHI_DGV_LICHSU_CO_STT() {
@@ -90,6 +89,11 @@ namespace THUOCBAC.FormChucNang {
 
 	private void btnXAccept_Click(object sender,EventArgs e) {
 
+	}
+
+	private void frmXacNhanThemTienNo_Shown(object sender,EventArgs e) {
+
+	  rtbNote.Focus();
 	}
   }
 }
