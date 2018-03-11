@@ -57,19 +57,18 @@
 	  this.tableLayoutPanel1.ColumnCount = 5;
 	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
 	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
+	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 186F));
 	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 	  this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
 	  this.tableLayoutPanel1.Controls.Add(this.btnXPrint, 2, 2);
-	  this.tableLayoutPanel1.Controls.Add(this.reportViewerChiTietDonHang, 1, 1);
+	  this.tableLayoutPanel1.Controls.Add(this.reportViewerChiTietDonHang, 0, 0);
 	  this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 	  this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-	  this.tableLayoutPanel1.RowCount = 4;
+	  this.tableLayoutPanel1.RowCount = 3;
 	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 	  this.tableLayoutPanel1.Size = new System.Drawing.Size(964, 697);
 	  this.tableLayoutPanel1.TabIndex = 0;
 	  // 
@@ -79,9 +78,9 @@
 	  this.btnXPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 	  this.btnXPrint.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.btnXPrint.Image = global::THUOCBAC.Properties.Resources.print;
-	  this.btnXPrint.Location = new System.Drawing.Point(407, 639);
+	  this.btnXPrint.Location = new System.Drawing.Point(392, 659);
 	  this.btnXPrint.Name = "btnXPrint";
-	  this.btnXPrint.Size = new System.Drawing.Size(150, 35);
+	  this.btnXPrint.Size = new System.Drawing.Size(180, 35);
 	  this.btnXPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 	  this.btnXPrint.TabIndex = 0;
 	  this.btnXPrint.Text = "Bắt đầu in";
@@ -89,11 +88,12 @@
 	  // 
 	  // reportViewerChiTietDonHang
 	  // 
-	  this.tableLayoutPanel1.SetColumnSpan(this.reportViewerChiTietDonHang, 3);
+	  this.tableLayoutPanel1.SetColumnSpan(this.reportViewerChiTietDonHang, 5);
 	  this.reportViewerChiTietDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.reportViewerChiTietDonHang.Location = new System.Drawing.Point(33, 23);
+	  this.reportViewerChiTietDonHang.Location = new System.Drawing.Point(3, 3);
 	  this.reportViewerChiTietDonHang.Name = "reportViewerChiTietDonHang";
-	  this.reportViewerChiTietDonHang.Size = new System.Drawing.Size(898, 610);
+	  this.tableLayoutPanel1.SetRowSpan(this.reportViewerChiTietDonHang, 2);
+	  this.reportViewerChiTietDonHang.Size = new System.Drawing.Size(958, 650);
 	  this.reportViewerChiTietDonHang.TabIndex = 1;
 	  // 
 	  // timer1
@@ -107,10 +107,12 @@
 	  this.ClientSize = new System.Drawing.Size(964, 697);
 	  this.Controls.Add(this.panelEx1);
 	  this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+	  this.MinimumSize = new System.Drawing.Size(980, 736);
 	  this.Name = "frmReportInDonHang";
 	  this.ShowInTaskbar = false;
 	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 	  this.Text = "In đơn hàng";
+	  this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 	  this.Load += new System.EventHandler(this.frmReportInDonHang_Load);
 	  this.panelEx1.ResumeLayout(false);
 	  this.tableLayoutPanel1.ResumeLayout(false);

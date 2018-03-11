@@ -187,6 +187,7 @@
 	  this.btnXShowDetailDebt.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
 	  this.btnXShowDetailDebt.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 	  this.btnXShowDetailDebt.Enabled = false;
+	  this.btnXShowDetailDebt.Image = global::THUOCBAC.Properties.Resources.find;
 	  this.btnXShowDetailDebt.Location = new System.Drawing.Point(216, 20);
 	  this.btnXShowDetailDebt.Name = "btnXShowDetailDebt";
 	  this.btnXShowDetailDebt.Size = new System.Drawing.Size(118, 26);

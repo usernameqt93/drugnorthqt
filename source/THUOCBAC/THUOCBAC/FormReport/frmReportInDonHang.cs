@@ -124,6 +124,10 @@ namespace THUOCBAC.FormReport {
 		reportViewerChiTietDonHang.SetDisplayMode(DisplayMode.PrintLayout);
 		reportViewerChiTietDonHang.ZoomMode=ZoomMode.Percent;
 		reportViewerChiTietDonHang.ZoomPercent=100;
+		reportViewerChiTietDonHang.ShowRefreshButton=false;
+		reportViewerChiTietDonHang.ShowZoomControl=false;
+		reportViewerChiTietDonHang.ShowPrintButton=false;
+		//reportViewerChiTietDonHang.
 		reportViewerChiTietDonHang.LocalReport.DisplayName="Don hang";
 
 		voidCAIDAT_KICHTHUOC_TRANG();

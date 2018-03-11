@@ -1,4 +1,5 @@
-﻿using QTCommon;
+﻿using FValueObject.Models;
+using QTCommon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,38 +13,49 @@ using System.Windows.Forms;
 namespace THUOCBAC.FormChucNang {
   public partial class frmXacNhanThemTienNo:Form {
 
-	private DataTable DT_LICHSU_TIENNO;
-	private int INT_ID_KHACHHANG = -1;
-	private string STR_TENKHACHHANG = "";
-	private decimal DEC_TIENNO_HIENTAI = 0;
+	//private DataTable DT_LICHSU_TIENNO;
+	//private int INT_ID_KHACHHANG = -1;
+	//private string STR_TENKHACHHANG = "";
+	//private decimal DEC_TIENNO_HIENTAI = 0;
 	//private string STR_LUUY_FORM_TRUOC = "";
+	private ConfirmDebtModel M_CONFIRM_DEBT;
 
 	public frmXacNhanThemTienNo() {
 	  InitializeComponent();
 	}
 
-	public frmXacNhanThemTienNo(DataTable dtLichSuTienNo,int intIdKhachHang,string strTenKhachHang,decimal decTienNoHienTai,string _strDetailDebt,decimal _decTongTienDH) {
+	public frmXacNhanThemTienNo(ConfirmDebtModel mConfirmDebt) {
 	  InitializeComponent();
-	  DT_LICHSU_TIENNO=dtLichSuTienNo;
-	  INT_ID_KHACHHANG=intIdKhachHang;
-	  STR_TENKHACHHANG=strTenKhachHang;
-	  DEC_TIENNO_HIENTAI=decTienNoHienTai;
-
-	  lblDetailDebt.Text=_strDetailDebt;
-	  lblXTongTienDH.Text=(_decTongTienDH==0) ? "0 đ" : _decTongTienDH.ToString("#,###.#")+" đ";
-	  decimal decTemp = decTienNoHienTai+_decTongTienDH;
-	  lblXDebtUpdate.Text=(decTemp==0) ? "0 đ" : decTemp.ToString("#,###.#")+" đ";
+	  M_CONFIRM_DEBT=mConfirmDebt;
 	}
+
+	//public frmXacNhanThemTienNo(DataTable dtLichSuTienNo,int intIdKhachHang,string strTenKhachHang,decimal decTienNoHienTai,string _strDetailDebt,decimal _decTongTienDH) {
+	//  InitializeComponent();
+	//  DT_LICHSU_TIENNO=dtLichSuTienNo;
+	//  INT_ID_KHACHHANG=intIdKhachHang;
+	//  STR_TENKHACHHANG=strTenKhachHang;
+	//  DEC_TIENNO_HIENTAI=decTienNoHienTai;
+
+	//  lblDetailDebt.Text=_strDetailDebt;
+	//  lblXTongTienDH.Text=(_decTongTienDH==0) ? "0 đ" : _decTongTienDH.ToString("#,###.#")+" đ";
+	//  decimal decTemp = decTienNoHienTai+_decTongTienDH;
+	//  lblXDebtUpdate.Text=(decTemp==0) ? "0 đ" : decTemp.ToString("#,###.#")+" đ";
+	//}
 
 	private void frmXacNhanThemTienNo_Load(object sender,EventArgs e) {
 	  VOID_LOAD_FORM();
 	}
 
 	private void VOID_LOAD_FORM() {
-	  lblXName.Text=STR_TENKHACHHANG;
-	 // if(STR_LUUY_FORM_TRUOC.Equals(QTStringConst.HIDE_NUT_XACNHAN.STR))
-		//btnXXacNhanTienNo.Visible=false;
-	  lblXDebtCurrent.Text=(DEC_TIENNO_HIENTAI==0) ? "0 đ" : DEC_TIENNO_HIENTAI.ToString("#,###.#")+" đ";
+	  lblXName.Text=M_CONFIRM_DEBT.strNameCustomer;
+
+	  lblDetailDebt.Text=M_CONFIRM_DEBT.strDetailDebt;
+	  lblXTongTienDH.Text=(M_CONFIRM_DEBT.decTongTienDonHang==0) ? "0 đ" : M_CONFIRM_DEBT.decTongTienDonHang.ToString("#,###.#")+" đ";
+	  decimal decTemp = M_CONFIRM_DEBT.decTienNoHienTai+M_CONFIRM_DEBT.decTongTienDonHang;
+	  lblXDebtUpdate.Text=(decTemp==0) ? "0 đ" : decTemp.ToString("#,###.#")+" đ";
+	  // if(STR_LUUY_FORM_TRUOC.Equals(QTStringConst.HIDE_NUT_XACNHAN.STR))
+	  //btnXXacNhanTienNo.Visible=false;
+	  lblXDebtCurrent.Text=(M_CONFIRM_DEBT.decTienNoHienTai==0) ? "0 đ" : M_CONFIRM_DEBT.decTienNoHienTai.ToString("#,###.#")+" đ";
 	  voidHIENTHI_DGV_LICHSU_CO_STT();
 	  //dataGridViewXLichSuTienNo.Columns[QTStringConst.SO_THUTU.STR].Width=22;
 	  QTLibraryFunction.STATIC_VOID_SET_WIDTH_ALIGN_COLUMN(ref dgvXMain,QTStringConst.SO_THUTU.STR,60,DataGridViewContentAlignment.MiddleCenter);
@@ -66,7 +78,7 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void voidHIENTHI_DGV_LICHSU_CO_STT() {
-	  DataTable dtSTT = DT_LICHSU_TIENNO;
+	  DataTable dtSTT = M_CONFIRM_DEBT.dtLichSuTienNo;
 	  dtSTT.Columns.Add(QTStringConst.SO_THUTU.STR);
 	  for(int i = 0;i<dtSTT.Rows.Count;i++)
 		dtSTT.Rows[i][QTStringConst.SO_THUTU.STR]=i+1;

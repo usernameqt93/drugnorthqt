@@ -22,6 +22,10 @@ button tim ten khach hang nay 170, 34
 
 khi tao class library o VS 2015, phien ban la 4.5.2 lech so voi 4.5 o VS 2012 nen run loi --> chu y dieu nay
 -->Toan bo project phai chuyen het theo 1 thang, o day chuyen het len 4.5.2
+nhung ban 4.5.2 loi voi may yeu nen chuyen ve 4.5
+
+reportviewer may yeu chay ban v11.0.0.0
+ma vs2015 chay ban v12 nen keo reportviewer vao form truoc roi xoa reference roi add reference reportviewer.winform v11.0.0.0 vao chay la binh thuong
 
 formThemDonHang 1300, 655
 groupBoxThemViThuoc  275, 379

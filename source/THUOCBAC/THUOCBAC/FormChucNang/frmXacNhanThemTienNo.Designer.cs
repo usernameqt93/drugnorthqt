@@ -62,7 +62,7 @@
 	  this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.panelEx1.Location = new System.Drawing.Point(0, 0);
 	  this.panelEx1.Name = "panelEx1";
-	  this.panelEx1.Size = new System.Drawing.Size(964, 697);
+	  this.panelEx1.Size = new System.Drawing.Size(1184, 697);
 	  this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
 	  this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
 	  this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -105,7 +105,7 @@
 	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
 	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
 	  this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-	  this.tableLayoutPanel1.Size = new System.Drawing.Size(964, 697);
+	  this.tableLayoutPanel1.Size = new System.Drawing.Size(1184, 697);
 	  this.tableLayoutPanel1.TabIndex = 0;
 	  // 
 	  // btnXAccept
@@ -114,7 +114,7 @@
 	  this.btnXAccept.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 	  this.btnXAccept.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.btnXAccept.Image = global::THUOCBAC.Properties.Resources.ok;
-	  this.btnXAccept.Location = new System.Drawing.Point(319, 639);
+	  this.btnXAccept.Location = new System.Drawing.Point(429, 639);
 	  this.btnXAccept.Name = "btnXAccept";
 	  this.btnXAccept.Size = new System.Drawing.Size(150, 35);
 	  this.btnXAccept.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -128,7 +128,7 @@
 	  this.btnXCancel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 	  this.btnXCancel.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.btnXCancel.Image = global::THUOCBAC.Properties.Resources.Xoa;
-	  this.btnXCancel.Location = new System.Drawing.Point(495, 639);
+	  this.btnXCancel.Location = new System.Drawing.Point(605, 639);
 	  this.btnXCancel.Name = "btnXCancel";
 	  this.btnXCancel.Size = new System.Drawing.Size(150, 35);
 	  this.btnXCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -143,7 +143,7 @@
 	  this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.groupBox1.Location = new System.Drawing.Point(33, 509);
 	  this.groupBox1.Name = "groupBox1";
-	  this.groupBox1.Size = new System.Drawing.Size(436, 74);
+	  this.groupBox1.Size = new System.Drawing.Size(546, 74);
 	  this.groupBox1.TabIndex = 2;
 	  this.groupBox1.TabStop = false;
 	  this.groupBox1.Text = "Ghi chú thêm khi cộng tiền đơn hàng này";
@@ -158,7 +158,7 @@
 	  this.rtbNote.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.rtbNote.Location = new System.Drawing.Point(3, 16);
 	  this.rtbNote.Name = "rtbNote";
-	  this.rtbNote.Size = new System.Drawing.Size(430, 55);
+	  this.rtbNote.Size = new System.Drawing.Size(540, 55);
 	  this.rtbNote.TabIndex = 0;
 	  // 
 	  // groupBox2
@@ -168,7 +168,7 @@
 	  this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.groupBox2.Location = new System.Drawing.Point(33, 459);
 	  this.groupBox2.Name = "groupBox2";
-	  this.groupBox2.Size = new System.Drawing.Size(436, 44);
+	  this.groupBox2.Size = new System.Drawing.Size(546, 44);
 	  this.groupBox2.TabIndex = 3;
 	  this.groupBox2.TabStop = false;
 	  this.groupBox2.Text = "Chi tiết";
@@ -182,7 +182,7 @@
 	  this.lblDetailDebt.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.lblDetailDebt.Location = new System.Drawing.Point(3, 16);
 	  this.lblDetailDebt.Name = "lblDetailDebt";
-	  this.lblDetailDebt.Size = new System.Drawing.Size(430, 25);
+	  this.lblDetailDebt.Size = new System.Drawing.Size(540, 25);
 	  this.lblDetailDebt.TabIndex = 0;
 	  this.lblDetailDebt.Text = "labelX1";
 	  // 
@@ -193,7 +193,7 @@
 	  this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.groupBox3.Location = new System.Drawing.Point(33, 409);
 	  this.groupBox3.Name = "groupBox3";
-	  this.groupBox3.Size = new System.Drawing.Size(436, 44);
+	  this.groupBox3.Size = new System.Drawing.Size(546, 44);
 	  this.groupBox3.TabIndex = 4;
 	  this.groupBox3.TabStop = false;
 	  this.groupBox3.Text = "Tên khách hàng";
@@ -207,7 +207,7 @@
 	  this.lblXName.Dock = System.Windows.Forms.DockStyle.Fill;
 	  this.lblXName.Location = new System.Drawing.Point(3, 16);
 	  this.lblXName.Name = "lblXName";
-	  this.lblXName.Size = new System.Drawing.Size(430, 25);
+	  this.lblXName.Size = new System.Drawing.Size(540, 25);
 	  this.lblXName.TabIndex = 0;
 	  this.lblXName.Text = "labelX1";
 	  // 
@@ -230,7 +230,7 @@
 	  this.dgvXMain.Location = new System.Drawing.Point(33, 23);
 	  this.dgvXMain.Name = "dgvXMain";
 	  this.dgvXMain.ReadOnly = true;
-	  this.dgvXMain.Size = new System.Drawing.Size(898, 380);
+	  this.dgvXMain.Size = new System.Drawing.Size(1118, 380);
 	  this.dgvXMain.TabIndex = 8;
 	  // 
 	  // groupBox4
@@ -238,9 +238,9 @@
 	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox4, 2);
 	  this.groupBox4.Controls.Add(this.lblXDebtCurrent);
 	  this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox4.Location = new System.Drawing.Point(495, 409);
+	  this.groupBox4.Location = new System.Drawing.Point(605, 409);
 	  this.groupBox4.Name = "groupBox4";
-	  this.groupBox4.Size = new System.Drawing.Size(436, 44);
+	  this.groupBox4.Size = new System.Drawing.Size(546, 44);
 	  this.groupBox4.TabIndex = 5;
 	  this.groupBox4.TabStop = false;
 	  this.groupBox4.Text = "Số nợ cũ";
@@ -263,9 +263,9 @@
 	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox5, 2);
 	  this.groupBox5.Controls.Add(this.lblXTongTienDH);
 	  this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox5.Location = new System.Drawing.Point(495, 459);
+	  this.groupBox5.Location = new System.Drawing.Point(605, 459);
 	  this.groupBox5.Name = "groupBox5";
-	  this.groupBox5.Size = new System.Drawing.Size(436, 44);
+	  this.groupBox5.Size = new System.Drawing.Size(546, 44);
 	  this.groupBox5.TabIndex = 6;
 	  this.groupBox5.TabStop = false;
 	  this.groupBox5.Text = "Tổng tiền đơn hàng này";
@@ -288,9 +288,9 @@
 	  this.tableLayoutPanel1.SetColumnSpan(this.groupBox6, 2);
 	  this.groupBox6.Controls.Add(this.lblXDebtUpdate);
 	  this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-	  this.groupBox6.Location = new System.Drawing.Point(495, 509);
+	  this.groupBox6.Location = new System.Drawing.Point(605, 509);
 	  this.groupBox6.Name = "groupBox6";
-	  this.groupBox6.Size = new System.Drawing.Size(436, 74);
+	  this.groupBox6.Size = new System.Drawing.Size(546, 74);
 	  this.groupBox6.TabIndex = 7;
 	  this.groupBox6.TabStop = false;
 	  this.groupBox6.Text = "Số nợ sau khi cộng tiền đơn hàng này";
@@ -316,9 +316,10 @@
 	  this.lblXMessage.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 	  this.tableLayoutPanel1.SetColumnSpan(this.lblXMessage, 5);
 	  this.lblXMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+	  this.lblXMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 	  this.lblXMessage.Location = new System.Drawing.Point(33, 609);
 	  this.lblXMessage.Name = "lblXMessage";
-	  this.lblXMessage.Size = new System.Drawing.Size(898, 24);
+	  this.lblXMessage.Size = new System.Drawing.Size(1118, 24);
 	  this.lblXMessage.TabIndex = 9;
 	  this.lblXMessage.Text = "labelX1";
 	  this.lblXMessage.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -327,13 +328,13 @@
 	  // 
 	  this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 	  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-	  this.ClientSize = new System.Drawing.Size(964, 697);
+	  this.ClientSize = new System.Drawing.Size(1184, 697);
 	  this.Controls.Add(this.panelEx1);
 	  this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 	  this.Name = "frmXacNhanThemTienNo";
 	  this.ShowInTaskbar = false;
 	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-	  this.Text = "frmXacNhanThemTienNo";
+	  this.Text = "Xác nhận cộng tiền đơn hàng vào sổ";
 	  this.Load += new System.EventHandler(this.frmXacNhanThemTienNo_Load);
 	  this.Shown += new System.EventHandler(this.frmXacNhanThemTienNo_Shown);
 	  this.panelEx1.ResumeLayout(false);

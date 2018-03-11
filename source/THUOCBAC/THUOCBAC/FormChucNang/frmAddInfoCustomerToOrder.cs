@@ -116,9 +116,18 @@ namespace THUOCBAC.FormChucNang {
 	  }
 	  if(dtLichSuTienNo.Rows.Count>0) {
 		decimal DEC_TIENNO_HIENTAI_CUA_KH=BL_KHACHHANG.DEC_TIENNO_HIENTAI_KH(intIdKHVuaChon);
-		string strLyDoSua = "Cộng thêm tiền đơn hàng "+INT_MADH_HIENTAI+" ("+DT_THOIGIAN_VIETDH+")";
-		frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo(dtLichSuTienNo,intIdKHVuaChon,strTenKhachHangDangChon,DEC_TIENNO_HIENTAI_CUA_KH,strLyDoSua,DEC_TONGTIEN);
-		//formXemThongTinTienNo.voidHIENTHI_TIENNOCU_RA_NUMBERIC=new FormChucNang.FormXemThongTinTienNo.DELEGATE_VOID_UYQUYEN_GIONG_HAMNAY(voidHIENTHI_TIENNOCU_RA_NUMBERIC);
+		//string strLyDoSua = "Cộng thêm tiền đơn hàng "+INT_MADH_HIENTAI+" ("+DT_THOIGIAN_VIETDH+")";
+
+		ConfirmDebtModel mConfirmDebt = new ConfirmDebtModel();
+		mConfirmDebt.dtLichSuTienNo=dtLichSuTienNo;
+		mConfirmDebt.intIdCustomer=intIdKHVuaChon;
+		mConfirmDebt.strNameCustomer=strTenKhachHangDangChon;
+		mConfirmDebt.decTienNoHienTai=DEC_TIENNO_HIENTAI_CUA_KH;
+		mConfirmDebt.strDetailDebt="Cộng thêm tiền đơn hàng "+INT_MADH_HIENTAI+" ("+DT_THOIGIAN_VIETDH+","+DT_CHITIET_DONHANG.Rows.Count+" vị thuốc)";
+		mConfirmDebt.decTongTienDonHang=DEC_TONGTIEN;
+
+		//frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo(dtLichSuTienNo,intIdKHVuaChon,strTenKhachHangDangChon,DEC_TIENNO_HIENTAI_CUA_KH,strLyDoSua,DEC_TONGTIEN);
+		frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo(mConfirmDebt);
 		frm.ShowDialog();
 	  }
 	}
