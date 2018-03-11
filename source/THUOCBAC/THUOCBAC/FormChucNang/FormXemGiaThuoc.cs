@@ -20,6 +20,7 @@ namespace THUOCBAC.FormChucNang {
 	private int INT_MADONHANG_DANGCHON=-1;
 	private int INT_ID_KH_DANGCHON=-2;
 	private string STR_SDT_KH_DANGCHON="";
+	private string STR_TEN_KH_DANGCHON = "";
 	private decimal DEC_TIENNO_CU_DANGCHON=-2;
 	private DateTime DT_THOIGIAN_VIETDH_DANGCHON=DateTime.Now;
 	public FormXemGiaThuoc() {
@@ -90,6 +91,7 @@ namespace THUOCBAC.FormChucNang {
 		  //btnXXoaDH.Enabled=(intSoViThuocTrongDH==0)?true:false;
 		  INT_MADONHANG_DANGCHON=Convert.ToInt32(r.Cells["MaDonHang"].Value);
 		  STR_SDT_KH_DANGCHON="zz"+Convert.ToString(r.Cells["TenViThuoc"].Value);
+		  STR_TEN_KH_DANGCHON=Convert.ToString(r.Cells[QTDbConst.TENKHACHHANG.STR].Value);
 		  //DEC_TIENNO_CU_DANGCHON=(r.Cells["TienNoCu"].Value.ToString().Equals(""))?0:Convert.ToDecimal(r.Cells["TienNoCu"].Value);
 		  //DT_THOIGIAN_VIETDH_DANGCHON=(r.Cells["ThoiGianVietDonHangNay"].Value.ToString().Equals(""))?DateTime.Now:Convert.ToDateTime(r.Cells["ThoiGianVietDonHangNay"].Value);
 		}
@@ -101,7 +103,7 @@ namespace THUOCBAC.FormChucNang {
 	private void btnXXemChiTietDonHang_Click(object sender,EventArgs e) {
 	  btnXXemChiTietDonHang.Enabled=false;
 	  FormChucNang.FormThemDonHang formXemChiTietDonHang=new FormChucNang.FormThemDonHang(
-		INT_MADONHANG_DANGCHON,INT_ID_KH_DANGCHON,STR_SDT_KH_DANGCHON,DEC_TIENNO_CU_DANGCHON,QTStringConst.XEM_CHITIET.STR,DT_THOIGIAN_VIETDH_DANGCHON);
+		INT_MADONHANG_DANGCHON,INT_ID_KH_DANGCHON,STR_SDT_KH_DANGCHON,DEC_TIENNO_CU_DANGCHON,QTStringConst.XEM_CHITIET.STR,DT_THOIGIAN_VIETDH_DANGCHON,STR_TEN_KH_DANGCHON);
 	  formXemChiTietDonHang.ShowDialog();
 	}
 

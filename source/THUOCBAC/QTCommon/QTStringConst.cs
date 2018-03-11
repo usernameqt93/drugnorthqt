@@ -51,10 +51,6 @@ namespace QTCommon {
 	  public const string STR = "Thông Báo";
 	}
 
-	public static class CHUACAPNHAT {
-	  public const string STR = "Chưa cập nhật";
-	}
-
 	public static class TENKHACHHANG {
 	  public const string STR = "Tên khách hàng";
 	}
@@ -102,6 +98,10 @@ namespace QTCommon {
 	#endregion
 
 	#region Không nên translate vì nó đại diện cho 1 giá trị gì đó để equal
+
+	public static class CHUACAPNHAT {
+	  public const string STR = "Chưa cập nhật";
+	}
 
 	public static class SUDUNG_APPTEMP {
 	  public const string STR = "2018030915h55SuDungAppTemp";

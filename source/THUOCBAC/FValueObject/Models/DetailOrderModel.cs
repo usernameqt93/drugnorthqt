@@ -14,6 +14,8 @@ namespace FValueObject.Models {
 
 	public int intIdCustomerCurrent { get; set; }
 
+	public string strNameCustomerCurrent { get; set; }
+
 	public string strPhoneSaveWithOrder { get; set; }
 
 	public decimal decDebtSaveWithOrder { get; set; }

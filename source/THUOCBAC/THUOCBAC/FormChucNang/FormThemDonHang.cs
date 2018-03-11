@@ -23,13 +23,14 @@ namespace THUOCBAC.FormChucNang {
 	private string STR_TEN_VITHUOC_DANGCHON="";
 	private string STR_CHUCNANG_CUA_FORM="ThemDonHang";
 	private string STR_SDT_KH_HIENTAI="";
+	private string STR_TEN_KH_HIENTAI = "";
 	private decimal DEC_TIENNO_CU_HIENTAI=0;
 	private DateTime DT_THOIGIAN_VIETDH=DateTime.Now;
 
 	public FormThemDonHang() {
 	  InitializeComponent();
 	}
-	public FormThemDonHang(int intMaDonHangHienTai,int intIdKHHienTai,string strSDTKH,decimal decTienNoCu,string strChucNangCuaForm,DateTime dtThoiGianVietDH) {
+	public FormThemDonHang(int intMaDonHangHienTai,int intIdKHHienTai,string strSDTKH,decimal decTienNoCu,string strChucNangCuaForm,DateTime dtThoiGianVietDH,string _strNameCustomer) {
 	  InitializeComponent();
 	  INT_MA_DONHANG_HIENTAI=intMaDonHangHienTai;
 	  STR_CHUCNANG_CUA_FORM=strChucNangCuaForm;
@@ -37,6 +38,8 @@ namespace THUOCBAC.FormChucNang {
 	  STR_SDT_KH_HIENTAI=strSDTKH;
 	  DEC_TIENNO_CU_HIENTAI=decTienNoCu;
 	  DT_THOIGIAN_VIETDH=dtThoiGianVietDH;
+
+	  STR_TEN_KH_HIENTAI=_strNameCustomer;
 	}
 	private void FormThemDonHang_Load(object sender,EventArgs e) {
 	  string strErr="";
@@ -128,6 +131,7 @@ namespace THUOCBAC.FormChucNang {
 		mDetailOrder.strPhoneSaveWithOrder=STR_SDT_KH_HIENTAI;
 		mDetailOrder.decDebtSaveWithOrder=DEC_TIENNO_CU_HIENTAI;
 		mDetailOrder.dtTimeCreate=DT_THOIGIAN_VIETDH;
+		mDetailOrder.strNameCustomerCurrent=STR_TEN_KH_HIENTAI;
 
 		//frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder(dtChiTietDonHang,decTongTienDonHang,INT_MA_DONHANG_HIENTAI,DT_THOIGIAN_VIETDH);
 		frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder(mDetailOrder);

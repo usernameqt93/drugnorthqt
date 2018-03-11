@@ -28,6 +28,7 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void frmXacNhanThemTienNo_Load(object sender,EventArgs e) {
+	  QTAppTemp.QT_RESET_APP_TEMP();
 	  VOID_LOAD_FORM();
 	}
 
@@ -98,6 +99,8 @@ namespace THUOCBAC.FormChucNang {
 	  if(strTrangThaiCapNhat.Equals("false")&&!(strLoiCapNhatTienNo.Equals("3"))) {
 		MessageBox.Show("Trạng thái cập nhật tiền nợ bị lỗi ("+strLoiCapNhatTienNo+")");
 	  } else {
+		QTAppTemp.STATIC_DEC_DEBT_CHOOSE=M_CONFIRM_DEBT.decTienNoHienTai;
+		QTAppTemp.STATIC_INT_ID_CHOOSE=M_CONFIRM_DEBT.intIdCustomer;
 		MessageBox.Show("LƯU THÀNH CÔNG!\nHiện tại tiền nợ của khách hàng '"+M_CONFIRM_DEBT.strNameCustomer+"' là "+(M_CONFIRM_DEBT.decTienNoHienTai+M_CONFIRM_DEBT.decTongTienDonHang).ToString("#,###.#")+" đ");
 		this.Close();
 	  }

@@ -15,6 +15,7 @@ namespace THUOCBAC.FormChucNang {
   public partial class frmAddInfoCustomerToOrder:Form {
 
 	private BL_KhachHang BL_KHACHHANG = new BL_KhachHang();
+	private BL_DonHang BL_DONHANG = new BL_DonHang();
 	//private DataTable DT_CHITIET_DONHANG;
 	//private decimal DEC_TONGTIEN;
 	//private int INT_MADH_HIENTAI;
@@ -54,6 +55,26 @@ namespace THUOCBAC.FormChucNang {
 	  //lblDuongKeNgang.Height=2;
 
 	  txtXNameCustomer.Text=QTStringConst.KHONGGHIVAO.STR;
+	  dateTimeInputThoiGian.Value=M_DETAIL_ORDER.dtTimeCreate;
+
+	  string strCapNhatChua = BL_DONHANG.STR_CAPNHAT_TIENNO_DH_CHUA(M_DETAIL_ORDER.intIdOrderCurrent);
+	  if(!strCapNhatChua.Equals(QTStringConst.CHUACAPNHAT.STR)) {
+		VOID_LOCK_CONTROL_WHEN_SAVED();
+	  }
+	}
+
+	private void VOID_LOCK_CONTROL_WHEN_SAVED() {
+	  dateTimeInputThoiGian.Value=M_DETAIL_ORDER.dtTimeCreate;
+	  dateTimeInputThoiGian.Enabled=false;
+
+	  txtXNameCustomer.Text=M_DETAIL_ORDER.strNameCustomerCurrent;
+	  btnXChooseCustomer.Enabled=false;
+
+	  numericUpDownTienNo.Value=M_DETAIL_ORDER.decDebtSaveWithOrder;
+	  numericUpDownTienNo.Enabled=false;
+
+	  txtPhone.Text=M_DETAIL_ORDER.strPhoneSaveWithOrder;
+	  txtPhone.Enabled=false;
 	}
 
 	private void btnXChooseCustomer_Click(object sender,EventArgs e) {
@@ -144,6 +165,35 @@ namespace THUOCBAC.FormChucNang {
 //frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo(dtLichSuTienNo,intIdKHVuaChon,strTenKhachHangDangChon,DEC_TIENNO_HIENTAI_CUA_KH,strLyDoSua,DEC_TONGTIEN);
 		frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo(mConfirmDebt);
 		frm.ShowDialog();
+		if(QTAppTemp.STATIC_DEC_DEBT_CHOOSE>0) {
+		  VOID_SAVE_DATA_TO_ORDER(mConfirmDebt.intIdCustomer,mConfirmDebt.decTienNoHienTai,mConfirmDebt.intIdOrderCurrent);
+		  VOID_LOCK_CONTROL_WHEN_UPDATED_DEBT();
+		}
+	  }
+	}
+
+	private void VOID_LOCK_CONTROL_WHEN_UPDATED_DEBT() {
+	  btnXUpdateDebt.Enabled=false;
+
+	  numericUpDownTienNo.Value=QTAppTemp.STATIC_DEC_DEBT_CHOOSE;
+	  numericUpDownTienNo.Enabled=false;
+
+	  btnXShowDetailDebt.Enabled=false;
+
+	  btnXChooseCustomer.Enabled=false;
+	}
+
+	private void VOID_SAVE_DATA_TO_ORDER(int _intIdCustomer,decimal _decTienNoHienTai,int _intIdOrderCurrent) {
+	  string strLoi = "";
+	  //int intIdKhachHangDangChon = Convert.ToInt32(comboBoxExTenKhachHang.SelectedValue.ToString());
+	  //bool boolCapNhatTenKHVaoDH=BL_DONHANG.boolUPDATE_IDKH_VAO_DH(ref strLoi,intIdKhachHangDangChon,INT_MADH_HIENTAI);
+	  //if(boolCapNhatTenKHVaoDH)
+	  //  MessageBox.Show("Tên khách hàng '"+strTenKhachHang+"' đã được lưu vào đơn hàng này !");
+	  //else
+	  //  MessageBox.Show("Có lỗi gì đó khi lưu tên khách hàng này vào đơn hàng ("+strLoi+")");
+	  bool boolCapNhatTienNoCuTenKHVaoDH = BL_DONHANG.boolUPDATE_TIENNO_CU_IDKH_VAO_DH(ref strLoi,_intIdCustomer,txtPhone.Text,_decTienNoHienTai,_intIdOrderCurrent);
+	  if(!boolCapNhatTienNoCuTenKHVaoDH) {
+		MessageBox.Show("Có lỗi gì đó khi lưu tên khách hàng,tiền nợ cũ này vào đơn hàng ("+strLoi+")");
 	  }
 	}
   }

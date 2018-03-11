@@ -375,6 +375,7 @@
 	  this.comboBoxExDanhSachCacViThuoc.Size = new System.Drawing.Size(201, 20);
 	  this.comboBoxExDanhSachCacViThuoc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 	  this.comboBoxExDanhSachCacViThuoc.TabIndex = 0;
+	  this.comboBoxExDanhSachCacViThuoc.TextUpdate += new System.EventHandler(this.comboBoxExDanhSachCacViThuoc_TextUpdate);
 	  this.comboBoxExDanhSachCacViThuoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxExDanhSachCacViThuoc_KeyDown);
 	  // 
 	  // groupBoxChiTietDonHang
