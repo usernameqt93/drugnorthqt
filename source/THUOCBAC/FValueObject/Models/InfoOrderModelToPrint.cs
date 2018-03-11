@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FValueObject.Models {
-  public class InfoOrderModel {
+  public class InfoOrderModelToPrint {
 
 	public string strSizePaper { get; set; }
 

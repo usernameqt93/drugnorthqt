@@ -1,4 +1,5 @@
-﻿using FValueObject.Models;
+﻿using BusinessLogic;
+using FValueObject.Models;
 using QTCommon;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,8 @@ using System.Windows.Forms;
 namespace THUOCBAC.FormChucNang {
   public partial class frmXacNhanThemTienNo:Form {
 
-	//private DataTable DT_LICHSU_TIENNO;
-	//private int INT_ID_KHACHHANG = -1;
-	//private string STR_TENKHACHHANG = "";
-	//private decimal DEC_TIENNO_HIENTAI = 0;
-	//private string STR_LUUY_FORM_TRUOC = "";
+	private BL_KhachHang BL_KHACHHANG = new BL_KhachHang();
+	private BL_DonHang BL_DONHANG=new BL_DonHang();
 	private ConfirmDebtModel M_CONFIRM_DEBT;
 
 	public frmXacNhanThemTienNo() {
@@ -28,19 +26,6 @@ namespace THUOCBAC.FormChucNang {
 	  InitializeComponent();
 	  M_CONFIRM_DEBT=mConfirmDebt;
 	}
-
-	//public frmXacNhanThemTienNo(DataTable dtLichSuTienNo,int intIdKhachHang,string strTenKhachHang,decimal decTienNoHienTai,string _strDetailDebt,decimal _decTongTienDH) {
-	//  InitializeComponent();
-	//  DT_LICHSU_TIENNO=dtLichSuTienNo;
-	//  INT_ID_KHACHHANG=intIdKhachHang;
-	//  STR_TENKHACHHANG=strTenKhachHang;
-	//  DEC_TIENNO_HIENTAI=decTienNoHienTai;
-
-	//  lblDetailDebt.Text=_strDetailDebt;
-	//  lblXTongTienDH.Text=(_decTongTienDH==0) ? "0 đ" : _decTongTienDH.ToString("#,###.#")+" đ";
-	//  decimal decTemp = decTienNoHienTai+_decTongTienDH;
-	//  lblXDebtUpdate.Text=(decTemp==0) ? "0 đ" : decTemp.ToString("#,###.#")+" đ";
-	//}
 
 	private void frmXacNhanThemTienNo_Load(object sender,EventArgs e) {
 	  VOID_LOAD_FORM();
@@ -100,11 +85,25 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void btnXAccept_Click(object sender,EventArgs e) {
+	  string strCapNhatChua = BL_DONHANG.STR_CAPNHAT_TIENNO_DH_CHUA(M_CONFIRM_DEBT.intIdOrderCurrent);
+	  if(strCapNhatChua.Equals("")) {
+		MessageBox.Show("MaDHHienTai la '"+M_CONFIRM_DEBT.intIdOrderCurrent+"' có Cột 'CapNhatTienNoChua' hiện đang có giá trị khác 'Đã cập nhật' và 'Chưa cập nhật' !");
+		return;
+	  }
 
+	  string strLoiCapNhatTienNo = "";
+	  string strLyDoSua = (rtbNote.Text.Trim().Equals(""))? M_CONFIRM_DEBT.strDetailDebt : M_CONFIRM_DEBT.strDetailDebt+"(Ghi chú: "+rtbNote.Text.Trim()+")";
+	  string strTrangThaiCapNhat = BL_KHACHHANG.STR_CAPNHAT_TIENNO_KH(ref strLoiCapNhatTienNo,
+		M_CONFIRM_DEBT.intIdOrderCurrent,M_CONFIRM_DEBT.decTienNoHienTai,M_CONFIRM_DEBT.intIdCustomer,strLyDoSua,M_CONFIRM_DEBT.decTongTienDonHang);
+	  if(strTrangThaiCapNhat.Equals("false")&&!(strLoiCapNhatTienNo.Equals("3"))) {
+		MessageBox.Show("Trạng thái cập nhật tiền nợ bị lỗi ("+strLoiCapNhatTienNo+")");
+	  } else {
+		MessageBox.Show("LƯU THÀNH CÔNG!\nHiện tại tiền nợ của khách hàng '"+M_CONFIRM_DEBT.strNameCustomer+"' là "+(M_CONFIRM_DEBT.decTienNoHienTai+M_CONFIRM_DEBT.decTongTienDonHang).ToString("#,###.#")+" đ");
+		this.Close();
+	  }
 	}
 
 	private void frmXacNhanThemTienNo_Shown(object sender,EventArgs e) {
-
 	  rtbNote.Focus();
 	}
   }

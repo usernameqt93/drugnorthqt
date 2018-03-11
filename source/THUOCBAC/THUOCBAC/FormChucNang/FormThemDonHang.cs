@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
 using QTCommon;
+using FValueObject.Models;
 
 namespace THUOCBAC.FormChucNang {
   public partial class FormThemDonHang:Form {
@@ -119,7 +120,17 @@ namespace THUOCBAC.FormChucNang {
 	  decimal decTongTienDonHang = BL_DONHANG.decTongTienDonHangTheoMaDonHang(ref strLoi,ref strResult,INT_MA_DONHANG_HIENTAI);
 
 	  if(QTAppSetting.STATIC_STR_CACHXEM_BANIN.Equals(QTDbConst.XEM_BANIN_CACH_2.STR)) {
-		frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder(dtChiTietDonHang,decTongTienDonHang,INT_MA_DONHANG_HIENTAI,DT_THOIGIAN_VIETDH);
+		DetailOrderModel mDetailOrder = new DetailOrderModel();
+		mDetailOrder.dtDetailOrder=dtChiTietDonHang;
+		mDetailOrder.decTongTien=decTongTienDonHang;
+		mDetailOrder.intIdOrderCurrent=INT_MA_DONHANG_HIENTAI;
+		mDetailOrder.intIdCustomerCurrent=INT_IDKH_HIENTAI;
+		mDetailOrder.strPhoneSaveWithOrder=STR_SDT_KH_HIENTAI;
+		mDetailOrder.decDebtSaveWithOrder=DEC_TIENNO_CU_HIENTAI;
+		mDetailOrder.dtTimeCreate=DT_THOIGIAN_VIETDH;
+
+		//frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder(dtChiTietDonHang,decTongTienDonHang,INT_MA_DONHANG_HIENTAI,DT_THOIGIAN_VIETDH);
+		frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder(mDetailOrder);
 		frm.ShowDialog();
 		return;
 	  }

@@ -15,25 +15,36 @@ namespace THUOCBAC.FormChucNang {
   public partial class frmAddInfoCustomerToOrder:Form {
 
 	private BL_KhachHang BL_KHACHHANG = new BL_KhachHang();
-	private DataTable DT_CHITIET_DONHANG;
-	private decimal DEC_TONGTIEN;
-	private int INT_MADH_HIENTAI;
-	private DateTime DT_THOIGIAN_VIETDH;
+	//private DataTable DT_CHITIET_DONHANG;
+	//private decimal DEC_TONGTIEN;
+	//private int INT_MADH_HIENTAI;
+	//private DateTime DT_THOIGIAN_VIETDH;
+
+	private DetailOrderModel M_DETAIL_ORDER;
 
 	public frmAddInfoCustomerToOrder() {
 	  InitializeComponent();
 	}
 
-	public frmAddInfoCustomerToOrder(DataTable _dtChiTietDonHang,decimal _decTongTien,int _intMaDHHienTai,DateTime dtThoiGianVietDH) {
+	public frmAddInfoCustomerToOrder(DetailOrderModel _mDetailOrder) {
 	  InitializeComponent();
-	  DT_CHITIET_DONHANG=_dtChiTietDonHang;
-	  DEC_TONGTIEN=_decTongTien;
-	  INT_MADH_HIENTAI=_intMaDHHienTai;
-	  DT_THOIGIAN_VIETDH=dtThoiGianVietDH;
+	  M_DETAIL_ORDER=_mDetailOrder;
 	}
+
+	//public frmAddInfoCustomerToOrder(DataTable _dtChiTietDonHang,decimal _decTongTien,int _intMaDHHienTai,DateTime dtThoiGianVietDH) {
+	//  InitializeComponent();
+	//  DT_CHITIET_DONHANG=_dtChiTietDonHang;
+	//  DEC_TONGTIEN=_decTongTien;
+	//  INT_MADH_HIENTAI=_intMaDHHienTai;
+	//  DT_THOIGIAN_VIETDH=dtThoiGianVietDH;
+	//}
 
 	private void frmAddInfoCustomerToOrder_Load(object sender,EventArgs e) {
 	  QTAppTemp.QT_RESET_APP_TEMP();
+	  VOID_LOAD_FORM();
+	}
+
+	private void VOID_LOAD_FORM() {
 	  cboKhoGiay.Items.Add(QTStringConst.KHO_A4.STR);
 	  cboKhoGiay.Items.Add(QTStringConst.KHO_A5.STR);
 	  cboKhoGiay.SelectedIndex=0;
@@ -41,6 +52,8 @@ namespace THUOCBAC.FormChucNang {
 	  lblDuongKeNgang.AutoSize=false;
 	  lblDuongKeNgang.BorderStyle=BorderStyle.Fixed3D;
 	  //lblDuongKeNgang.Height=2;
+
+	  txtXNameCustomer.Text=QTStringConst.KHONGGHIVAO.STR;
 	}
 
 	private void btnXChooseCustomer_Click(object sender,EventArgs e) {
@@ -83,16 +96,16 @@ namespace THUOCBAC.FormChucNang {
 	  this.Enabled=false;
 	  DateTime dtTemp = dateTimeInputThoiGian.Value;
 
-	  InfoOrderModel mInfoOrder = new InfoOrderModel();
+	  InfoOrderModelToPrint mInfoOrder = new InfoOrderModelToPrint();
 	  mInfoOrder.strSizePaper=cboKhoGiay.Text;
 	  mInfoOrder.strTime="Ngày   "+dtTemp.ToString("dd")+"   tháng   "+dtTemp.ToString("MM")+"   năm   "+dtTemp.Year;
 	  mInfoOrder.decCopyNumber=nudCopyNumber.Value;
-	  mInfoOrder.strCustomerName=(txtXNameCustomer.Text.Equals("")) ?" ":txtXNameCustomer.Text;
+	  mInfoOrder.strCustomerName=(txtXNameCustomer.Text.Equals("")||txtXNameCustomer.Text.Equals(QTStringConst.KHONGGHIVAO.STR)) ?" ":txtXNameCustomer.Text;
 	  mInfoOrder.decDebtNumber=numericUpDownTienNo.Value;
 	  mInfoOrder.strPhone=(txtPhone.Text.Equals("")||!chkDisplayPhone.Checked) ?" ":txtPhone.Text;
 
-	  mInfoOrder.decSumMoney=DEC_TONGTIEN;
-	  mInfoOrder.dtDetailOrder=DT_CHITIET_DONHANG;
+	  mInfoOrder.decSumMoney=M_DETAIL_ORDER.decTongTien;
+	  mInfoOrder.dtDetailOrder=M_DETAIL_ORDER.dtDetailOrder;
 
 	  FormReport.frmReportInDonHang frm = new FormReport.frmReportInDonHang(mInfoOrder);
 	  frm.ShowDialog();
@@ -105,7 +118,8 @@ namespace THUOCBAC.FormChucNang {
 	  string strTenKhachHangDangChon = txtXNameCustomer.Text;
 
 	  if(strTenKhachHangDangChon.Equals(QTStringConst.KHONGGHIVAO.STR)||strTenKhachHangDangChon.Trim().Equals("")) {
-		MessageBox.Show("Bạn chưa chọn tên khách hàng, chưa hiển thị thông tin được !");
+		MessageBox.Show("Bạn vui lòng chọn lại tên khách hàng !");
+		btnXUpdateDebt.Enabled=false;
 		return;
 	  }
 	  int intIdKHVuaChon = QTAppTemp.STATIC_INT_ID_CHOOSE;
@@ -123,10 +137,11 @@ namespace THUOCBAC.FormChucNang {
 		mConfirmDebt.intIdCustomer=intIdKHVuaChon;
 		mConfirmDebt.strNameCustomer=strTenKhachHangDangChon;
 		mConfirmDebt.decTienNoHienTai=DEC_TIENNO_HIENTAI_CUA_KH;
-		mConfirmDebt.strDetailDebt="Cộng thêm tiền đơn hàng "+INT_MADH_HIENTAI+" ("+DT_THOIGIAN_VIETDH+","+DT_CHITIET_DONHANG.Rows.Count+" vị thuốc)";
-		mConfirmDebt.decTongTienDonHang=DEC_TONGTIEN;
+		mConfirmDebt.strDetailDebt="Cộng thêm tiền đơn hàng "+M_DETAIL_ORDER.intIdOrderCurrent+" ("+M_DETAIL_ORDER.dtTimeCreate+","+M_DETAIL_ORDER.dtDetailOrder.Rows.Count+" vị thuốc)";
+		mConfirmDebt.decTongTienDonHang=M_DETAIL_ORDER.decTongTien;
+		mConfirmDebt.intIdOrderCurrent=M_DETAIL_ORDER.intIdOrderCurrent;
 
-		//frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo(dtLichSuTienNo,intIdKHVuaChon,strTenKhachHangDangChon,DEC_TIENNO_HIENTAI_CUA_KH,strLyDoSua,DEC_TONGTIEN);
+//frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo(dtLichSuTienNo,intIdKHVuaChon,strTenKhachHangDangChon,DEC_TIENNO_HIENTAI_CUA_KH,strLyDoSua,DEC_TONGTIEN);
 		frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo(mConfirmDebt);
 		frm.ShowDialog();
 	  }

@@ -10,6 +10,8 @@ namespace FValueObject.Models {
 
 	public int intIdCustomer { get; set; }
 
+	public int intIdOrderCurrent { get; set; }
+
 	public string strNameCustomer { get; set; }
 
 	public decimal decTienNoHienTai { get; set; }

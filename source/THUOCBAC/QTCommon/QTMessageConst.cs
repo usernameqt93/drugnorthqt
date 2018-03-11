@@ -64,7 +64,7 @@ namespace QTCommon {
 	}
 
 	public static string CONFIRM_CHANGE_DEBT(string _strName,string _strDebt) {
-	  return "Tiền nợ của '"+_strName+"' sẽ thay đổi thành '"+_strDebt+"' . Bạn chắc chắn muốn thay đổi ?";
+	  return "Tiền nợ của '"+_strName+"' sẽ thay đổi thành '"+_strDebt+"' sau khi cộng tiền đơn hàng . Bạn chắc chắn muốn thay đổi ?";
 	}
 
 	//QTMessageConst.CUSTOMER_NAME_ADD_SUCCESS

@@ -15,13 +15,13 @@ using System.Windows.Forms;
 namespace THUOCBAC.FormReport {
   public partial class frmReportInDonHang:Form {
 
-	private InfoOrderModel M_INFO_ORDER;
+	private InfoOrderModelToPrint M_INFO_ORDER;
 
 	public frmReportInDonHang() {
 	  InitializeComponent();
 	}
 
-	public frmReportInDonHang(InfoOrderModel _mInfo) {
+	public frmReportInDonHang(InfoOrderModelToPrint _mInfo) {
 	  InitializeComponent();
 	  M_INFO_ORDER=_mInfo;
 	}
