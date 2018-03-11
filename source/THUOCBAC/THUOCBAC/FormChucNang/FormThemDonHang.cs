@@ -136,12 +136,14 @@ namespace THUOCBAC.FormChucNang {
 		//frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder(dtChiTietDonHang,decTongTienDonHang,INT_MA_DONHANG_HIENTAI,DT_THOIGIAN_VIETDH);
 		frmAddInfoCustomerToOrder frm = new frmAddInfoCustomerToOrder(mDetailOrder);
 		frm.ShowDialog();
+		btnXXemReportCTHD.Enabled=false;
 		return;
 	  }
 
 	  FormReport.FormReportChiTietDonHang frmReport = new FormReport.FormReportChiTietDonHang(
 		dtChiTietDonHang,decTongTienDonHang,INT_MA_DONHANG_HIENTAI,INT_IDKH_HIENTAI,STR_SDT_KH_HIENTAI,DEC_TIENNO_CU_HIENTAI,DT_THOIGIAN_VIETDH);
 	  frmReport.ShowDialog();
+	  btnXXemReportCTHD.Enabled=false;
 
 	}
 

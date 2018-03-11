@@ -43,9 +43,10 @@ namespace DataAccessObject {
 	  }
 	  return null;
 	}
+
 	public DataTable dataTableBangDonHangTheoId(int intMaDonHang) {
 	  try {
-		string strSql=@"select CapNhatTienNoChua from BangDanhSachDonHang where MaDonHang=@MaDonHang ";
+		string strSql= @"select CapNhatTienNoChua from BangDanhSachDonHang where MaDonHang=@MaDonHang ";
 		SqlParameter MaDonHang=new SqlParameter("@MaDonHang",intMaDonHang);
 		return dataTableThucThiQuery(strSql,CommandType.Text,new SqlParameter[] { MaDonHang });
 	  } catch {
@@ -53,6 +54,7 @@ namespace DataAccessObject {
 	  }
 	  return null;
 	}
+
 	public DataTable dataTableBangDanhSachDonHangCoTenKH() {
 	  try {
 		string strSql=@"select bdsdh.MaDonHang,bdsdh.ThoiGianVietDonHangNay,bdsdh.TongViThuoc, 

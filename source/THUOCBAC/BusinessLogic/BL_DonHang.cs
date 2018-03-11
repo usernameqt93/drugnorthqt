@@ -50,14 +50,17 @@ namespace BusinessLogic {
 	  } catch(Exception e) { strLoi=e.Message; }
 	  return kq;
 	}
+
 	public DataTable dataTableBangDanhSachViThuocCungGia() {
 	  return DAO_DONHANG.dataTableBangDanhSachViThuocCungGia();
 	}
+
 	public string STR_CAPNHAT_TIENNO_DH_CHUA(int intMaDonHang) {
 	  DataTable dt=DAO_DONHANG.dataTableBangDonHangTheoId(intMaDonHang);
 	  string kq=Convert.ToString(dt.Rows[0]["CapNhatTienNoChua"].ToString());
 	  return kq;
 	}
+
 	public DataTable dataTableBangDanhSachViThuocXepTheoTenThuoc() {
 	  return DAO_DONHANG.dataTableBangDanhSachViThuocXepTheoTenThuoc();
 	}

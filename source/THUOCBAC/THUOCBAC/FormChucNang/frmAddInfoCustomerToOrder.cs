@@ -16,10 +16,6 @@ namespace THUOCBAC.FormChucNang {
 
 	private BL_KhachHang BL_KHACHHANG = new BL_KhachHang();
 	private BL_DonHang BL_DONHANG = new BL_DonHang();
-	//private DataTable DT_CHITIET_DONHANG;
-	//private decimal DEC_TONGTIEN;
-	//private int INT_MADH_HIENTAI;
-	//private DateTime DT_THOIGIAN_VIETDH;
 
 	private DetailOrderModel M_DETAIL_ORDER;
 
@@ -32,14 +28,6 @@ namespace THUOCBAC.FormChucNang {
 	  M_DETAIL_ORDER=_mDetailOrder;
 	}
 
-	//public frmAddInfoCustomerToOrder(DataTable _dtChiTietDonHang,decimal _decTongTien,int _intMaDHHienTai,DateTime dtThoiGianVietDH) {
-	//  InitializeComponent();
-	//  DT_CHITIET_DONHANG=_dtChiTietDonHang;
-	//  DEC_TONGTIEN=_decTongTien;
-	//  INT_MADH_HIENTAI=_intMaDHHienTai;
-	//  DT_THOIGIAN_VIETDH=dtThoiGianVietDH;
-	//}
-
 	private void frmAddInfoCustomerToOrder_Load(object sender,EventArgs e) {
 	  QTAppTemp.QT_RESET_APP_TEMP();
 	  VOID_LOAD_FORM();
@@ -49,7 +37,7 @@ namespace THUOCBAC.FormChucNang {
 	  cboKhoGiay.Items.Add(QTStringConst.KHO_A4.STR);
 	  cboKhoGiay.Items.Add(QTStringConst.KHO_A5.STR);
 	  cboKhoGiay.SelectedIndex=0;
-	  //cboKhoGiay.
+
 	  lblDuongKeNgang.AutoSize=false;
 	  lblDuongKeNgang.BorderStyle=BorderStyle.Fixed3D;
 	  //lblDuongKeNgang.Height=2;
@@ -65,7 +53,7 @@ namespace THUOCBAC.FormChucNang {
 
 	private void VOID_LOCK_CONTROL_WHEN_SAVED() {
 	  dateTimeInputThoiGian.Value=M_DETAIL_ORDER.dtTimeCreate;
-	  dateTimeInputThoiGian.Enabled=false;
+	  //dateTimeInputThoiGian.Enabled=false;
 
 	  txtXNameCustomer.Text=M_DETAIL_ORDER.strNameCustomerCurrent;
 	  btnXChooseCustomer.Enabled=false;
@@ -74,7 +62,7 @@ namespace THUOCBAC.FormChucNang {
 	  numericUpDownTienNo.Enabled=false;
 
 	  txtPhone.Text=M_DETAIL_ORDER.strPhoneSaveWithOrder;
-	  txtPhone.Enabled=false;
+	  //txtPhone.Enabled=false;
 	}
 
 	private void btnXChooseCustomer_Click(object sender,EventArgs e) {
@@ -88,6 +76,7 @@ namespace THUOCBAC.FormChucNang {
 		btnXUpdateDebt.Enabled=true;
 
 	  }
+	  btnXShowDetailDebt.PerformClick();
 	}
 
 	private void btnXShowDetailDebt_Click(object sender,EventArgs e) {
@@ -134,8 +123,6 @@ namespace THUOCBAC.FormChucNang {
 	}
 
 	private void btnXUpdateDebt_Click(object sender,EventArgs e) {
-	  //frmXacNhanThemTienNo frm = new frmXacNhanThemTienNo();
-	  //frm.ShowDialog();
 	  string strTenKhachHangDangChon = txtXNameCustomer.Text;
 
 	  if(strTenKhachHangDangChon.Equals(QTStringConst.KHONGGHIVAO.STR)||strTenKhachHangDangChon.Trim().Equals("")) {
@@ -146,12 +133,12 @@ namespace THUOCBAC.FormChucNang {
 	  int intIdKHVuaChon = QTAppTemp.STATIC_INT_ID_CHOOSE;
 	  DataTable dtLichSuTienNo = BL_KHACHHANG.DATATABLE_LICHSU_TIENNO_THEO_IDKH(intIdKHVuaChon);
 	  if(dtLichSuTienNo.Rows.Count==0) {
-		MessageBox.Show("Hiện tại tiền nợ của khách hàng '"+strTenKhachHangDangChon+"' đang lưu là 0 đ\nBạn có thể xem lại thông tin chi tiết ở phần danh sách khách hàng !");
+		MessageBox.Show("Bạn vui lòng chọn lại tên khách hàng !");
+		btnXChooseCustomer.PerformClick();
 		return;
 	  }
 	  if(dtLichSuTienNo.Rows.Count>0) {
 		decimal DEC_TIENNO_HIENTAI_CUA_KH=BL_KHACHHANG.DEC_TIENNO_HIENTAI_KH(intIdKHVuaChon);
-		//string strLyDoSua = "Cộng thêm tiền đơn hàng "+INT_MADH_HIENTAI+" ("+DT_THOIGIAN_VIETDH+")";
 
 		ConfirmDebtModel mConfirmDebt = new ConfirmDebtModel();
 		mConfirmDebt.dtLichSuTienNo=dtLichSuTienNo;
@@ -185,12 +172,6 @@ namespace THUOCBAC.FormChucNang {
 
 	private void VOID_SAVE_DATA_TO_ORDER(int _intIdCustomer,decimal _decTienNoHienTai,int _intIdOrderCurrent) {
 	  string strLoi = "";
-	  //int intIdKhachHangDangChon = Convert.ToInt32(comboBoxExTenKhachHang.SelectedValue.ToString());
-	  //bool boolCapNhatTenKHVaoDH=BL_DONHANG.boolUPDATE_IDKH_VAO_DH(ref strLoi,intIdKhachHangDangChon,INT_MADH_HIENTAI);
-	  //if(boolCapNhatTenKHVaoDH)
-	  //  MessageBox.Show("Tên khách hàng '"+strTenKhachHang+"' đã được lưu vào đơn hàng này !");
-	  //else
-	  //  MessageBox.Show("Có lỗi gì đó khi lưu tên khách hàng này vào đơn hàng ("+strLoi+")");
 	  bool boolCapNhatTienNoCuTenKHVaoDH = BL_DONHANG.boolUPDATE_TIENNO_CU_IDKH_VAO_DH(ref strLoi,_intIdCustomer,txtPhone.Text,_decTienNoHienTai,_intIdOrderCurrent);
 	  if(!boolCapNhatTienNoCuTenKHVaoDH) {
 		MessageBox.Show("Có lỗi gì đó khi lưu tên khách hàng,tiền nợ cũ này vào đơn hàng ("+strLoi+")");
