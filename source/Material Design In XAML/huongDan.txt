@@ -1,0 +1,17 @@
+﻿https://www.howkteam.vn/course/mo-hinh-mvvm-trong-phan-mem-quan-ly-kho-wpf--mvvm/cai-dat-material-design-trong-phan-mem-quan-ly-kho-wpf--mvvm-2631
+http://materialdesigninxaml.net/news
+Ban nay huong dan 2.3.1
+
+Mình là Newmember sau một hồi mài mò thì cũng thành công, nay share lại cho các bạn cách tạo file Bin trong MaterialDesignInXamlToolkit-master.
+
+1/ Sau khi giải nén file MaterialDesignInXamlToolkit-master.rar vào folder MaterialDesignInXamlToolkit-master tìm file MaterialDesignToolkit.Wpf.sln mở bằng Visual Studio 2017 (2015 chưa test chưa biết).
+
+2/ Sau khi mở file MaterialDesignToolkit.Wpf.sln bằng VS2017 xong thì chọn trên tab theo nội dung sau Debug>>>Any CPU >>> MaterialDesignDemo >>> Play (hoặc nhấn f5)
+
+*** Mấy cái tool này hay bị lỗi, nếu chẳng may F5 xong nó báo lỗi thì đừng lo, nhấn F5 lần nữa, ko được thì làm lại từ bước 1.
+
+3/ Sau đó vào lại folder MaterialDesignInXamlToolkit-master >>> MainDemo.Wpf >>> Bin >>> Debug >>> MaterialDesignDemo.exe
+
+Sau đó tận hưởng thành quả.
+
+Chúc thành công.
