@@ -51,6 +51,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\CustomerPasswordBox.cs" />
+    <Compile Include="Helpers\EnterKeyHelpers.cs" />
     <Compile Include="Helpers\Modal\ModalContentCommands.cs" />
     <Compile Include="Helpers\Modal\ModalContentPresenter.cs" />
     <Compile Include="Helpers\ModelBase.cs" />

@@ -4,9 +4,220 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Login.View"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Label Content="Login"/>
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        xmlns:help="clr-namespace:QTTool.Helpers;assembly=QTTool"
+        x:Name="windowMain" Width="1024" Height="768" MinHeight="768" MinWidth="1024" 
+        Style="{DynamicResource InvicoWindowStyle}" WindowState="Normal" 
+        AllowsTransparency="False" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/INV.Framework.Styles.Library;Component/InvicoStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="#FAFAFA">
+
+        <Grid Background="#EEEEEE" Width="350" Height="350" 
+              >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Label Content="ĐĂNG NHẬP" FontSize="20" Style="{DynamicResource InvicoTitlePopupStyle}" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="15,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="32"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Content="Tên đăng nhập" Style="{DynamicResource InvicoLabelStyle}"/>
+                    <Grid Grid.Row="1" Background="White">
+                        <Button Grid.Row="1" BorderThickness="0" BorderBrush="Transparent">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border BorderBrush="DarkGray" BorderThickness="1" Background="Transparent" 
+                                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Path Margin="6,0,0,0" x:Name="path" Width="20" Height="20" 
+                                                  Stretch="Fill" Fill="{DynamicResource DefaultButtonBackground}" 
+                                                  Data="M39.206001,5.1369998 C51.019001,5.234 51.412998,17.195999 51.416,17.316999 51.551998,24.351 55.904999,31.285999 57.77,33.939998 
+                                                  58.285999,34.675998 58.442001,35.595001 58.195999,36.463001 57.952,37.323002 57.344002,38.018001 56.527,38.369999 55.165001,38.955002 53.599998,39.076999 
+                                                  52.527,39.076999 51.942001,39.076999 51.564999,39.040001 51.564999,39.040001 L45.040001,39.044998 C45.258999,39.419998 45.514,39.701 45.743999,39.816002 L55.466999,44.026001 
+                                                  C58.282001,45.432998 60,48.210998 60,51.303001 L60,55 47.499001,55 47.499001,50.955002 C47.499001,46.944 45.271,43.339 41.683998,41.544998 L32.131001,36.769001 C31.736,36.571998 31.5,36.188999 31.5,35.747001 L31.5,32.887001 C31.645,32.696998 
+                                                  31.792999,32.495998 31.943001,32.283001 33.153999,30.573002 34.144001,28.684 34.891998,26.662 36.494999,25.672001 37.499001,23.906999 37.499001,22 L37.499001,18 C37.499001,16.875999 37.146999,15.781 
+                                                  36.499001,14.858999 L36.499001,10.126 C36.553001,9.5179994 36.625999,7.6439998 35.834,5.55 36.896999,5.293 38.019001,5.1469996 39.206001,5.1369998 z M23,0 C27.521,-2.3841858E-07 30.854,1.1879997 
+                                                  32.908001,3.5309994 35.276001,6.2320001 35.056,9.5059993 35,10.056 L35,15.375 C35.639999,16.104 36,17.037 36,18 L36,22 C36,23.575001 35.084,24.969999 33.673,25.617 32.951,27.718 31.958,29.666 30.719,31.416 
+                                                  30.469999,31.768001 30.229,32.087002 30,32.367 L30,35.748001 C30,36.756 30.559999,37.661999 31.461,38.112999 L41.014,42.889 C44.089001,44.426998 46,47.518001 46,50.957 L46,55 0,55 0,50.762001 C0,47.458 1.801,44.424 4.7020001,42.84 L13.623,37.973999 
+                                                  C14.472,37.509998 15,36.622001 15,35.653999 L15,32.345001 C14.33,31.467998 12.413,28.735 11.497,25.108 10.553,24.351 10,23.215999 10,21.999 L10,17.999 C10,17.035999 10.36,16.103 11,15.374 L11,10.055 C10.944,9.5059993 10.724,6.2309997 13.092,3.53 15.146,1.1879997 18.479,-2.3841858E-07 23,0 z"/>
+                                            <Grid>
+                                                <TextBox BorderThickness="0" Background="Transparent" AcceptsReturn="False" TabIndex="1" 
+                                                         x:Name="txtSearch" Margin="5,5,10,5" HorizontalAlignment="Left" 
+                                                         VerticalContentAlignment="Top" VerticalAlignment="Bottom" 
+                                                         Width="280" Height="23" Grid.ColumnSpan="3" FontSize="16" 
+                                                         Text="{Binding UserText, Mode=TwoWay}" 
+                                                         help:EnterKeyHelpers.EnterKeyCommand ="{Binding LoginCommand }" />
+                                                <TextBlock IsHitTestVisible="False" Text="Tên đăng nhập" VerticalAlignment="Center" 
+                                                           HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="#CED4DA">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="{x:Type TextBlock}">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Text, ElementName=txtSearch}" Value="">
+                                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="15,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="32"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Content="Mật khẩu" Style="{DynamicResource InvicoLabelStyle}"/>
+                    <Grid Grid.Row="1" Background="White">
+
+                        <Label Grid.Row="1" BorderThickness="0" BorderBrush="Transparent" 
+                               Content="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                               IsEnabled="False">
+                            <Label.Template>
+                                <ControlTemplate TargetType="Label">
+                                    <Border BorderBrush="DarkGray" BorderThickness="1" Background="Transparent" 
+                                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Path Margin="6,0,0,0" x:Name="path" Width="20" Height="20" 
+                                                  Stretch="Fill" Fill="{DynamicResource DefaultButtonBackground}" 
+                                                  Data="M353.812,0C263.925,0,191.25,72.675,191.25,162.562c0,19.125,3.825,38.25,9.562,57.375L0,420.75v95.625h95.625V459H153   
+                                                  v-57.375h57.375l86.062-86.062c17.213,5.737,36.338,9.562,57.375,9.562c89.888,0,162.562-72.675,162.562-162.562S443.7,0,353.812,0   
+                                                  z M401.625,172.125c-32.513,0-57.375-24.862-57.375-57.375s24.862-57.375,57.375-57.375S459,82.237,459,114.75   
+                                                  S434.138,172.125,401.625,172.125z"/>
+                                            <PasswordBox x:Name="txtAgainPassword" TabIndex="2" 
+                                                         help:CustomerPasswordBox.BindPassword="true" 
+                                                         help:CustomerPasswordBox.BoundPassword="{TemplateBinding Content}" 
+                                                         help:EnterKeyHelpers.EnterKeyCommand ="{Binding LoginCommand }" 
+                                                          BorderThickness="0" Background="Transparent" Margin="5,7,10,6" 
+                                                         HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="280" 
+                                                         Height="23" FontSize="16" Grid.ColumnSpan="3">
+                                            </PasswordBox>
+                                            <TextBlock IsHitTestVisible="False" Text="Mật khẩu" VerticalAlignment="Center" 
+                                                       HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Text, ElementName=txtAgainPassword}" Value="">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Label.Template>
+                        </Label>
+
+                        <Button Grid.Row="1" BorderThickness="0" BorderBrush="Transparent">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border BorderBrush="DarkGray" BorderThickness="1" 
+                                            Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Path Margin="6,0,0,0" x:Name="path" Width="20" Height="20" Stretch="Fill" 
+                                                  Fill="{DynamicResource DefaultButtonBackground}" 
+                                                  Data="M353.812,0C263.925,0,191.25,72.675,191.25,162.562c0,19.125,3.825,38.25,9.562,57.375L0,420.75v95.625h95.625V459H153   
+                                                  v-57.375h57.375l86.062-86.062c17.213,5.737,36.338,9.562,57.375,9.562c89.888,0,162.562-72.675,162.562-162.562S443.7,0,353.812,0   
+                                                  z M401.625,172.125c-32.513,0-57.375-24.862-57.375-57.375s24.862-57.375,57.375-57.375S459,82.237,459,114.75   
+                                                  S434.138,172.125,401.625,172.125z"/>
+                                            <PasswordBox x:Name="txtAgainPassword" TabIndex="2" 
+                                                         help:CustomerPasswordBox.BindPassword="true" 
+                                                         help:CustomerPasswordBox.BoundPassword="{Binding PasswordText, 
+                                                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                         help:EnterKeyHelpers.EnterKeyCommand ="{Binding LoginCommand }" 
+                                                         help:BackSpaceKeyHelpers.BackSpaceKeyCommand="{Binding BackSpaceCommand}"
+                                                         Style="{DynamicResource InvicoPasswordBoxStyle}" BorderThickness="0" 
+                                                         Background="Transparent" Margin="5,7,10,3" HorizontalAlignment="Left" 
+                                                         VerticalAlignment="Bottom" Width="280" Height="23" FontSize="16" Grid.ColumnSpan="3"/>
+                                            <TextBlock IsHitTestVisible="False" Text="Mật khẩu" VerticalAlignment="Center" 
+                                                       HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Text, ElementName=txtAgainPassword}" Value="">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Row="2" Margin="15, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="32"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Hệ thống" Style="{DynamicResource InvicoLabelStyle}"/>
+                    <Grid Grid.Row="1" Background="White">
+                        <ComboBox Style="{DynamicResource InvicoComboBoxStyle}" ItemsSource="{Binding LstServer}" 
+                                  DisplayMemberPath="ServerName" SelectedItem="{Binding ServerSelected, Mode=TwoWay}">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ComboBoxItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+
+
+                <CheckBox Grid.Row="3" Style="{DynamicResource InvicoCheckBoxStyle}" x:Name="chkRemember" 
+                          Content="Nhớ mật khẩu" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="15,0" 
+                          IsChecked="{Binding CheckSavedAccount, Mode=TwoWay}"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Button Style="{DynamicResource InvicoButtonStyle}" Command="{Binding LoginCommand}" 
+                        Height="40" Margin="15,5,15,10" Content="Đồng ý"/>
+            </Grid>
+        </Grid>
+
     </Grid>
 </Window>

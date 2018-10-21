@@ -37,7 +37,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="INV.Framework.Styles.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="INV.Framework.Styles.Library, Version=1.0.28.18, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lybrarys\INV.Framework.Styles.Library.dll</HintPath>
       <Private>False</Private>

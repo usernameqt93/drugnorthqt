@@ -1181,15 +1181,15 @@ namespace Login.ViewModels {
 	//  }
 	//}
 
-	//public ICommand CloseCommand {
-	//  get {
-	//	return new DelegateCommand(p => {
-	//	  SelectedItem = ModalSelection;
-	//	  IsTiling = false;
-	//	  _mainWindow.contnet.Visibility = Visibility.Visible;
-	//	});
-	//  }
-	//}
+	public ICommand CloseCommand {
+	  get {
+		return new DelegateCommand(p => {
+		  //SelectedItem = ModalSelection;
+		  //IsTiling = false;
+		  //_mainWindow.contnet.Visibility = Visibility.Visible;
+		});
+	  }
+	}
 
 	//#endregion
 
