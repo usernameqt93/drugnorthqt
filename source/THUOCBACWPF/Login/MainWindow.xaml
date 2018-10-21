@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Login"
         mc:Ignorable="d"
         xmlns:help="clr-namespace:PQTTool.Helpers;assembly=PQTTool.Library"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Background="{DynamicResource MaterialDesignPaper}"
         Title="MainWindow" Height="450" Width="800" Icon="DrugNorthQT.ico">
     <Window.Resources>
@@ -44,9 +45,13 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="Tên đăng nhập" Style="{StaticResource MaterialDesignSubheadingTextBlock}"/>
+                    <Label Grid.Row="0" Content="Tên đăng nhập" Style="{DynamicResource InvicoLabelStyle}"/>
                     <Grid Grid.Row="1" Background="White">
-                        <Button Grid.Row="1" BorderThickness="0" BorderBrush="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <!--<Button Grid.Row="1" BorderThickness="0" BorderBrush="Transparent">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border BorderBrush="DarkGray" BorderThickness="1" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -80,7 +85,9 @@
                                     </Border>
                                 </ControlTemplate>
                             </Button.Template>
-                        </Button>
+                        </Button>-->
+                        <materialDesign:PackIcon  Kind="Account" Foreground="{StaticResource MainForeground}" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" materialDesign:HintAssist.Hint="Ten dang nhap"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center" />
                     </Grid>
                 </Grid>
 
@@ -174,7 +181,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Content="Hệ thống" Style="{DynamicResource InvicoLabelStyle}"/>
-                    <Grid Grid.Row="1" Background="White">
+                    <!--<Grid Grid.Row="1" Background="White">
                         <ComboBox Style="{DynamicResource InvicoComboBoxStyle}" ItemsSource="{Binding LstServer}" DisplayMemberPath="ServerName" SelectedItem="{Binding ServerSelected, Mode=TwoWay}">
                             <ComboBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ComboBoxItem}">
@@ -182,7 +189,7 @@
                                 </Style>
                             </ComboBox.ItemContainerStyle>
                         </ComboBox>
-                    </Grid>
+                    </Grid>-->
                 </Grid>
 
 

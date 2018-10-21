@@ -75,4 +75,258 @@
     <SolidColorBrush x:Key="WindowButtonOverColor" Color="LightBlue"/>
     <SolidColorBrush x:Key="WindowButtonPressedColor" Color="DarkBlue"/>
 
+
+    <!--Label style-->
+    <Style x:Key="InvicoLabelStyle"  TargetType="{x:Type Label}">
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{DynamicResource DefaultContentFontSize}"/>
+        <!--<Setter Property="Foreground" Value="#CED4DA"/>-->
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+    <!--PasswordBox Style-->
+    <Style x:Key="InvicoPasswordBoxStyle" TargetType="{x:Type PasswordBox}">
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{DynamicResource DefaultContentFontSize}"/>
+        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="MaxLength" Value="200"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Border Background="{TemplateBinding Background}" x:Name="Bd" BorderBrush="#CED4DA" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                        <ScrollViewer x:Name="PART_ContentHost"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="Width" Value="Auto">
+                            <Setter Property="MinWidth" Value="100"/>
+                        </Trigger>
+                        <Trigger Property="Height" Value="Auto">
+                            <Setter Property="MinHeight" Value="20"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--End of PasswordBox Style-->
+
+    <Style x:Key="InvicoComboBoxStyle" TargetType="{x:Type ComboBox}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="BorderBrush" Value="Gray" />
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        <Setter Property="MinWidth" Value="50"/>
+        <Setter Property="MinHeight" Value="20"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <ToggleButton
+                                Name="ToggleButton"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}"
+                                Foreground="{TemplateBinding Foreground}"
+                                Style="{DynamicResource ComboBoxToggleButton}"
+                                Grid.Column="2"
+                                Focusable="false"
+                                IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                                ClickMode="Press">
+                        </ToggleButton>
+                        <ContentPresenter
+                                Name="ContentSite"
+                                IsHitTestVisible="False"
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                Margin="10,3,30,3"
+                                VerticalAlignment="Center" />
+                        <TextBox x:Name="PART_EditableTextBox"
+                                Style="{x:Null}"
+                                Template="{DynamicResource ComboBoxTextBox}"
+                                VerticalAlignment="Center"
+                                Margin="3,3,23,3"
+                                Focusable="True"                               
+                                Visibility="Hidden"
+                                IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                        <Popup
+                                Name="Popup"
+                                Placement="Bottom"
+                                IsOpen="{TemplateBinding IsDropDownOpen}"
+                                AllowsTransparency="True"
+                                Focusable="False"
+                                PopupAnimation="Slide">
+                            <Grid
+                                  Name="DropDown"
+                                  SnapsToDevicePixels="True"               
+                                  MinWidth="{TemplateBinding ActualWidth}"
+                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border
+                                        x:Name="DropDownBorder"
+                                        Background="White"
+                                        CornerRadius="3"
+                                        BorderThickness="1"
+                                        BorderBrush="Gray"/>
+                                <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="true">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                        </Trigger>
+                        <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
+                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="0"/>
+                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
+                        </Trigger>
+                        <Trigger Property="IsEditable" Value="true">
+                            <Setter Property="IsTabStop" Value="false"/>
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility"    Value="Visible"/>
+                            <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ComboBoxItem}">
+
+                    <Setter Property="SnapsToDevicePixels" Value="true" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="{DynamicResource DefaultContentFontSize}" />
+                    <Setter Property="Foreground" Value="Gray" />
+                    <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+                    <Setter Property="OverridesDefaultStyle" Value="true"/>
+                    <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBoxItem">
+                                <Border
+                                    Name="Border"
+                                    BorderThickness="0"
+                                    Padding="5"
+                                    CornerRadius="0"
+                                    Background="White" >
+                                    <Label VerticalContentAlignment="Center">
+                                        <ContentPresenter/>
+                                    </Label>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsHighlighted" Value="true">
+                                        <Setter TargetName="Border" Property="Background" Value="#FFE7E6E6"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+        </Style.Triggers>
+    </Style>
+
+    <!--CheckBox style-->
+    <Style x:Key="InvicoCheckBoxStyle" TargetType="{x:Type CheckBox}">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="DarkGray"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <BulletDecorator Background="Transparent"
+                                 SnapsToDevicePixels="true">
+                        <BulletDecorator.Bullet>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="1"
+                                Width="15" Height="15">
+                                <Grid>
+                                    <Path Name="TickMark" Margin="2"
+                                      Fill="{StaticResource DefaultButtonBackground}"
+                                      Data="F1 M 9.97498,1.22334L 4.6983,9.09834L 4.52164,9.09834L 0,5.19331L 1.27664,3.52165L 4.255,6.08833L 8.33331,1.52588e-005L 9.97498,1.22334 Z"
+                                      Visibility="Hidden" />
+                                    <Rectangle Name="IndeterminateMark"
+                                           Fill="{StaticResource DefaultButtonBackground}"
+                                           Width="15" Height="15"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Visibility="Hidden" />
+                                </Grid>
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      Margin="{TemplateBinding Padding}"
+                                      RecognizesAccessKey="True"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasContent" Value="true">
+                            <Setter Property="Padding" Value="4,0,0,0"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="TickMark" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="IndeterminateMark" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Button style-->
+    <Style x:Key="InvicoButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultButtonBackground}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource DefaultButtonForeground}"/>
+        <Setter Property="FontSize" Value="{DynamicResource DefaultContentFontSize}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3" BorderThickness="1" Background="{TemplateBinding Property=Background}">
+                        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{TemplateBinding Property=Content}" FontFamily="{StaticResource DefaultFontFamily}" Foreground="{TemplateBinding Property=Foreground}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource DefaultButtonHoverBackground}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{DynamicResource DefaultButtonDisableBackground}"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="true">
+                <Setter Property="BorderBrush" Value="{DynamicResource DefaultButtonDisableBackground}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--End of button style-->
+
 </ResourceDictionary>
