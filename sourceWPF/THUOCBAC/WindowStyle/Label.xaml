@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WindowStyle">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="DefaultValue.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--Label style-->
+    <Style x:Key="InvicoLabelStyle"  TargetType="{x:Type Label}">
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{DynamicResource DefaultContentFontSize}"/>
+        <!--<Setter Property="Foreground" Value="#CED4DA"/>-->
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+    <!--Label số lượng đáp án (số câu hỏi con) style-->
+    <Style x:Key="InvicoLabelQuantityStyle"  TargetType="{x:Type Label}">
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+        <Setter Property="FontSize" Value="{DynamicResource DefaultContentFontSize}"/>
+        <Setter Property="Foreground" Value="#8B0000"/>
+    </Style>
+
+    <!--Label số lượng đáp án (số câu hỏi con) style-->
+    <Style x:Key="InvicoTextBlockHeaderAdvanceGrid"  TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="InvicoTitlePopupStyle"  TargetType="{x:Type Label}">
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="Foreground" Value="{StaticResource DefaultModalColor}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="InvicoLabelModalStyle"  TargetType="{x:Type Label}">
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource DefaultModalColor}"/>
+    </Style>
+    <!--End of label style-->
+
+
+</ResourceDictionary>
