@@ -44,28 +44,35 @@ namespace DrugNorthQT {
 	private void GetDictionaryData(ref Dictionary<string,object> dic) {
 
 	  dic.Add("VersionAppExe",Assembly.GetExecutingAssembly().GetName().Version);
+	  dic.Add("DELEGATE_VOID_IN_OTHER_USERCONTROL",
+						new Login.ViewModels.ViewModelMain.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromOtherUserControl));
+
+	  Dictionary<string,object> dicSubInput = new Dictionary<string,object>();
+	  GetSubDictionaryInput(ref dicSubInput);
+	  dic.Add("Dictionary<string,object>",dicSubInput);
+	}
+
+	private void GetSubDictionaryInput(ref Dictionary<string,object> dic) {
 	  dic.Add("stringAppName",CONST_STR_APP_NAME);
 	  dic.Add("stringTitle",CONST_STR_TITLE);
 	  dic.Add("stringPath",CONST_STR_PATH_DLL);
-	  dic.Add("Tuple<int,string,string><_software,_version,_dateTime>",
-		new Tuple<int,string,string>(CONST_INT_SOFTWARE,CONST_STR_VERSION,CONST_STR_NGAY_UPDATE_GAN_NHAT));
-	  //dic.Add("DELEGATE_VOID_IN_OTHER_USERCONTROL",
-			//			new WindowMain.ViewModels.ViewModelMain.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromOtherUserControl));
+	  dic.Add("intSoftware",CONST_INT_SOFTWARE);
+	  dic.Add("stringVersion",CONST_STR_VERSION);
+	  dic.Add("stringTimeUpdate",CONST_STR_NGAY_UPDATE_GAN_NHAT);
 
-	 // dic.Add("Tuple<bool,string,string,int><checkSaveLoginInfo,userName,passUser,isServer>",new Tuple<bool,string,string,int>(
-		//MasterTest.Properties.Settings.Default.checkSaveLoginInfo,
-		//MasterTest.Properties.Settings.Default.userName,
-		//MasterTest.Properties.Settings.Default.passUser,
-		//MasterTest.Properties.Settings.Default.isServer
-		//));
+	  dic.Add("boolCheckSaveLogin",DrugNorthQT.Properties.Settings.Default.checkSaveLoginInfo);
+	  dic.Add("stringUserName",DrugNorthQT.Properties.Settings.Default.userName);
+	  dic.Add("stringPassword",DrugNorthQT.Properties.Settings.Default.passUser);
+	  dic.Add("intisServer",DrugNorthQT.Properties.Settings.Default.isServer);
+
 	}
 
-	private void ExcuteFromOtherUserControl(Dictionary<string,object> dic) {
-	  //MasterTest.Properties.Settings.Default.userName = dic["stringUser"] as string;
-	  //MasterTest.Properties.Settings.Default.passUser = dic["stringPass"] as string;
-	  //MasterTest.Properties.Settings.Default.isServer = (int)dic["int"];
-	  //MasterTest.Properties.Settings.Default.checkSaveLoginInfo = (bool)dic["bool"];
-	  //MasterTest.Properties.Settings.Default.Save();
+	private void ExcuteFromOtherUserControl(ref Dictionary<string,object> dic) {
+	  DrugNorthQT.Properties.Settings.Default.userName = dic["stringUser"] as string;
+	  DrugNorthQT.Properties.Settings.Default.passUser = dic["stringPass"] as string;
+	  DrugNorthQT.Properties.Settings.Default.isServer = (int)dic["int"];
+	  DrugNorthQT.Properties.Settings.Default.checkSaveLoginInfo = (bool)dic["bool"];
+	  DrugNorthQT.Properties.Settings.Default.Save();
 	}
 
 	// signals to restore the window to its normal state

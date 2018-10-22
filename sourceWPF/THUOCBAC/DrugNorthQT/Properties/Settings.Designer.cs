@@ -22,5 +22,53 @@ namespace DrugNorthQT.Properties {
 		return defaultInstance;
 	  }
 	}
+
+	[global::System.Configuration.UserScopedSettingAttribute()]
+	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+	[global::System.Configuration.DefaultSettingValueAttribute("")]
+	public bool checkSaveLoginInfo {
+	  get {
+		return ((bool)(this["checkSaveLoginInfo"]));
+	  }
+	  set {
+		this["checkSaveLoginInfo"] = value;
+	  }
+	}
+
+	[global::System.Configuration.UserScopedSettingAttribute()]
+	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+	[global::System.Configuration.DefaultSettingValueAttribute("")]
+	public string userName {
+	  get {
+		return ((string)(this["userName"]));
+	  }
+	  set {
+		this["userName"] = value;
+	  }
+	}
+
+	[global::System.Configuration.UserScopedSettingAttribute()]
+	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+	[global::System.Configuration.DefaultSettingValueAttribute("")]
+	public string passUser {
+	  get {
+		return ((string)(this["passUser"]));
+	  }
+	  set {
+		this["passUser"] = value;
+	  }
+	}
+
+	[global::System.Configuration.UserScopedSettingAttribute()]
+	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+	[global::System.Configuration.DefaultSettingValueAttribute("")]
+	public int isServer {
+	  get {
+		return ((int)(this["isServer"]));
+	  }
+	  set {
+		this["isServer"] = value;
+	  }
+	}
   }
 }
