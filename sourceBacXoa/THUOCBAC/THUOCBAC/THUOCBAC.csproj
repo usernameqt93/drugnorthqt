@@ -172,21 +172,39 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHang.rdlc" />
-    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHang20170424.rdlc" />
-    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHang20170503.rdlc" />
-    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHangAnThanhTien.rdlc" />
-    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHangKhoA4ChuTo.rdlc" />
-    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHangKhoA4Kieu2.rdlc" />
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHang.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHang20170424.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHang20170503.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHangAnThanhTien.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHangKhoA4ChuTo.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHangKhoA4Kieu2.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHangKhoA5.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileReportRdlc\ReportCTDHKhoA4CoSoNoCu.rdlc" />
-    <EmbeddedResource Include="FileReportRdlc\ReportCTDHKhoA4Kieu2CoSoNoCu.rdlc" />
+    <EmbeddedResource Include="FileReportRdlc\ReportCTDHKhoA4CoSoNoCu.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileReportRdlc\ReportCTDHKhoA4Kieu2CoSoNoCu.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileReportRdlc\ReportCTDHKhoA5CoSoNoCu.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileReportRdlc\ReportDonXacNhan.rdlc" />
+    <EmbeddedResource Include="FileReportRdlc\ReportDonXacNhan.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
