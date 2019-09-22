@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2EB7AF7F-863D-4E44-8F39-AFA2FF3F242C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>THUOCBAC</RootNamespace>
+    <AssemblyName>THUOCBAC</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=11.0.0.0, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCaiDat\FormThongTinInAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCaiDat\FormThongTinInAn.Designer.cs">
+      <DependentUpon>FormThongTinInAn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChinh.Designer.cs">
+      <DependentUpon>FormChinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChucNang\FormSuaGiaViThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChucNang\FormSuaGiaViThuoc.Designer.cs">
+      <DependentUpon>FormSuaGiaViThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChucNang\FormThayDoiTienNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChucNang\FormThayDoiTienNo.Designer.cs">
+      <DependentUpon>FormThayDoiTienNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChucNang\FormThemDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChucNang\FormThemDonHang.Designer.cs">
+      <DependentUpon>FormThemDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChucNang\FormThemDonXacNhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChucNang\FormThemDonXacNhan.Designer.cs">
+      <DependentUpon>FormThemDonXacNhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChucNang\FormThemTenKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChucNang\FormThemTenKhachHang.Designer.cs">
+      <DependentUpon>FormThemTenKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChucNang\FormThemViThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChucNang\FormThemViThuoc.Designer.cs">
+      <DependentUpon>FormThemViThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChucNang\FormXemGiaThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChucNang\FormXemGiaThuoc.Designer.cs">
+      <DependentUpon>FormXemGiaThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChucNang\FormXemThongTinTienNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChucNang\FormXemThongTinTienNo.Designer.cs">
+      <DependentUpon>FormXemThongTinTienNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDanhSach\FormDanhSachDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDanhSach\FormDanhSachDonHang.Designer.cs">
+      <DependentUpon>FormDanhSachDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDanhSach\FormDanhSachDonXinXacNhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDanhSach\FormDanhSachDonXinXacNhan.Designer.cs">
+      <DependentUpon>FormDanhSachDonXinXacNhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDanhSach\FormDanhSachKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDanhSach\FormDanhSachKhachHang.Designer.cs">
+      <DependentUpon>FormDanhSachKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDanhSach\FormDanhSachViThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDanhSach\FormDanhSachViThuoc.Designer.cs">
+      <DependentUpon>FormDanhSachViThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReport\FormReportChiTietDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReport\FormReportChiTietDonHang.Designer.cs">
+      <DependentUpon>FormReportChiTietDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReport\FormReportDonXacNhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReport\FormReportDonXacNhan.Designer.cs">
+      <DependentUpon>FormReportDonXacNhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSplashScreen.Designer.cs">
+      <DependentUpon>FormSplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormThongBao\FormThongBaoHetHan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormThongBao\FormThongBaoHetHan.Designer.cs">
+      <DependentUpon>FormThongBaoHetHan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHang.rdlc" />
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHang20170424.rdlc" />
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHang20170503.rdlc" />
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHangAnThanhTien.rdlc" />
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHangKhoA4ChuTo.rdlc" />
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHangKhoA4Kieu2.rdlc" />
+    <EmbeddedResource Include="FileReportRdlc\ReportChiTietDonHangKhoA5.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileReportRdlc\ReportCTDHKhoA4CoSoNoCu.rdlc" />
+    <EmbeddedResource Include="FileReportRdlc\ReportCTDHKhoA4Kieu2CoSoNoCu.rdlc" />
+    <EmbeddedResource Include="FileReportRdlc\ReportCTDHKhoA5CoSoNoCu.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileReportRdlc\ReportDonXacNhan.rdlc" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCaiDat\FormThongTinInAn.resx">
+      <DependentUpon>FormThongTinInAn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChinh.resx">
+      <DependentUpon>FormChinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChucNang\FormSuaGiaViThuoc.resx">
+      <DependentUpon>FormSuaGiaViThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChucNang\FormThayDoiTienNo.resx">
+      <DependentUpon>FormThayDoiTienNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChucNang\FormThemDonHang.resx">
+      <DependentUpon>FormThemDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChucNang\FormThemDonXacNhan.resx">
+      <DependentUpon>FormThemDonXacNhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChucNang\FormThemTenKhachHang.resx">
+      <DependentUpon>FormThemTenKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChucNang\FormThemViThuoc.resx">
+      <DependentUpon>FormThemViThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChucNang\FormXemGiaThuoc.resx">
+      <DependentUpon>FormXemGiaThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChucNang\FormXemThongTinTienNo.resx">
+      <DependentUpon>FormXemThongTinTienNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDanhSach\FormDanhSachDonHang.resx">
+      <DependentUpon>FormDanhSachDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDanhSach\FormDanhSachDonXinXacNhan.resx">
+      <DependentUpon>FormDanhSachDonXinXacNhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDanhSach\FormDanhSachKhachHang.resx">
+      <DependentUpon>FormDanhSachKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDanhSach\FormDanhSachViThuoc.resx">
+      <DependentUpon>FormDanhSachViThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReport\FormReportChiTietDonHang.resx">
+      <DependentUpon>FormReportChiTietDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReport\FormReportDonXacNhan.resx">
+      <DependentUpon>FormReportDonXacNhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSplashScreen.resx">
+      <DependentUpon>FormSplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormThongBao\FormThongBaoHetHan.resx">
+      <DependentUpon>FormThongBaoHetHan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\DataSources\FValueObject.lopChiTietDonHangTamThoi.datasource" />
+    <None Include="Properties\DataSources\FValueObject.lopTenViThuoc.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\1348368.jpg" />
+    <Content Include="Resources\1395740473_Save.ico" />
+    <Content Include="Resources\1395740538_DeleteRed.ico" />
+    <Content Include="Resources\1395740585_Remove.ico" />
+    <Content Include="Resources\1395740604_User1.ico" />
+    <Content Include="Resources\1395740604_User1.jpg" />
+    <Content Include="Resources\1395740605_Home.ico" />
+    <Content Include="Resources\1395740658_Check.ico" />
+    <Content Include="Resources\1395740714_Redo.ico" />
+    <Content Include="Resources\1395740731_Delete.ico" />
+    <Content Include="Resources\1395740742_Next.ico" />
+    <Content Include="Resources\1395740760_Help.ico" />
+    <Content Include="Resources\2.png" />
+    <Content Include="Resources\239380-transfer_arrows_5-512.png" />
+    <Content Include="Resources\3.png" />
+    <Content Include="Resources\3d_rotation.png" />
+    <Content Include="Resources\4.1.jpg" />
+    <Content Include="Resources\4.png" />
+    <Content Include="Resources\48x48chartSearchIcon.png" />
+    <Content Include="Resources\48x48UserFilesIcon.png" />
+    <Content Include="Resources\6309_1388111299_excel-icon.png" />
+    <Content Include="Resources\85ababc1baa6d1c683f6c80a39790c8f38.gif" />
+    <Content Include="Resources\9956_IconCeckList.By.ImaginSystems.ico" />
+    <Content Include="Resources\account.png" />
+    <Content Include="Resources\account1.png" />
+    <Content Include="Resources\add.png" />
+    <Content Include="Resources\bangDiem128x128.png" />
+    <Content Include="Resources\bank.jpg" />
+    <Content Include="Resources\bg.jpg" />
+    <Content Include="Resources\bg1.jpg" />
+    <Content Include="Resources\bg3.jpg" />
+    <Content Include="Resources\blocks-mm-device-wired.png" />
+    <Content Include="Resources\BlueBackstageBgImage.png" />
+    <Content Include="Resources\b_drop.png" />
+    <Content Include="Resources\Chat_talk_voice_bubble_phone_message_text.png" />
+    <Content Include="Resources\clear.png" />
+    <Content Include="Resources\clear2.png" />
+    <None Include="Resources\clear21.png" />
+    <Content Include="Resources\Client_list.png" />
+    <Content Include="Resources\Clipboard-icon48x48.png" />
+    <Content Include="Resources\company.png" />
+    <Content Include="Resources\company1.png" />
+    <Content Include="Resources\cooltext1491663291.png" />
+    <Content Include="Resources\cust.png" />
+    <Content Include="Resources\cust1.png" />
+    <Content Include="Resources\Document-Copy-icon128x128.png" />
+    <Content Include="Resources\export.png" />
+    <Content Include="Resources\export_1.png" />
+    <Content Include="Resources\find.png" />
+    <None Include="Resources\find1.png" />
+    <Content Include="Resources\goto.png" />
+    <Content Include="Resources\icon.ico" />
+    <Content Include="Resources\icon.png" />
+    <Content Include="Resources\icon_UnderConstruction.png" />
+    <Content Include="Resources\images %281%29.jpg" />
+    <Content Include="Resources\images %282%29.jpg" />
+    <Content Include="Resources\images %283%29.jpg" />
+    <Content Include="Resources\images %284%29.jpg" />
+    <Content Include="Resources\images %285%29.jpg" />
+    <Content Include="Resources\images.jpg" />
+    <Content Include="Resources\Import.jpg" />
+    <Content Include="Resources\Import128x128.png" />
+    <Content Include="Resources\Khachhang.jpg" />
+    <Content Include="Resources\Khachhang128x128.png" />
+    <Content Include="Resources\leaf-icon128x128.png" />
+    <Content Include="Resources\leafIcon128x128.png" />
+    <Content Include="Resources\LeafIcon32x32.png" />
+    <Content Include="Resources\LeafIcon48x48.png" />
+    <Content Include="Resources\list-icon1.gif" />
+    <Content Include="Resources\login.ico" />
+    <Content Include="Resources\Mail.png" />
+    <Content Include="Resources\main.jpg" />
+    <Content Include="Resources\main1.jpg" />
+    <Content Include="Resources\main2.png" />
+    <Content Include="Resources\mechant.png" />
+    <Content Include="Resources\message.png" />
+    <Content Include="Resources\mydiary_icon.png" />
+    <Content Include="Resources\next.png" />
+    <Content Include="Resources\nhacungcap.ico" />
+    <Content Include="Resources\nhacungcap.png" />
+    <Content Include="Resources\notification-icon128x128.png" />
+    <Content Include="Resources\oeb-500px-Notepad_icon.svg_.png" />
+    <Content Include="Resources\oeb-500px-Notepad_icon.svg_1.png" />
+    <Content Include="Resources\ok.png" />
+    <Content Include="Resources\open.png" />
+    <Content Include="Resources\OpenDocument.png" />
+    <Content Include="Resources\OrderIcon48x48.png" />
+    <Content Include="Resources\Payment-Methods-Card-in-use-icon.png" />
+    <Content Include="Resources\phutung.ico" />
+    <Content Include="Resources\Play-Pressed-icon.png" />
+    <Content Include="Resources\plus.png" />
+    <Content Include="Resources\pre.png" />
+    <Content Include="Resources\print-icon128x128.png" />
+    <Content Include="Resources\print-icon48x48.png" />
+    <Content Include="Resources\print.png" />
+    <Content Include="Resources\quyenSachMo.jpg" />
+    <Content Include="Resources\quyenSachMo128x128.png" />
+    <Content Include="Resources\Repair.png" />
+    <Content Include="Resources\save.png" />
+    <Content Include="Resources\service.png" />
+    <Content Include="Resources\shopping-cart.png" />
+    <Content Include="Resources\sms.png" />
+    <Content Include="Resources\statistics-icon.png" />
+    <Content Include="Resources\success.png" />
+    <Content Include="Resources\thongke.png" />
+    <Content Include="Resources\Untitled.png" />
+    <Content Include="Resources\update.png" />
+    <Content Include="Resources\web-development-icons.jpg" />
+    <Content Include="Resources\Xoa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{bef8070a-2a08-41df-b368-1f279b970621}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FValueObject\FValueObject.csproj">
+      <Project>{3cdfd4af-4543-45ac-a996-56f7706d95c4}</Project>
+      <Name>FValueObject</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
