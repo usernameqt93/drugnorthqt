@@ -810,7 +810,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetChiTietHoaDonTamThoi</DataSetName>
-        <Top>4.30389cm</Top>
+        <Top>3.30389cm</Top>
         <Left>0.3695cm</Left>
         <Height>3cm</Height>
         <Width>13.80128cm</Width>
@@ -839,7 +839,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox30</rd:DefaultName>
-        <Top>7.55028cm</Top>
+        <Top>6.55028cm</Top>
         <Left>8.36361cm</Left>
         <Height>0.6cm</Height>
         <Width>5.43688cm</Width>
@@ -872,7 +872,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>8.15028cm</Top>
+        <Top>7.15028cm</Top>
         <Left>9.01131cm</Left>
         <Height>0.6cm</Height>
         <Width>3.60489cm</Width>
@@ -896,7 +896,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Chuyên :</Value>
+                    <Value></Value>
                     <Style>
                       <FontStyle>Italic</FontStyle>
                       <FontFamily>Bodoni MT Black</FontFamily>
@@ -965,7 +965,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value EvaluationMode="Constant">BÁN BUÔN - BÁN LẺ</Value>
+                    <Value EvaluationMode="Constant"></Value>
                     <Style>
                       <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -1080,7 +1080,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Thuốc Nam - Thuốc Bắc - Các Thảo Dược Quý Hiếm</Value>
+                    <Value></Value>
                     <Style>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -1131,7 +1131,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>3.27682cm</Top>
+            <Top>2.27682cm</Top>
             <Left>0.3175cm</Left>
             <Height>0.6cm</Height>
             <Width>7.2184cm</Width>
@@ -1147,7 +1147,7 @@
             </Style>
           </Textbox>
           <Line Name="Line1">
-            <Top>3.74453cm</Top>
+            <Top>2.74453cm</Top>
             <Left>2.83105cm</Left>
             <Height>0cm</Height>
             <Width>4.70486cm</Width>
@@ -1185,7 +1185,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>3.27682cm</Top>
+            <Top>2.27682cm</Top>
             <Left>7.57118cm</Left>
             <Height>0.6cm</Height>
             <Width>5.31051cm</Width>
@@ -1201,7 +1201,7 @@
             </Style>
           </Textbox>
           <Line Name="Line2">
-            <Top>3.74453cm</Top>
+            <Top>2.74453cm</Top>
             <Left>8.20208cm</Left>
             <Height>0cm</Height>
             <Width>4.10925cm</Width>
@@ -1272,7 +1272,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>2.44382cm</Top>
+            <Top>1.44382cm</Top>
             <Left>4.17815cm</Left>
             <Height>0.72716cm</Height>
             <Width>5.675cm</Width>
@@ -1318,7 +1318,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>8.15028cm</Top>
+        <Top>7.15028cm</Top>
         <Left>1.32816cm</Left>
         <Height>0.6cm</Height>
         <Width>4.21343cm</Width>

@@ -582,7 +582,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetChiTietHoaDonTamThoi</DataSetName>
-        <Top>4.30389cm</Top>
+        <Top>3.30389cm</Top>
         <Left>0.3695cm</Left>
         <Height>1.8cm</Height>
         <Width>13.8013cm</Width>
@@ -611,7 +611,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox30</rd:DefaultName>
-        <Top>6.28028cm</Top>
+        <Top>5.28028cm</Top>
         <Left>8.36361cm</Left>
         <Height>0.6cm</Height>
         <Width>5.43688cm</Width>
@@ -644,7 +644,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>6.88028cm</Top>
+        <Top>5.88028cm</Top>
         <Left>9.01131cm</Left>
         <Height>0.6cm</Height>
         <Width>3.60489cm</Width>
@@ -1090,7 +1090,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>6.88028cm</Top>
+        <Top>5.88028cm</Top>
         <Left>1.32816cm</Left>
         <Height>0.6cm</Height>
         <Width>4.21343cm</Width>
