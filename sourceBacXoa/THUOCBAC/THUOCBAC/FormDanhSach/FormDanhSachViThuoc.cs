@@ -73,6 +73,7 @@ namespace THUOCBAC.FormDanhSach {
 		if(e.ColumnIndex>=-1&&e.RowIndex>=0) {
 		  //btnXSuaGiaViThuoc.Enabled=true;
 		  //btnXXoaViThuoc.Enabled=true;
+		  btnXHideViThuoc.Enabled=true;
 		  DataGridViewRow r=dataGridViewXDanhSachViThuoc.Rows[e.RowIndex];
 		  STR_TEN_VITHUOC=Convert.ToString(r.Cells["TenViThuoc"].Value);
 		  INT_MAGIATHUOC=Convert.ToInt32(r.Cells["MaGiaThuoc"].Value);
@@ -125,6 +126,27 @@ namespace THUOCBAC.FormDanhSach {
 		  }
 		}
 	  }
+	}
+
+	private void btnXHideViThuoc_Click(object sender,EventArgs e) {
+	  DialogResult dlr = MessageBox.Show(
+		"Vị thuốc "+STR_TEN_VITHUOC+" sẽ bị xóa đi, bạn có muốn tiếp tục?","Thông báo",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+	  if(dlr!=DialogResult.Yes) {
+		return;
+	  }
+
+	  btnXHideViThuoc.Enabled=false;
+	  string strLoi = "";
+	  bool boolCoXoaDuocKo = BL_VITHUOC.BlnHideViThuocTheoIdViThuoc(ref strLoi,INT_MA_VITHUOC.ToString());
+	  if(boolCoXoaDuocKo) {
+		voidHIENTHI_DGV_VITHUOC_CO_STT("ViTriCuoiCung");
+		MessageBox.Show("Thao tác thành công!");
+		btnXXoaViThuoc.Enabled=false;
+		btnXSuaGiaViThuoc.Enabled=false;
+		return;
+	  }
+
+	  MessageBox.Show("Thao tác thất bại!"+"\nLỗi ("+strLoi+")");
 	}
   }
 }

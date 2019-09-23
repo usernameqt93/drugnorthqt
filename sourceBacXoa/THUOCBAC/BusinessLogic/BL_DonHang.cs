@@ -56,7 +56,8 @@ namespace BusinessLogic {
 	  return kq;
 	}
 	public DataTable dataTableBangDanhSachViThuocXepTheoTenThuoc() {
-	  return DAO_DONHANG.dataTableBangDanhSachViThuocXepTheoTenThuoc();
+	  //return DAO_DONHANG.dataTableBangDanhSachViThuocXepTheoTenThuoc();
+	  return DAO_DONHANG.dataTableBangDanhSachViThuocXepTheoTenThuocChuaDeleted();
 	}
 	public DataTable dataTableBANG_DS_VITHUOC_DACO_DH() {
 	  return DAO_DONHANG.dataTableBANG_DS_VITHUOC_DACO_DH();

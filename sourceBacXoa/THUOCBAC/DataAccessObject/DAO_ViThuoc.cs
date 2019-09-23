@@ -112,10 +112,33 @@ namespace DataAccessObject {
 	  return null;
 	}
 
+	public DataTable dataTableBangDanhSachViThuocCungGiaCaTheoChuCaiChuaDeleted() {
+	  try {
+		string strSql= @"select bvt.MaViThuoc,bvt.TenViThuoc,bgvt.GiaViThuoc,bgvt.DonViGiaThuoc,bvt.GhiChuViThuoc,bgvt.MaGiaThuoc 
+			from BangViThuoc bvt inner join BangGiaViThuoc bgvt on bvt.MaViThuoc=bgvt.MaViThuoc 
+			and bgvt.ThoiGianBatDauCoGiaNay = (select MAX(bgvt.ThoiGianBatDauCoGiaNay) from BangGiaViThuoc bgvt where bgvt.MaViThuoc=bvt.MaViThuoc) 
+			where bvt.IsDeleted = 0 
+			order by bvt.TenViThuoc";
+		return dataTableThucThiQuery(strSql,CommandType.Text,null);
+	  } catch {
+		//log.Error("Loi Q201611100920T phuong thuc dataTableBangSMSNhanDichVuConfig: "+ex.Message);
+	  }
+	  return null;
+	}
+
 	public bool boolDeleteViThuocTheoIdViThuoc(ref string err,string strIdViThuoc) {
 	  try {
 		string strSql="Delete from BangGiaViThuoc where MaViThuoc="+strIdViThuoc+";";
 		strSql+="Delete from BangViThuoc where MaViThuoc="+strIdViThuoc+";";
+		return blnThucThiNonQuery(strSql,CommandType.Text,ref err,null);
+	  } catch { }
+	  return false;
+	}
+
+	public bool BlnHideViThuocTheoIdViThuoc(ref string err,string strIdViThuoc) {
+	  try {
+		string strSql="";
+		strSql+="update BangViThuoc set IsDeleted=1 where MaViThuoc="+strIdViThuoc+";";
 		return blnThucThiNonQuery(strSql,CommandType.Text,ref err,null);
 	  } catch { }
 	  return false;

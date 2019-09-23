@@ -23,13 +23,14 @@
 	/// the contents of this method with the code editor.
 	/// </summary>
 	private void InitializeComponent() {
-	  System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+	  System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
 	  this.groupBox1 = new System.Windows.Forms.GroupBox();
 	  this.btnXXoaViThuoc = new DevComponents.DotNetBar.ButtonX();
 	  this.btnXSuaGiaViThuoc = new DevComponents.DotNetBar.ButtonX();
 	  this.buttonXThemViThuoc = new DevComponents.DotNetBar.ButtonX();
 	  this.groupBox2 = new System.Windows.Forms.GroupBox();
 	  this.dataGridViewXDanhSachViThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
+	  this.btnXHideViThuoc = new DevComponents.DotNetBar.ButtonX();
 	  this.groupBox1.SuspendLayout();
 	  this.groupBox2.SuspendLayout();
 	  ((System.ComponentModel.ISupportInitialize)(this.dataGridViewXDanhSachViThuoc)).BeginInit();
@@ -37,6 +38,7 @@
 	  // 
 	  // groupBox1
 	  // 
+	  this.groupBox1.Controls.Add(this.btnXHideViThuoc);
 	  this.groupBox1.Controls.Add(this.btnXXoaViThuoc);
 	  this.groupBox1.Controls.Add(this.btnXSuaGiaViThuoc);
 	  this.groupBox1.Controls.Add(this.buttonXThemViThuoc);
@@ -53,12 +55,13 @@
 	  this.btnXXoaViThuoc.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
 	  this.btnXXoaViThuoc.Enabled = false;
 	  this.btnXXoaViThuoc.Image = global::THUOCBAC.Properties.Resources.Xoa;
-	  this.btnXXoaViThuoc.Location = new System.Drawing.Point(7, 120);
+	  this.btnXXoaViThuoc.Location = new System.Drawing.Point(7, 170);
 	  this.btnXXoaViThuoc.Name = "btnXXoaViThuoc";
 	  this.btnXXoaViThuoc.Size = new System.Drawing.Size(181, 44);
 	  this.btnXXoaViThuoc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
 	  this.btnXXoaViThuoc.TabIndex = 1;
 	  this.btnXXoaViThuoc.Text = "Xóa vị thuốc này";
+	  this.btnXXoaViThuoc.Visible = false;
 	  this.btnXXoaViThuoc.Click += new System.EventHandler(this.btnXXoaViThuoc_Click);
 	  // 
 	  // btnXSuaGiaViThuoc
@@ -105,14 +108,14 @@
 	  this.dataGridViewXDanhSachViThuoc.AllowUserToDeleteRows = false;
 	  this.dataGridViewXDanhSachViThuoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 	  this.dataGridViewXDanhSachViThuoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-	  dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-	  dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-	  dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-	  dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-	  dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-	  dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-	  dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-	  this.dataGridViewXDanhSachViThuoc.DefaultCellStyle = dataGridViewCellStyle4;
+	  dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+	  dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+	  dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+	  dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+	  dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+	  dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+	  dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+	  this.dataGridViewXDanhSachViThuoc.DefaultCellStyle = dataGridViewCellStyle5;
 	  this.dataGridViewXDanhSachViThuoc.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
 	  this.dataGridViewXDanhSachViThuoc.Location = new System.Drawing.Point(7, 20);
 	  this.dataGridViewXDanhSachViThuoc.Name = "dataGridViewXDanhSachViThuoc";
@@ -121,6 +124,20 @@
 	  this.dataGridViewXDanhSachViThuoc.Size = new System.Drawing.Size(1110, 459);
 	  this.dataGridViewXDanhSachViThuoc.TabIndex = 0;
 	  this.dataGridViewXDanhSachViThuoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewXDanhSachViThuoc_CellClick);
+	  // 
+	  // btnXHideViThuoc
+	  // 
+	  this.btnXHideViThuoc.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+	  this.btnXHideViThuoc.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+	  this.btnXHideViThuoc.Enabled = false;
+	  this.btnXHideViThuoc.Image = global::THUOCBAC.Properties.Resources.Xoa;
+	  this.btnXHideViThuoc.Location = new System.Drawing.Point(7, 120);
+	  this.btnXHideViThuoc.Name = "btnXHideViThuoc";
+	  this.btnXHideViThuoc.Size = new System.Drawing.Size(181, 44);
+	  this.btnXHideViThuoc.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+	  this.btnXHideViThuoc.TabIndex = 2;
+	  this.btnXHideViThuoc.Text = "Xóa vị thuốc này";
+	  this.btnXHideViThuoc.Click += new System.EventHandler(this.btnXHideViThuoc_Click);
 	  // 
 	  // FormDanhSachViThuoc
 	  // 
@@ -148,5 +165,6 @@
 	private DevComponents.DotNetBar.ButtonX btnXSuaGiaViThuoc;
 	private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewXDanhSachViThuoc;
 	private DevComponents.DotNetBar.ButtonX btnXXoaViThuoc;
+	private DevComponents.DotNetBar.ButtonX btnXHideViThuoc;
   }
 }

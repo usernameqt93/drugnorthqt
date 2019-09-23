@@ -739,8 +739,8 @@
 	  this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 	  this.Name = "FormMain";
 	  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-	  this.Text = "Chuyên: Gia công chương trình in hóa đơn, chương trình kế toán, quản lý sổ sách t" +
-    "heo yêu cầu khách hàng - ĐT 01667 002 325";
+	  this.Text = "Phạm Quốc Tuấn - Chuyên: Gia công chương trình in hóa đơn, chương trình kế toán, " +
+    "quản lý sổ sách theo yêu cầu khách hàng - ĐT 01667 002 325";
 	  this.Load += new System.EventHandler(this.FormMain_Load);
 	  this.Shown += new System.EventHandler(this.FormMain_Shown);
 	  this.ribbonControl1.ResumeLayout(false);

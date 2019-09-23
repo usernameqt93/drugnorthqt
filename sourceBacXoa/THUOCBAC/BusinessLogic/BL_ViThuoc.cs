@@ -42,7 +42,8 @@ namespace BusinessLogic {
 	  return dt;
 	}
 	public DataTable dataTableBangDanhSachViThuocCungGiaCaTheoChuCai() {
-	  DataTable dt=DAO_VITHUOC.dataTableBangDanhSachViThuocCungGiaCaTheoChuCai();
+	  //DataTable dt=DAO_VITHUOC.dataTableBangDanhSachViThuocCungGiaCaTheoChuCai();
+	  DataTable dt=DAO_VITHUOC.dataTableBangDanhSachViThuocCungGiaCaTheoChuCaiChuaDeleted();
 	  dt.Columns.Add("STT");
 	  for(int i=0;i<dt.Rows.Count;i++)
 		dt.Rows[i]["STT"]=i+1;
@@ -61,6 +62,13 @@ namespace BusinessLogic {
 	public bool boolDeleteViThuocTheoIdViThuoc(ref string err,string strIdViThuoc) {
 	  bool boolCoXoaDuocKo=DAO_VITHUOC.boolDeleteViThuocTheoIdViThuoc(ref err,strIdViThuoc);
 	  if(err.Equals("2"))
+		return true;
+	  return DAO_VITHUOC.boolDeleteViThuocTheoIdViThuoc(ref err,strIdViThuoc);
+	}
+
+	public bool BlnHideViThuocTheoIdViThuoc(ref string err,string strIdViThuoc) {
+	  bool boolCoXoaDuocKo=DAO_VITHUOC.BlnHideViThuocTheoIdViThuoc(ref err,strIdViThuoc);
+	  if(err.Equals("1"))
 		return true;
 	  return DAO_VITHUOC.boolDeleteViThuocTheoIdViThuoc(ref err,strIdViThuoc);
 	}
