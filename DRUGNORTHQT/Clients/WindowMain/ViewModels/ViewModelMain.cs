@@ -1293,7 +1293,7 @@ namespace WindowMain.ViewModels {
 		}
 
 		_mainWindow.borderIconProduct.Visibility=Visibility.Collapsed;
-		if(_software == 20 || _software == 21 || _software == 27) {
+		if(_software == 20 || _software ==21||_software==27||_software==20201020) {
 		  //SSG
 		  _mainWindow.borderIconProduct.Visibility=Visibility.Visible;
 		  _mainWindow.btnLogin.Visibility=Visibility.Visible;
@@ -1928,26 +1928,26 @@ namespace WindowMain.ViewModels {
 	  get {
 		return new DelegateCommand(p => {
 		  try {
-			string strPathFolderHelp = "";
-			if(_software == 16 || _software == 19 || _software == 26) {
-			  string strFolderName = "HelpI";
-			  strPathFolderHelp = System.Windows.Forms.Application.StartupPath
-			  +$"\\{strFolderName}";
-			}
+			//string strPathFolderHelp = "";
+			//if(_software == 16 || _software == 19 || _software == 26) {
+			//  string strFolderName = "HelpI";
+			//  strPathFolderHelp = System.Windows.Forms.Application.StartupPath
+			//  +$"\\{strFolderName}";
+			//}
 
-			if(_software == 20 || _software == 21 || _software == 27) {
-			  string strFolderName = "HelpM";
-			  strPathFolderHelp = System.Windows.Forms.Application.StartupPath
-			  +$"\\{strFolderName}";
-			}
+			//if(_software == 20 || _software == 21 || _software == 27) {
+			//  string strFolderName = "HelpM";
+			//  strPathFolderHelp = System.Windows.Forms.Application.StartupPath
+			//  +$"\\{strFolderName}";
+			//}
 
-			if(!System.IO.Directory.Exists(strPathFolderHelp)) {
-			  QTMessageBox.ShowNotify(
-				"Lỗi khởi động hệ thống, bạn vui lòng liên hệ bộ phận DVKH để được hỗ trợ!");
-			  BlnHideMain=true;
-			  _mainWindow.ucLoginMaster.IsEnabled=false;
-			  return;
-			}
+			//if(!System.IO.Directory.Exists(strPathFolderHelp)) {
+			//  QTMessageBox.ShowNotify(
+			//	"Lỗi khởi động hệ thống, bạn vui lòng liên hệ bộ phận DVKH để được hỗ trợ!");
+			//  BlnHideMain=true;
+			//  _mainWindow.ucLoginMaster.IsEnabled=false;
+			//  return;
+			//}
 
 			_mainWindow.ucLoginMaster.gridTxtHintUserName.txtText.Focus();
 			string strText = _mainWindow.ucLoginMaster.gridTxtHintUserName.txtText.Text;
