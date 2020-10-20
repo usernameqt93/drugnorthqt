@@ -65,6 +65,7 @@
     <Compile Include="BLLTool.cs" />
     <Compile Include="BLLTools.cs" />
     <Compile Include="Helpers\ConverterBase.cs" />
+    <Compile Include="Helpers\CustomerPasswordBox.cs" />
     <Compile Include="Helpers\CustomerTextBox.cs" />
     <Compile Include="Helpers\CustomRichText.cs" />
     <Compile Include="Helpers\DownKeyHelpers.cs" />
