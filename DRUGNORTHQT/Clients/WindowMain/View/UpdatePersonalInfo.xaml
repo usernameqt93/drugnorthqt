@@ -1,0 +1,270 @@
+﻿<UserControl x:Class="WindowMain.View.UpdatePersonalInfo"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:WindowMain.View"
+			 xmlns:help="clr-namespace:QT.Framework.ToolCommon.Helpers;assembly=QT.Framework.ToolCommon"
+			 mc:Ignorable="d"
+			 d:DesignHeight="450"
+			 d:DesignWidth="800">
+  <UserControl.Resources>
+	<ResourceDictionary>
+	  <ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="pack://application:,,,/QT.Framework.Styles.Library;Component/QTStyle.xaml" />
+	  </ResourceDictionary.MergedDictionaries>
+	  <help:GenderConverter x:Key="genderConverterKey"></help:GenderConverter>
+	</ResourceDictionary>
+  </UserControl.Resources>
+
+  <Grid KeyboardNavigation.TabNavigation="Cycle">
+	<Grid.RowDefinitions>
+	  <RowDefinition Height="40" />
+	  <RowDefinition Height="5" />
+	  <RowDefinition Height="*" />
+	  <RowDefinition Height="5" />
+	  <RowDefinition Height="60" />
+	</Grid.RowDefinitions>
+	<Grid Grid.Row="0"
+		  VerticalAlignment="Center">
+	  <Label Content="CẬP NHẬT THÔNG TIN CÁ NHÂN"
+			 Style="{DynamicResource InvicoTitlePopupStyle}" />
+	</Grid>
+	<Separator Grid.Row="1"
+			   Style="{StaticResource CustomSeparatorStyle}"
+			   Margin="3,0"
+			   VerticalAlignment="Top" />
+	<Grid Grid.Row="2"
+		  Margin="10">
+	  <Grid.RowDefinitions>
+		<RowDefinition Height="40" />
+		<RowDefinition Height="40" />
+		<RowDefinition Height="40" />
+		<RowDefinition Height="40" />
+		<RowDefinition Height="40" />
+		<RowDefinition Height="40" />
+		<RowDefinition Height="40" />
+		<RowDefinition Height="40" />
+		<RowDefinition Height="40" />
+	  </Grid.RowDefinitions>
+	  <Grid.ColumnDefinitions>
+		<ColumnDefinition Width="130" />
+		<ColumnDefinition Width="*" />
+	  </Grid.ColumnDefinitions>
+	  <Label Style="{DynamicResource InvicoLabelStyle}"
+			 Foreground="#555555"
+			 Content="Tên đăng nhập:"
+			 Grid.Column="0"
+			 Grid.Row="0"
+			 HorizontalAlignment="Left"
+			 VerticalAlignment="Center"
+			 Margin="3" />
+	  <TextBox x:Name="txtUserName"
+			   Text="{Binding UserName}"
+			   IsEnabled="False"
+			   Style="{DynamicResource InvicoTextBoxStyle}"
+			   Grid.Column="1"
+			   Grid.Row="0"
+			   Height="30"
+			   VerticalAlignment="Center"
+			   Margin="3"
+			   MaxLength="250"
+			   VerticalContentAlignment="Center" />
+
+	  <Label Style="{DynamicResource InvicoLabelStyle}"
+			 Foreground="#555555"
+			 Content="Họ:(*)"
+			 Grid.Column="0"
+			 Grid.Row="1"
+			 HorizontalAlignment="Left"
+			 VerticalAlignment="Center"
+			 Margin="3" />
+	  <TextBox x:Name="txtSurname"
+			   Text="{Binding Surname}"
+			   Style="{DynamicResource InvicoTextBoxStyle}"
+			   Grid.Column="1"
+			   Grid.Row="1"
+			   Height="30"
+			   VerticalAlignment="Center"
+			   Margin="3"
+			   MaxLength="250"
+			   VerticalContentAlignment="Center" />
+
+	  <Label Style="{DynamicResource InvicoLabelStyle}"
+			 Foreground="#555555"
+			 Content="Tên:(*)"
+			 Grid.Column="0"
+			 Grid.Row="2"
+			 HorizontalAlignment="Left"
+			 VerticalAlignment="Center"
+			 Margin="3" />
+	  <TextBox x:Name="txtName"
+			   Text="{Binding Name}"
+			   Style="{DynamicResource InvicoTextBoxStyle}"
+			   Grid.Column="1"
+			   Grid.Row="2"
+			   Height="30"
+			   VerticalAlignment="Center"
+			   Margin="3"
+			   MaxLength="250"
+			   VerticalContentAlignment="Center" />
+
+	  <Label Style="{DynamicResource InvicoLabelStyle}"
+			 Foreground="#555555"
+			 Content="Ngày sinh:(*)"
+			 Grid.Column="0"
+			 Grid.Row="3"
+			 HorizontalAlignment="Left"
+			 VerticalAlignment="Center"
+			 Margin="3" />
+	  <TextBox x:Name="txtDOB"
+			   Text="{Binding DOB}"
+			   Style="{DynamicResource InvicoTextBoxStyle}"
+			   Grid.Column="1"
+			   Grid.Row="3"
+			   Height="30"
+			   VerticalAlignment="Center"
+			   Margin="3"
+			   MaxLength="250"
+			   VerticalContentAlignment="Center" />
+
+	  <Label Style="{DynamicResource InvicoLabelStyle}"
+			 Foreground="#555555"
+			 Content="Giới tính:"
+			 Grid.Column="0"
+			 Grid.Row="4"
+			 HorizontalAlignment="Left"
+			 VerticalAlignment="Center"
+			 Margin="3" />
+	  <DockPanel Grid.Column="1"
+				 Grid.Row="4">
+		<RadioButton Style="{DynamicResource InvicoRadioButtonStyle}"
+					 x:Name="radNam"
+					 GroupName="Nam"
+					 IsChecked="{Binding Gender}"
+					 Content="Nam"
+					 Margin="25,0,0,0"
+					 Padding="3"
+					 HorizontalAlignment="Left"
+					 VerticalAlignment="Center" />
+		<RadioButton Style="{DynamicResource InvicoRadioButtonStyle}"
+					 x:Name="radnu"
+					 GroupName="Nu"
+					 IsChecked="{Binding ElementName=radNam, Path=IsChecked, 
+                                                        Converter={StaticResource ResourceKey=genderConverterKey}, ConverterParameter=0}"
+					 Content="Nữ"
+					 Margin="25,0,0,0"
+					 Padding="3"
+					 HorizontalAlignment="Left"
+					 VerticalAlignment="Center" />
+	  </DockPanel>
+
+	  <Label Style="{DynamicResource InvicoLabelStyle}"
+			 Foreground="#555555"
+			 Content="Số ĐT:(*)"
+			 Grid.Column="0"
+			 Grid.Row="5"
+			 HorizontalAlignment="Left"
+			 VerticalAlignment="Center"
+			 Margin="3" />
+	  <help:NumberTextBox x:Name="txtTel"
+						  Text="{Binding Tel}"
+						  Style="{DynamicResource InvicoTextBoxStyle}"
+						  Grid.Column="1"
+						  Grid.Row="5"
+						  Height="30"
+						  VerticalAlignment="Center"
+						  Margin="3"
+						  MaxLength="11"
+						  VerticalContentAlignment="Center" />
+
+	  <Label Style="{DynamicResource InvicoLabelStyle}"
+			 Foreground="#555555"
+			 Content="Địa chỉ:"
+			 Grid.Column="0"
+			 Grid.Row="6"
+			 HorizontalAlignment="Left"
+			 VerticalAlignment="Center"
+			 Margin="3" />
+	  <TextBox x:Name="txtAddress"
+			   Text="{Binding Address}"
+			   Style="{DynamicResource InvicoTextBoxStyle}"
+			   Grid.Column="1"
+			   Grid.Row="6"
+			   Height="30"
+			   VerticalAlignment="Center"
+			   Margin="3"
+			   MaxLength="250"
+			   VerticalContentAlignment="Center" />
+
+	  <Label Style="{DynamicResource InvicoLabelStyle}"
+			 Foreground="#555555"
+			 Content="Nhóm người dùng:"
+			 Grid.Column="0"
+			 Grid.Row="7"
+			 HorizontalAlignment="Left"
+			 VerticalAlignment="Center"
+			 Margin="3" />
+	  <TextBox Style="{DynamicResource InvicoTextBoxStyle}"
+			   IsEnabled="False"
+			   Grid.Column="1"
+			   Grid.Row="7"
+			   x:Name="cboType"
+			   HorizontalAlignment="Left"
+			   VerticalAlignment="Center"
+			   Height="30"
+			   Width="150"
+			   Text="{Binding GroupName}"
+			   VerticalContentAlignment="Center"
+			   Margin="3" />
+
+	  <Label Style="{DynamicResource InvicoLabelStyle}"
+			 Foreground="#555555"
+			 Content="Đơn vị:"
+			 Grid.Column="0"
+			 Grid.Row="8"
+			 HorizontalAlignment="Left"
+			 VerticalAlignment="Center"
+			 Margin="3" />
+	  <TextBox Style="{DynamicResource InvicoTextBoxStyle}"
+			   IsEnabled="False"
+			   Grid.Column="1"
+			   Grid.Row="8"
+			   x:Name="cboMu"
+			   HorizontalAlignment="Stretch"
+			   VerticalAlignment="Center"
+			   Height="30"
+			   Text="{Binding MuInfo}"
+			   VerticalContentAlignment="Center"
+			   Margin="3" />
+
+	  <DockPanel Grid.Column="1"
+				 Grid.Row="4">
+	  </DockPanel>
+
+	</Grid>
+	<Separator Grid.Row="3"
+			   Style="{StaticResource CustomSeparatorStyle}"
+			   Margin="3,0" />
+	<DockPanel Grid.Row="4"
+			   HorizontalAlignment="Right"
+			   Margin="10">
+	  <Button x:Name="btnSave"
+			  Style="{DynamicResource InvicoButtonStyle}"
+			  Margin="3"
+			  Height="30"
+			  Width="100"
+			  Content="Lưu"
+			  Command="{Binding Path= DataContext.SaveProFileCommand,
+                                        RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+	  <Button x:Name="btnClose"
+			  Style="{DynamicResource InvicoButtonStyle}"
+			  Margin="3"
+			  Height="30"
+			  Width="100"
+			  Content="Hủy"
+			  Command="{Binding Path= DataContext.CloseCommand,
+                                        RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+	</DockPanel>
+  </Grid>
+</UserControl>

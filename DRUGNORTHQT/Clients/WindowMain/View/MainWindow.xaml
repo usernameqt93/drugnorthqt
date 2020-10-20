@@ -1,0 +1,653 @@
+﻿<Window x:Class="WindowMain.View.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:HamburgerMenu="clr-namespace:QT.HamburgerMenu;assembly=QT.HamburgerMenu"
+		xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+		xmlns:local="clr-namespace:WindowMain.View"
+		xmlns:helpTool="clr-namespace:QT.Framework.ToolCommon.Helpers;assembly=QT.Framework.ToolCommon"
+		mc:Ignorable="d"
+		WindowStartupLocation="CenterScreen"
+		xmlns:help="clr-namespace:QT.Framework.ToolCommon.Helpers;assembly=QT.Framework.ToolCommon"
+		x:Name="windowMain"
+		Width="1024"
+		Height="700"
+		MinHeight="700"
+		MinWidth="1024"
+		Style="{DynamicResource InvicoWindowStyle}"
+		WindowState="Normal"
+		AllowsTransparency="False"
+		ResizeMode="NoResize">
+  <Window.Resources>
+	<ResourceDictionary>
+	  <ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="pack://application:,,,/QT.Framework.Styles.Library;Component/QTStyle.xaml" />
+	  </ResourceDictionary.MergedDictionaries>
+	  <help:Boolean2VisibilityConverter x:Key="Boolean2Visibility" />
+	</ResourceDictionary>
+  </Window.Resources>
+
+  <Window.Triggers>
+	<EventTrigger RoutedEvent="Window.Loaded">
+	  <BeginStoryboard>
+		<Storyboard>
+		  <DoubleAnimation Duration="0:0:0.5"
+						   Storyboard.TargetProperty="Opacity"
+						   From="0"
+						   To="1" />
+		</Storyboard>
+	  </BeginStoryboard>
+	</EventTrigger>
+  </Window.Triggers>
+
+  <i:Interaction.Triggers>
+	<i:EventTrigger EventName="Loaded">
+	  <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+	</i:EventTrigger>
+	<helpTool:F1KeyUpEventTrigger EventName="KeyUp">
+	  <i:InvokeCommandAction Command="{Binding DataContext.F1KeyUpCommand, 
+                                            RelativeSource={RelativeSource AncestorType=Window}}"
+							 CommandParameter="{Binding}" />
+	</helpTool:F1KeyUpEventTrigger>
+  </i:Interaction.Triggers>
+
+  <Grid>
+	<help:ModalContentPresenter x:Name="modalPresenterBiggest"
+								IsModal="{Binding BlnHideMain}">
+	  <!--DAE8F1 màu nhạt chút-->
+	  <Grid x:Name="gridBackground">
+		<Grid.Background>
+		  <ImageBrush Stretch="UniformToFill"
+					  x:Name="imageBackgroundApp" />
+		</Grid.Background>
+		
+		<Grid.RowDefinitions>
+		  <RowDefinition />
+		  <RowDefinition />
+		</Grid.RowDefinitions>
+
+		<Rectangle Grid.Row="0"
+				   Visibility="Collapsed">
+		  <Rectangle.Fill>
+			<!--<LinearGradientBrush EndPoint="0.5,1"
+								 StartPoint="0.5,0">
+			  <GradientStop Color="#FF2281D1" />
+			  <GradientStop Color="#FF34268A"
+							Offset="1" />
+			  <GradientStop Color="#FF33288B"
+							Offset="0.546" />
+			</LinearGradientBrush>-->
+			<LinearGradientBrush EndPoint="0.5,1"
+								 StartPoint="0.5,0">
+			  <GradientStop Color="#FF2281D1"
+							x:Name="gradientStopXanhNhatHon" />
+			  <GradientStop Color="#FF34268A"
+							x:Name="gradientStopXanhNhat"
+							Offset="1" />
+			  <GradientStop Color="#FF33288B"
+							x:Name="gradientStopXanhDam"
+							Offset="0.546" />
+			</LinearGradientBrush>
+		  </Rectangle.Fill>
+		</Rectangle>
+
+		<Border Width="112"
+				Height="112"
+				x:Name="borderIconProduct"
+				Grid.Row="0"
+				Grid.RowSpan="2"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Margin="0,0,0,440">
+		  <Border.ToolTip>
+			<ToolTip Tag="Hệ thống MasterTest"
+					 Content="Copyright © 2017 Sao Sài Gòn" />
+		  </Border.ToolTip>
+		  <Grid>
+			<Path Data="M0.74339156,53.250006 L23.335756,52.958328 C23.335756,52.958328 24.878243,52.316616 25.48282,50.758128 26.087396,49.19964 
+                          27.004392,34.288707 28.038643,30.377252 30.230107,22.08931 36.339003,24.908035 37.543415,28.385407 37.936333,29.519838 41.30844,37.886335 
+                          41.30844,37.886335 41.30844,37.886335 43.50925,42.405258 43.992262,43.128422 44.987804,44.618946 46.423032,46.280757 48.387906,43.022162
+                          50.35278,39.763567 52.96287,30.064079 53.413934,28.417359 54.371204,24.922611 59.380217,21.681296&#xD;&#xA;62.414155,29.336941 
+                          62.994279,30.800792 65.430184,45.041025 66.134736,47.87456 66.571741,49.63209 66.487201,52.318409 69.585875,52.436069 72.9155,52.562499 
+                          91.835367,53.10801 91.835367,53.10801 91.835367,53.10801 93.977521,37.173947 84.820526,21.461217 79.481339,12.299566 67.620877,1.2370276 
+                          46.611883,0.52863411 25.60289,-0.17976048 12.27999,12.366131 4.745013,25.914303 -0.98000515,36.2081 0.74339156,53.250006 0.74339156,53.250006 z 
+                          M1.187999,55.553805 C1.187999,55.553805 17.846842,55.693206 27.391544,55.195833 31.117332,55.001682 31.998272,54.232952 33.390344,46.68491
+                          33.978,43.498551 37.582166,43.499263 38.618765,46.101745 39.408426,48.084268 41.39676,52.071333 42.712825,55.588859 44.144666,59.415825 
+                          48.907655,58.714939 50.087626,55.660119 51.936332,50.874006 52.921012,47.749644 52.921012,47.749644 52.921012,47.749644 
+                          55.403114,42.071284 57.934001,48.234966 59.935196,53.108644 60.664713,55.365815 65.057679,55.361135 65.317447,55.360858 
+                          91.021998,55.890078 91.021998,55.890078 91.021998,55.890078 86.019623,90.874638 47.75237,92.461821 12.372702,93.929237 
+                          2.2065327,61.436789 1.187999,55.553805 z"
+				  Fill="White"
+				  Stretch="Fill" />
+			<TextBlock Text="Master"
+					   FontFamily="Verdana"
+					   FontSize="16"
+					   FontWeight="ExtraBold"
+					   Foreground="{StaticResource MainForeground}"
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Bottom"
+					   Margin="0,20" />
+		  </Grid>
+		  
+		</Border>
+
+		<Border Grid.Row="0"
+				Grid.RowSpan="2"
+				VerticalAlignment="Bottom"
+				HorizontalAlignment="Right"
+				Opacity="0.2"
+				Width="450"
+				Height="450"
+				Margin="-10,-110">
+
+		  <Border.Style>
+			<Style TargetType="Border">
+			  <Style.Triggers>
+				<DataTrigger Binding="{Binding ElementName=borderIconProduct, Path=Visibility}"
+							 Value="Visible">
+				  <Setter Property="Border.Visibility"
+						  Value="Visible" />
+				</DataTrigger>
+				<DataTrigger Binding="{Binding ElementName=borderIconProduct, Path=Visibility}"
+							 Value="Collapsed">
+				  <Setter Property="Border.Visibility"
+						  Value="Collapsed" />
+				</DataTrigger>
+			  </Style.Triggers>
+			</Style>
+		  </Border.Style>
+
+		  <Path Data="M0.74339156,53.250006 L23.335756,52.958328 C23.335756,52.958328 24.878243,52.316616 25.48282,50.758128 26.087396,49.19964 
+                          27.004392,34.288707 28.038643,30.377252 30.230107,22.08931 36.339003,24.908035 37.543415,28.385407 37.936333,29.519838 41.30844,37.886335 
+                          41.30844,37.886335 41.30844,37.886335 43.50925,42.405258 43.992262,43.128422 44.987804,44.618946 46.423032,46.280757 48.387906,43.022162
+                          50.35278,39.763567 52.96287,30.064079 53.413934,28.417359 54.371204,24.922611 59.380217,21.681296&#xD;&#xA;62.414155,29.336941 
+                          62.994279,30.800792 65.430184,45.041025 66.134736,47.87456 66.571741,49.63209 66.487201,52.318409 69.585875,52.436069 72.9155,52.562499 
+                          91.835367,53.10801 91.835367,53.10801 91.835367,53.10801 93.977521,37.173947 84.820526,21.461217 79.481339,12.299566 67.620877,1.2370276 
+                          46.611883,0.52863411 25.60289,-0.17976048 12.27999,12.366131 4.745013,25.914303 -0.98000515,36.2081 0.74339156,53.250006 0.74339156,53.250006 z 
+                          M1.187999,55.553805 C1.187999,55.553805 17.846842,55.693206 27.391544,55.195833 31.117332,55.001682 31.998272,54.232952 33.390344,46.68491
+                          33.978,43.498551 37.582166,43.499263 38.618765,46.101745 39.408426,48.084268 41.39676,52.071333 42.712825,55.588859 44.144666,59.415825 
+                          48.907655,58.714939 50.087626,55.660119 51.936332,50.874006 52.921012,47.749644 52.921012,47.749644 52.921012,47.749644 
+                          55.403114,42.071284 57.934001,48.234966 59.935196,53.108644 60.664713,55.365815 65.057679,55.361135 65.317447,55.360858 
+                          91.021998,55.890078 91.021998,55.890078 91.021998,55.890078 86.019623,90.874638 47.75237,92.461821 12.372702,93.929237 
+                          2.2065327,61.436789 1.187999,55.553805 z"
+				Fill="White"
+				Stretch="Fill" />
+		</Border>
+
+		<Rectangle Fill="Transparent"
+				   PreviewMouseDown="rDragMoveControl_PreviewMouseDown"
+				   Grid.Row="0"
+				   Grid.RowSpan="2" />
+
+		<Border BorderBrush="Transparent"
+				x:Name="borderLoginUC"
+				Background="#EEEEEE"
+				BorderThickness="1"
+				CornerRadius="10"
+				Grid.Row="0"
+				Grid.RowSpan="2"
+				Width="700"
+				Height="300"
+				Visibility="{Binding Path=DataContext.ShowLogin, Converter={StaticResource Boolean2Visibility}, 
+            UpdateSourceTrigger=PropertyChanged, 
+            RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+		  <Border.Effect>
+			<DropShadowEffect BlurRadius="15"
+							  Direction="0"
+							  RenderingBias="Quality"
+							  ShadowDepth="1"
+							  Color="#FFBBBBBB" />
+		  </Border.Effect>
+
+		  <Grid>
+			<Grid.ColumnDefinitions>
+			  <ColumnDefinition x:Name="colBackground"/>
+			  <ColumnDefinition />
+			</Grid.ColumnDefinitions>
+
+			<Border Grid.Column="0"
+					CornerRadius="9,0,0,9">
+			  <Border.Background>
+				  <ImageBrush Stretch="Fill"
+							  x:Name="imageBackground" />
+				</Border.Background>
+			</Border>
+			
+			<!--<local:LoginMaster x:Name="ucLoginMaster"/>-->
+			<local:LoginPro x:Name="ucLoginMaster" 
+							Grid.Column="1"/>
+			
+		  </Grid>
+
+		</Border>
+
+		<Button Style="{DynamicResource InvicoButtonStyle}"
+				Command="{Binding LoginCommand}"
+				Height="40"
+				Width="200"
+				Grid.Row="0"
+				Grid.RowSpan="2"
+				Cursor="Hand"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Content="Đồng ý"
+				Margin="0,300,0,0"
+				Visibility="{Binding Path=DataContext.ShowLogin, Converter={StaticResource Boolean2Visibility}, 
+            UpdateSourceTrigger=PropertyChanged, 
+            RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+				x:Name="btnLogin">
+		  <Button.Effect>
+			<DropShadowEffect BlurRadius="15"
+							  Direction="0"
+							  RenderingBias="Quality"
+							  ShadowDepth="1"
+							  Color="#FFBBBBBB" />
+		  </Button.Effect>
+		</Button>
+
+		<Grid x:Name="GridMain"
+			  Grid.Row="0"
+			  Grid.RowSpan="2"
+			  Visibility="{Binding Path=DataContext.ShowMain, Converter={StaticResource Boolean2Visibility}, UpdateSourceTrigger=PropertyChanged,
+                                        RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+			  Background="#555555">
+		  <Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="25" />
+		  </Grid.RowDefinitions>
+
+		  <Rectangle Grid.Row="0"
+					 Grid.RowSpan="2"
+					 Cursor="ScrollAll"
+					 Fill="Transparent"
+					 PreviewMouseDown="rDragMoveControl_PreviewMouseDown" />
+
+		  <Grid Background="#5F5F5F"
+				Grid.Row="0">
+
+			<Grid.ColumnDefinitions>
+			  <ColumnDefinition Width="auto" />
+			  <ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+
+			<Rectangle Grid.Column="0"
+					   Grid.ColumnSpan="2"
+					   Cursor="ScrollAll"
+					   Fill="Transparent"
+					   PreviewMouseDown="rDragMoveControl_PreviewMouseDown" />
+
+			<HamburgerMenu:HamburgerMenu x:Name="LstMenus"
+										 Grid.Column="0"
+										 Background="#5F5F5F"
+										 MenuIconColor="White"
+										 SelectionIndicatorColor="#AFAFAF"
+										 MenuItemForeground="White"
+										 VerticalAlignment="Top"
+										 HorizontalAlignment="Left">
+
+			  <i:Interaction.Triggers>
+				<i:EventTrigger EventName="MouseEnter">
+				  <i:InvokeCommandAction Command="{Binding MenuMouseEnterCommand}" />
+				</i:EventTrigger>
+				<i:EventTrigger EventName="MouseLeave">
+				  <i:InvokeCommandAction Command="{Binding MenuMouseLeaveCommand}" />
+				</i:EventTrigger>
+			  </i:Interaction.Triggers>
+
+			</HamburgerMenu:HamburgerMenu>
+
+			<Grid Grid.Column="1"
+				  Background="#E8E8E8">
+			  <Grid.RowDefinitions>
+				<RowDefinition Height="30" />
+				<RowDefinition Height="*" />
+			  </Grid.RowDefinitions>
+
+			  <Rectangle Grid.Row="0"
+						 Grid.RowSpan="2"
+						 Cursor="ScrollAll"
+						 Fill="Transparent"
+						 PreviewMouseDown="rDragMoveControl_PreviewMouseDown" />
+
+			  <Grid Grid.Row="1">
+				<help:ModalContentPresenter x:Name="modalPresenter"
+											IsModal="{Binding IsTiling}">
+				  <Grid>
+					<Grid x:Name="contnet" />
+				  </Grid>
+
+				  <help:ModalContentPresenter.ModalContent>
+					<Grid>
+
+					  <!--Cập nhật thông tin cá nhân-->
+					  <Border DataContext="{Binding SetUserProFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+							  Visibility="{Binding Path=DataContext.ShowProFile, Converter={StaticResource Boolean2Visibility}, UpdateSourceTrigger=PropertyChanged,
+                                        RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+							  Width="500"
+							  Height="510"
+							  Background="White"
+							  BorderBrush="LightGray"
+							  BorderThickness="1,1,1,1"
+							  CornerRadius="3,3,3,3">
+
+						<local:UpdatePersonalInfo x:Name="ucUpdatePersonalInfo" />
+
+					  </Border>
+
+					  <!--Cập nhật mật khẩu-->
+					  <Border DataContext="{Binding SetUserPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+							  Visibility="{Binding Path=DataContext.ShowChangePass, 
+                                        Converter={StaticResource Boolean2Visibility}, UpdateSourceTrigger=PropertyChanged,
+                                        RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+							  Width="450"
+							  Height="250"
+							  Background="White"
+							  BorderBrush="LightGray"
+							  BorderThickness="1,1,1,1"
+							  CornerRadius="3,3,3,3">
+
+						<local:ChangePassword x:Name="ucChangePassword" />
+
+					  </Border>
+
+					</Grid>
+				  </help:ModalContentPresenter.ModalContent>
+				</help:ModalContentPresenter>
+			  </Grid>
+
+			  <Grid Grid.Row="0"
+					Background="#D6D3D3">
+				<Grid.ColumnDefinitions>
+				  <ColumnDefinition Width="auto" />
+				  <ColumnDefinition />
+				  <ColumnDefinition />
+				  <ColumnDefinition Width="45" />
+				</Grid.ColumnDefinitions>
+
+				<StackPanel Grid.Column="0"
+							Orientation="Horizontal"
+							Margin="5,0,0,0">
+
+				  <Button Template="{StaticResource HomeIcon}"
+						  Command="{Binding BackToMainMenuCommand}"
+						  Width="20"
+						  Height="20"
+						  Cursor="Hand"
+						  x:Name="btnBackToMain"
+						  RenderTransformOrigin="0.435,1"
+						  ToolTip="Trang chính"
+						  Margin="5,0" />
+
+				  <Button Template="{StaticResource SupportTeamviewIcon}"
+						  Command="{Binding OpenTeamviewQSCommand}"
+						  Width="20"
+						  Height="20"
+						  Cursor="Hand"
+						  RenderTransformOrigin="0.435,1"
+						  ToolTip="Click để mở TeamviewQS"
+						  Margin="5,0" />
+
+				  <Button Template="{StaticResource OpenUnikeyIcon}"
+						  Command="{Binding OpenUnikeyCommand}"
+						  Width="20"
+						  Height="20"
+						  Cursor="Hand"
+						  RenderTransformOrigin="0.435,1"
+						  ToolTip="Click để mở Unikey"
+						  Margin="5,0" />
+				  
+				</StackPanel>
+
+				<StackPanel>
+
+				  <Button Background="{DynamicResource MainForeground}"
+						  Content=""
+						  Visibility="Collapsed"
+						  x:Name="btnTempColorXanhDam" />
+
+				  <Button Background="{DynamicResource DefaultButtonBackground}"
+						  Content=""
+						  Visibility="Collapsed"
+						  x:Name="btnTempColorXanhNhat" />
+
+				  <Button Background="{DynamicResource DefaultButtonHoverBackground}"
+						  Content=""
+						  Visibility="Collapsed"
+						  x:Name="btnTempColorXanhNhatHon" />
+
+				</StackPanel>
+
+				<Label x:Name="ModuleName"
+					   Grid.Column="0"
+					   Grid.ColumnSpan="4"
+					   Content="..."
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"
+					   Foreground="#555555"
+					   FontWeight="SemiBold" />
+
+				<StackPanel Orientation="Horizontal"
+							Grid.Column="2"
+							HorizontalAlignment="Right">
+
+				  <Grid Margin="10,0"
+						x:Name="grdNotification"
+						Background="Transparent"
+						Cursor="Hand">
+
+					<i:Interaction.Triggers>
+					  <i:EventTrigger EventName="MouseLeftButtonUp">
+						<i:InvokeCommandAction Command="{Binding ShowListNotificationCommand}" />
+					  </i:EventTrigger>
+					</i:Interaction.Triggers>
+
+					<Button Template="{StaticResource BellIcon}"
+							Width="20"
+							Height="20"
+							IsEnabled="False"
+							HorizontalAlignment="Left"
+							RenderTransformOrigin="0.435,1"
+							ToolTip="Trang chính" />
+					
+					<Border CornerRadius="3"
+							Background="#FFC70B0B"
+							VerticalAlignment="Top"
+							HorizontalAlignment="Left"
+							Margin="12,2,0,0">
+
+					  <Border.Style>
+						<Style TargetType="Border">
+						  <Style.Triggers>
+							<DataTrigger Binding="{Binding ElementName=txtNotificationQuantity, Path=Text}"
+										 Value="">
+							  <Setter Property="Visibility"
+									  Value="Collapsed" />
+							</DataTrigger>
+						  </Style.Triggers>
+						</Style>
+					  </Border.Style>
+					  
+					  <TextBlock FontFamily="Arial"
+								 x:Name="txtNotificationQuantity"
+								 Text="0"
+								 Margin="2"
+								 Foreground="White"
+								 FontSize="10"
+								 FontWeight="Bold"
+								 VerticalAlignment="Center"
+								 HorizontalAlignment="Center" />
+					</Border>
+					
+				  </Grid>
+
+				  <TextBlock x:Name="txtHelloUser"
+							 Text="Xin chào Admin"
+							 MouseLeftButtonUp="Button_Click"
+							 VerticalAlignment="Center"
+							 Foreground="#555555"
+							 Cursor="Hand"
+							 FontWeight="SemiBold" />
+
+				</StackPanel>
+
+				<Button Grid.Column="3"
+						Cursor="Hand"
+						Content="Click Me"
+						Click="Button_Click"
+						ContextMenuService.IsEnabled="False"
+						HorizontalAlignment="Right"
+						VerticalAlignment="Center"
+						Margin="10,3"
+						x:Name="btnAvatar">
+				  <Button.Template>
+					<ControlTemplate>
+					  <StackPanel Orientation="Horizontal"
+								  VerticalAlignment="Center"
+								  HorizontalAlignment="Right"
+								  DataContext="{Binding SetUserLogin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+						<Canvas>
+						  <Ellipse Canvas.Top="0"
+								   Margin="3,-5"
+								   Canvas.Right="5"
+								   Stroke="LightGray"
+								   StrokeThickness="1"
+								   Height="25"
+								   Width="25"
+								   ToolTip="Click để thao tác">
+							<Ellipse.Fill>
+							  <ImageBrush ImageSource="/Assets/avatar.png"
+										  Stretch="Fill" />
+							</Ellipse.Fill>
+						  </Ellipse>
+						</Canvas>
+						<TextBlock Text="{Binding FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								   VerticalAlignment="Center"
+								   HorizontalAlignment="Center"
+								   FontWeight="Medium"
+								   Foreground="#555555" />
+					  </StackPanel>
+					</ControlTemplate>
+				  </Button.Template>
+				  <Button.ContextMenu>
+					<ContextMenu>
+					  <MenuItem Header="Cập nhật thông tin cá nhân"
+								Name="profile"
+								Command="{Binding ProfileCommand}" />
+					  <MenuItem Header="Đổi mật khẩu"
+								Name="changePass"
+								Command="{Binding ChangePassCommand}" />
+					  <Separator Style="{StaticResource CustomSeparatorStyle}" />
+					  <MenuItem Header="Đăng xuất"
+								Name="logout"
+								Command="{Binding LogoutCommand}" />
+					</ContextMenu>
+				  </Button.ContextMenu>
+				</Button>
+			  </Grid>
+			  
+			</Grid>
+		  </Grid>
+
+		  <Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+			  <ColumnDefinition Width="auto" />
+			  <ColumnDefinition Width="auto" />
+			  <ColumnDefinition Width="auto" />
+			  <ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Grid Grid.Column="0">
+			  <Label x:Name="lblInfoAppLicense"
+					 Content="Bạn đang dùng Intest bản chưa đăng ký mã bản quyền"
+					 HorizontalAlignment="Left"
+					 VerticalAlignment="Center"
+					 Foreground="LightGray"
+					 FontSize="11" />
+			</Grid>
+
+			<Grid Grid.Column="1">
+			  <Label Content="-"
+					 HorizontalAlignment="Left"
+					 VerticalAlignment="Center"
+					 Foreground="LightGray"
+					 FontSize="11" />
+			</Grid>
+
+			<Grid Grid.Column="2">
+			  <Label x:Name="txtTimeLogin"
+					 Content="Bạn đã đăng nhập lúc 11h00"
+					 HorizontalAlignment="Left"
+					 VerticalAlignment="Center"
+					 Foreground="LightGray"
+					 FontSize="11">
+				<Label.InputBindings>
+				  <MouseBinding Gesture="LeftDoubleClick"
+								Command="{Binding ActiveFocusUserControlCommand}" />
+				</Label.InputBindings>
+			  </Label>
+			</Grid>
+
+			<Grid Grid.Column="3"
+				  HorizontalAlignment="Right">
+			  <Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25" />
+				<ColumnDefinition />
+				<ColumnDefinition Width="23" />
+				<ColumnDefinition />
+			  </Grid.ColumnDefinitions>
+			  <Image Grid.Column="0"
+					 x:Name="iconData"
+					 Margin="3"
+					 Stretch="None"
+					 HorizontalAlignment="Right" />
+
+			  <Label Grid.Column="1"
+					 x:Name="txtData"
+					 Cursor="Hand"
+					 HorizontalAlignment="Right"
+					 VerticalAlignment="Center"
+					 Foreground="LightGray"
+					 FontSize="11">
+
+				<i:Interaction.Triggers>
+				  <i:EventTrigger EventName="MouseLeftButtonUp">
+					<i:InvokeCommandAction Command="{Binding ShowControlPanelCommand}" />
+				  </i:EventTrigger>
+				</i:Interaction.Triggers>
+
+			  </Label>
+
+			  <Image Grid.Column="2"
+					 x:Name="iconClock"
+					 Margin="3"
+					 Stretch="None"
+					 HorizontalAlignment="Right" />
+			  <Label Grid.Column="3"
+					 x:Name="txtTime"
+					 HorizontalAlignment="Right"
+					 VerticalAlignment="Center"
+					 Foreground="LightGray"
+					 FontSize="11" />
+
+			</Grid>
+		  </Grid>
+		</Grid>
+
+	  </Grid>
+
+	  <help:ModalContentPresenter.ModalContent>
+		<Grid x:Name="gridPopup">
+
+		</Grid>
+	  </help:ModalContentPresenter.ModalContent>
+	</help:ModalContentPresenter>
+
+	<help:ModalContentPresenter x:Name="modelChildren"
+								Margin="1500,0,0,0"
+								Visibility="Hidden">
+	  <Grid x:Name="gridChildren">
+
+	  </Grid>
+	</help:ModalContentPresenter>
+  </Grid>
+</Window>
