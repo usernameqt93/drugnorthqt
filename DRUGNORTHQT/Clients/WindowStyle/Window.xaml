@@ -460,7 +460,7 @@
         Here you can customize the look of the window without having to touch the control template 
         or comment out the brushes and create a new style (see the red style below)-->
 
-  <Style x:Key="InvicoWindowStyle"
+  <Style x:Key="QTWindowStyle"
 		 TargetType="{x:Type Window}">
 	<Setter Property="WindowStyle"
 			Value="None" />

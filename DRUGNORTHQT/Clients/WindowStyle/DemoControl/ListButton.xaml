@@ -10,7 +10,7 @@
   <UserControl.Resources>
 	<ResourceDictionary>
 	  <ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="InvicoStyle.xaml" />
+		<ResourceDictionary Source="QTStyle.xaml" />
 	  </ResourceDictionary.MergedDictionaries>
 	</ResourceDictionary>
   </UserControl.Resources>

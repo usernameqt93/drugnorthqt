@@ -32,8 +32,8 @@ namespace WindowMain.View {
 	  },this.Dispatcher);
 	  //this.txtData.Content = AppConfig.ToText((AppConfig.enum_Server)selectedServer);
 	  this.txtData.Content =Environment.MachineName;
-	  this.iconClock.Source = new BitmapImage(new Uri(@"/Assets/calendar.png",UriKind.Relative));
-	  this.iconData.Source = new BitmapImage(new Uri(@"/Assets/data.png",UriKind.Relative));
+	  //this.iconClock.Source = new BitmapImage(new Uri(@"/Assets/calendar.png",UriKind.Relative));
+	  //this.iconData.Source = new BitmapImage(new Uri(@"/Assets/data.png",UriKind.Relative));
 	}
 
 	private void Button_Click(object sender,RoutedEventArgs e) {

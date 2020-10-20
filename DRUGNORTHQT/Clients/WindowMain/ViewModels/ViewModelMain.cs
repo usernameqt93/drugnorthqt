@@ -816,7 +816,7 @@ namespace WindowMain.ViewModels {
 
 		//var key = "";
 		var mes = "";
-		var status = "";
+		var status = "notadminadmin";
 		//status = _bllPlugin.OnLogin(ref DicLoginInfo,strAppName,DtPhienBan,_software,
 		//  _mainWindow.ucLoginMaster.gridTxtHintUserName.txtText.Text.Trim()
 		//  ,_mainWindow.ucLoginMaster.passBox.Password.Trim(),
@@ -826,6 +826,11 @@ namespace WindowMain.ViewModels {
 		//} else {
 		//  status = _bllPlugin.OnLogin(strUser.Trim(),strPass.Trim(),ServerSelected.IsServer,ref _user,ref key,ref mes);
 		//}
+		string strUser = _mainWindow.ucLoginMaster.gridTxtHintUserName.txtText.Text.Trim();
+		string strPass = _mainWindow.ucLoginMaster.passBox.Password.Trim();
+		if(strUser==strPass&&strPass=="admin") {
+		  status="ok";
+		}
 
 		string strMessageNotHaveIp = "";
 		switch(status) {
@@ -881,7 +886,12 @@ namespace WindowMain.ViewModels {
 
 			_bllPlugin.TryToRunUnikeyAsAdminIfNotRun();
 
-			LoadData();
+			LoadMenuByPluginAndRuleUser();
+			if(_lstMenuItems.Count==0) {
+			  QTMessageBox.ShowNotify("Có lỗi trong quá trình tải file plugin, bạn vui lòng liên hệ bộ phận kĩ thuật để được hỗ trợ!"
+				,"(_lstMenuItems.Count==0)");
+			  break;
+			}
 
 			//DateTime dtLoginTimeGanNhat = (_isServer==0) ? DateTime.Now : _user.LoginTime;
 			DateTime dtLoginTimeGanNhat = DateTime.Now;
@@ -902,6 +912,9 @@ namespace WindowMain.ViewModels {
 			//Hide(); 
 			#endregion
 
+			break;
+		  case "notadminadmin":
+			QTMessageBox.ShowNotify("Tài khoản hoặc mật khẩu không đúng, bạn vui lòng thao tác lại!");
 			break;
 		  case "notok":
 			//InvicoMessageBox.ShowNotify(mes);
@@ -984,7 +997,7 @@ namespace WindowMain.ViewModels {
 	  }
 	}
 
-	private void LoadData() {
+	private void LoadMenuByPluginAndRuleUser() {
 	  try {
 		_lstMenuID.Clear();
 		_lstSubMenuNames.Clear();

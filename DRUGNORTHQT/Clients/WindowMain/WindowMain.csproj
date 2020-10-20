@@ -211,8 +211,5 @@
   <ItemGroup>
     <Resource Include="Assets\AddFromDB.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\avatar.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
