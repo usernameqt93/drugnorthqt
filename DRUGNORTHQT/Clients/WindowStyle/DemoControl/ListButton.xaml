@@ -1,0 +1,412 @@
+﻿<UserControl x:Class="WindowStyle.DemoControl.ListButton"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:WindowStyle.DemoControl"
+			 mc:Ignorable="d"
+			 d:DesignHeight="800"
+			 d:DesignWidth="1200">
+  <UserControl.Resources>
+	<ResourceDictionary>
+	  <ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="InvicoStyle.xaml" />
+	  </ResourceDictionary.MergedDictionaries>
+	</ResourceDictionary>
+  </UserControl.Resources>
+  <Grid>
+	<StackPanel>
+
+	  <TextBlock Text="Danh sách flat button cùng tên key"
+				 FontWeight="Bold" />
+	  <WrapPanel Orientation="Horizontal">
+
+		<Button Style="{DynamicResource InvicoFlatButtonEdit}"
+				Content="InvicoFlatButtonEdit"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonAdd}"
+				Content="InvicoFlatButtonAdd"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonFile}"
+				Content="InvicoFlatButtonFile"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonExport}"
+				Content="InvicoFlatButtonExport"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonDelete}"
+				Content="InvicoFlatButtonDelete"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonSetup}"
+				Content="InvicoFlatButtonSetup"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonReset}"
+				Content="InvicoFlatButtonReset"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonBlock}"
+				Content="InvicoFlatButtonBlock"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonSave}"
+				Content="InvicoFlatButtonSave"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonZoomIn}"
+				Content="InvicoFlatButtonZoomIn"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonPreview}"
+				Content="InvicoFlatButtonPreview"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonSetOrder}"
+				Content="InvicoFlatButtonSetOrder"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonChartBieuDo}"
+				Content="InvicoFlatButtonChartBieuDo"
+				Height="32" />
+
+		<Button Style="{DynamicResource InvicoFlatButtonSearch}"
+				Content="InvicoFlatButtonSearch"
+				Height="32" />
+
+	  </WrapPanel>
+
+	  <TextBlock Text="Danh sách AboveButton cùng tên key"
+				 FontWeight="Bold" />
+	  <WrapPanel Orientation="Horizontal">
+
+		<Button Style="{DynamicResource InvicoAboveButtonSetupNewConfig}"
+				Content="InvicoAboveButtonSetupNewConfig" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonImportFromPrinter}"
+				Content="InvicoAboveButtonImportFromPrinter" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonImportFromFolder}"
+				Content="InvicoAboveButtonImportFromFolder" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonImportFromFile}"
+				Content="InvicoAboveButtonImportFromFile" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonImportFromCSDL}"
+				Content="InvicoAboveButtonImportFromCSDL" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonWarning}"
+				Content="InvicoAboveButtonWarning" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonPenalize}"
+				Content="InvicoAboveButtonPenalize" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonMessage}"
+				Content="InvicoAboveButtonMessage" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonReset}"
+				Content="InvicoAboveButtonReset" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonExportLog}"
+				Content="InvicoAboveButtonExportLog" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonMarkTest}"
+				Content="InvicoAboveButtonMarkTest" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonImportLog}"
+				Content="InvicoAboveButtonImportLog" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonCamera}"
+				Content="InvicoAboveButtonCamera" />
+
+		<Button Style="{DynamicResource InvicoAboveButtonSetting}"
+				Content="InvicoAboveButtonSetting" />
+
+	  </WrapPanel>
+
+	  <TextBlock Text="Danh sách button theo Template cùng tên key"
+				 FontWeight="Bold" />
+	  <WrapPanel Orientation="Horizontal">
+
+		<Button Template="{StaticResource ResetSBDThiSinhIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource AddThiSinhFormExcelFile}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ExportQuestionToWordFile}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ExportQuestionToExcelFile}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ExportQuestionToPDFFile}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ExportFileIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource PlayCircleIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource PauseCircleIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource EditQuestion}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource CopyIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource EditAccount}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource EditRule}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource EditCalendar}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource WarningIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ShowInfoQuestion}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource SelectTest}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource AddThiSinhFormDB}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource AddThiSinhBangTay}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ResetIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource PrinterIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource FolderIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ConfigIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource SettingIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource DeleteIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource DeleteIconSquare}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource HomeIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource BellIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource DocumentIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource MagnifyIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource CameraIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ArrowToLeftIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ArrowToRightIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ArrowToDownIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ArrowToUpIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ZoomInIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ZoomOutIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource AudioFileIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource VideoFileIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ImageFileIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource CancelIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource FilterIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource SaveIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource OpenUnikeyIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource SupportTeamviewIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource CheckOkCircleIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource CircleIntoCircleIcon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource CircleBlankIcon}"
+				Width="18"
+				Height="22" />
+		
+	  </WrapPanel>
+
+	  <TextBlock Text="Danh sách button theo Template cho CreateQuestion cùng tên key"
+				 FontWeight="Bold" />
+	  <WrapPanel Orientation="Horizontal">
+
+		<Button Template="{StaticResource FormatText}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource BoldText}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ItalicText}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource UnderlineText}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource BulletText}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource AlignLeftText}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource AlignCenterText}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource AlignRightText}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource SquareText}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource AddImage}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource ChangeColorText}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource AttachFile}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource InsertDoc}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource IconEmptySquare}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource IconDeleteAnswer}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource IconMixAnswer}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource IconTrueAnswer}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource IconFalseAnswer}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource IconThemCauCon}"
+				Width="18"
+				Height="22" />
+
+		<Button Template="{StaticResource IconBotCauCon}"
+				Width="18"
+				Height="22" />
+
+	  </WrapPanel>
+	  
+	</StackPanel>
+  </Grid>
+</UserControl>
