@@ -36,6 +36,9 @@
     <ApplicationIcon>DrugNorthQT.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DNQTDataAccessLayer">
+      <HintPath>..\Libraries\DNQTDataAccessLayer.dll</HintPath>
+    </Reference>
     <Reference Include="INV.Framework.Switchs.Library">
       <HintPath>..\Libraries\INV.Framework.Switchs.Library.dll</HintPath>
     </Reference>
@@ -120,6 +123,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="DrugNorthQT.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\AssignManager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\leaf-icon49x49.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
