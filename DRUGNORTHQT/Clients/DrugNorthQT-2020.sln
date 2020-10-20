@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QT.HamburgerMenu", "QT.Hamb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMessageBox", "CustomMessageBox\CustomMessageBox.csproj", "{E57FADB7-E705-46FA-873B-64833895DE4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QT.Framework.LoadingPopup", "QT.Framework.LoadingPopup\QT.Framework.LoadingPopup.csproj", "{45770202-D3DE-4579-BB33-C6BB91F73136}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QT.Framework.ToolCommon", "QT.Framework.ToolCommon\QT.Framework.ToolCommon.csproj", "{D01436FC-DCFB-4E4D-9056-A672251474D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{E57FADB7-E705-46FA-873B-64833895DE4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E57FADB7-E705-46FA-873B-64833895DE4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E57FADB7-E705-46FA-873B-64833895DE4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45770202-D3DE-4579-BB33-C6BB91F73136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45770202-D3DE-4579-BB33-C6BB91F73136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45770202-D3DE-4579-BB33-C6BB91F73136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45770202-D3DE-4579-BB33-C6BB91F73136}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D01436FC-DCFB-4E4D-9056-A672251474D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D01436FC-DCFB-4E4D-9056-A672251474D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D01436FC-DCFB-4E4D-9056-A672251474D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D01436FC-DCFB-4E4D-9056-A672251474D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +55,8 @@ Global
 		{F25B923A-614F-4D42-8D0B-513548178889} = {5B181842-8A35-458D-B92D-4021B15F87A7}
 		{2F396C59-288F-4EB6-AD6A-D25275A01C0E} = {5B181842-8A35-458D-B92D-4021B15F87A7}
 		{E57FADB7-E705-46FA-873B-64833895DE4E} = {5B181842-8A35-458D-B92D-4021B15F87A7}
+		{45770202-D3DE-4579-BB33-C6BB91F73136} = {5B181842-8A35-458D-B92D-4021B15F87A7}
+		{D01436FC-DCFB-4E4D-9056-A672251474D2} = {5B181842-8A35-458D-B92D-4021B15F87A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3A02C00-0A04-4C26-9759-89DFEE8D102D}
