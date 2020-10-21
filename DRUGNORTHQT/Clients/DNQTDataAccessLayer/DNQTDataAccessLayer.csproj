@@ -46,6 +46,7 @@
     <Compile Include="BLLSelectFromWhere\BLLFrom.cs" />
     <Compile Include="BLLSelectFromWhere\BLLSelect.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="DALNew\DAL_Order.cs" />
     <Compile Include="DALNew\DAL_Product.cs" />
     <Compile Include="DAO_CaiDat.cs" />
     <Compile Include="DAO_DonHang.cs" />
@@ -53,6 +54,8 @@
     <Compile Include="DAO_GiaViThuoc.cs" />
     <Compile Include="DAO_KhachHang.cs" />
     <Compile Include="DAO_ViThuoc.cs" />
+    <Compile Include="ListTableDatabase\Table_BangDanhSachDonHang.cs" />
+    <Compile Include="ListTableDatabase\Table_BangKhachHang.cs" />
     <Compile Include="ListTableDatabase\Table_BangViThuoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

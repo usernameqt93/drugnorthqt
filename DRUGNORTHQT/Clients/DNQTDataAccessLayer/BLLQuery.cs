@@ -19,5 +19,19 @@ namespace DNQTDataAccessLayer {
 
 	  strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nORDER BY {strOrderBy} ;";
 	}
+
+	internal void GetQueryLayAllIdOrder(ref string strQuery) {
+	  string strSelect = "";
+	  _bllSelect.GetQueryLayAllIdOrder_Select(ref strSelect);
+
+	  string strFrom = "";
+	  _bllFrom.GetQueryLayAllIdOrder_From(ref strFrom);
+
+	  //string strOrderBy = "";
+	  //strOrderBy+=$"\n {Table_BangViThuoc.NAME}.{Table_BangViThuoc.Col_TenViThuoc.NAME} ";
+
+	  //strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nORDER BY {strOrderBy} ;";
+	  strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} ;";
+	}
   }
 }

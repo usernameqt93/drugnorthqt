@@ -19,5 +19,39 @@ namespace DNQTDataAccessLayer.BLLSelectFromWhere {
 
 	  strSelect=strListColumnJoinTable1;
 	}
+
+	internal void GetQueryLayAllIdOrder_Select(ref string strSelect) {
+	  string strListColumnJoinTable1 = "";
+	  {
+		var lstColumnTable = new List<string>();
+		lstColumnTable.Add(Table_BangDanhSachDonHang.Col_MaDonHang.NAME);
+		lstColumnTable.Add(Table_BangDanhSachDonHang.Col_ThoiGianVietDonHangNay.NAME);
+		lstColumnTable.Add(Table_BangDanhSachDonHang.Col_TongViThuoc.NAME);
+		lstColumnTable.Add(Table_BangDanhSachDonHang.Col_TongKhoiLuong.NAME);
+		lstColumnTable.Add(Table_BangDanhSachDonHang.Col_TongGiaTriDonHang.NAME);
+		lstColumnTable.Add(Table_BangDanhSachDonHang.Col_IdBangKhachHang.NAME);
+		lstColumnTable.Add(Table_BangDanhSachDonHang.Col_SDTKhachHang.NAME);
+		lstColumnTable.Add(Table_BangDanhSachDonHang.Col_TienNoCu.NAME);
+
+		_bllClass.GetStringJoinSplitChar(ref strListColumnJoinTable1
+		  ,lstColumnTable,",",Table_BangDanhSachDonHang.NAME);
+	  }
+
+	  string strListColumnJoinTable2 = "";
+	  {
+		var lstColumnTable = new List<string>();
+		lstColumnTable.Add(Table_BangKhachHang.Col_TenKhachHang.NAME);
+
+		_bllClass.GetStringJoinSplitChar(ref strListColumnJoinTable2
+		  ,lstColumnTable,",",Table_BangKhachHang.NAME);
+	  }
+
+	  var lstStringInput = new List<string>();
+	  lstStringInput.Add(strListColumnJoinTable1);
+	  lstStringInput.Add(strListColumnJoinTable2);
+
+	  _bllClass.GetStringJoinSplitChar(ref strSelect,lstStringInput,"\n,","");
+
+	}
   }
 }
