@@ -1,0 +1,281 @@
+﻿<UserControl x:Class="PluginDnqt.Order.Views.MainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:PluginDnqt.Order.Views"
+			 xmlns:help="clr-namespace:QT.Framework.ToolCommon.Helpers;assembly=QT.Framework.ToolCommon"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 mc:Ignorable="d"
+			 d:DesignHeight="800"
+			 d:DesignWidth="1200"
+			 x:Name="ucMain">
+  <UserControl.Resources>
+	<ResourceDictionary>
+	  <ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="pack://application:,,,/QT.Framework.Styles.Library;Component/QTStyle.xaml" />
+	  </ResourceDictionary.MergedDictionaries>
+	  <help:BindingProxy x:Key="ProxyKey"
+						 Data="{Binding ElementName=ucMain, Path=DataContext}" />
+	</ResourceDictionary>
+  </UserControl.Resources>
+
+  <i:Interaction.Triggers>
+	<i:EventTrigger EventName="Loaded">
+	  <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+	</i:EventTrigger>
+  </i:Interaction.Triggers>
+
+  <Grid>
+	<help:ModalContentPresenter x:Name="modalPresenter"
+								IsModal="{Binding IsTiling}">
+	  <Grid Background="White">
+		<Grid.RowDefinitions>
+		  <RowDefinition Height="auto" />
+		  <RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<GroupBox Header="Tùy chọn phân loại đơn hàng"
+				  Style="{DynamicResource InvicoGroupBoxStyle}"
+				  Margin="5"
+				  Grid.Row="0">
+
+		  <StackPanel Orientation="Horizontal"
+					  Margin="0,5">
+
+			<RadioButton x:Name="rdbHienThiTatCa"
+						 Margin="3,0"
+						 Style="{StaticResource InvicoRadioButtonStyle}"
+						 VerticalAlignment="Center"
+						 Content="Hiển thị tất cả đơn hàng"
+						 Command="{Binding RadioButtonPhanLoaiCheckedCommand}" />
+
+			<RadioButton x:Name="rdb100Result22"
+						 Margin="3,0"
+						 Style="{StaticResource InvicoRadioButtonStyle}"
+						 VerticalAlignment="Center"
+						 Content="Phân loại theo tên khách hàng"
+						 Command="{Binding RadioButtonPhanLoaiCheckedCommand}" />
+
+			<RadioButton x:Name="rdbTuyChonResult22"
+						 Margin="3,0"
+						 Style="{StaticResource InvicoRadioButtonStyle}"
+						 VerticalAlignment="Center"
+						 Content="Phân loại theo ngày"
+						 Command="{Binding RadioButtonPhanLoaiCheckedCommand}" />
+
+		  </StackPanel>
+		</GroupBox>
+
+		<GroupBox Grid.Row="1"
+				  Margin="5"
+				  Header="Danh sách đơn hàng đã phân loại"
+				  Style="{DynamicResource InvicoGroupBoxStyle}">
+		  <Grid>
+			<Grid.RowDefinitions>
+			  <RowDefinition Height="auto" />
+			  <RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<DockPanel Grid.Row="0"
+					   LastChildFill="True">
+
+			  <StackPanel DockPanel.Dock="Left"
+						  Orientation="Horizontal">
+				<GroupBox Header="Số dòng trên 1 trang"
+						  Style="{DynamicResource InvicoGroupBoxStyle}">
+				  <StackPanel Orientation="Horizontal"
+							  Margin="0,5">
+
+					<RadioButton x:Name="rdb50Result"
+								 Margin="3,0"
+								 GroupName="GroupRdbTimKiem"
+								 Style="{StaticResource InvicoRadioButtonStyle}"
+								 VerticalAlignment="Center"
+								 Content="50"
+								 Tag="50"
+								 Command="{Binding RadioButtonFilterCheckedCommand}" />
+
+					<RadioButton x:Name="rdb100Result"
+								 Margin="3,0"
+								 GroupName="GroupRdbTimKiem"
+								 Style="{StaticResource InvicoRadioButtonStyle}"
+								 VerticalAlignment="Center"
+								 Content="100"
+								 Tag="100"
+								 Command="{Binding RadioButtonFilterCheckedCommand}" />
+
+					<RadioButton x:Name="rdbTuyChonResult"
+								 Margin="3,0"
+								 GroupName="GroupRdbTimKiem"
+								 Style="{StaticResource InvicoRadioButtonStyle}"
+								 VerticalAlignment="Center"
+								 Content="Tùy chọn"
+								 Command="{Binding RadioButtonFilterCheckedCommand}" />
+
+				  </StackPanel>
+				</GroupBox>
+
+				<GroupBox Header="Tùy chọn số dòng trên 1 trang"
+						  IsEnabled="{Binding ElementName=rdbTuyChonResult,Path=IsChecked}"
+						  Style="{DynamicResource InvicoGroupBoxStyle}">
+				  <DockPanel>
+
+					<CheckBox x:Name="chkXacNhan"
+							  DockPanel.Dock="Right"
+							  Margin="4,0"
+							  Command="{Binding ChkXacNhanCheckedChangedCommand}"
+							  Cursor="Hand"
+							  VerticalAlignment="Center"
+							  Style="{StaticResource InvicoSliderCheckBoxStyle}"
+							  Content="Xác nhận" />
+
+					<help:NounicodeTextBox x:Name="txtSoKetQua1Trang"
+										   StringFilter="^[0-9]+$"
+										   MaxLength="4"
+										   VerticalContentAlignment="Center"
+										   HorizontalContentAlignment="Center"
+										   Text="1000">
+					  <help:NounicodeTextBox.Style>
+						<Style TargetType="help:NounicodeTextBox"
+							   BasedOn="{StaticResource InvicoTextBoxStyle}">
+						  <Style.Triggers>
+							<DataTrigger Binding="{Binding ElementName=chkXacNhan,Path=IsChecked}"
+										 Value="False">
+							  <Setter Property="IsEnabled"
+									  Value="True" />
+							</DataTrigger>
+							<DataTrigger Binding="{Binding ElementName=chkXacNhan,Path=IsChecked}"
+										 Value="True">
+							  <Setter Property="IsEnabled"
+									  Value="False" />
+							</DataTrigger>
+						  </Style.Triggers>
+						</Style>
+					  </help:NounicodeTextBox.Style>
+					</help:NounicodeTextBox>
+
+				  </DockPanel>
+				</GroupBox>
+			  </StackPanel>
+
+			  <StackPanel DockPanel.Dock="Right"
+						  Orientation="Horizontal">
+
+				<GroupBox Header="Dữ liệu hiện có"
+						  Style="{DynamicResource InvicoGroupBoxStyle}"
+						  Margin="10,0">
+				  <StackPanel HorizontalAlignment="Left"
+							  VerticalAlignment="Center"
+							  Orientation="Horizontal">
+
+					<Label Content="0"
+						   x:Name="lblSumProduct"
+						   Style="{DynamicResource InvicoLabelStyle}" />
+
+					<Label Content="đơn hàng"
+						   Style="{DynamicResource InvicoLabelStyle}" />
+
+					<Label Content="-"
+						   Style="{DynamicResource InvicoLabelStyle}" />
+
+					<Label Content="0"
+						   x:Name="lblSumPage"
+						   Style="{DynamicResource InvicoLabelStyle}" />
+
+					<Label Content="trang"
+						   Style="{DynamicResource InvicoLabelStyle}" />
+
+				  </StackPanel>
+				</GroupBox>
+
+				<Label Content="Trang"
+					   VerticalAlignment="Bottom"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+				<ComboBox Style="{DynamicResource InvicoComboBoxStyle}"
+						  Margin="1,0"
+						  Height="30"
+						  VerticalAlignment="Bottom"
+						  ItemsSource="{Binding MOCPage.LstCbo}"
+						  SelectedItem="{Binding MOCPage.MItemSelected}"
+						  DisplayMemberPath="Name"
+						  SelectedValuePath="ID">
+				  <i:Interaction.Triggers>
+					<i:EventTrigger EventName="SelectionChanged">
+					  <i:InvokeCommandAction Command="{Binding PageSelectionChangedCommand}" />
+					</i:EventTrigger>
+				  </i:Interaction.Triggers>
+				</ComboBox>
+			  </StackPanel>
+
+			  <Grid>
+
+			  </Grid>
+
+			</DockPanel>
+
+			<GroupBox Grid.Row="1"
+					  Header="Danh sách"
+					  Style="{DynamicResource InvicoGroupBoxStyle}">
+			  <DataGrid Style="{DynamicResource InvicoDataGridStyle}"
+						ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
+						VerticalAlignment="Stretch"
+						ItemsSource="{Binding LstGridMain}"
+						SelectedItem="{Binding SelectedRow}">
+
+				<DataGrid.Columns>
+				  <DataGridTemplateColumn Header="STT"
+										  Width="40">
+					<DataGridTemplateColumn.CellTemplate>
+					  <DataTemplate>
+						<TextBlock Margin="3,0"
+								   VerticalAlignment="Center"
+								   HorizontalAlignment="Center"
+								   Text="{Binding Stt}" />
+					  </DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				  </DataGridTemplateColumn>
+
+				  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										  Header=" Mã dữ liệu "
+										  Width="auto">
+					<DataGridTemplateColumn.CellTemplate>
+					  <DataTemplate>
+						<TextBlock TextAlignment="Center"
+								   VerticalAlignment="Center"
+								   Text="{Binding StrId}" />
+					  </DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				  </DataGridTemplateColumn>
+
+				  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										  Header="Tên vị thuốc"
+										  Width="1*">
+					<DataGridTemplateColumn.CellTemplate>
+					  <DataTemplate>
+						<TextBlock Margin="3,0"
+								   VerticalAlignment="Center"
+								   Text="{Binding StrName}" />
+					  </DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				  </DataGridTemplateColumn>
+
+				</DataGrid.Columns>
+			  </DataGrid>
+			</GroupBox>
+		  </Grid>
+		</GroupBox>
+	  </Grid>
+
+	</help:ModalContentPresenter>
+
+	<help:ModalContentPresenter x:Name="modelChildren"
+								Margin="1500,0,0,0"
+								Visibility="Hidden">
+	  <Grid x:Name="gridChildren">
+
+	  </Grid>
+	</help:ModalContentPresenter>
+  </Grid>
+</UserControl>

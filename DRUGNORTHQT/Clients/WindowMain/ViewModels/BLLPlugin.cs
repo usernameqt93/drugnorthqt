@@ -528,8 +528,8 @@ namespace WindowMain.ViewModels {
 	//private readonly HostService _mHostAdapter = new HostService(LabelReport);
 	public string LoadIcon(int key,int intSoftware) {
 	  switch(key) {
-		//case (int)AppConfig.enum_ParentFunction.QUANLY:
-		//  return @"/Assets/settings.png";
+		case 2:
+		  return @"/Assets/settings.png";
 		//case (int)AppConfig.enum_ParentFunction.LAMDETHI:
 		//  return @"/Assets/Examination.png";
 		//case (int)AppConfig.enum_ParentFunction.NGANHANGCAUHOI:
