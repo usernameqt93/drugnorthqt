@@ -51,7 +51,7 @@
 							 GroupName="GroupRdbTimKiem"
 							 Style="{StaticResource InvicoRadioButtonStyle}"
 							 VerticalAlignment="Center"
-							 Content="50 dòng"
+							 Content="50"
 							 Tag="50"
 							 Command="{Binding RadioButtonFilterCheckedCommand}" />
 
@@ -60,7 +60,7 @@
 							 GroupName="GroupRdbTimKiem"
 							 Style="{StaticResource InvicoRadioButtonStyle}"
 							 VerticalAlignment="Center"
-							 Content="100 dòng"
+							 Content="100"
 							 Tag="100"
 							 Command="{Binding RadioButtonFilterCheckedCommand}" />
 
@@ -120,14 +120,42 @@
 
 		  <StackPanel DockPanel.Dock="Right"
 					  Orientation="Horizontal">
+
+			<GroupBox Header="Dữ liệu hiện có"
+					  Style="{DynamicResource InvicoGroupBoxStyle}"
+					  Margin="10,0">
+			  <StackPanel HorizontalAlignment="Left"
+						  VerticalAlignment="Center"
+						  Orientation="Horizontal">
+
+				<Label Content="0"
+					   x:Name="lblSumProduct"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+				<Label Content="vị thuốc"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+				<Label Content="-"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+				<Label Content="0"
+					   x:Name="lblSumPage"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+				<Label Content="trang"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+			  </StackPanel>
+			</GroupBox>
+			
 			<Label Content="Trang"
-				   VerticalAlignment="Center"
+				   VerticalAlignment="Bottom"
 				   Style="{DynamicResource InvicoLabelStyle}" />
 
 			<ComboBox Style="{DynamicResource InvicoComboBoxStyle}"
-					  Width="60"
+					  Margin="1,0"
 					  Height="30"
-					  VerticalAlignment="Center"
+					  VerticalAlignment="Bottom"
 					  ItemsSource="{Binding MOCPage.LstCbo}"
 					  SelectedItem="{Binding MOCPage.MItemSelected}"
 					  DisplayMemberPath="Name"
@@ -146,17 +174,19 @@
 		  
 		</DockPanel>
 
-		<Grid Grid.Row="1">
+		<GroupBox Grid.Row="1"
+				  Header="Danh sách"
+				  Style="{DynamicResource InvicoGroupBoxStyle}"
+				  Margin="5">
 		  <DataGrid Style="{DynamicResource InvicoDataGridStyle}"
 					ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
-					Margin="5"
 					VerticalAlignment="Stretch"
 					ItemsSource="{Binding LstGridMain}"
 					SelectedItem="{Binding SelectedRow}">
 
 			<DataGrid.Columns>
 			  <DataGridTemplateColumn Header="STT"
-									  Width="50">
+									  Width="40">
 				<DataGridTemplateColumn.CellTemplate>
 				  <DataTemplate>
 					<TextBlock Margin="3,0"
@@ -168,71 +198,32 @@
 			  </DataGridTemplateColumn>
 
 			  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-									  Header="Mã"
-									  Width="70">
+									  Header=" Mã dữ liệu "
+									  Width="auto">
 				<DataGridTemplateColumn.CellTemplate>
 				  <DataTemplate>
 					<TextBlock TextAlignment="Center"
 							   VerticalAlignment="Center"
-							   Text="{Binding  Code, UpdateSourceTrigger=PropertyChanged}" />
+							   Text="{Binding StrId}" />
 				  </DataTemplate>
 				</DataGridTemplateColumn.CellTemplate>
 			  </DataGridTemplateColumn>
 
 			  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-									  Header="Tên hội đồng"
+									  Header="Tên vị thuốc"
 									  Width="1*">
 				<DataGridTemplateColumn.CellTemplate>
 				  <DataTemplate>
 					<TextBlock Margin="3,0"
 							   VerticalAlignment="Center"
-							   Text="{Binding Name}" />
-				  </DataTemplate>
-				</DataGridTemplateColumn.CellTemplate>
-			  </DataGridTemplateColumn>
-
-			  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-									  Header="Địa điểm"
-									  Width="1*">
-				<DataGridTemplateColumn.CellTemplate>
-				  <DataTemplate>
-					<TextBlock Margin="3,0"
-							   VerticalAlignment="Center"
-							   HorizontalAlignment="Left"
-							   Text="{Binding Address}" />
-				  </DataTemplate>
-				</DataGridTemplateColumn.CellTemplate>
-			  </DataGridTemplateColumn>
-
-			  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-									  Header="Kỳ thi"
-									  Width="1*">
-				<DataGridTemplateColumn.CellTemplate>
-				  <DataTemplate>
-					<TextBlock Margin="3,0"
-							   VerticalAlignment="Center"
-							   HorizontalAlignment="Left"
-							   Text="{Binding ExamInfo}" />
-				  </DataTemplate>
-				</DataGridTemplateColumn.CellTemplate>
-			  </DataGridTemplateColumn>
-
-			  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-									  Header="Ngày cập nhật"
-									  Width="170">
-				<DataGridTemplateColumn.CellTemplate>
-				  <DataTemplate>
-					<TextBlock Margin="3,0"
-							   VerticalAlignment="Center"
-							   HorizontalAlignment="Left"
-							   Text="{Binding LastModifinedTime}" />
+							   Text="{Binding StrName}" />
 				  </DataTemplate>
 				</DataGridTemplateColumn.CellTemplate>
 			  </DataGridTemplateColumn>
 
 			</DataGrid.Columns>
 		  </DataGrid>
-		</Grid>
+		</GroupBox>
 	  </Grid>
 
 	</help:ModalContentPresenter>

@@ -24,6 +24,13 @@ namespace PluginDnqt.Product.Models {
 	  set { _intId=value; OnPropertyChanged(nameof(IntId)); }
 	}
 
+	private string _strId = "";
+
+	public string StrId {
+	  get { return _strId; }
+	  set { _strId=value; OnPropertyChanged(nameof(StrId)); }
+	}
+
 	private string _strName = "";
 
 	public string StrName {
