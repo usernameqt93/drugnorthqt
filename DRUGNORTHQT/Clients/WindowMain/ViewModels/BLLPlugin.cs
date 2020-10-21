@@ -567,7 +567,8 @@ namespace WindowMain.ViewModels {
 	/// <param name="checkServer">Kiểm tra xem là đang chay client hay local</param>
 	/// <param name="forder"> Đường dẫn thư mục chứ Plugin</param>
 
-	public void LoadPlugins(int intSoftware,List<int> lstRuleOfUser,ref List<MenuModel> lstMenuItems,bool checkServer = true,string forder = "") {
+	public void LoadPlugins(int intSoftware,List<int> lstRuleOfUser,ref List<MenuModel> lstMenuItems
+	  ,bool checkServer = true,string forder = "") {
 	  string pathPlugin = System.AppDomain.CurrentDomain.BaseDirectory + forder + "\\";
 	  string pathPluginClient = System.AppDomain.CurrentDomain.BaseDirectory + forder + "\\Client\\";
 	  string pathPluginLocation = System.AppDomain.CurrentDomain.BaseDirectory + forder + "\\Location\\";
@@ -597,6 +598,9 @@ namespace WindowMain.ViewModels {
 		mHostAdapter.FindPlugIns(pathPluginLocation);
 	  }
 
+	  var lstTupleNameGroup = new List<Tuple<int,string>>();
+	  lstTupleNameGroup.Add(new Tuple<int,string>(2,"Quản trị hệ thống"));
+
 	  var lstGroupID = new List<int>();
 	  //_mHostAdapter.FindPlugIns(pathPlugin);
 	  foreach(HostViewer.Types.AvailableArrayProcessor plugin in mHostAdapter.PlugIns) {
@@ -617,6 +621,10 @@ namespace WindowMain.ViewModels {
 		  var menuNew = new MenuModel();
 		  menuNew.Order = orderParent;
 		  menuNew.ID = groupID;
+		  var tupleGroup = lstTupleNameGroup.FirstOrDefault(x => x.Item1==groupID);
+		  if(tupleGroup!=null) {
+			menuNew.Name=tupleGroup.Item2;
+		  }
 		  //menuNew.Name = AppConfig.ToText((AppConfig.enum_ParentFunction)Enum.ToObject(typeof(AppConfig.enum_ParentFunction),groupID));
 
 		  if(intSoftware==26||intSoftware==27) {

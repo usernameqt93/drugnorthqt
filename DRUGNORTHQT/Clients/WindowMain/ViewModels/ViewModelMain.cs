@@ -583,7 +583,8 @@ namespace WindowMain.ViewModels {
 	private void CheckLicenseApp(ref string strInfoAppLicense,ref string strMessage) {
 	  try {
 		//string test = _licenseInfo.State.ToString();
-		StrStatusLicense="TrialExpired";
+		//StrStatusLicense="TrialExpired";
+		StrStatusLicense="OK";
 		//EnumLicenseState=_licenseInfo.State;
 
 		string strAppName = "Master Test";
