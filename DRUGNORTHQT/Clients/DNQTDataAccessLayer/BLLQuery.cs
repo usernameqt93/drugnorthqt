@@ -1,11 +1,13 @@
 ﻿using DNQTDataAccessLayer.BLLSelectFromWhere;
 using DNQTDataAccessLayer.ListTableDatabase;
+using System.Collections.Generic;
 
 namespace DNQTDataAccessLayer {
   class BLLQuery {
 
 	private readonly BLLSelect _bllSelect = new BLLSelect();
 	private readonly BLLFrom _bllFrom = new BLLFrom();
+	private readonly BLLClass _bllClass = new BLLClass();
 
 	internal void GetQueryLayAllIdProduct(ref string strQuery) {
 	  string strSelect = "";
@@ -27,11 +29,25 @@ namespace DNQTDataAccessLayer {
 	  string strFrom = "";
 	  _bllFrom.GetQueryLayAllIdOrder_From(ref strFrom);
 
-	  //string strOrderBy = "";
-	  //strOrderBy+=$"\n {Table_BangViThuoc.NAME}.{Table_BangViThuoc.Col_TenViThuoc.NAME} ";
-
-	  //strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nORDER BY {strOrderBy} ;";
 	  strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} ;";
 	}
+
+	internal void GetQueryLayOrderByListId(ref string strQuery,List<string> lstStringId) {
+	  string strSelect = "";
+	  _bllSelect.GetQueryLayOrderByListId_Select(ref strSelect);
+
+	  string strFrom = "";
+	  _bllFrom.GetQueryLayOrderByListId_From(ref strFrom);
+
+	  string strWhere = "";
+
+	  string strListId = "";
+	  _bllClass.GetStringJoinSplitChar(ref strListId,lstStringId,",","");
+
+	  strWhere+=$"\n {Table_BangDanhSachDonHang.NAME}.{Table_BangDanhSachDonHang.Col_MaDonHang.NAME} IN ({strListId}) ";
+
+	  strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} ;";
+	}
+
   }
 }

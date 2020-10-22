@@ -50,14 +50,14 @@ namespace PluginDnqt.Order.ViewModels {
 
 	#region MainDataGrid
 
-	private ModelRowMain _selectedRow;
+	private ModelRowOrder _selectedRow;
 
-	public ModelRowMain SelectedRow {
+	public ModelRowOrder SelectedRow {
 	  get { return this._selectedRow; }
 	  set { _selectedRow=value; OnPropertyChanged(nameof(SelectedRow)); }
 	}
 
-	private ObservableCollection<ModelRowMain> _lstGridMain = new ObservableCollection<ModelRowMain>();
+	private ObservableCollection<ModelRowOrder> _lstGridMain = new ObservableCollection<ModelRowOrder>();
 	private CollectionViewSource MainCollection = new CollectionViewSource();
 
 	public ICollectionView LstGridMain {
@@ -216,8 +216,33 @@ namespace PluginDnqt.Order.ViewModels {
 			  return;
 			}
 
-			_bllPlugin.LoadGridMainByPage(ref _lstGridMain,
-			  MOCPage.MItemSelected.ID,intSoDong1Trang,DT_AllIdOrder);
+			var lstStringId = new List<string>();
+			_bllPlugin.GetListStringIdInDataTable(ref lstStringId
+			  ,MOCPage.MItemSelected.ID,intSoDong1Trang,DT_AllIdOrder,"MaDonHang");
+			if(lstStringId.Count==0) {
+			  QTMessageBox.ShowNotify(
+				"Hiện tại không tìm thấy mã dữ liệu trên trang này, bạn vui lòng thao tác lại!"
+				,"(lstStringId.Count==0)");
+			  return;
+			}
+
+			Exception exDAL = null;
+			DataTable DT_OrderByListId=null;
+			DALOrder.GetDTOrderByListId(ref DT_OrderByListId,ref exDAL,lstStringId);
+			if(exDAL!=null) {
+			  throw exDAL;
+			}
+
+			if(DT_OrderByListId==null) {
+			  QTMessageBox.ShowNotify(
+				"Dữ liệu trang này tải không thành công, bạn vui lòng thao tác lại!"
+				,"(DT_OrderByListId==null)");
+			  return;
+			}
+
+			_bllPlugin.LoadGridMainByDataTable(ref _lstGridMain,DT_OrderByListId);
+			//_bllPlugin.LoadGridMainByPage(ref _lstGridMain,
+			//  MOCPage.MItemSelected.ID,intSoDong1Trang,DT_AllIdOrder);
 		  } catch(Exception ex) {
 			Log4Net.Error(ex.Message);
 			Log4Net.Error(ex.StackTrace);
@@ -286,7 +311,8 @@ namespace PluginDnqt.Order.ViewModels {
 		int intSumId = DT_AllIdOrder.Rows.Count;
 		_mainUserControl.lblSumProduct.Content=""+intSumId;
 
-		int intSumPage = (intSumId/intSoDong1Trang+1);
+		int intSumPage = (intSumId%intSoDong1Trang==0)
+		? (intSumId/intSoDong1Trang) : (intSumId/intSoDong1Trang+1);
 		_mainUserControl.lblSumPage.Content=""+intSumPage;
 
 		LoadComboboxPage(intSumPage);

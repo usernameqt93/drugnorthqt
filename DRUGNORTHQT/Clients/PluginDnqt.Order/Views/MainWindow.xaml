@@ -250,13 +250,74 @@
 				  </DataGridTemplateColumn>
 
 				  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-										  Header="Tên vị thuốc"
+										  Header=" Thời gian viết "
+										  Width="auto">
+					<DataGridTemplateColumn.CellTemplate>
+					  <DataTemplate>
+						<TextBlock TextAlignment="Center"
+								   VerticalAlignment="Center"
+								   Text="{Binding StrDTimeViet}"
+								   Margin="3,0" />
+					  </DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				  </DataGridTemplateColumn>
+
+				  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										  Header=" Tổng số vị thuốc "
+										  Width="auto">
+					<DataGridTemplateColumn.CellTemplate>
+					  <DataTemplate>
+						<StackPanel Orientation="Horizontal"
+									VerticalAlignment="Center"
+									HorizontalAlignment="Right">
+						  <TextBlock Text="{Binding IntSumProduct}"
+									 Margin="3,0" />
+						  <TextBlock Text="vị thuốc"
+									 Margin="3,0" />
+						</StackPanel>
+					  </DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				  </DataGridTemplateColumn>
+
+				  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										  Header=" Tổng khối lượng "
+										  Width="auto">
+					<DataGridTemplateColumn.CellTemplate>
+					  <DataTemplate>
+						<StackPanel Orientation="Horizontal"
+									VerticalAlignment="Center"
+									HorizontalAlignment="Right">
+						  <TextBlock Text="{Binding StrSumKg}"
+									 Margin="3,0" />
+						  <TextBlock Text="Kg"
+									 Margin="3,0" />
+						</StackPanel>
+					  </DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				  </DataGridTemplateColumn>
+
+				  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										  Header=" Tổng giá trị "
+										  Width="auto">
+					<DataGridTemplateColumn.CellTemplate>
+					  <DataTemplate>
+						<TextBlock TextAlignment="Right"
+								   VerticalAlignment="Center"
+								   Text="{Binding StrSumGiaTri}"
+								   Margin="3,0" />
+					  </DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				  </DataGridTemplateColumn>
+
+				  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										  Header="Tên khách hàng"
 										  Width="1*">
 					<DataGridTemplateColumn.CellTemplate>
 					  <DataTemplate>
 						<TextBlock Margin="3,0"
+								   HorizontalAlignment="Center"
 								   VerticalAlignment="Center"
-								   Text="{Binding StrName}" />
+								   Text="{Binding StrNameKH}" />
 					  </DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
 				  </DataGridTemplateColumn>

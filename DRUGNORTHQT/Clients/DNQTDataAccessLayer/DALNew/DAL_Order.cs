@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace DNQTDataAccessLayer.DALNew {
@@ -10,6 +11,17 @@ namespace DNQTDataAccessLayer.DALNew {
 	  try {
 		string strQuery = "";
 		_bllQuery.GetQueryLayAllIdOrder(ref strQuery);
+
+		dtOutput=dataTableThucThiQuery(strQuery,CommandType.Text,null);
+	  } catch(Exception ex) {
+		exDAL=ex;
+	  }
+	}
+
+	public void GetDTOrderByListId(ref DataTable dtOutput,ref Exception exDAL,List<string> lstStringId) {
+	  try {
+		string strQuery = "";
+		_bllQuery.GetQueryLayOrderByListId(ref strQuery,lstStringId);
 
 		dtOutput=dataTableThucThiQuery(strQuery,CommandType.Text,null);
 	  } catch(Exception ex) {
