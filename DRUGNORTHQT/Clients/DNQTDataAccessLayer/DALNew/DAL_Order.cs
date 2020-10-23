@@ -28,5 +28,17 @@ namespace DNQTDataAccessLayer.DALNew {
 		exDAL=ex;
 	  }
 	}
+
+	public void GetDTDetailOrderByListIdOrder(ref DataTable dtOutput,ref Exception exDAL,List<string> lstStringId) {
+	  try {
+		string strQuery = "";
+		_bllQuery.GetQueryLayDetailOrderByListId(ref strQuery,lstStringId);
+
+		dtOutput=dataTableThucThiQuery(strQuery,CommandType.Text,null);
+	  } catch(Exception ex) {
+		exDAL=ex;
+	  }
+	}
+
   }
 }

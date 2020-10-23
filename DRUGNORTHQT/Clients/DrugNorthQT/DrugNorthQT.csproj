@@ -36,6 +36,9 @@
     <ApplicationIcon>DrugNorthQT.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DNQTConstTable">
+      <HintPath>..\Libraries\DNQTConstTable.dll</HintPath>
+    </Reference>
     <Reference Include="DNQTDataAccessLayer">
       <HintPath>..\Libraries\DNQTDataAccessLayer.dll</HintPath>
     </Reference>

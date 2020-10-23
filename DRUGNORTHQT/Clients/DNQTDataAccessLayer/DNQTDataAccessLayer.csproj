@@ -31,6 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DNQTConstTable, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\DNQTConstTable.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -54,9 +59,6 @@
     <Compile Include="DAO_GiaViThuoc.cs" />
     <Compile Include="DAO_KhachHang.cs" />
     <Compile Include="DAO_ViThuoc.cs" />
-    <Compile Include="ListTableDatabase\Table_BangDanhSachDonHang.cs" />
-    <Compile Include="ListTableDatabase\Table_BangKhachHang.cs" />
-    <Compile Include="ListTableDatabase\Table_BangViThuoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
