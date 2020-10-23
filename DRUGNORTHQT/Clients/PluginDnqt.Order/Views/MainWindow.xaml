@@ -232,19 +232,14 @@
 						<TextBlock Margin="3,0"
 								   VerticalAlignment="Center"
 								   HorizontalAlignment="Center"
-								   Text="{Binding Stt}" />
-					  </DataTemplate>
-					</DataGridTemplateColumn.CellTemplate>
-				  </DataGridTemplateColumn>
-
-				  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-										  Header=" Mã dữ liệu "
-										  Width="auto">
-					<DataGridTemplateColumn.CellTemplate>
-					  <DataTemplate>
-						<TextBlock TextAlignment="Center"
-								   VerticalAlignment="Center"
-								   Text="{Binding StrId}" />
+								   Text="{Binding Stt}">
+						  <TextBlock.ToolTip>
+							<StackPanel Orientation="Horizontal">
+							  <TextBlock Text="Mã dữ liệu:"/>
+							  <TextBlock Text="{Binding StrId}"/>
+							</StackPanel>
+						  </TextBlock.ToolTip>
+						</TextBlock>
 					  </DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
 				  </DataGridTemplateColumn>
@@ -315,9 +310,32 @@
 					<DataGridTemplateColumn.CellTemplate>
 					  <DataTemplate>
 						<TextBlock Margin="3,0"
+								   TextTrimming="CharacterEllipsis"
 								   HorizontalAlignment="Center"
 								   VerticalAlignment="Center"
 								   Text="{Binding StrNameKH}" />
+					  </DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				  </DataGridTemplateColumn>
+
+				  <DataGridTemplateColumn Header=" Thao tác "
+										  Width="auto">
+					<DataGridTemplateColumn.CellTemplate>
+					  <DataTemplate>
+
+						<StackPanel Orientation="Horizontal"
+									HorizontalAlignment="Center">
+
+						  <Button Command="{Binding DataContext.EditCommand, 
+                                            RelativeSource={RelativeSource AncestorType=DataGrid}}"
+								  Template="{StaticResource EditQuestion}"
+								  Width="20"
+								  Height="20"
+								  Margin="3,0"
+								  ToolTip="Sửa đơn hàng này" />
+
+						</StackPanel>
+
 					  </DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
 				  </DataGridTemplateColumn>

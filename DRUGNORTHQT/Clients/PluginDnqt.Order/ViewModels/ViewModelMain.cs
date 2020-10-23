@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -316,6 +317,38 @@ namespace PluginDnqt.Order.ViewModels {
 		_mainUserControl.lblSumPage.Content=""+intSumPage;
 
 		LoadComboboxPage(intSumPage);
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand EditCommand => new DelegateCommand(p => {
+	  try {
+		if(SelectedRow==null) {
+		  return;
+		}
+
+		var dicInput = new Dictionary<string,object>();
+		dicInput.Add("DELEGATE_VOID_IN_OTHER_USERCONTROL",
+					  new UpdateOrder_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromOtherUserControl));
+
+		//var mBaiThiInput = DicDataInPreviousUC["SubjectInfo"] as SubjectInfo;
+		BLLTools.AddDeepModelToDictionary(ref dicInput,"ModelRowOrder",SelectedRow);
+
+		//dicInput["string"]=_mainUserControl.lblFolderPath.Content.ToString();
+		//dicInput["List<StudentInfo>"]=lstInput;
+
+		_mainUserControl.modalPresenter.Visibility=Visibility.Hidden;
+		_mainUserControl.modelChildren.Visibility=Visibility.Visible;
+		_mainUserControl.modelChildren.Margin=new Thickness(0);
+
+		_mainUserControl.gridChildren.Children.Clear();
+
+		var userControl = new UpdateOrder(dicInput);
+		_mainUserControl.gridChildren.Children.Add(userControl);
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);

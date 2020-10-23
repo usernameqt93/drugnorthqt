@@ -36,6 +36,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DNQTConstTable">
+      <HintPath>..\Libraries\DNQTConstTable.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DNQTDataAccessLayer">
       <HintPath>..\Libraries\DNQTDataAccessLayer.dll</HintPath>
       <Private>False</Private>
@@ -86,13 +90,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionSDK.cs" />
+    <Compile Include="Models\ModelRowDetailOrder.cs" />
     <Compile Include="Models\ModelRowMain.cs" />
     <Compile Include="Models\ModelRowOrder.cs" />
     <Compile Include="ViewModels\BLLPlugin.cs" />
     <Compile Include="ViewModels\CVPConstValuePlugin.cs" />
+    <Compile Include="ViewModels\UpdateOrder_ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelMain.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TextBoxWithHint.xaml.cs">
+      <DependentUpon>TextBoxWithHint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateOrder.xaml.cs">
+      <DependentUpon>UpdateOrder.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +132,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TextBoxWithHint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

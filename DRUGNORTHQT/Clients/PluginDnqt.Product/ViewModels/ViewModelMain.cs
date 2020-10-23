@@ -274,7 +274,8 @@ namespace PluginDnqt.Product.ViewModels {
 		int intSumId = DT_AllIdProduct.Rows.Count;
 		_mainUserControl.lblSumProduct.Content=""+intSumId;
 
-		int intSumPage = (intSumId/intSoDong1Trang+1);
+		int intSumPage = (intSumId%intSoDong1Trang==0)
+		? (intSumId/intSoDong1Trang) : (intSumId/intSoDong1Trang+1);
 		_mainUserControl.lblSumPage.Content=""+intSumPage;
 
 		LoadComboboxPage(intSumPage);
