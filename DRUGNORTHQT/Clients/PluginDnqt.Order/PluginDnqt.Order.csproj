@@ -36,12 +36,20 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\Libraries\Aspose.Words.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DNQTConstTable">
       <HintPath>..\Libraries\DNQTConstTable.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DNQTDataAccessLayer">
       <HintPath>..\Libraries\DNQTDataAccessLayer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DNQTWebBrowser">
+      <HintPath>..\Libraries\DNQTWebBrowser.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="INV.Framework.Switchs.Library">
@@ -87,6 +95,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionSDK.cs" />
@@ -95,10 +104,14 @@
     <Compile Include="Models\ModelRowOrder.cs" />
     <Compile Include="ViewModels\BLLPlugin.cs" />
     <Compile Include="ViewModels\CVPConstValuePlugin.cs" />
+    <Compile Include="ViewModels\PrintOrder_ViewModel.cs" />
     <Compile Include="ViewModels\UpdateOrder_ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelMain.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrintOrder.xaml.cs">
+      <DependentUpon>PrintOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TextBoxWithHint.xaml.cs">
       <DependentUpon>TextBoxWithHint.xaml</DependentUpon>
@@ -132,6 +145,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PrintOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

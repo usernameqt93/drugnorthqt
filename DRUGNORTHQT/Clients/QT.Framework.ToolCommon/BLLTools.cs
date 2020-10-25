@@ -263,6 +263,42 @@ namespace QT.Framework.ToolCommon {
 	  strPathFile =strPathFileTemp;
 	}
 
+	/// <summary>
+	/// Xóa folder temp rồi copy file ra thư mục temp rồi trả về path temp theo strNewExtension(ví dụ: .doc) để import chẳng hạn ...
+	/// </summary>
+	public static void CopyAndGetPathFileTempByNewExtension(ref string strPathFile,string strNewExtension) {
+	  string CONST_STR_TEMPORARY_FOLDER_NAME = "TemporaryFiles";
+	  string strPathFolderTemp = System.Windows.Forms.Application.StartupPath
+		+$"\\{CONST_STR_TEMPORARY_FOLDER_NAME}";
+	  try {
+		if(System.IO.Directory.Exists(strPathFolderTemp)) {
+		  //System.IO.Directory.Delete(strPathFolderTemp,true);
+		  DeteleFolderReadOnly(strPathFolderTemp);
+		}
+
+		System.IO.Directory.CreateDirectory(strPathFolderTemp);
+	  } catch(Exception e) {
+		string str = e.Message;
+	  }
+
+	  string strPathFileTemp = strPathFolderTemp
+		+$"\\{System.IO.Path.GetFileNameWithoutExtension(strPathFile)+strNewExtension}";
+	  try {
+		System.IO.File.Copy(strPathFile,strPathFileTemp,true);
+	  } catch(Exception e) {
+		string str = e.Message;
+
+		strPathFileTemp=strPathFolderTemp
+		  +$"\\{DateTime.Now.ToString("yyyyMMddHHmmss")}{System.IO.Path.GetFileNameWithoutExtension(strPathFile)+strNewExtension}";
+		System.IO.File.Copy(strPathFile,strPathFileTemp,true);
+	  }
+
+	  var fileInfo = new System.IO.FileInfo(strPathFileTemp);
+	  fileInfo.Attributes=System.IO.FileAttributes.Normal;
+
+	  strPathFile=strPathFileTemp;
+	}
+
 	private static void DeteleFolderReadOnly(string strPathFolderTemp) {
 	  var directory = new System.IO.DirectoryInfo(strPathFolderTemp) {
 		Attributes = System.IO.FileAttributes.Normal
