@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0D949AE9-74A0-411D-A033-2F6FD56546C7}</ProjectGuid>
+    <ProjectGuid>{9672F60E-1A3B-48D8-9A7B-A74E0542961E}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DNQTConstTable</RootNamespace>
-    <AssemblyName>DNQTConstTable</AssemblyName>
+    <RootNamespace>PluginDnqt.Settings</RootNamespace>
+    <AssemblyName>PluginDnqt.Settings</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Libraries\</OutputPath>
+    <OutputPath>..\..\Publics\DNQT\PlugIns\Location\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -36,8 +36,39 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DNQTConstTable">
+      <HintPath>..\Libraries\DNQTConstTable.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="INV.Framework.Switchs.Library">
+      <HintPath>..\Libraries\INV.Framework.Switchs.Library.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Libraries\log4net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="QT.Framework.MessageBox">
+      <HintPath>..\Libraries\QT.Framework.MessageBox.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="QT.Framework.Styles.Library">
+      <HintPath>..\Libraries\QT.Framework.Styles.Library.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="QT.Framework.ToolCommon">
+      <HintPath>..\Libraries\QT.Framework.ToolCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\System.Windows.Interactivity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -51,12 +82,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KeyFileConfig.cs" />
-    <Compile Include="ListTableDatabase\Table_BangChiTietDonHang.cs" />
-    <Compile Include="ListTableDatabase\Table_BangDanhSachDonHang.cs" />
-    <Compile Include="ListTableDatabase\Table_BangGiaViThuoc.cs" />
-    <Compile Include="ListTableDatabase\Table_BangKhachHang.cs" />
-    <Compile Include="ListTableDatabase\Table_BangViThuoc.cs" />
+    <Compile Include="ConnectionSDK.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -70,6 +96,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\BLLPlugin.cs" />
+    <Compile Include="ViewModels\ViewModelMain.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -78,6 +109,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

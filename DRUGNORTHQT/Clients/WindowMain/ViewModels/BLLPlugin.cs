@@ -1,4 +1,5 @@
-﻿using HostViewer;
+﻿using DNQTConstTable;
+using HostViewer;
 using log4net;
 using log4net.Appender;
 using log4net.Repository.Hierarchy;
@@ -27,47 +28,6 @@ namespace WindowMain.ViewModels {
 	private const string CONST_STR_COLOR_SAOSAIGON = "#FF3C72A2";
 
 	private const string CONST_STR_KEY_DATETIME_PHIENBAN = "VersionInfo";
-
-	//public string ChangePassWord(string newPass,string oldPass = "",string key = "",int userId = 0,int isServer = 0) {
-	//  try {
-	//	if(isServer == 1) {
-	//	  var check = new Dictionary<string,object>
-	//	  {
-	//					{"userId", userId},
-	//					{"key", key},
-	//					{"password_new", User.GetMD5Hash(newPass)},
-	//					{"password_old", User.GetMD5Hash(oldPass)}
-	//				};
-	//	  var n = new Dictionary<string,object>
-	//	  {
-	//					{"command", AppConfig.enum_OnReceive.EDIT_PASSWORD.ToString()},
-	//					{"info", check}
-	//				};
-
-	//	  var json = JsonConvert.SerializeObject(n);
-	//	  var ss = Client.SendToServer(json,userId.ToString());
-	//	  var reviced = JsonConvert.DeserializeObject<IDictionary>(ss);
-	//	  var status = reviced["status"].ToString();
-	//	  switch(status) {
-	//		case "1": {
-	//			return "{\"status\":\"1\",\"success\":\"Cập nhật mật khẩu thành công !\"}";
-	//		  }
-	//		case "2":
-	//		  var time = reviced["time"].ToString();
-	//		  return "{\"status\":\"2\",\"time\":\"" + time + "\",\"success\":\"Tài khoản đang được đăng nhập trên một máy khác\n Chương trình sẽ tự động đang xuất trong ít phút !\"}";
-	//		default:
-	//		  return status;
-	//	  }
-	//	} else {
-	//	  if(DALLogin.ChangePassword(newPass) == 1)
-	//		return "{\"status\":\"1\",\"success\":\"Cập nhật mật khẩu thành công !\"}";
-	//	  else
-	//		return "{\"status\":\"0\",\"error\":\"Cập nhật mật khẩu thất bại !\"}";
-	//	}
-	//  } catch(Exception ex) {
-	//	return "{\"status\":\"0\",\"error\":\"" + ex + "\"}";
-	//  }
-	//}
 
 	#region Function for Loading
 
@@ -207,10 +167,10 @@ namespace WindowMain.ViewModels {
 		return;
 	  }
 
-	  if(strTextChange.Equals("Thiết lập đề thi")) {
-		strTextChange="Thiết lập\nđề thi";
-		return;
-	  }
+	 // if(strTextChange.Equals("Thiết lập đề thi")) {
+		//strTextChange="Thiết lập\nđề thi";
+		//return;
+	 // }
 
 	 // if(strTextChange.Equals("Báo cáo thống kê")) {
 		//strTextChange="Thiết lập\nđề thi";
@@ -249,149 +209,7 @@ namespace WindowMain.ViewModels {
 	  //e.Cancel=true;
 	}
 
-	//internal void GetSumMaDeFrom(ref int intSumMaDe,List<Tests> lstTest,
-	//  List<Tests_Detail> lstTestsDetail,int intSubjectID) {
-	//  for(int k = 0;k < lstTest.Count;k++) {
-	//	if(lstTest[k].StructureID!=intSubjectID) {
-	//	  continue;
-	//	}
-
-	//	intSumMaDe++;
-	//  }
-	//}
-
 	#endregion
-
-	//public string UpdateInfoPersonal(int userId,string key,User user) {
-	//  try {
-	//	var dicInfo = new Dictionary<string,object> { { "userId",userId },{ "key",key },{ "users",user } };
-
-	//	var dicSend = new Dictionary<string,object>
-	//	{
-	//				{"command", AppConfig.enum_OnReceive.EDIT_USER_BYUSER.ToString()},
-	//				{"info", dicInfo}
-	//			};
-
-	//	var jsonSend = JsonConvert.SerializeObject(dicSend);
-	//	var str = Client.SendToServer(jsonSend,userId + "");
-	//	var dicReviced = JsonConvert.DeserializeObject<IDictionary>(str);
-	//	var status = dicReviced["status"].ToString();
-	//	switch(status) {
-	//	  case "1":
-	//		return "{\"status\":\"1\",\"success\":\"Cập nhật hồ sơ thành công !\"}";
-	//	  case "2":
-	//		var time = dicReviced["time"].ToString();
-	//		return "{\"status\":\"2\",\"time\":\"" + time + "\",\"success\":\"Tài khoản đang được đăng nhập trên một máy khác\n Chương trình sẽ tự động đang xuất trong ít phút !\"}";
-	//	  default:
-	//		return status;
-	//	}
-	//  } catch(Exception ex) {
-	//	return "{\"status\":\"0\",\"error\":\"" + ex + "\"}";
-	//  }
-	//}
-
-	//public string OnLogin(ref Dictionary<string,object> dicLoginInfo,string strAppName,
-	//  DateTime dtPhienBan,int intSoftware,
-	//  string user,string pass,int server,ref User outUser,
-	//  ref string key,ref string stt) {
-	//  var strSatus = "{\"status\":\"0\",\"error\":\"Đăng nhập thất bại !\"}";
-	//  if(server == 1) {
-	//	try {
-
-	//	  bool strHaveConnectInternet = false;
-	//	  string strException = "";
-	//	  CheckConnectInternet(ref strHaveConnectInternet,ref strException);
-	//	  if(strHaveConnectInternet==false) {
-	//		stt = "Máy tính của bạn hiện chưa kết nối mạng, chưa thể thực hiện thao tác này!";
-	//		return "error";
-	//	  }
-
-	//	  var config = new Config();
-
-	//	  var dicInfo = new Dictionary<string,object>();
-	//	  dicInfo["username"]=user;
-	//	  dicInfo["password"]=DALLogin.GetMD5Hash(pass);
-	//	  dicInfo["mus"]=config.CheckToServer;
-
-	//	  var jsonDtPhienBan = JsonConvert.SerializeObject(dtPhienBan);
-	//	  ChangeValueOfKeyInFileConfig(CONST_STR_KEY_DATETIME_PHIENBAN,jsonDtPhienBan);
-	//	  dicInfo["DateTime"]=dtPhienBan;
-	//	  dicInfo["intSoftware"]=intSoftware;
-	//	  dicInfo["stringAppName"]=strAppName;
-	//	  dicInfo["stringSchoolName"]=config.TDTenTruong;
-	//	  dicInfo["stringPhongSoName"]=config.TDPhongso;
-
-	//	  //var dicSend = new Dictionary<string,object>();
-	//	  //dicSend[EnumAction.action.ToString()]=EnumAction.LOGIN.ToString();
-	//	  //dicSend[EnumAction.jsonInput.ToString()]=dicInfo;
-
-	//	  var dicSend = new Dictionary<string,object>
-	//	 {
-	//	  		{"command", AppConfig.enum_OnReceive.LOGIN.ToString()},
-	//	  		{"info", dicInfo}
-	//	  	};
-
-	//	  var jsonSend = JsonConvert.SerializeObject(dicSend);
-	//	  var str = Client.SendToServer(jsonSend,"0");
-	//	  var dicReviced = JsonConvert.DeserializeObject<Dictionary<string,object>>(str);
-	//	  dicLoginInfo=dicReviced;
-	//	  //Đối với trường hợp trả về, key config server trả về là 1 json của Dictionary hoặc trống ""
-
-	//	  var status = dicReviced["status"].ToString();
-	//	  switch(status) {
-	//		case "1": {
-	//			object d = dicReviced["users"].ToString();
-	//			key = dicReviced["key"].ToString();
-	//			outUser = JsonConvert.DeserializeObject<User>(d.ToString());
-	//			outUser.Password = pass;
-	//			stt = "Đăng nhập thành công !";
-	//			return "ok";
-	//		  }
-	//		case "2":
-	//		  stt = "Tài khoản đang được đăng nhập trên một máy khác !";
-	//		  return "logout";
-	//		case "99":
-	//		  stt = dicReviced["error"].ToString();
-	//		  return "disconnect";
-	//		case "90":
-	//		  stt = dicReviced["exits"].ToString();
-	//		  return "exits";
-	//		default:
-	//		  stt = dicReviced["error"].ToString();
-	//		  if(stt.Contains("ds.tables.count = 0")) {
-	//			stt = "Tài khoản này không tồn tại !";
-	//		  }
-	//		  return "error";
-	//	  }
-	//	} catch(Exception ex) {
-	//	  stt = ex.Message;
-	//	  return "error";
-	//	}
-	//  } else {
-	//	try {
-	//	  switch(DALLogin.CheckLogin(user,pass)) {
-	//		case 0:
-	//		  stt = "Tên đăng nhập không chính xác !";
-	//		  return "error";
-	//		case 1:
-	//		  stt = "Mật khẩu đăng nhập không chính xác !";
-	//		  return "error";
-	//		case 2:
-	//		  if(intSoftware==19||intSoftware==21) {
-	//			outUser = new User { UserID = 0,Username = user,Password = pass,MUType=2 };
-	//		  } else {
-	//			outUser = new User { UserID = 0,Username = user,Password = pass };
-	//		  }
-	//		  stt = "Đăng nhập thành công !";
-	//		  return "ok";
-	//	  }
-	//	} catch(Exception ex) {
-	//	  stt = ex.Message;
-	//	  return "error";
-	//	}
-	//  }
-	//  return strSatus;
-	//}
 
 	internal void CheckConnectInternet(ref bool strHaveConnectInternet,ref string strException) {
 	  try {
@@ -412,6 +230,13 @@ namespace WindowMain.ViewModels {
 	  }
 	}
 
+	#region Get và set value in file config
+
+	/// <summary>
+	/// Kiểm tra giá trị của key trong file config, nếu có key thì xóa đi và thêm mới giá trị key và value
+	/// </summary>
+	/// <param name="strKey"></param>
+	/// <param name="strValue"></param>
 	internal void ChangeValueOfKeyInFileConfig(string strKey,string strValue) {
 	  Configuration _config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 	  if(_config.AppSettings.Settings.AllKeys.Contains(strKey)) {
@@ -422,6 +247,71 @@ namespace WindowMain.ViewModels {
 	  _config.Save(ConfigurationSaveMode.Modified);
 	  ConfigurationManager.RefreshSection(_config.AppSettings.SectionInformation.Name);
 	  Properties.Settings.Default.Reload();
+	}
+
+	/// <summary>
+	/// Lấy giá trị value A của key B trong file config, nếu không có key thì không làm gì Output
+	/// </summary>
+	/// <param name="strOutputValue"></param>
+	/// <param name="strKey"></param>
+	internal void GetValueFromFileConfig(ref string strOutputValue,string strKey) {
+	  if(System.Configuration.ConfigurationManager.AppSettings[strKey]!=null) {
+		strOutputValue=System.Configuration.ConfigurationManager.AppSettings[strKey];
+	  }
+	}
+
+	#endregion
+
+	internal void KiemTraValueHopLeInFileConfig(ref string strMessage) {
+	  {
+		string strContent = "";
+		CheckKeyAndChangeByMinMax(ref strContent,KeyFileConfig.STR_KEY_SO_ROW_1PAGE_PLUGIN_PRODUCT.STR,50,100);
+		if(strContent!="") {
+		  strMessage+="\n   Thiết lập lần đầu khởi động hệ thống";
+		  strMessage+="\n Số dòng hiển thị trên một trang ở màn hình Quản lý vị thuốc: "+strContent;
+		}
+	  }
+
+	  {
+		string strContent = "";
+		CheckKeyAndChangeByMinMax(ref strContent,KeyFileConfig.STR_KEY_SO_ROW_1PAGE_PLUGIN_ORDER.STR,50,100);
+		if(strContent!="") {
+		  strMessage+="\n   Thiết lập lần đầu khởi động hệ thống";
+		  strMessage+="\n Số dòng hiển thị trên một trang ở màn hình Quản lý đơn hàng: "+strContent;
+		}
+	  }
+	}
+
+	private void CheckKeyAndChangeByMinMax(ref string strContent,string strKey,int intMin,int intMax) {
+	  string strValueKey = "";
+	  GetValueFromFileConfig(ref strValueKey,strKey);
+
+	  if(Int32.TryParse(strValueKey,out int intResult)) {
+		if(intResult>intMax) {
+		  ChangeValueAndContentOldNew(ref strContent,strKey,strValueKey,""+intMax);
+		  return;
+		}
+
+		if(intResult<intMin) {
+		  ChangeValueAndContentOldNew(ref strContent,strKey,strValueKey,""+intMin);
+		  return;
+		}
+
+		if(strValueKey!=(""+intResult)) {
+		  ChangeValueAndContentOldNew(ref strContent,strKey,strValueKey,strValueKey.Trim());
+		  return;
+		}
+
+		return;
+	  }
+
+	  ChangeValueAndContentOldNew(ref strContent,strKey,strValueKey,""+intMin);
+	}
+
+	private void ChangeValueAndContentOldNew(ref string strContent,string strKey
+	  ,string strOldValueKey,string strNewValueKey) {
+	  strContent=$"'{strOldValueKey}' -> '{strNewValueKey}'";
+	  ChangeValueOfKeyInFileConfig(strKey,strNewValueKey);
 	}
 
 	internal void GetValueRandomNotInList(ref int intRandomValue,ref List<int> lstIntRandom,int intCountColor) {
@@ -438,78 +328,6 @@ namespace WindowMain.ViewModels {
 	  }
 	}
 
-	//public string OnLogin(string user,string pass,int server,ref User outUser,ref string key,ref string stt) {
-	//  var strSatus = "{\"status\":\"0\",\"error\":\"Đăng nhập thất bại !\"}";
-	//  if(server == 1) {
-	//	try {
-	//	  var config = new Config();
-	//	  var dicInfo = new Dictionary<string,object> {
-	//						{"username", user},
-	//						{"password", DALLogin.GetMD5Hash(pass)},
-	//						{"mus", config.CheckToServer}
-	//			};
-
-	//	  var dicSend = new Dictionary<string,object>
-	//  {
-	//				{"command", AppConfig.enum_OnReceive.LOGIN.ToString()},
-	//				{"info", dicInfo}
-	//			};
-
-	//	  var jsonSend = JsonConvert.SerializeObject(dicSend);
-	//	  var str = Client.SendToServer(jsonSend,"0");
-	//	  var dicReviced = JsonConvert.DeserializeObject<IDictionary>(str);
-	//	  var status = dicReviced["status"].ToString();
-	//	  switch(status) {
-	//		case "1": {
-	//			object d = dicReviced["users"].ToString();
-	//			key = dicReviced["key"].ToString();
-	//			outUser = JsonConvert.DeserializeObject<User>(d.ToString());
-	//			outUser.Password = pass;
-	//			stt = "Đăng nhập thành công !";
-	//			return "ok";
-	//		  }
-	//		case "2":
-	//		  stt = "Tài khoản đang được đăng nhập trên một máy khác !";
-	//		  return "logout";
-	//		case "99":
-	//		  stt = dicReviced["error"].ToString();
-	//		  return "disconnect";
-	//		case "90":
-	//		  stt = dicReviced["exits"].ToString();
-	//		  return "exits";
-	//		default:
-	//		  stt = dicReviced["error"].ToString();
-	//		  if(stt.Contains("ds.tables.count = 0")) {
-	//			stt = "Tài khoản này không tồn tại !";
-	//		  }
-	//		  return "error";
-	//	  }
-	//	} catch(Exception ex) {
-	//	  stt = ex.Message;
-	//	  return "error";
-	//	}
-	//  } else {
-	//	try {
-	//	  switch(DALLogin.CheckLogin(user,pass)) {
-	//		case 0:
-	//		  stt = "Tên đăng nhập không chính xác !";
-	//		  return "error";
-	//		case 1:
-	//		  stt = "Mật khẩu đăng nhập không chính xác !";
-	//		  return "error";
-	//		case 2:
-	//		  outUser = new User { UserID = 0,Username = user,Password = pass };
-	//		  stt = "Đăng nhập thành công !";
-	//		  return "ok";
-	//	  }
-	//	} catch(Exception ex) {
-	//	  stt = ex.Message;
-	//	  return "error";
-	//	}
-	//  }
-	//  return strSatus;
-	//}
-
 	public string Base64Encode(string plainText) {
 	  var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
 	  return System.Convert.ToBase64String(plainTextBytes);
@@ -520,15 +338,11 @@ namespace WindowMain.ViewModels {
 	  return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
 	}
 
-	//private static string _key = "";
-	//private static string _infoUser = ""; // cái này phải là kiểu User
-	//private static int _ktIsregister = 0;
-
-	//static readonly Label LabelReport = new Label();
-	//private readonly HostService _mHostAdapter = new HostService(LabelReport);
 	public string LoadIcon(int key,int intSoftware) {
 	  switch(key) {
 		case 2:
+		  return @"/Assets/SyncData.png";
+		case 8:
 		  return @"/Assets/settings.png";
 		//case (int)AppConfig.enum_ParentFunction.LAMDETHI:
 		//  return @"/Assets/Examination.png";
@@ -600,6 +414,7 @@ namespace WindowMain.ViewModels {
 
 	  var lstTupleNameGroup = new List<Tuple<int,string>>();
 	  lstTupleNameGroup.Add(new Tuple<int,string>(2,"Quản trị hệ thống"));
+	  lstTupleNameGroup.Add(new Tuple<int,string>(8,"Cài đặt"));
 
 	  var lstGroupID = new List<int>();
 	  //_mHostAdapter.FindPlugIns(pathPlugin);
@@ -681,59 +496,6 @@ namespace WindowMain.ViewModels {
 
 	  mHostAdapter.Report(mHostAdapter.PlugIns.Count + " Plug-In(s) Loaded."); // reports to clients...
 	}
-
-	//internal void UpdateUserProfileLogin(ref ModelUsers _usersUpdateProFile,User _user) {
-	//  _usersUpdateProFile.UserName = _user.Username;
-	//  _usersUpdateProFile.Name = _user.Name;
-	//  _usersUpdateProFile.Surname = _user.Surname;
-
-	//  var strDateTime = "";
-	//  if(_user.DOB.Day < 10) {
-	//	strDateTime += "0" + _user.DOB.Day;
-	//  } else {
-	//	strDateTime += _user.DOB.Day;
-	//  }
-	//  if(_user.DOB.Month < 10) {
-	//	strDateTime += "/0" + _user.DOB.Month;
-	//  } else {
-	//	strDateTime += "/" + _user.DOB.Month;
-	//  }
-	//  strDateTime += "/" + _user.DOB.Year;
-
-	//  _usersUpdateProFile.DOB = strDateTime;
-
-	//  _usersUpdateProFile.Gender = _user.Gender;
-	//  _usersUpdateProFile.Tel = _user.Tel;
-	//  _usersUpdateProFile.Address = _user.Address;
-	//  _usersUpdateProFile.GroupID = _user.GroupID;
-
-	//  switch(_usersUpdateProFile.GroupID) {
-	//	case 7:
-	//	  _usersUpdateProFile.GroupName = "Quản trị hệ thống";
-	//	  break;
-	//	case 6:
-	//	  _usersUpdateProFile.GroupName = "Admin sở";
-	//	  break;
-	//	case 5:
-	//	  _usersUpdateProFile.GroupName = "Admin phòng";
-	//	  break;
-	//	case 4:
-	//	  _usersUpdateProFile.GroupName = "Admin trường";
-	//	  break;
-	//	case 3:
-	//	  _usersUpdateProFile.GroupName = "Cán bộ";
-	//	  break;
-	//	case 2:
-	//	  _usersUpdateProFile.GroupName = "Giáo viên";
-	//	  break;
-	//	case 1:
-	//	  _usersUpdateProFile.GroupName = "Học sinh";
-	//	  break;
-	//  }
-
-	//  _usersUpdateProFile.MuInfo = _user.MUInfo;
-
-	//}
 
 	internal void SetToolTipForLabelComputerName(ref Label txtData) {
 	  string strToolTipResult = $"Thông tin hiện tại trên phần mềm:" ;
@@ -902,70 +664,6 @@ namespace WindowMain.ViewModels {
 
 	#region Function for ListMessages_ViewModel
 
-	//internal void LoadGridMainByPage(ref ObservableCollection<ModelMessage> lstGridMain
- // ,int intIdPage,int CONST_INT_PAGE_SIZE,List<Tuple<Messages,string,string>> lstInput) {
-	//  lstGridMain.Clear();
-
-	//  int intStartIndex = intIdPage*CONST_INT_PAGE_SIZE;
-	//  int intMaxEndIndexByPage = (intIdPage+1) * CONST_INT_PAGE_SIZE;
-	//  int intEndIndex = lstInput.Count < intMaxEndIndexByPage ?
-	//	lstInput.Count : intMaxEndIndexByPage;
-
-	//  var lstInputByPage = new List<Tuple<Messages,string,string>>();
-	//  for(int i = intStartIndex;i < intEndIndex;i++) {
-	//	lstInputByPage.Add(lstInput[i]);
-	//  }
-
-	//  LoadGridMainByList(ref lstGridMain,lstInputByPage);
-
-	//}
-
-	//private void LoadGridMainByList(ref ObservableCollection<ModelMessage> lstGridMain
-	//  ,List<Tuple<Messages,string,string>> lstInputByPage) {
-	//  lstGridMain.Clear();
-
-	//  int intIndexIncrease = 0;
-	//  foreach(var item in lstInputByPage) {
-	//	var mitem = new ModelMessage();
-	//	mitem.Stt = ++intIndexIncrease;
-	//	mitem.ObjItem = item;
-
-	//	mitem.IntId=item.Item1.MessageID;
-	//	mitem.StrTaiKhoanGui=item.Item1.Sender;
-	//	mitem.IntMessageType=item.Item1.MessageType;
-
-	//	string strType = "";
-	//	GetStringTypeFromIndexEnum(ref strType,mitem.IntMessageType);
-	//	mitem.StrMessageType=strType;
-	//	//mitem.StrMessageType=AppConfig.ToText((AppConfig.enum_MessageType)mitem.IntMessageType);
-
-	//	//		try {
-	//	//		  byte[] byteTemp = item.MContent;
-	//	//		  int intLengthByte = Compressor.Decompress(byteTemp).Length;
-	//	//		  if(intLengthByte<20000) {
-	//	//			mitem.Rtf=System.Text.Encoding.UTF8.GetString(
-	//	//			  Compressor.Decompress(byteTemp),0,(Compressor.Decompress(byteTemp).Length));
-
-	//	//			//System.Windows.Forms.RichTextBox rtbTemp = new System.Windows.Forms.RichTextBox();
-	//	//			//rtbTemp.Rtf=mitem.Rtf;
-
-	//	//		  } else {
-	//	//			mitem.Rtf=@"{\rtf1\ansi\deff0{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}}
-	//	//{\colortbl ;\red0\green0\blue0;}
-	//	//\viewkind4\uc1\pard\cf1\lang1033\f0\fs18 .\par
-	//	//}";
-	//	//		  }
-	//	//		} catch(Exception e) {
-	//	//		  string str = e.Message;
-	//	//		}
-	//	mitem.StrText=item.Item2;
-	//	mitem.Rtf=item.Item3;
-
-	//	mitem.Selected = false;
-	//	lstGridMain.Add(mitem);
-	//  }
-	//}
-
 	private void GetStringTypeFromIndexEnum(ref string strType,int intMessageType) {
 	  switch(intMessageType) {
 		case 2: {
@@ -985,46 +683,6 @@ namespace WindowMain.ViewModels {
 		  break;
 	  }
 	}
-
-	//internal void GetThongDiep(ref System.Windows.Forms.RichTextBox rtbThongDiep,Messages mMessage) {
-	//  try {
-	//	if(mMessage.MContent==null) {
-	//	  rtbThongDiep.Text="";
-	//	  return;
-	//	}
-	//	var Encoding = new UTF8Encoding();
-	//	var strText = "";
-	//	try {
-	//	  string strTextContent = Encoding.GetString(
-	//		mMessage.MContent,0,mMessage.MContent.Length);
-	//	  int intTemp = strTextContent.IndexOf("\n");
-	//	  strText=strTextContent.Substring(intTemp+1);
-	//	  try {
-	//		rtbThongDiep.Rtf=strText;
-	//	  } catch {
-	//		try {
-	//		  rtbThongDiep.Rtf=strTextContent;
-	//		  try {
-	//			if(rtbThongDiep.Text.Substring(0,12).Contains("Mã câu hỏi")) {
-	//			  int intTemp2 = rtbThongDiep.Text.IndexOf("\n");
-	//			  string strTextKoCoMaCauHoi = rtbThongDiep.Text.Substring(intTemp2+1);
-	//			  rtbThongDiep.Text=strTextKoCoMaCauHoi;
-	//			}
-	//		  } catch {
-
-	//		  }
-	//		} catch {
-	//		  rtbThongDiep.Text=strText;
-	//		}
-	//	  }
-	//	} catch {
-	//	  rtbThongDiep.Text="";
-	//	}
-	//  } catch(Exception ex) {
-	//	string str = ex.Message;
-	//	rtbThongDiep.Text="";
-	//  }
-	//}
 
 	#endregion
 

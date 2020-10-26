@@ -639,64 +639,6 @@ namespace WindowMain.ViewModels {
 		ShowException(ex);
 	  }
 	}
-	
-	///// <summary>
-	///// Kiểm tra bản quyền - Phạm Quốc Tuấn
-	///// </summary>
-	//private void CheckLicenseApp() {
-	//  try {
-	//	//string test = _licenseInfo.State.ToString();
-	//	StrStatusLicense="TrialExpired";
-	//	EnumLicenseState=_licenseInfo.State;
-
-	//	string strAppName = "Master Test";
-	//	if(DicData.ContainsKey("stringAppName")) {
-	//	  strAppName=DicData["stringAppName"] as string;
-	//	}
-	//	_mainWindow.lblInfoAppLicense.Content=
-	//	  "Bạn đang dùng \""+strAppName+"\" bản chưa đăng ký mã bản quyền";
-
-	//	if(EnumLicenseState == LicenseState.TrialExpired) {
-	//	  //Trường hợp này là key dùng thử đã hết t/g dùng thử.
-	//	  StrStatusLicense="TrialExpired";
-	//	  InvicoMessageBox.ShowWarning("Bạn đã hết thời hạn dùng thử phần mềm!");
-	//	  return;
-	//	}
-
-	//	if(EnumLicenseState == LicenseState.ActivationExpired) {
-	//	  //Trường hợp này là key kích hoạt đã hết thời hạn sử dụng.
-	//	  StrStatusLicense="ActivationExpired";
-	//	  InvicoMessageBox.ShowWarning("Bạn đã hết thời hạn sử dụng phần mềm!");
-	//	  return;
-	//	}
-
-	//	if(EnumLicenseState == LicenseState.ActivationNeeded) {
-	//	  //Mã đăng ký có tồn tại, có hợp lệ nhưng yêu cầu phải kích hoạt thủ công
-	//	  StrStatusLicense="ActivationNeeded";
-	//	  InvicoMessageBox.ShowWarning(
-	//		"Mã kích hoạt sản phẩm lỗi! Bạn cần kích hoạt lại sản phẩm để sử dụng!");
-	//	  return;
-	//	}
-
-	//	if(EnumLicenseState == LicenseState.InTrialPeriod) {
-	//	  //Trường hợp này sản phẩm đang trong t/g dùng thử, cho tiếp tục sử dụng bình thường
-	//	  StrStatusLicense="InTrialPeriod";
-	//	  return;
-	//	}
-
-	//	if(EnumLicenseState == LicenseState.OK) {
-	//	  //Trường hợp này sản phẩm đã được kích hoạt, cho tiếp tục sử dụng bình thường
-	//	  StrStatusLicense="OK";
-	//	  _mainWindow.lblInfoAppLicense.Content=(new Config()).TDTruong;
-	//	  return;
-	//	}
-	//  } catch(Exception ex) {
-	//	Log4Net.Error(ex.Message);
-	//	ShowException(ex.Message);
-	//  }
-
-
-	//}
 
 	private void OpenLoadingPopup() {
 	  MPProgress=new ModelProgress();
@@ -838,6 +780,14 @@ namespace WindowMain.ViewModels {
 		  case "ok":
 			#region Trường hợp đăng nhập thành công
 
+			{
+			  string strMessage = "";
+			  _bllPlugin.KiemTraValueHopLeInFileConfig(ref strMessage);
+			  if(strMessage!="") {
+				QTMessageBox.ShowNotify(strMessage);
+			  }
+			}
+
 			//_bllPlugin.UpdateUserProfileLogin(ref _usersUpdateProFile,_user);
 			//OnPropertyChanged(nameof(SetUserProFile));
 
@@ -852,14 +802,16 @@ namespace WindowMain.ViewModels {
 			//  return;
 			//}
 
-			//check bản quyền sản phẩm
-			//CheckLicenseApp();
-			string strMessage = "";
-			string strInfoAppLicense = "";
-			CheckLicenseApp(ref strInfoAppLicense,ref strMessage);
-			_mainWindow.lblInfoAppLicense.Content=strInfoAppLicense;
-			if(strMessage!="") {
-			  QTMessageBox.ShowNotify(strMessage);
+			{
+			  //check bản quyền sản phẩm
+			  //CheckLicenseApp();
+			  string strMessage = "";
+			  string strInfoAppLicense = "";
+			  CheckLicenseApp(ref strInfoAppLicense,ref strMessage);
+			  _mainWindow.lblInfoAppLicense.Content=strInfoAppLicense;
+			  if(strMessage!="") {
+				QTMessageBox.ShowNotify(strMessage);
+			  }
 			}
 
 			_countDisconnect = 0;
@@ -1097,21 +1049,23 @@ namespace WindowMain.ViewModels {
 			continue;
 		  }
 
-		  var itmMenu = new HamburgerMenuItem();
-		  var source = new BitmapImage();
-		  source.BeginInit();
-		  source.UriSource = new Uri(_bllPlugin.LoadIcon(menuItems.ID,_software),UriKind.Relative);
-		  source.DecodePixelHeight = 32;
-		  source.DecodePixelWidth = 32;
-		  source.EndInit();
-		  itmMenu.Icon = source;
-		  itmMenu.Text = menuItems.Name;
-		  itmMenu.SelectionCommand = clickComand;
-		  itmMenu.Tag = null;
-		  itmMenu.ItemID = menuItems.ID;
-		  itmMenu.Lever = 0;
-		  itmMenu.SelectionCommandParameter = itmMenu;
-		  _mainWindow.LstMenus.Content.Add(itmMenu);
+		  {
+			var itmMenu = new HamburgerMenuItem();
+			var source = new BitmapImage();
+			source.BeginInit();
+			source.UriSource=new Uri(_bllPlugin.LoadIcon(menuItems.ID,_software),UriKind.Relative);
+			source.DecodePixelHeight=32;
+			source.DecodePixelWidth=32;
+			source.EndInit();
+			itmMenu.Icon=source;
+			itmMenu.Text=menuItems.Name;
+			itmMenu.SelectionCommand=clickComand;
+			itmMenu.Tag=null;
+			itmMenu.ItemID=menuItems.ID;
+			itmMenu.Lever=0;
+			itmMenu.SelectionCommandParameter=itmMenu;
+			_mainWindow.LstMenus.Content.Add(itmMenu);
+		  }
 
 		  for(int i = 0;i < menuItems.LstMenuChilds.Count;i++) {
 			//if(_user.GroupID == 7 && Convert.ToInt32(
