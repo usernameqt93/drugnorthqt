@@ -36,11 +36,18 @@
     <ApplicationIcon>DrugNorthQT.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Words, Version=15.12.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Aspose.Words.dll</HintPath>
+    </Reference>
     <Reference Include="DNQTConstTable">
       <HintPath>..\Libraries\DNQTConstTable.dll</HintPath>
     </Reference>
     <Reference Include="DNQTDataAccessLayer">
       <HintPath>..\Libraries\DNQTDataAccessLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="DNQTWebBrowser">
+      <HintPath>..\Libraries\DNQTWebBrowser.dll</HintPath>
     </Reference>
     <Reference Include="INV.Framework.Switchs.Library">
       <HintPath>..\Libraries\INV.Framework.Switchs.Library.dll</HintPath>

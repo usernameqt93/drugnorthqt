@@ -142,26 +142,6 @@ namespace PluginDnqt.Order.ViewModels {
 
 	private void LoadData() {
 	  try {
-		//ModelRowOrder mOrder = DicDataInPreviousUC["ModelRowOrder"] as ModelRowOrder;
-
-		//var lstStringId = new List<string>();
-		//lstStringId.Add(mOrder.StrId);
-
-		//Exception exDAL = null;
-		//DataTable DT_DetailOrderByListId = null;
-		//DALOrder.GetDTDetailOrderByListIdOrder(ref DT_DetailOrderByListId,ref exDAL,lstStringId);
-		//if(exDAL!=null) {
-		//  throw exDAL;
-		//}
-
-		//if(DT_DetailOrderByListId==null) {
-		//  QTMessageBox.ShowNotify(
-		//	"Dữ liệu đơn hàng này tải không thành công, bạn vui lòng thao tác lại!"
-		//	,"(DT_DetailOrderByListId==null)");
-		//  return;
-		//}
-
-		//_bllPlugin.LoadGridChiTietDHByDataTable(ref _lstGridMain,DT_DetailOrderByListId);
 
 		string strPath = System.Windows.Forms.Application.StartupPath
 		  +$"\\{CONST_STR_TEMPLATE_FOLDER_NAME}\\"+CONST_STR_ORDER_FOLDER_NAME;
@@ -259,40 +239,6 @@ namespace PluginDnqt.Order.ViewModels {
 		  return;
 		}
 
-		//string strSoKetQua = _mainUserControl.txtSoKetQua1Trang.Text.Trim();
-		//if(!Int32.TryParse(strSoKetQua,out int intSoDong1Trang)) {
-		//  QTMessageBox.ShowNotify("Số dòng trên 1 trang không hợp lệ, bạn vui lòng thao tác lại!");
-		//  _mainUserControl.chkXacNhan.IsChecked=false;
-		//  return;
-		//}
-
-		//var lstStringId = new List<string>();
-		//_bllPlugin.GetListStringIdInDataTable(ref lstStringId
-		//  ,MOCPage.MItemSelected.ID,intSoDong1Trang,DT_AllIdOrder,"MaDonHang");
-		//if(lstStringId.Count==0) {
-		//  QTMessageBox.ShowNotify(
-		//	"Hiện tại không tìm thấy mã dữ liệu trên trang này, bạn vui lòng thao tác lại!"
-		//	,"(lstStringId.Count==0)");
-		//  return;
-		//}
-
-		//Exception exDAL = null;
-		//DataTable DT_OrderByListId = null;
-		//DALOrder.GetDTOrderByListId(ref DT_OrderByListId,ref exDAL,lstStringId);
-		//if(exDAL!=null) {
-		//  throw exDAL;
-		//}
-
-		//if(DT_OrderByListId==null) {
-		//  QTMessageBox.ShowNotify(
-		//	"Dữ liệu trang này tải không thành công, bạn vui lòng thao tác lại!"
-		//	,"(DT_OrderByListId==null)");
-		//  return;
-		//}
-
-		//_bllPlugin.LoadGridMainByDataTable(ref _lstGridMain,DT_OrderByListId);
-		//_bllPlugin.LoadGridMainByPage(ref _lstGridMain,
-		//  MOCPage.MItemSelected.ID,intSoDong1Trang,DT_AllIdOrder);
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
@@ -302,13 +248,39 @@ namespace PluginDnqt.Order.ViewModels {
 
 	public ICommand ShowPreviewCommand => new DelegateCommand(p => {
 	  try {
+		if(MOCTypePaper.MItemSelected==null) {
+		  return;
+		}
+
+		Tuple<string,string,string> tupleTypePaperSelected = null;
+		tupleTypePaperSelected=MOCTypePaper.MItemSelected.ObjItem as Tuple<string,string,string>;
+		if(tupleTypePaperSelected==null) {
+		  QTMessageBox.ShowNotify("Đường dẫn template không hợp lệ","(tupleTypePaperSelected==null)");
+		  return;
+		}
+
+		string strPathFile = tupleTypePaperSelected.Item1;
+		QT.Framework.ToolCommon.BLLTools.CopyAndGetPathFileTempByNewExtension(ref strPathFile,".doc");
+
 		var dicInput = new Dictionary<string,object>();
+		dicInput["string.strPathFile"]=strPathFile;
+		dicInput["double.doubleSize"]=13;
+		dicInput["string.strFontName"]="Times New Roman";
+
+		DataTable dtTemp=DicDataInPreviousUC["DataTable"] as DataTable;
+		dicInput["DataTable"]=dtTemp;
+		//dicInput["DataTable"]=DicDataInPreviousUC["DataTable"] as DataTable;
+
+		dicInput["List<Tuple<string,int,string>>"]=DicDataInPreviousUC["List<Tuple<string,int,string>>"]
+		as List<Tuple<string,int,string>>;
 
 		Exception exOutput = null;
-		Document docOutput = null;
-		ODOrderDocument.GetDocumentDetailOrderByDictionary(ref docOutput,ref exOutput,dicInput);
+		ODOrderDocument.ShowWebViewDetailOrderByDictionary(_mainUserControl.webView,ref exOutput,dicInput);
 		if(exOutput!=null) {
-		  throw exOutput;
+		  Log4Net.Error(exOutput.Message);
+		  Log4Net.Error(exOutput.StackTrace);
+		  ShowException(exOutput);
+		  return;
 		}
 
 	  } catch(Exception ex) {

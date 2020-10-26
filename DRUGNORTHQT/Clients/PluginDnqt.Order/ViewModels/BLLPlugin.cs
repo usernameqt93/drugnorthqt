@@ -189,5 +189,80 @@ namespace PluginDnqt.Order.ViewModels {
 	  }
 	}
 
+	internal void GetDataTableReportFromGridMain(ref DataTable dtReport
+	  ,ref List<Tuple<string,int,string>> lstTupleMaxCharInColumn
+	  ,ObservableCollection<ModelRowDetailOrder> lstGridMain) {
+	  var lstStringNameColumn = new List<string>();
+	  lstStringNameColumn.Add("STT");
+	  lstStringNameColumn.Add("Tên vị thuốc");
+	  lstStringNameColumn.Add("Số lượng");
+	  lstStringNameColumn.Add("Đơn vị");
+	  lstStringNameColumn.Add("Đơn giá");
+	  lstStringNameColumn.Add("Thành tiền");
+
+	  lstTupleMaxCharInColumn=new List<Tuple<string,int,string>>();
+	  var dtOutput = new DataTable();
+	  foreach(var item in lstStringNameColumn) {
+		dtOutput.Columns.Add(item);
+		lstTupleMaxCharInColumn.Add(new Tuple<string, int, string>(item,item.Length+2,item));
+	  }
+
+	  foreach(var mrow in lstGridMain) {
+		int intIndexIncrease = -1;
+
+		DataRow dRow = dtOutput.NewRow();
+
+		{
+		  string strTemp = ""+mrow.Stt;
+		  dRow[lstStringNameColumn[++intIndexIncrease]]=strTemp;
+		  ChangeValueMaxLengthInListTuple(ref lstTupleMaxCharInColumn,intIndexIncrease,strTemp);
+		}
+
+		{
+		  string strTemp = ""+mrow.StrNameDrug;
+		  dRow[lstStringNameColumn[++intIndexIncrease]]=strTemp;
+		  ChangeValueMaxLengthInListTuple(ref lstTupleMaxCharInColumn,intIndexIncrease,strTemp);
+		}
+
+		{
+		  string strTemp= ""+string.Format("{0:N2}",mrow.FloatSumKg);
+		  dRow[lstStringNameColumn[++intIndexIncrease]]=strTemp;
+		  ChangeValueMaxLengthInListTuple(ref lstTupleMaxCharInColumn,intIndexIncrease,strTemp);
+		}
+
+		{
+		  string strTemp = ""+mrow.StrDonVi;
+		  dRow[lstStringNameColumn[++intIndexIncrease]]=strTemp;
+		  ChangeValueMaxLengthInListTuple(ref lstTupleMaxCharInColumn,intIndexIncrease,strTemp);
+		}
+
+		{
+		  string strTemp = ""+string.Format("{0:0,0}",mrow.DecimalDonGia)+" đ";
+		  dRow[lstStringNameColumn[++intIndexIncrease]]=strTemp;
+		  ChangeValueMaxLengthInListTuple(ref lstTupleMaxCharInColumn,intIndexIncrease,strTemp);
+		}
+
+		{
+		  string strTemp = ""+string.Format("{0:0,0}",mrow.DecimalThanhTien)+" đ";
+		  dRow[lstStringNameColumn[++intIndexIncrease]]=strTemp;
+		  ChangeValueMaxLengthInListTuple(ref lstTupleMaxCharInColumn,intIndexIncrease,strTemp);
+		}
+
+		dtOutput.Rows.Add(dRow);
+	  }
+
+	  dtReport=dtOutput;
+
+	}
+
+	private void ChangeValueMaxLengthInListTuple(ref List<Tuple<string,int,string>> lstTupleMaxCharInColumn
+	  ,int intIndexIncrease,string strTemp) {
+	  int intNewMaxlenght = strTemp.Length;
+	  if(intNewMaxlenght>lstTupleMaxCharInColumn[intIndexIncrease].Item2) {
+		string strColumnName = lstTupleMaxCharInColumn[intIndexIncrease].Item1;
+		lstTupleMaxCharInColumn[intIndexIncrease]=new Tuple<string,int,string>
+		  (strColumnName,intNewMaxlenght,strTemp);
+	  }
+	}
   }
 }
