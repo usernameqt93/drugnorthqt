@@ -203,7 +203,7 @@ namespace QT.Framework.ToolCommon {
 	#region Get và set value in file config
 
 	/// <summary>
-	/// Kiểm tra giá trị của key trong file config, nếu có key thì xóa đi và thêm mới giá trị key và value
+	/// Kiểm tra giá trị của key trong file config, nếu có key thì xóa đi và thêm mới giá trị key và value(trim() luôn value này)
 	/// </summary>
 	/// <param name="strKey"></param>
 	/// <param name="strValue"></param>
@@ -212,7 +212,7 @@ namespace QT.Framework.ToolCommon {
 	  if(_config.AppSettings.Settings.AllKeys.Contains(strKey)) {
 		_config.AppSettings.Settings.Remove(strKey);
 	  }
-	  _config.AppSettings.Settings.Add(strKey,strValue);
+	  _config.AppSettings.Settings.Add(strKey,strValue.Trim());
 	  ConfigurationManager.RefreshSection("appSettings");
 	  _config.Save(ConfigurationSaveMode.Modified);
 	  ConfigurationManager.RefreshSection(_config.AppSettings.SectionInformation.Name);
@@ -220,13 +220,13 @@ namespace QT.Framework.ToolCommon {
 	}
 
 	/// <summary>
-	/// Lấy giá trị value A của key B trong file config, nếu không có key thì không làm gì Output
+	/// Lấy giá trị value A(trim luôn) của key B trong file config, nếu không có key thì không làm gì Output
 	/// </summary>
 	/// <param name="strOutputValue"></param>
 	/// <param name="strKey"></param>
 	public static void GetValueFromFileConfig(ref string strOutputValue,string strKey) {
 	  if(System.Configuration.ConfigurationManager.AppSettings[strKey]!=null) {
-		strOutputValue=System.Configuration.ConfigurationManager.AppSettings[strKey];
+		strOutputValue=(System.Configuration.ConfigurationManager.AppSettings[strKey]).Trim();
 	  }
 	}
 
@@ -342,6 +342,64 @@ namespace QT.Framework.ToolCommon {
 	  }
 
 	  directory.Delete(true);
+	}
+
+	/// <summary>
+	/// Ví dụ list string là a b c 
+	/// thì output là "a,b,c" hoặc "t.a,t.b,t.c" với t là tiền tố, dấu phẩy là phân cách
+	/// </summary>
+	/// <param name="strOutput"></param>
+	/// <param name="lstStringInput"></param>
+	/// <param name="strCharSplit"></param>
+	/// <param name="strTienTo"></param>
+	public static void GetStringJoinSplitChar(ref string strOutput
+	  ,List<string> lstStringInput,string strCharSplit,string strTienTo) {
+	  if(lstStringInput.Count==0) {
+		return;
+	  }
+
+	  string strThemVao = "";
+	  if(strTienTo!="") {
+		strThemVao=$"{strTienTo}.";
+	  }
+
+	  for(int i = 0;i<lstStringInput.Count;i++) {
+		if(i==0) {
+		  strOutput+=strThemVao+lstStringInput[i];
+		  continue;
+		}
+
+		strOutput+=strCharSplit+strThemVao+lstStringInput[i];
+	  }
+	}
+
+	/// <summary>
+	/// Ví dụ list string là a b c 
+	/// thì output là "a,b,c" hoặc "t.a,t.b,t.c" với t là tiền tố, dấu phẩy là phân cách
+	/// </summary>
+	/// <param name="strOutput"></param>
+	/// <param name="lstStringInput"></param>
+	/// <param name="strCharSplit"></param>
+	/// <param name="strTienTo"></param>
+	public static void GetStringJoinSplitChar(ref string strOutput
+	  ,List<int> lstStringInput,string strCharSplit,string strTienTo) {
+	  if(lstStringInput.Count==0) {
+		return;
+	  }
+
+	  string strThemVao = "";
+	  if(strTienTo!="") {
+		strThemVao=$"{strTienTo}.";
+	  }
+
+	  for(int i = 0;i<lstStringInput.Count;i++) {
+		if(i==0) {
+		  strOutput+=strThemVao+lstStringInput[i];
+		  continue;
+		}
+
+		strOutput+=strCharSplit+strThemVao+lstStringInput[i];
+	  }
 	}
 
   }

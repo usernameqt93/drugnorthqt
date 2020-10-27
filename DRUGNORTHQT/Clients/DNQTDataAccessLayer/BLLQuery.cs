@@ -1,6 +1,7 @@
 ﻿using DNQTDataAccessLayer.BLLSelectFromWhere;
 using DNQTConstTable.ListTableDatabase;
 using System.Collections.Generic;
+using System;
 
 namespace DNQTDataAccessLayer {
   class BLLQuery {
@@ -67,6 +68,28 @@ namespace DNQTDataAccessLayer {
 	  strOrderBy+=$"\n {Table_BangChiTietDonHang.NAME}.{Table_BangChiTietDonHang.Col_MaChiTietDonHang.NAME} ";
 
 	  strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} \nORDER BY {strOrderBy} ;";
+	}
+
+	internal void GetQueryLayListOrderByListId(ref string strQuery,List<string> lstStringId) {
+	  string strSelect = "";
+	  _bllSelect.GetQueryLayListOrderByListId_Select(ref strSelect);
+
+	  string strFrom = "";
+	  _bllFrom.GetQueryLayListOrderByListId_From(ref strFrom);
+
+	  string strWhere = "";
+
+	  string strListId = "";
+	  _bllClass.GetStringJoinSplitChar(ref strListId,lstStringId,",","");
+
+	  strWhere+=$"\n {Table_BangViThuoc.NAME}.{Table_BangViThuoc.Col_MaViThuoc.NAME} IN ({strListId}) ";
+
+	  //string strOrderBy = "";
+	  //strOrderBy+=$"\n {Table_BangChiTietDonHang.NAME}.{Table_BangChiTietDonHang.Col_MaChiTietDonHang.NAME} ";
+
+	  //strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} \nORDER BY {strOrderBy} ;";
+
+	  strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} ;";
 	}
 
   }
