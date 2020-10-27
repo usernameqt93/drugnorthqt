@@ -48,7 +48,6 @@ namespace PluginDnqt.Order.ViewModels {
 	private OrderDocument ODOrderDocument = new OrderDocument();
 
 	private readonly BLLPlugin _bllPlugin = new BLLPlugin();
-	private readonly BLLTool _bllTool = new BLLTool();
 
 	private bool BlnIsLoadingForm = true;
 
@@ -174,7 +173,7 @@ namespace PluginDnqt.Order.ViewModels {
 
 		int intIndexIncrease = 0;
 		foreach(var item in lstTuplePathTemplate) {
-		  _bllTool.AddItemCbo(intIndexIncrease,""+(intIndexIncrease+1).ToString("000")+". "+item.Item2
+		  BLLTools.AddItemCbo(intIndexIncrease,""+(intIndexIncrease+1).ToString("000")+". "+item.Item2
 			,item,ref MOCTypePaper._lstCbo);
 		  intIndexIncrease++;
 		}

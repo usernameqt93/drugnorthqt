@@ -36,6 +36,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DNQTConstTable">
+      <HintPath>..\Libraries\DNQTConstTable.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DNQTDataAccessLayer">
       <HintPath>..\Libraries\DNQTDataAccessLayer.dll</HintPath>
       <Private>False</Private>

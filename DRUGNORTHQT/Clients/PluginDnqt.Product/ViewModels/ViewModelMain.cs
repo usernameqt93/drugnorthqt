@@ -24,7 +24,6 @@ namespace PluginDnqt.Product.ViewModels {
 	internal MainWindow _mainUserControl;
 
 	private readonly BLLPlugin _bllPlugin = new BLLPlugin();
-	private readonly BLLTool _bllTool = new BLLTool();
 
 	private bool BlnIsLoadingForm = true;
 
@@ -115,7 +114,7 @@ namespace PluginDnqt.Product.ViewModels {
 
 	private void LoadControlDefault() {
 	  try {
-		_mainUserControl.rdb100Result.IsChecked=true;
+		_mainUserControl.lblSoRow1Page.Content=$"({ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN} dữ liệu/ 1 trang)";
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
@@ -136,48 +135,14 @@ namespace PluginDnqt.Product.ViewModels {
 	private void timerChanged_Tick(object sender,EventArgs e) {
 	  TimerChanged.Stop();
 
-	  RadioButtonFilterCheckedCommand.Execute(null);
-	}
-
-	private void ThayDoiNutXacNhanTheoRdb() {
-	  try {
-		if(_mainUserControl.rdb50Result.IsChecked==true) {
-		  ThietLapSoVaNutXacNhan(50,true);
-		  return;
-		}
-
-		if(_mainUserControl.rdb100Result.IsChecked==true) {
-		  ThietLapSoVaNutXacNhan(100,true);
-		  return;
-		}
-
-		if(_mainUserControl.rdbTuyChonResult.IsChecked==true) {
-		  ThietLapSoVaNutXacNhan(1000,false);
-		  return;
-		}
-	  } catch(Exception ex) {
-		Log4Net.Error(ex.Message);
-		Log4Net.Error(ex.StackTrace);
-		ShowException(ex);
-	  }
-	}
-
-	private void ThietLapSoVaNutXacNhan(int intSoKetQua,bool blnXacNhan) {
-	  try {
-		_mainUserControl.txtSoKetQua1Trang.Text=""+intSoKetQua;
-		_mainUserControl.chkXacNhan.IsChecked=blnXacNhan;
-	  } catch(Exception ex) {
-		Log4Net.Error(ex.Message);
-		Log4Net.Error(ex.StackTrace);
-		ShowException(ex);
-	  }
+	  TimerChangedCommand.Execute(null);
 	}
 
 	private void LoadComboboxPage(int intSumPage) {
 	  try {
 		MOCPage._lstCbo.Clear();
 		for(int i = 0;i<intSumPage;i++) {
-		  _bllTool.AddItemCbo(i,""+(i+1)+"/"+intSumPage,null,ref MOCPage._lstCbo);
+		  BLLTools.AddItemCbo(i,""+(i+1)+"/"+intSumPage,null,ref MOCPage._lstCbo);
 		}
 
 		if(MOCPage._lstCbo.Count>0) {
@@ -209,15 +174,8 @@ namespace PluginDnqt.Product.ViewModels {
 			  return;
 			}
 
-			string strSoKetQua = _mainUserControl.txtSoKetQua1Trang.Text.Trim();
-			if(!Int32.TryParse(strSoKetQua,out int intSoDong1Trang)) {
-			  QTMessageBox.ShowNotify("Số dòng trên 1 trang không hợp lệ, bạn vui lòng thao tác lại!");
-			  _mainUserControl.chkXacNhan.IsChecked=false;
-			  return;
-			}
-
 			_bllPlugin.LoadGridMainByPage(ref _lstGridMain,
-			  MOCPage.MItemSelected.ID,intSoDong1Trang,DT_AllIdProduct);
+			  MOCPage.MItemSelected.ID,ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN,DT_AllIdProduct);
 		  } catch(Exception ex) {
 			Log4Net.Error(ex.Message);
 			Log4Net.Error(ex.StackTrace);
@@ -227,37 +185,8 @@ namespace PluginDnqt.Product.ViewModels {
 	  }
 	}
 
-	public ICommand RadioButtonFilterCheckedCommand => new DelegateCommand(p => {
+	public ICommand TimerChangedCommand => new DelegateCommand(p => {
 	  try {
-		ThayDoiNutXacNhanTheoRdb();
-
-		ChkXacNhanCheckedChangedCommand.Execute(null);
-	  } catch(Exception ex) {
-		Log4Net.Error(ex.Message);
-		Log4Net.Error(ex.StackTrace);
-		ShowException(ex);
-	  }
-	});
-
-	public ICommand ChkXacNhanCheckedChangedCommand => new DelegateCommand(p => {
-	  try {
-		if(_mainUserControl.chkXacNhan.IsChecked!=true) {
-		  return;
-		}
-
-		string strSoKetQua = _mainUserControl.txtSoKetQua1Trang.Text.Trim();
-		if(!Int32.TryParse(strSoKetQua,out int intSoDong1Trang)) {
-		  QTMessageBox.ShowNotify("Dữ liệu bạn vừa nhập không hợp lệ, vui lòng thao tác lại!");
-		  _mainUserControl.chkXacNhan.IsChecked=false;
-		  return;
-		}
-
-		if(intSoDong1Trang<10) {
-		  QTMessageBox.ShowNotify("Dữ liệu bạn vừa nhập không được nhỏ hơn 10 , vui lòng thao tác lại!");
-		  _mainUserControl.chkXacNhan.IsChecked=false;
-		  return;
-		}
-
 		Exception exDAL = null;
 		DT_AllIdProduct=null;
 		DALProduct.GetDTAllIdProduct(ref DT_AllIdProduct,ref exDAL);
@@ -267,13 +196,13 @@ namespace PluginDnqt.Product.ViewModels {
 
 		if(DT_AllIdProduct==null) {
 		  QTMessageBox.ShowNotify("Dữ liệu tải không thành công, bạn vui lòng thao tác lại!");
-		  _mainUserControl.chkXacNhan.IsChecked=false;
 		  return;
 		}
 
 		int intSumId = DT_AllIdProduct.Rows.Count;
 		_mainUserControl.lblSumProduct.Content=""+intSumId;
 
+		int intSoDong1Trang = ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN;
 		int intSumPage = (intSumId%intSoDong1Trang==0)
 		? (intSumId/intSoDong1Trang) : (intSumId/intSoDong1Trang+1);
 		_mainUserControl.lblSumPage.Content=""+intSumPage;

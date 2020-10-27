@@ -1,5 +1,8 @@
 ﻿using BasicArrayProcessorSDK;
+using DNQTConstTable;
 using PluginDnqt.Product.Views;
+using QT.Framework.ToolCommon;
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
@@ -10,9 +13,18 @@ namespace PluginDnqt.Product {
 	private ArrayProcessorPlugInAttribute _mAttributes;
 
 	private static IDictionary<string,object> dicInputOriginal;
+	internal static int INT_SO_ROW_1PAGE_PLUGIN = 50;
 
 	public void Process(IDictionary<string,object> key) {
 	  dicInputOriginal=key;
+
+	  string strValueKey = "";
+	  BLLTools.GetValueFromFileConfig(ref strValueKey,KeyFileConfig.STR_KEY_SO_ROW_1PAGE_PLUGIN_PRODUCT.STR);
+	  if(Int32.TryParse(strValueKey,out int intSoDong1Trang)) {
+		if(intSoDong1Trang>=50&&intSoDong1Trang<101) {
+		  INT_SO_ROW_1PAGE_PLUGIN=intSoDong1Trang;
+		}
+	  }
 
 	  // Gọi form ở đây
 	  var _content = key["content"] as Grid;

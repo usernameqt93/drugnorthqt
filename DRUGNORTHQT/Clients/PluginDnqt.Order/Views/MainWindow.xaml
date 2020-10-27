@@ -80,85 +80,6 @@
 			<DockPanel Grid.Row="0"
 					   LastChildFill="True">
 
-			  <StackPanel DockPanel.Dock="Left"
-						  Orientation="Horizontal">
-				<GroupBox Header="Số dòng trên 1 trang"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
-				  <StackPanel Orientation="Horizontal"
-							  Margin="0,5">
-
-					<RadioButton x:Name="rdb50Result"
-								 Margin="3,0"
-								 GroupName="GroupRdbTimKiem"
-								 Style="{StaticResource InvicoRadioButtonStyle}"
-								 VerticalAlignment="Center"
-								 Content="50"
-								 Tag="50"
-								 Command="{Binding RadioButtonFilterCheckedCommand}" />
-
-					<RadioButton x:Name="rdb100Result"
-								 Margin="3,0"
-								 GroupName="GroupRdbTimKiem"
-								 Style="{StaticResource InvicoRadioButtonStyle}"
-								 VerticalAlignment="Center"
-								 Content="100"
-								 Tag="100"
-								 Command="{Binding RadioButtonFilterCheckedCommand}" />
-
-					<RadioButton x:Name="rdbTuyChonResult"
-								 Margin="3,0"
-								 GroupName="GroupRdbTimKiem"
-								 Style="{StaticResource InvicoRadioButtonStyle}"
-								 VerticalAlignment="Center"
-								 Content="Tùy chọn"
-								 Command="{Binding RadioButtonFilterCheckedCommand}" />
-
-				  </StackPanel>
-				</GroupBox>
-
-				<GroupBox Header="Tùy chọn số dòng trên 1 trang"
-						  IsEnabled="{Binding ElementName=rdbTuyChonResult,Path=IsChecked}"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
-				  <DockPanel>
-
-					<CheckBox x:Name="chkXacNhan"
-							  DockPanel.Dock="Right"
-							  Margin="4,0"
-							  Command="{Binding ChkXacNhanCheckedChangedCommand}"
-							  Cursor="Hand"
-							  VerticalAlignment="Center"
-							  Style="{StaticResource InvicoSliderCheckBoxStyle}"
-							  Content="Xác nhận" />
-
-					<help:NounicodeTextBox x:Name="txtSoKetQua1Trang"
-										   StringFilter="^[0-9]+$"
-										   MaxLength="4"
-										   VerticalContentAlignment="Center"
-										   HorizontalContentAlignment="Center"
-										   Text="1000">
-					  <help:NounicodeTextBox.Style>
-						<Style TargetType="help:NounicodeTextBox"
-							   BasedOn="{StaticResource InvicoTextBoxStyle}">
-						  <Style.Triggers>
-							<DataTrigger Binding="{Binding ElementName=chkXacNhan,Path=IsChecked}"
-										 Value="False">
-							  <Setter Property="IsEnabled"
-									  Value="True" />
-							</DataTrigger>
-							<DataTrigger Binding="{Binding ElementName=chkXacNhan,Path=IsChecked}"
-										 Value="True">
-							  <Setter Property="IsEnabled"
-									  Value="False" />
-							</DataTrigger>
-						  </Style.Triggers>
-						</Style>
-					  </help:NounicodeTextBox.Style>
-					</help:NounicodeTextBox>
-
-				  </DockPanel>
-				</GroupBox>
-			  </StackPanel>
-
 			  <StackPanel DockPanel.Dock="Right"
 						  Orientation="Horizontal">
 
@@ -184,6 +105,10 @@
 						   Style="{DynamicResource InvicoLabelStyle}" />
 
 					<Label Content="trang"
+						   Style="{DynamicResource InvicoLabelStyle}" />
+
+					<Label Content="(0 dữ liệu/ 1 trang)"
+						   x:Name="lblSoRow1Page"
 						   Style="{DynamicResource InvicoLabelStyle}" />
 
 				  </StackPanel>
@@ -219,6 +144,7 @@
 					  Header="Danh sách"
 					  Style="{DynamicResource InvicoGroupBoxStyle}">
 			  <DataGrid Style="{DynamicResource InvicoDataGridStyle}"
+						x:Name="dgvMain"
 						ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
 						VerticalAlignment="Stretch"
 						ItemsSource="{Binding LstGridMain}"
