@@ -11,7 +11,6 @@ using QT.HamburgerMenu;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -138,6 +137,7 @@ namespace WindowMain.ViewModels {
 		  mitemUserManual.StrColor=CONST_STR_COLOR_HUONGVIET;
 		  break;
 		default:
+		  mitemUserManual.StrColor=CONST_STR_COLOR_SAOSAIGON;
 		  break;
 	  }
 	}
@@ -230,38 +230,6 @@ namespace WindowMain.ViewModels {
 	  }
 	}
 
-	#region Get và set value in file config
-
-	/// <summary>
-	/// Kiểm tra giá trị của key trong file config, nếu có key thì xóa đi và thêm mới giá trị key và value
-	/// </summary>
-	/// <param name="strKey"></param>
-	/// <param name="strValue"></param>
-	internal void ChangeValueOfKeyInFileConfig(string strKey,string strValue) {
-	  Configuration _config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-	  if(_config.AppSettings.Settings.AllKeys.Contains(strKey)) {
-		_config.AppSettings.Settings.Remove(strKey);
-	  }
-	  _config.AppSettings.Settings.Add(strKey,strValue);
-	  ConfigurationManager.RefreshSection("appSettings");
-	  _config.Save(ConfigurationSaveMode.Modified);
-	  ConfigurationManager.RefreshSection(_config.AppSettings.SectionInformation.Name);
-	  Properties.Settings.Default.Reload();
-	}
-
-	/// <summary>
-	/// Lấy giá trị value A của key B trong file config, nếu không có key thì không làm gì Output
-	/// </summary>
-	/// <param name="strOutputValue"></param>
-	/// <param name="strKey"></param>
-	internal void GetValueFromFileConfig(ref string strOutputValue,string strKey) {
-	  if(System.Configuration.ConfigurationManager.AppSettings[strKey]!=null) {
-		strOutputValue=System.Configuration.ConfigurationManager.AppSettings[strKey];
-	  }
-	}
-
-	#endregion
-
 	internal void KiemTraValueHopLeInFileConfig(ref string strMessage) {
 	  {
 		string strContent = "";
@@ -284,7 +252,7 @@ namespace WindowMain.ViewModels {
 
 	private void CheckKeyAndChangeByMinMax(ref string strContent,string strKey,int intMin,int intMax) {
 	  string strValueKey = "";
-	  GetValueFromFileConfig(ref strValueKey,strKey);
+	  BLLTools.GetValueFromFileConfig(ref strValueKey,strKey);
 
 	  if(Int32.TryParse(strValueKey,out int intResult)) {
 		if(intResult>intMax) {
@@ -311,7 +279,7 @@ namespace WindowMain.ViewModels {
 	private void ChangeValueAndContentOldNew(ref string strContent,string strKey
 	  ,string strOldValueKey,string strNewValueKey) {
 	  strContent=$"'{strOldValueKey}' -> '{strNewValueKey}'";
-	  ChangeValueOfKeyInFileConfig(strKey,strNewValueKey);
+	  BLLTools.ChangeValueOfKeyInFileConfig(strKey,strNewValueKey);
 	}
 
 	internal void GetValueRandomNotInList(ref int intRandomValue,ref List<int> lstIntRandom,int intCountColor) {

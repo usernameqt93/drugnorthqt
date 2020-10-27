@@ -1,6 +1,7 @@
 ﻿using DNQTConstTable;
 using log4net;
 using PluginDnqt.Settings.Views;
+using QT.Framework.ToolCommon;
 using QT.Framework.ToolCommon.Helpers;
 using QT.MessageBox;
 using System;
@@ -103,10 +104,10 @@ namespace PluginDnqt.Settings.ViewModels {
 		  return;
 		}
 
-		_bllPlugin.ChangeValueOfKeyInFileConfig(KeyFileConfig.STR_KEY_SO_ROW_1PAGE_PLUGIN_PRODUCT.STR
+		BLLTools.ChangeValueOfKeyInFileConfig(KeyFileConfig.STR_KEY_SO_ROW_1PAGE_PLUGIN_PRODUCT.STR
 		  ,_mainUserControl.txtSoRowQuanLyViThuoc.Text.Trim());
 
-		_bllPlugin.ChangeValueOfKeyInFileConfig(KeyFileConfig.STR_KEY_SO_ROW_1PAGE_PLUGIN_ORDER.STR
+		BLLTools.ChangeValueOfKeyInFileConfig(KeyFileConfig.STR_KEY_SO_ROW_1PAGE_PLUGIN_ORDER.STR
 		  ,_mainUserControl.txtSoRowQuanLyDonHang.Text.Trim());
 
 		System.Windows.Forms.Application.Restart();

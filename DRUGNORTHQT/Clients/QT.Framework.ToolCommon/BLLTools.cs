@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Configuration;
 
 namespace QT.Framework.ToolCommon {
   public static class BLLTools {
@@ -195,6 +196,38 @@ namespace QT.Framework.ToolCommon {
 	  }
 
 	  doubleOutput=Math.Round(((100-doublePercentCurrent)/(intSum+1))/intCountUseReportProgress,2);
+	}
+
+	#endregion
+
+	#region Get và set value in file config
+
+	/// <summary>
+	/// Kiểm tra giá trị của key trong file config, nếu có key thì xóa đi và thêm mới giá trị key và value
+	/// </summary>
+	/// <param name="strKey"></param>
+	/// <param name="strValue"></param>
+	public static void ChangeValueOfKeyInFileConfig(string strKey,string strValue) {
+	  Configuration _config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+	  if(_config.AppSettings.Settings.AllKeys.Contains(strKey)) {
+		_config.AppSettings.Settings.Remove(strKey);
+	  }
+	  _config.AppSettings.Settings.Add(strKey,strValue);
+	  ConfigurationManager.RefreshSection("appSettings");
+	  _config.Save(ConfigurationSaveMode.Modified);
+	  ConfigurationManager.RefreshSection(_config.AppSettings.SectionInformation.Name);
+	  Properties.Settings.Default.Reload();
+	}
+
+	/// <summary>
+	/// Lấy giá trị value A của key B trong file config, nếu không có key thì không làm gì Output
+	/// </summary>
+	/// <param name="strOutputValue"></param>
+	/// <param name="strKey"></param>
+	public static void GetValueFromFileConfig(ref string strOutputValue,string strKey) {
+	  if(System.Configuration.ConfigurationManager.AppSettings[strKey]!=null) {
+		strOutputValue=System.Configuration.ConfigurationManager.AppSettings[strKey];
+	  }
 	}
 
 	#endregion
