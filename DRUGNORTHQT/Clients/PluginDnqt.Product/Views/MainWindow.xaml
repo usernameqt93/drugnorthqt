@@ -36,15 +36,14 @@
 		</Grid.RowDefinitions>
 
 		<DockPanel Grid.Row="0"
-				   Margin="5"
+				   Margin="5,5,5,0"
 				   LastChildFill="True">
 
-		  <StackPanel DockPanel.Dock="Right"
+		  <StackPanel DockPanel.Dock="Left"
 					  Orientation="Horizontal">
 
 			<GroupBox Header="Dữ liệu hiện có"
-					  Style="{DynamicResource InvicoGroupBoxStyle}"
-					  Margin="10,0">
+					  Style="{DynamicResource InvicoGroupBoxStyle}">
 			  <StackPanel HorizontalAlignment="Left"
 						  VerticalAlignment="Center"
 						  Orientation="Horizontal">
@@ -72,7 +71,12 @@
 
 			  </StackPanel>
 			</GroupBox>
-			
+
+		  </StackPanel>
+		  
+		  <StackPanel DockPanel.Dock="Right"
+					  Orientation="Horizontal">
+
 			<Label Content="Trang"
 				   VerticalAlignment="Bottom"
 				   Style="{DynamicResource InvicoLabelStyle}" />
@@ -103,51 +107,104 @@
 				  Header="Danh sách"
 				  Style="{DynamicResource InvicoGroupBoxStyle}"
 				  Margin="5">
-		  <DataGrid Style="{DynamicResource InvicoDataGridStyle}"
-					ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
-					VerticalAlignment="Stretch"
-					ItemsSource="{Binding LstGridMain}"
-					SelectedItem="{Binding SelectedRow}">
+		  <DockPanel>
 
-			<DataGrid.Columns>
-			  <DataGridTemplateColumn Header="STT"
-									  Width="40">
-				<DataGridTemplateColumn.CellTemplate>
-				  <DataTemplate>
-					<TextBlock Margin="3,0"
-							   VerticalAlignment="Center"
-							   HorizontalAlignment="Center"
-							   Text="{Binding Stt}" />
-				  </DataTemplate>
-				</DataGridTemplateColumn.CellTemplate>
-			  </DataGridTemplateColumn>
+			<DockPanel DockPanel.Dock="Top">
 
-			  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-									  Header=" Mã dữ liệu "
-									  Width="auto">
-				<DataGridTemplateColumn.CellTemplate>
-				  <DataTemplate>
-					<TextBlock TextAlignment="Center"
-							   VerticalAlignment="Center"
-							   Text="{Binding StrId}" />
-				  </DataTemplate>
-				</DataGridTemplateColumn.CellTemplate>
-			  </DataGridTemplateColumn>
+			  <Grid DockPanel.Dock="Right"
+					Margin="0,5">
+				<CheckBox x:Name="chkShowSumOrder"
+						  Style="{StaticResource InvicoCheckBoxStyle}"
+						  Content="Hiển thị số lượng đơn hàng có tên vị thuốc"
+						  Command="{Binding PageSelectionChangedCommand}" />
+			  </Grid>
 
-			  <DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-									  Header="Tên vị thuốc"
-									  Width="1*">
-				<DataGridTemplateColumn.CellTemplate>
-				  <DataTemplate>
-					<TextBlock Margin="3,0"
-							   VerticalAlignment="Center"
-							   Text="{Binding StrName}" />
-				  </DataTemplate>
-				</DataGridTemplateColumn.CellTemplate>
-			  </DataGridTemplateColumn>
+			  <Grid>
+				
+			  </Grid>
+			  
+			</DockPanel>
+			
+			<DataGrid Style="{DynamicResource InvicoDataGridStyle}"
+					  ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
+					  VerticalAlignment="Stretch"
+					  ItemsSource="{Binding LstGridMain}"
+					  SelectedItem="{Binding SelectedRow}">
 
-			</DataGrid.Columns>
-		  </DataGrid>
+			  <DataGrid.Columns>
+				<DataGridTemplateColumn Header="STT"
+										Width="40">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					  <TextBlock Margin="3,0"
+								 VerticalAlignment="Center"
+								 HorizontalAlignment="Center"
+								 Text="{Binding Stt}" />
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										Header=" Mã dữ liệu "
+										Width="auto">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					  <TextBlock TextAlignment="Center"
+								 VerticalAlignment="Center"
+								 Text="{Binding StrId}" />
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										Header="Tên vị thuốc"
+										Width="1*">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					  <TextBlock Margin="3,0"
+								 VerticalAlignment="Center"
+								 TextTrimming="CharacterEllipsis"
+								 Text="{Binding StrName}"
+								 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										x:Name="colSumOrder"
+										Header=" Tổng đơn hàng "
+										Width="auto">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					  <TextBlock Margin="3,0"
+								 VerticalAlignment="Center"
+								 HorizontalAlignment="Center"
+								 Text="{Binding IntSumOrder}"
+								 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										x:Name="colListOrder"
+										Header="Danh sách đơn hàng"
+										Width="2*">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					  <TextBlock Margin="3,0"
+								 VerticalAlignment="Center"
+								 HorizontalAlignment="Center"
+								 TextTrimming="CharacterEllipsis"
+								 Text="{Binding StrListOrder}"
+								 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+			  </DataGrid.Columns>
+			</DataGrid>
+			
+		  </DockPanel>
 		</GroupBox>
 	  </Grid>
 

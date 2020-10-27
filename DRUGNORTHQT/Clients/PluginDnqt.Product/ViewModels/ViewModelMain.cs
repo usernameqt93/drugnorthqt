@@ -49,14 +49,14 @@ namespace PluginDnqt.Product.ViewModels {
 
 	#region MainDataGrid
 
-	private ModelRowMain _selectedRow;
+	private ModelRowProduct _selectedRow;
 
-	public ModelRowMain SelectedRow {
+	public ModelRowProduct SelectedRow {
 	  get { return this._selectedRow; }
 	  set { _selectedRow=value; OnPropertyChanged(nameof(SelectedRow)); }
 	}
 
-	private ObservableCollection<ModelRowMain> _lstGridMain = new ObservableCollection<ModelRowMain>();
+	private ObservableCollection<ModelRowProduct> _lstGridMain = new ObservableCollection<ModelRowProduct>();
 	private CollectionViewSource MainCollection = new CollectionViewSource();
 
 	public ICollectionView LstGridMain {
@@ -114,6 +114,10 @@ namespace PluginDnqt.Product.ViewModels {
 
 	private void LoadControlDefault() {
 	  try {
+		_mainUserControl.colSumOrder.Visibility=System.Windows.Visibility.Collapsed;
+		_mainUserControl.colListOrder.Visibility=System.Windows.Visibility.Collapsed;
+		_mainUserControl.chkShowSumOrder.IsChecked=false;
+
 		_mainUserControl.lblSoRow1Page.Content=$"({ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN} dữ liệu/ 1 trang)";
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
@@ -174,8 +178,22 @@ namespace PluginDnqt.Product.ViewModels {
 			  return;
 			}
 
+			_mainUserControl.colSumOrder.Visibility=System.Windows.Visibility.Collapsed;
+			_mainUserControl.colListOrder.Visibility=System.Windows.Visibility.Collapsed;
+
 			_bllPlugin.LoadGridMainByPage(ref _lstGridMain,
 			  MOCPage.MItemSelected.ID,ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN,DT_AllIdProduct);
+
+			if(_mainUserControl.chkShowSumOrder.IsChecked==true) {
+			  if(_lstGridMain.Count==0) {
+				return;
+			  }
+
+			  _bllPlugin.ShowSumOrderOnGridMain(ref _lstGridMain);
+
+			  _mainUserControl.colSumOrder.Visibility=System.Windows.Visibility.Visible;
+			  _mainUserControl.colListOrder.Visibility=System.Windows.Visibility.Visible;
+			}
 		  } catch(Exception ex) {
 			Log4Net.Error(ex.Message);
 			Log4Net.Error(ex.StackTrace);
@@ -187,11 +205,14 @@ namespace PluginDnqt.Product.ViewModels {
 
 	public ICommand TimerChangedCommand => new DelegateCommand(p => {
 	  try {
-		Exception exDAL = null;
+		Exception exOutput = null;
 		DT_AllIdProduct=null;
-		DALProduct.GetDTAllIdProduct(ref DT_AllIdProduct,ref exDAL);
-		if(exDAL!=null) {
-		  throw exDAL;
+		DALProduct.GetDTAllIdProduct(ref DT_AllIdProduct,ref exOutput);
+		if(exOutput!=null) {
+		  Log4Net.Error(exOutput.Message);
+		  Log4Net.Error(exOutput.StackTrace);
+		  ShowException(exOutput);
+		  return;
 		}
 
 		if(DT_AllIdProduct==null) {

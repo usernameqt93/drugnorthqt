@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="ConnectionSDK.cs" />
     <Compile Include="Models\ModelRowMain.cs" />
+    <Compile Include="Models\ModelRowProduct.cs" />
     <Compile Include="ViewModels\BLLPlugin.cs" />
     <Compile Include="ViewModels\ViewModelMain.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
