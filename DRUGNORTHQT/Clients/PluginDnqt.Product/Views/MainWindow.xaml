@@ -116,7 +116,7 @@
 				<CheckBox x:Name="chkShowSumOrder"
 						  Style="{StaticResource InvicoCheckBoxStyle}"
 						  Content="Hiển thị số lượng đơn hàng có tên vị thuốc"
-						  Command="{Binding PageSelectionChangedCommand}" />
+						  Command="{Binding ChkShowSumOrderChangedCommand}" />
 			  </Grid>
 
 			  <Grid>

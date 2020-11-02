@@ -170,38 +170,45 @@ namespace PluginDnqt.Product.ViewModels {
 
 	#region === Command ===
 
-	public ICommand PageSelectionChangedCommand {
-	  get {
-		return new DelegateCommand(p => {
-		  try {
-			if(MOCPage.MItemSelected==null) {
-			  return;
-			}
+	public ICommand PageSelectionChangedCommand => new DelegateCommand(p => {
+	  try {
+		if(MOCPage.MItemSelected==null) {
+		  return;
+		}
 
-			_mainUserControl.colSumOrder.Visibility=System.Windows.Visibility.Collapsed;
-			_mainUserControl.colListOrder.Visibility=System.Windows.Visibility.Collapsed;
+		_bllPlugin.LoadGridMainByPage(ref _lstGridMain,
+		  MOCPage.MItemSelected.ID,ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN,DT_AllIdProduct);
 
-			_bllPlugin.LoadGridMainByPage(ref _lstGridMain,
-			  MOCPage.MItemSelected.ID,ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN,DT_AllIdProduct);
+		ChkShowSumOrderChangedCommand.Execute(null);
 
-			if(_mainUserControl.chkShowSumOrder.IsChecked==true) {
-			  if(_lstGridMain.Count==0) {
-				return;
-			  }
-
-			  _bllPlugin.ShowSumOrderOnGridMain(ref _lstGridMain);
-
-			  _mainUserControl.colSumOrder.Visibility=System.Windows.Visibility.Visible;
-			  _mainUserControl.colListOrder.Visibility=System.Windows.Visibility.Visible;
-			}
-		  } catch(Exception ex) {
-			Log4Net.Error(ex.Message);
-			Log4Net.Error(ex.StackTrace);
-			ShowException(ex);
-		  }
-		});
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
 	  }
-	}
+	});
+
+	public ICommand ChkShowSumOrderChangedCommand => new DelegateCommand(p => {
+	  try {
+		_mainUserControl.colSumOrder.Visibility=System.Windows.Visibility.Collapsed;
+		_mainUserControl.colListOrder.Visibility=System.Windows.Visibility.Collapsed;
+
+		if(_mainUserControl.chkShowSumOrder.IsChecked==true) {
+		  if(_lstGridMain.Count==0) {
+			return;
+		  }
+
+		  _bllPlugin.ShowSumOrderOnGridMain(ref _lstGridMain);
+
+		  _mainUserControl.colSumOrder.Visibility=System.Windows.Visibility.Visible;
+		  _mainUserControl.colListOrder.Visibility=System.Windows.Visibility.Visible;
+		}
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
 
 	public ICommand TimerChangedCommand => new DelegateCommand(p => {
 	  try {

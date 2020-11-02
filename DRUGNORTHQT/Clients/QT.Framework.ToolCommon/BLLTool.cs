@@ -10,15 +10,6 @@ using System.Text;
 namespace QT.Framework.ToolCommon {
   public class BLLTool {
 
-	public void AddItemCbo(int intId,string strName,object objItem,
-	  ref ObservableCollection<ModelItems> lstCbo) {
-	  var mItem = new ModelItems() { ID = intId,Name = strName };
-	  if(objItem != null) {
-		mItem.ObjItem = objItem;
-	  }
-	  lstCbo.Add(mItem);
-	}
-
 	public void CheckAndAddItemToList(ref List<int> lstIdSearch,int intTemp) {
 	  for(int i = 0;i < lstIdSearch.Count;i++) {
 		if(lstIdSearch[i]==intTemp) {
