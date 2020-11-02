@@ -109,7 +109,7 @@ namespace PluginDnqt.Order.ViewModels {
 		  try {
 			objTemp=Convert.ToDecimal(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_TongGiaTriDonHang.NAME]);
 			//strTemp=string.Format("{0:N3}",objTemp);
-			strTemp=string.Format("{0:0,0}",objTemp)+" vnđ";
+			strTemp=string.Format("{0:0,0}",objTemp)+" đ";
 			//strTemp=double.Parse(objTemp.ToString()).ToString("#,###",CultureInfo.GetCultureInfo("vi-VN"))+" vnđ";
 		  } catch(Exception e) {
 			string str = e.Message;
@@ -264,5 +264,54 @@ namespace PluginDnqt.Order.ViewModels {
 		  (strColumnName,intNewMaxlenght,strTemp);
 	  }
 	}
+
+	#region Funtion for UpdateOrder_ViewModel
+
+	//internal void LoadGridSuggestByListStringByFilter(ref ObservableCollection<ModelRowMain> lstGridMain
+ // ,List<string> lstInput,string strTextFilter) {
+	//  lstGridMain.Clear();
+
+	//  var lstTemp = new List<string>();
+	//  foreach(var item in lstInput) {
+	//	lstTemp.Add(item);
+	//  }
+	//  lstTemp.Sort();
+
+	//  int intIndexIncrease = 0;
+	//  foreach(var item in lstTemp) {
+	//	if(!item.Contains(strTextFilter)) {
+	//	  continue;
+	//	}
+
+	//	var mitem = new ModelRowMain();
+	//	mitem.Stt=++intIndexIncrease;
+	//	mitem.StrName=item;
+
+	//	lstGridMain.Add(mitem);
+	//  }
+	//}
+
+	internal void LoadGridSuggestByDataTableByFilter(ref ObservableCollection<ModelRowMain> lstGridMain
+	  ,DataTable dtInput,string strTextFilter) {
+	  lstGridMain.Clear();
+
+	  int intIndexIncrease = 0;
+	  foreach(DataRow dRow in dtInput.Rows) {
+		string item = dRow[Table_BangViThuoc.Col_TenViThuoc.NAME].ToString();
+		if(!item.ToLower().Contains(strTextFilter.ToLower())) {
+		  continue;
+		}
+
+		var mitem = new ModelRowMain();
+		mitem.Stt=++intIndexIncrease;
+		mitem.StrName=item;
+
+		lstGridMain.Add(mitem);
+
+	  }
+	}
+
+	#endregion
+
   }
 }

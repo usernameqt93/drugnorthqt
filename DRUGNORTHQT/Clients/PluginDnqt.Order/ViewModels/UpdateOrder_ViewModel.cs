@@ -36,7 +36,14 @@ namespace PluginDnqt.Order.ViewModels {
 
 	private const int CONST_INT_INTERVAL_TIMER = 50;
 
+	private DAL_Product DALProduct = new DAL_Product();
+
+	private DataTable DT_AllIdNameProduct = null;
+
 	private DAL_Order DALOrder = new DAL_Order();
+	internal System.Windows.Input.KeyEventArgs KeyEventDownNameProduct = null;
+	internal System.Windows.Input.KeyEventArgs KeyEventDownSoLuong = null;
+	internal System.Windows.Input.KeyEventArgs KeyEventDownDonGia = null;
 
 	private readonly BLLPlugin _bllPlugin = new BLLPlugin();
 
@@ -61,6 +68,24 @@ namespace PluginDnqt.Order.ViewModels {
 
 
 
+
+	#region DataGrid Suggest
+
+	private ModelRowMain _selectedRowSuggest;
+
+	public ModelRowMain SelectedRowSuggest {
+	  get { return this._selectedRowSuggest; }
+	  set { _selectedRowSuggest=value; OnPropertyChanged(nameof(SelectedRowSuggest)); }
+	}
+
+	private ObservableCollection<ModelRowMain> _lstGridSuggest = new ObservableCollection<ModelRowMain>();
+	private CollectionViewSource SuggestCollection = new CollectionViewSource();
+
+	public ICollectionView LstGridSuggest {
+	  get { return this.SuggestCollection.View; }
+	}
+
+	#endregion
 
 	#region MainDataGrid 
 
@@ -89,6 +114,8 @@ namespace PluginDnqt.Order.ViewModels {
 	public UpdateOrder_ViewModel(UpdateOrder _viewMain,object objInput) {
 	  _mainUserControl=_viewMain;
 	  MainCollection.Source=_lstGridMain;
+	  SuggestCollection.Source=_lstGridSuggest;
+
 	  DicDataInPreviousUC=objInput as Dictionary<string,object>;
 	  ExcuteInOtherUserControl=(DELEGATE_VOID_IN_OTHER_USERCONTROL)DicDataInPreviousUC["DELEGATE_VOID_IN_OTHER_USERCONTROL"];
 
@@ -123,6 +150,32 @@ namespace PluginDnqt.Order.ViewModels {
 	  }
 	}
 
+	private void LoadListProductGoiY() {
+	  try {
+		Exception exOutput = null;
+		DT_AllIdNameProduct=null;
+		DALProduct.GetDTAllIdProduct(ref DT_AllIdNameProduct,ref exOutput);
+		if(exOutput!=null) {
+		  Log4Net.Error(exOutput.Message);
+		  Log4Net.Error(exOutput.StackTrace);
+		  ShowException(exOutput);
+		  return;
+		}
+
+		if(DT_AllIdNameProduct==null) {
+		  QTMessageBox.ShowNotify("Danh sách vị thuốc tải không thành công, bạn vui lòng thao tác lại!"
+			,"(DT_AllIdNameProduct==null)");
+		  BackCommand.Execute(null);
+		  return;
+		}
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	}
+
 	private void LoadData() {
 	  try {
 		ModelRowOrder mOrder = DicDataInPreviousUC["ModelRowOrder"] as ModelRowOrder;
@@ -134,7 +187,10 @@ namespace PluginDnqt.Order.ViewModels {
 		DataTable DT_DetailOrderByListId = null;
 		DALOrder.GetDTDetailOrderByListIdOrder(ref DT_DetailOrderByListId,ref exOutput,lstStringId);
 		if(exOutput!=null) {
-		  throw exOutput;
+		  Log4Net.Error(exOutput.Message);
+		  Log4Net.Error(exOutput.StackTrace);
+		  ShowException(exOutput);
+		  return;
 		}
 
 		if(DT_DetailOrderByListId==null) {
@@ -153,14 +209,45 @@ namespace PluginDnqt.Order.ViewModels {
 	  }
 	}
 
+	private void KiemTraPhimF5F6F7VaFocus(ref bool blnPressF5F6F7,KeyEventArgs keyEventDown) {
+	  try {
+		if(keyEventDown.Key==Key.F5) {
+		  _mainUserControl.txtName.Focus();
+		  _mainUserControl.txtName.SelectAll();
+		  return;
+		}
+
+		if(keyEventDown.Key==Key.F6) {
+		  _mainUserControl.txtSoLuong.Focus();
+		  _mainUserControl.txtSoLuong.SelectAll();
+		  return;
+		}
+
+		if(keyEventDown.Key==Key.F7) {
+		  _mainUserControl.txtDonGia.Focus();
+		  _mainUserControl.txtDonGia.SelectAll();
+		  return;
+		}
+
+		blnPressF5F6F7=false;
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	}
+
 	private void timerChanged_Tick(object sender,EventArgs e) {
 	  TimerChanged.Stop();
 
-	  //_mainUserControl.progressStep.IntStep=3;
-	  //_bllPlugin.SetToolTipForProgressAllStep(ref _mainUserControl.progressStep);
+	 // if(DT_DetailOrderByListId==null) {
+		//QTMessageBox.ShowNotify(
+		//  "Dữ liệu đơn hàng này tải không thành công, bạn vui lòng thao tác lại!"
+		//  ,"(DT_DetailOrderByListId==null)");
+		//return;
+	 // }
 
-	  //CapNhatPercentGridMainBySlider(new ModelLoaiCauHinh());
-	  //ThayDoiPhanTramVaQuetTatCaCommand.Execute(null);
+	  LoadListProductGoiY();
 	}
 
 	#region Function for loading
@@ -228,6 +315,157 @@ namespace PluginDnqt.Order.ViewModels {
 
 		var userControl = new PrintOrder(dicInput);
 		_mainUserControl.gridChildren.Children.Add(userControl);
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand KeyDownChangeNameCommand => new DelegateCommand(p => {
+	  try {
+		if(KeyEventDownNameProduct==null) {
+		  return;
+		}
+
+		if(KeyEventDownNameProduct.Key==Key.Left||KeyEventDownNameProduct.Key==Key.Right) {
+		  return;
+		}
+
+		if(KeyEventDownNameProduct.Key==Key.Enter) {
+		  if(SelectedRowSuggest==null) {
+			return;
+		  }
+
+		  _mainUserControl.txtName.Text=SelectedRowSuggest.StrName;
+		  _mainUserControl.txtSoLuong.Focus();
+		  return;
+		}
+
+		if(KeyEventDownNameProduct.Key==Key.Down) {
+		  if(SelectedRowSuggest==null||_lstGridSuggest.Count<2) {
+			return;
+		  }
+
+		  if(SelectedRowSuggest.Stt<_lstGridSuggest.Count) {
+			int intSTTTemp = SelectedRowSuggest.Stt;
+			SelectedRowSuggest=_lstGridSuggest[intSTTTemp];
+		  }
+
+		  return;
+		}
+
+		if(KeyEventDownNameProduct.Key==Key.Up) {
+		  if(SelectedRowSuggest==null||_lstGridSuggest.Count<2) {
+			return;
+		  }
+
+		  if(SelectedRowSuggest.Stt>1) {
+			int intSTTTemp = SelectedRowSuggest.Stt-2;
+			SelectedRowSuggest=_lstGridSuggest[intSTTTemp];
+		  }
+
+		  return;
+		}
+
+		bool blnPressF5F6F7 = true;
+		KiemTraPhimF5F6F7VaFocus(ref blnPressF5F6F7,KeyEventDownNameProduct);
+		if(blnPressF5F6F7) {
+		  return;
+		}
+
+		string strText = _mainUserControl.txtName.Text.Trim();
+		_bllPlugin.LoadGridSuggestByDataTableByFilter(ref _lstGridSuggest,DT_AllIdNameProduct,strText);
+
+		if(_lstGridSuggest.Count>0) {
+		  SelectedRowSuggest=_lstGridSuggest[0];
+		}
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand KeyDownChangeSoLuongCommand => new DelegateCommand(p => {
+	  try {
+		if(KeyEventDownSoLuong==null) {
+		  return;
+		}
+
+		if(KeyEventDownSoLuong.Key==Key.Left||KeyEventDownSoLuong.Key==Key.Right) {
+		  return;
+		}
+
+		if(KeyEventDownSoLuong.Key==Key.Enter) {
+		  string strText = _mainUserControl.txtSoLuong.Text.Trim();
+		  _mainUserControl.txtSoLuong.Text=strText;
+
+		  float objTemp = 0;
+		  try {
+			objTemp=Convert.ToSingle(strText);
+		  } catch(Exception e) {
+			string str = e.Message;
+			QTMessageBox.ShowNotify("Số lượng bạn nhập không hợp lệ, bạn vui lòng kiểm tra lại!");
+			_mainUserControl.txtSoLuong.SelectAll();
+			return;
+		  }
+
+		  _mainUserControl.txtDonGia.Focus();
+		  return;
+		}
+
+		bool blnPressF5F6F7 = true;
+		KiemTraPhimF5F6F7VaFocus(ref blnPressF5F6F7,KeyEventDownSoLuong);
+		if(blnPressF5F6F7) {
+		  return;
+		}
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand KeyDownChangeDonGiaCommand => new DelegateCommand(p => {
+	  try {
+		if(KeyEventDownDonGia==null) {
+		  return;
+		}
+
+		if(KeyEventDownDonGia.Key==Key.Left||KeyEventDownDonGia.Key==Key.Right) {
+		  return;
+		}
+
+		if(KeyEventDownDonGia.Key==Key.Enter||KeyEventDownDonGia.Key==Key.N) {
+		  string strText = _mainUserControl.txtDonGia.Text.Trim();
+		  _mainUserControl.txtDonGia.Text=strText;
+
+		  decimal objTemp = 0;
+		  try {
+			objTemp=Convert.ToDecimal(strText);
+		  } catch(Exception e) {
+			string str = e.Message;
+			QTMessageBox.ShowNotify("Đơn giá bạn nhập không hợp lệ, bạn vui lòng kiểm tra lại!");
+			_mainUserControl.txtDonGia.SelectAll();
+			return;
+		  }
+
+		  if(KeyEventDownDonGia.Key==Key.N) {
+			_mainUserControl.txtDonGia.Text=(objTemp*1000).ToString();
+			_mainUserControl.txtDonGia.SelectAll();
+			return;
+		  }
+		  return;
+		}
+
+		bool blnPressF5F6F7 = true;
+		KiemTraPhimF5F6F7VaFocus(ref blnPressF5F6F7,KeyEventDownDonGia);
+		if(blnPressF5F6F7) {
+		  return;
+		}
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);

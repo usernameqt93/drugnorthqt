@@ -6,7 +6,6 @@
 			 xmlns:local="clr-namespace:PluginDnqt.Order.Views"
 			 xmlns:help="clr-namespace:QT.Framework.ToolCommon.Helpers;assembly=QT.Framework.ToolCommon"
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-			 xmlns:sys="clr-namespace:System;assembly=mscorlib"
 			 mc:Ignorable="d"
 			 d:DesignHeight="800"
 			 d:DesignWidth="1200"
@@ -68,9 +67,9 @@
 		  </Grid.ColumnDefinitions>
 
 		  <DockPanel Grid.Column="0"
-					 Width="250">
+					 Width="260">
 
-			<GroupBox Header="Thêm vị thuốc"
+			<GroupBox Header="Thêm vị thuốc(F5)"
 					  DockPanel.Dock="Top"
 					  Style="{DynamicResource InvicoGroupBoxStyle}">
 			  <StackPanel>
@@ -78,24 +77,21 @@
 				<GroupBox Header="Tên vị thuốc"
 						  Style="{DynamicResource InvicoGroupBoxStyle}">
 
-				  <!--<local:TextBoxWithHint x:Name="gridTxtUsername222"
-										 Height="30"
-										 StrHint="Nhập tên món ăn..." />-->
-
 				  <Grid>
 					<TextBox Style="{DynamicResource InvicoTextBoxStyle}"
 							 AcceptsReturn="False"
 							 x:Name="txtName"
-							 MaxLength="250"
+							 MaxLength="50"
 							 HorizontalAlignment="Stretch"
+							 HorizontalContentAlignment="Center"
 							 VerticalAlignment="Center"
 							 VerticalContentAlignment="Center"
 							 Height="30"
 							 PreviewKeyDown="txtName_PreviewKeyDown">
 
 					  <i:Interaction.Triggers>
-						<i:EventTrigger EventName="PreviewKeyUp">
-						  <i:InvokeCommandAction Command="{Binding DataContext.KeyUpChangeNameCommand, 
+						<i:EventTrigger EventName="PreviewKeyDown">
+						  <i:InvokeCommandAction Command="{Binding DataContext.KeyDownChangeNameCommand, 
                                             RelativeSource={RelativeSource AncestorType=TextBox}}"
 												 CommandParameter="{Binding ElementName=txtName}" />
 						</i:EventTrigger>
@@ -103,9 +99,9 @@
 
 					</TextBox>
 					<TextBlock IsHitTestVisible="False"
-							   Text="Nhập tên món ăn..."
+							   Text="Nhập tên vị thuốc..."
 							   VerticalAlignment="Center"
-							   HorizontalAlignment="Left"
+							   HorizontalAlignment="Center"
 							   Foreground="DarkGray"
 							   Margin="7,0,0,0">
 					  <TextBlock.Style>
@@ -126,42 +122,116 @@
 
 				</GroupBox>
 
-				<GroupBox Header="Số lượng muốn thêm vào đơn hàng"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
-
-				  <Grid>
-					<Grid.ColumnDefinitions>
-					  <ColumnDefinition />
-					  <ColumnDefinition Width="5" />
-					  <ColumnDefinition />
-					</Grid.ColumnDefinitions>
-
-					<local:TextBoxWithHint x:Name="gridTxtUsername2232"
-										   Grid.Column="0"
-										   Height="30"
-										   StrHint="Nhập số lượng..." />
-
-					<local:TextBoxWithHint x:Name="gridTxtUsername22232"
-										   Grid.Column="2"
-										   Height="30"
-										   StrHint="Nhập đơn vị..." />
-
-				  </Grid>
-
-				</GroupBox>
-
-				<GroupBox Header="Đơn giá"
+				<GroupBox Header="Số lượng muốn thêm vào đơn hàng(F6)"
 						  Style="{DynamicResource InvicoGroupBoxStyle}">
 
 				  <DockPanel>
 
 					<Label Style="{DynamicResource InvicoLabelModalStyle}"
+						   Width="{Binding ElementName=lblVnd,Path=ActualWidth}"
+						   Content="Kg"
+						   DockPanel.Dock="Right" />
+
+					<Grid>
+					  <help:NounicodeTextBox x:Name="txtSoLuong"
+											 StringFilter="^[0-9.]+$"
+											 MaxLength="10"
+											 Height="30"
+											 VerticalContentAlignment="Center"
+											 HorizontalContentAlignment="Center"
+											 Style="{StaticResource InvicoTextBoxStyle}"
+											 Text=""
+											 PreviewKeyDown="txtSoLuong_PreviewKeyDown">
+
+						<i:Interaction.Triggers>
+						  <i:EventTrigger EventName="PreviewKeyDown">
+							<i:InvokeCommandAction Command="{Binding DataContext.KeyDownChangeSoLuongCommand, 
+                                            RelativeSource={RelativeSource AncestorType=help:NounicodeTextBox}}"
+												   CommandParameter="{Binding ElementName=txtSoLuong}" />
+						  </i:EventTrigger>
+						</i:Interaction.Triggers>
+
+					  </help:NounicodeTextBox>
+
+					  <TextBlock IsHitTestVisible="False"
+								 Text="Nhập số lượng..."
+								 VerticalAlignment="Center"
+								 HorizontalAlignment="Center"
+								 Foreground="DarkGray"
+								 Margin="7,0,0,0">
+						<TextBlock.Style>
+						  <Style TargetType="{x:Type TextBlock}">
+							<Setter Property="Visibility"
+									Value="Collapsed" />
+							<Style.Triggers>
+							  <DataTrigger Binding="{Binding Text, ElementName=txtSoLuong}"
+										   Value="">
+								<Setter Property="Visibility"
+										Value="Visible" />
+							  </DataTrigger>
+							</Style.Triggers>
+						  </Style>
+						</TextBlock.Style>
+					  </TextBlock>
+					</Grid>
+					
+				  </DockPanel>
+
+				</GroupBox>
+
+				<GroupBox Header="Đơn giá(F7)(nhấn 'N' để thêm 3 số 0)"
+						  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+				  <DockPanel>
+
+					<Label Style="{DynamicResource InvicoLabelModalStyle}"
+						   x:Name="lblVnd"
 						   Content="vnđ"
 						   DockPanel.Dock="Right" />
 
-					<local:TextBoxWithHint x:Name="gridTxtUsername3222"
-										   Height="30"
-										   StrHint="100.000" />
+					<Grid>
+					  <help:NounicodeTextBox x:Name="txtDonGia"
+											 StringFilter="^[0-9]+$"
+											 MaxLength="10"
+											 Height="30"
+											 VerticalContentAlignment="Center"
+											 HorizontalContentAlignment="Center"
+											 Style="{StaticResource InvicoTextBoxStyle}"
+											 Text=""
+											 PreviewKeyDown="txtDonGia_PreviewKeyDown">
+
+						<i:Interaction.Triggers>
+						  <i:EventTrigger EventName="PreviewKeyDown">
+							<i:InvokeCommandAction Command="{Binding DataContext.KeyDownChangeDonGiaCommand, 
+                                            RelativeSource={RelativeSource AncestorType=help:NounicodeTextBox}}"
+												   CommandParameter="{Binding ElementName=txtDonGia}" />
+						  </i:EventTrigger>
+						</i:Interaction.Triggers>
+
+					  </help:NounicodeTextBox>
+
+					  <TextBlock IsHitTestVisible="False"
+								 Text="100.000"
+								 VerticalAlignment="Center"
+								 HorizontalAlignment="Center"
+								 Foreground="DarkGray"
+								 Margin="7,0,0,0">
+						<TextBlock.Style>
+						  <Style TargetType="{x:Type TextBlock}">
+							<Setter Property="Visibility"
+									Value="Collapsed" />
+							<Style.Triggers>
+							  <DataTrigger Binding="{Binding Text, ElementName=txtDonGia}"
+										   Value="">
+								<Setter Property="Visibility"
+										Value="Visible" />
+							  </DataTrigger>
+							</Style.Triggers>
+						  </Style>
+						</TextBlock.Style>
+					  </TextBlock>
+					</Grid>
+
 				  </DockPanel>
 
 				</GroupBox>
@@ -196,7 +266,7 @@
 						Height="30"
 						Width="190"
 						Content="Xem bản in hóa đơn này"
-						Command="{Binding ImportCommand}" />
+						Command="{Binding PrintOrderCommand}" />
 
 			  </StackPanel>
 			</GroupBox>
@@ -219,10 +289,6 @@
 						VerticalAlignment="Stretch"
 						ItemsSource="{Binding LstGridSuggest}"
 						SelectedItem="{Binding SelectedRowSuggest}">
-				<DataGrid.Resources>
-				  <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">7</sys:Double>
-				  <sys:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarHeightKey}">7</sys:Double>
-				</DataGrid.Resources>
 
 				<DataGrid.Columns>
 				  <DataGridTemplateColumn Header="STT"
