@@ -67,7 +67,7 @@ namespace PluginDnqt.Order.ViewModels {
 
 
 
-	#region DataGrid Suggest
+	#region DataGrid Suggest Name Product
 
 	private ModelRowGoiYNameProduct _selectedRowSuggest;
 
@@ -81,6 +81,24 @@ namespace PluginDnqt.Order.ViewModels {
 
 	public ICollectionView LstGridSuggest {
 	  get { return this.SuggestCollection.View; }
+	}
+
+	#endregion
+
+	#region DataGrid Suggest DonGia
+
+	private ModelRowDonGia _selectedRowDonGia;
+
+	public ModelRowDonGia SelectedRowDonGia {
+	  get { return this._selectedRowDonGia; }
+	  set { _selectedRowDonGia=value; OnPropertyChanged(nameof(SelectedRowDonGia)); }
+	}
+
+	private ObservableCollection<ModelRowDonGia> _lstGridDonGia = new ObservableCollection<ModelRowDonGia>();
+	private CollectionViewSource DonGiaCollection = new CollectionViewSource();
+
+	public ICollectionView LstGridDonGia {
+	  get { return this.DonGiaCollection.View; }
 	}
 
 	#endregion
@@ -113,6 +131,7 @@ namespace PluginDnqt.Order.ViewModels {
 	  _mainUserControl=_viewMain;
 	  MainCollection.Source=_lstGridMain;
 	  SuggestCollection.Source=_lstGridSuggest;
+	  DonGiaCollection.Source=_lstGridDonGia;
 
 	  DicDataInPreviousUC=objInput as Dictionary<string,object>;
 	  ExcuteInOtherUserControl=(DELEGATE_VOID_IN_OTHER_USERCONTROL)DicDataInPreviousUC["DELEGATE_VOID_IN_OTHER_USERCONTROL"];
@@ -279,7 +298,10 @@ namespace PluginDnqt.Order.ViewModels {
 
 	private void HienThiNameProductTheoRowGoiY() {
 	  try {
-		_mainUserControl.lblNameProduct.Content=SelectedRowSuggest.StrName;
+		string strName = SelectedRowSuggest.StrName;
+		_mainUserControl.lblNameProduct.Content=strName;
+		_mainUserControl.lblNameProduct.Tag=SelectedRowSuggest.StrId;
+		_mainUserControl.lblNameProduct.ToolTip=strName+" "+SelectedRowSuggest.StrId;
 
 		if(SelectedRowSuggest.DoubleWidthHeightIconOk==0) {
 		  _mainUserControl.lblNameOkIcon.Visibility=Visibility.Collapsed;
@@ -599,6 +621,35 @@ namespace PluginDnqt.Order.ViewModels {
 	public ICommand CloseSuggestNameProductCommand => new DelegateCommand(p => {
 	  try {
 		ChangeFocusToTextBoxSoLuong();
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand HienThiDonGiaDaSuDungCommand => new DelegateCommand(p => {
+	  try {
+		if(_mainUserControl.chkHienThiListDonGia.IsChecked!=true) {
+		  return;
+		}
+
+		object objTemp = _mainUserControl.lblNameProduct.Tag;
+		if(objTemp==null) {
+		  return;
+		}
+
+		string strId = objTemp.ToString();
+		if(strId=="") {
+		  return;
+		}
+
+		_bllPlugin.LoadGridDonGiaByIdProduct(ref _lstGridDonGia,strId);
+
+		if(_lstGridDonGia.Count>0) {
+		  SelectedRowDonGia=_lstGridDonGia[_lstGridDonGia.Count-1];
+		  _mainUserControl.dgvDonGia.ScrollIntoView(SelectedRowDonGia);
+		}
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);

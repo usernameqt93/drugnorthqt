@@ -67,18 +67,36 @@
 		  </Grid.ColumnDefinitions>
 
 		  <DockPanel Grid.Column="0"
-					 Width="260">
+					 Width="270">
 
-			<GroupBox Header="Thêm vị thuốc"
-					  DockPanel.Dock="Top"
+			<GroupBox Header="Tổng giá đơn hàng hiện tại"
+					  DockPanel.Dock="Bottom"
 					  Style="{DynamicResource InvicoGroupBoxStyle}">
 			  <StackPanel>
 
+				<Label Style="{DynamicResource InvicoLabelModalStyle}"
+					   Content="0 đ"
+					   HorizontalAlignment="Center" />
+
+				<Button Style="{DynamicResource InvicoButtonStyle}"
+						Height="30"
+						Width="190"
+						Content="Xem bản in hóa đơn này"
+						Command="{Binding PrintOrderCommand}" />
+
+			  </StackPanel>
+			</GroupBox>
+
+			<GroupBox Header="Thêm vị thuốc"
+					  Style="{DynamicResource InvicoGroupBoxStyle}">
+			  <DockPanel>
+
 				<GroupBox Header="Tên vị thuốc(F5)"
+						  DockPanel.Dock="Top"
 						  Style="{DynamicResource InvicoGroupBoxStyle}">
 
 				  <StackPanel>
-					
+
 					<DockPanel>
 
 					  <Grid>
@@ -331,6 +349,15 @@
 
 					</GroupBox>
 
+					<CheckBox Cursor="Hand"
+							  x:Name="chkHienThiListDonGia"
+							  Style="{DynamicResource InvicoSliderCheckBoxStyle}"
+							  Content="Hiển thị những đơn giá đã sử dụng"
+							  HorizontalAlignment="Center"
+							  VerticalAlignment="Center"
+							  Command="{Binding HienThiDonGiaDaSuDungCommand}"
+							  Margin="0,5" />
+
 					<Grid>
 					  <GroupBox Header="Thành tiền"
 								Style="{DynamicResource InvicoGroupBoxStyle}">
@@ -438,7 +465,8 @@
 								  <TextBlock Margin="3,0"
 											 VerticalAlignment="Center"
 											 HorizontalAlignment="Center"
-											 Text="{Binding Stt}" />
+											 Text="{Binding Stt}"
+											 ToolTip="{Binding StrId}" />
 								</DataTemplate>
 							  </DataGridTemplateColumn.CellTemplate>
 							</DataGridTemplateColumn>
@@ -519,35 +547,119 @@
 
 				</Grid>
 
-			  </StackPanel>
+			  </DockPanel>
 			</GroupBox>
-
-			<GroupBox Header="Tổng giá đơn hàng hiện tại"
-					  DockPanel.Dock="Bottom"
-					  Style="{DynamicResource InvicoGroupBoxStyle}">
-			  <StackPanel>
-
-				<Label Style="{DynamicResource InvicoLabelModalStyle}"
-					   Content="0 đ"
-					   HorizontalAlignment="Center" />
-
-				<Button Style="{DynamicResource InvicoButtonStyle}"
-						Height="30"
-						Width="190"
-						Content="Xem bản in hóa đơn này"
-						Command="{Binding PrintOrderCommand}" />
-
-			  </StackPanel>
-			</GroupBox>
-
-			<Grid>
-
-			</Grid>
 
 		  </DockPanel>
 
 		  <DockPanel Grid.Column="1">
 
+			<GroupBox Header="Danh sách đơn giá"
+					  DockPanel.Dock="Left"
+					  Width="230"
+					  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+			  <DockPanel>
+
+				<DataGrid Style="{DynamicResource InvicoDataGridStyle}"
+						  x:Name="dgvDonGia"
+						  ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
+						  VerticalAlignment="Stretch"
+						  CanUserResizeRows="True"
+						  ItemsSource="{Binding LstGridDonGia}"
+						  SelectedItem="{Binding SelectedRowDonGia}">
+
+				  <DataGrid.Columns>
+					<DataGridTemplateColumn Header="STT"
+											Width="40">
+					  <DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+						  <TextBlock Margin="3,0"
+									 VerticalAlignment="Center"
+									 HorizontalAlignment="Center"
+									 Text="{Binding Stt}"
+									 ToolTip="{Binding StrId}" />
+						</DataTemplate>
+					  </DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+
+					<DataGridTemplateColumn Header=" Đơn giá theo thời gian "
+											Width="1*">
+					  <DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+						  <StackPanel HorizontalAlignment="Left"
+									  Margin="3">
+
+							<StackPanel Orientation="Horizontal">
+							  <TextBlock VerticalAlignment="Center"
+										 Text="{Binding StrDTimeViet}" />
+							</StackPanel>
+
+							<StackPanel Orientation="Horizontal">
+							  <TextBlock VerticalAlignment="Center"
+										 Text="{Binding StrNameKH}" />
+							</StackPanel>
+
+							<StackPanel Orientation="Horizontal">
+							  <TextBlock VerticalAlignment="Center"
+										 Text="{Binding StrDonGia}" />
+
+							  <TextBlock VerticalAlignment="Center"
+										 Text=" - " />
+
+							  <TextBlock VerticalAlignment="Center"
+										 Text="{Binding StrSumKg}" />
+
+							  <TextBlock VerticalAlignment="Center"
+										 Text=" " />
+
+							  <TextBlock VerticalAlignment="Center"
+										 Text="{Binding StrDonVi}" />
+							</StackPanel>
+
+						  </StackPanel>
+						</DataTemplate>
+					  </DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+
+				  </DataGrid.Columns>
+
+				  <DataGrid.CellStyle>
+					<Style TargetType="{x:Type DataGridCell}">
+					  <Style.Triggers>
+						<Trigger Property="DataGridCell.IsSelected"
+								 Value="True">
+						  <Setter Property="Foreground"
+								  Value="Black" />
+						  <Setter Property="Background"
+								  Value="LightGray" />
+						  <Setter Property="BorderBrush"
+								  Value="Transparent" />
+						</Trigger>
+						<Trigger Property="IsMouseOver"
+								 Value="True">
+						</Trigger>
+					  </Style.Triggers>
+					  <Setter Property="FontWeight"
+							  Value="Normal" />
+					  <Setter Property="FontSize"
+							  Value="13" />
+					  <Setter Property="Height"
+							  Value="auto" />
+					  <Setter Property="VerticalContentAlignment"
+							  Value="Center" />
+					  <Setter Property="TextBox.VerticalAlignment"
+							  Value="Stretch" />
+					  <Setter Property="TextBox.VerticalContentAlignment"
+							  Value="Center" />
+					</Style>
+				  </DataGrid.CellStyle>
+
+				</DataGrid>
+			  </DockPanel>
+
+			</GroupBox>
+			
 			<Grid>
 			  <GroupBox Header="Chi tiết hóa đơn"
 						x:Name="grbMain"

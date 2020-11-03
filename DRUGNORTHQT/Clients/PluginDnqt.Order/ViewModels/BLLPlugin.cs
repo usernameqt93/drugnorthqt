@@ -1,4 +1,5 @@
 ﻿using DNQTConstTable.ListTableDatabase;
+using DNQTDataAccessLayer.DALNew;
 using PluginDnqt.Order.Models;
 using QT.Framework.LoadingPopup.View;
 using QT.Framework.ToolCommon;
@@ -13,6 +14,8 @@ using System.Windows.Controls;
 
 namespace PluginDnqt.Order.ViewModels {
   class BLLPlugin {
+
+	private DAL_Product DALProduct = new DAL_Product();
 
 	private DateTime DTimeMacDinh = new DateTime(1993,11,13);
 
@@ -271,10 +274,13 @@ namespace PluginDnqt.Order.ViewModels {
 	  ,DataTable dtInput,string strTextFilter) {
 	  lstGridMain.Clear();
 
+	  var lstStringId = new List<string>();
 	  var lstTemp = new List<string>();
 	  foreach(DataRow dRow in dtInput.Rows) {
 		string item = dRow[Table_BangViThuoc.Col_TenViThuoc.NAME].ToString();
 		lstTemp.Add(item);
+		string strId = dRow[Table_BangViThuoc.Col_MaViThuoc.NAME].ToString();
+		lstStringId.Add(strId);
 	  }
 
 	  int intIndexIncrease = 0;
@@ -292,6 +298,8 @@ namespace PluginDnqt.Order.ViewModels {
 		var mitem = new ModelRowGoiYNameProduct();
 		mitem.Stt=++intIndexIncrease;
 
+		mitem.StrId="";
+
 		mitem.DoubleWidthHeightIconAlert=0;
 		mitem.DoubleWidthHeightIconOk=0;
 
@@ -304,13 +312,17 @@ namespace PluginDnqt.Order.ViewModels {
 		lstGridMain.Add(mitem);
 	  }
 
+	  int intIndexListTemp = -1;
 	  foreach(var item in lstTemp) {
+		intIndexListTemp++;
 		if(!item.ToLower().Contains(strTextFilter.ToLower())) {
 		  continue;
 		}
 
 		var mitem = new ModelRowGoiYNameProduct();
 		mitem.Stt=++intIndexIncrease;
+
+		mitem.StrId=lstStringId[intIndexListTemp];
 
 		mitem.DoubleWidthHeightIconAlert=0;
 		mitem.DoubleWidthHeightIconOk=0;
@@ -343,6 +355,79 @@ namespace PluginDnqt.Order.ViewModels {
 	  }
 
 	  lblOutput.Content=""+string.Format("{0:0.####}",decInput);
+	}
+
+	internal void LoadGridDonGiaByIdProduct(ref ObservableCollection<ModelRowDonGia> lstGridMain
+	  ,string strId) {
+	  lstGridMain.Clear();
+
+	  var lstStringId = new List<string>();
+	  lstStringId.Add(strId);
+
+	  Exception exOutput = null;
+	  DataTable dtOutput = null;
+	  DALProduct.GetDTListDonGiaByListIdProduct(ref dtOutput,ref exOutput,lstStringId);
+	  if(exOutput!=null) {
+		throw exOutput;
+	  }
+	  if(dtOutput==null) {
+		return;
+	  }
+
+	  int intIndexIncrease = 0;
+	  foreach(DataRow dRow in dtOutput.Rows) {
+		var mitem = new ModelRowDonGia();
+		mitem.Stt=++intIndexIncrease;
+
+		mitem.StrId=""+dRow[Table_BangDanhSachDonHang.Col_MaDonHang.NAME].ToString().Trim();
+		mitem.StrNameKH=""+dRow[Table_BangKhachHang.Col_TenKhachHang.NAME].ToString().Trim();
+		mitem.StrDonVi=""+dRow[Table_BangGiaViThuoc.Col_DonViGiaThuoc.NAME].ToString().Trim();
+
+		{
+		  string strTemp = "Định dạng TG False";
+		  DateTime objTemp = CVPConstValuePlugin.DTimeMacDinh;
+		  try {
+			objTemp=Convert.ToDateTime(dRow[Table_BangDanhSachDonHang.Col_ThoiGianVietDonHangNay.NAME]);
+			strTemp=objTemp.ToString("yyyy-MM-dd HH:mm:ss");
+		  } catch(Exception e) {
+			string str = e.Message;
+		  }
+		  mitem.DTimeViet=objTemp;
+		  mitem.StrDTimeViet=strTemp;
+		}
+
+		{
+		  string strTemp = "Định dạng Float False";
+		  float objTemp = 0;
+		  try {
+			objTemp=Convert.ToSingle(dRow[Table_BangChiTietDonHang.Col_SoLuongViThuoc.NAME]);
+			//strTemp=string.Format("{0:N3}",objTemp);
+			strTemp=string.Format("{0:0.###}",objTemp);
+		  } catch(Exception e) {
+			string str = e.Message;
+		  }
+		  mitem.FloatSumKg=objTemp;
+		  mitem.StrSumKg=strTemp;
+		}
+
+		{
+		  string strTemp = "Định dạng Decimal False";
+		  decimal objTemp = 0;
+		  try {
+			objTemp=Convert.ToDecimal(dRow[Table_BangGiaViThuoc.Col_GiaViThuoc.NAME]);
+			//strTemp=string.Format("{0:N3}",objTemp);
+			strTemp=string.Format("{0:0,0}",objTemp)+" đ";
+			//strTemp=double.Parse(objTemp.ToString()).ToString("#,###",CultureInfo.GetCultureInfo("vi-VN"))+" vnđ";
+		  } catch(Exception e) {
+			string str = e.Message;
+		  }
+		  mitem.DecimalDonGia=objTemp;
+		  mitem.StrDonGia=strTemp;
+		}
+
+		mitem.Selected=false;
+		lstGridMain.Add(mitem);
+	  }
 	}
 
 	#endregion
