@@ -210,24 +210,66 @@ namespace PluginDnqt.Order.ViewModels {
 	private void KiemTraPhimF5F6F7VaFocus(ref bool blnPressF5F6F7,KeyEventArgs keyEventDown) {
 	  try {
 		if(keyEventDown.Key==Key.F5) {
-		  _mainUserControl.txtName.Focus();
-		  _mainUserControl.txtName.SelectAll();
+		  ChangeFocusToTextBoxNameProduct();
 		  return;
 		}
 
 		if(keyEventDown.Key==Key.F6) {
-		  _mainUserControl.txtSoLuong.Focus();
-		  _mainUserControl.txtSoLuong.SelectAll();
+		  ChangeFocusToTextBoxSoLuong();
 		  return;
 		}
 
 		if(keyEventDown.Key==Key.F7) {
-		  _mainUserControl.txtDonGia.Focus();
-		  _mainUserControl.txtDonGia.SelectAll();
+		  ChangeFocusToTextBoxDonGia();
 		  return;
 		}
 
 		blnPressF5F6F7=false;
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	}
+
+	private void ChangeFocusToTextBoxDonGia() {
+	  try {
+		_mainUserControl.txtDonGia.Focus();
+		_mainUserControl.txtDonGia.SelectAll();
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	}
+
+	private void ChangeFocusToTextBoxSoLuong() {
+	  try {
+		_mainUserControl.txtSoLuong.Focus();
+		_mainUserControl.txtSoLuong.SelectAll();
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	}
+
+	private void ChangeFocusToTextBoxNameProduct() {
+	  try {
+		_mainUserControl.txtName.Focus();
+		_mainUserControl.txtName.SelectAll();
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	}
+
+	private void SelectAndScrollGridSuggestNameProductByIndex(int intIndex) {
+	  try {
+		SelectedRowSuggest=_lstGridSuggest[intIndex];
+		_mainUserControl.dgvGoiYNameProduct.ScrollIntoView(SelectedRowSuggest);
+		HienThiNameProductTheoRowGoiY();
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
@@ -354,7 +396,7 @@ namespace PluginDnqt.Order.ViewModels {
 
 		  HienThiNameProductTheoRowGoiY();
 
-		  _mainUserControl.txtSoLuong.Focus();
+		  ChangeFocusToTextBoxSoLuong();
 		  return;
 		}
 
@@ -364,9 +406,7 @@ namespace PluginDnqt.Order.ViewModels {
 		  }
 
 		  if(SelectedRowSuggest.Stt<_lstGridSuggest.Count) {
-			int intSTTTemp = SelectedRowSuggest.Stt;
-			SelectedRowSuggest=_lstGridSuggest[intSTTTemp];
-			HienThiNameProductTheoRowGoiY();
+			SelectAndScrollGridSuggestNameProductByIndex(SelectedRowSuggest.Stt);
 		  }
 
 		  return;
@@ -378,9 +418,7 @@ namespace PluginDnqt.Order.ViewModels {
 		  }
 
 		  if(SelectedRowSuggest.Stt>1) {
-			int intSTTTemp = SelectedRowSuggest.Stt-2;
-			SelectedRowSuggest=_lstGridSuggest[intSTTTemp];
-			HienThiNameProductTheoRowGoiY();
+			SelectAndScrollGridSuggestNameProductByIndex(SelectedRowSuggest.Stt-2);
 		  }
 
 		  return;
@@ -436,7 +474,7 @@ namespace PluginDnqt.Order.ViewModels {
 			return;
 		  }
 
-		  _mainUserControl.txtDonGia.Focus();
+		  ChangeFocusToTextBoxDonGia();
 		  return;
 		}
 
@@ -454,8 +492,10 @@ namespace PluginDnqt.Order.ViewModels {
 			string str = e.Message;
 		  }
 
-		  _mainUserControl.lblSoLuong.Content=""+string.Format("{0:0.####}",objTemp);
+		  _bllPlugin.HienThiLabelSoLuongByDecimal(ref _mainUserControl.lblSoLuong,objTemp);
 		}
+
+		ThanhTienPreviewMouseMoveCommand.Execute(null);
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
@@ -476,7 +516,6 @@ namespace PluginDnqt.Order.ViewModels {
 
 		string strText = _mainUserControl.txtDonGia.Text.Trim();
 		if(KeyEventDownDonGia.Key==Key.Enter||KeyEventDownDonGia.Key==Key.N) {
-		  //_mainUserControl.txtDonGia.Text=strText;
 
 		  decimal objTemp = 0;
 		  try {
@@ -492,6 +531,8 @@ namespace PluginDnqt.Order.ViewModels {
 			_mainUserControl.txtDonGia.Text=(objTemp*1000).ToString();
 
 			_bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblDonGia,objTemp*1000);
+
+			ThanhTienPreviewMouseMoveCommand.Execute(null);
 
 			_mainUserControl.txtDonGia.SelectAll();
 			return;
@@ -516,6 +557,48 @@ namespace PluginDnqt.Order.ViewModels {
 		  _bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblDonGia,objTemp);
 
 		}
+
+		ThanhTienPreviewMouseMoveCommand.Execute(null);
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand ThanhTienPreviewMouseMoveCommand => new DelegateCommand(p => {
+	  try {
+		decimal decSoLuong = 0;
+		if(_mainUserControl.lblSoLuong.Tag!=null) {
+		  try {
+			decSoLuong=(decimal)_mainUserControl.lblSoLuong.Tag;
+		  } catch(Exception e) {
+			string str = e.Message;
+		  }
+		}
+
+		decimal decDonGia = 0;
+		if(_mainUserControl.lblDonGia.Tag!=null) {
+		  try {
+			decDonGia=(decimal)_mainUserControl.lblDonGia.Tag;
+		  } catch(Exception e) {
+			string str = e.Message;
+		  }
+		}
+
+		_bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblThanhTien,decSoLuong*decDonGia);
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand CloseSuggestNameProductCommand => new DelegateCommand(p => {
+	  try {
+		ChangeFocusToTextBoxSoLuong();
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);

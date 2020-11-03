@@ -191,155 +191,333 @@
 
 				</GroupBox>
 
-				<GroupBox Header="Số lượng muốn thêm vào đơn hàng(F6)"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
+				<Grid>
 
-				  <StackPanel>
-					
-					<DockPanel>
+				  <StackPanel x:Name="stackPanelConLai">
+					<GroupBox Header="Số lượng muốn thêm vào đơn hàng(F6)"
+							  Margin="0,10,0,0"
+							  Style="{DynamicResource InvicoGroupBoxStyle}">
 
-					  <Grid>
-						<help:NounicodeTextBox x:Name="txtSoLuong"
-											   StringFilter="^[0-9.]+$"
-											   MaxLength="10"
-											   Height="30"
-											   VerticalContentAlignment="Center"
-											   HorizontalContentAlignment="Center"
-											   Style="{StaticResource InvicoTextBoxStyle}"
-											   Text=""
-											   PreviewKeyDown="txtSoLuong_PreviewKeyDown">
+					  <StackPanel>
 
-						  <i:Interaction.Triggers>
-							<i:EventTrigger EventName="PreviewKeyUp">
-							  <i:InvokeCommandAction Command="{Binding DataContext.KeyUpChangeSoLuongCommand, 
+						<DockPanel>
+
+						  <Grid>
+							<help:NounicodeTextBox x:Name="txtSoLuong"
+												   StringFilter="^[0-9.]+$"
+												   MaxLength="10"
+												   Height="30"
+												   VerticalContentAlignment="Center"
+												   HorizontalContentAlignment="Center"
+												   Style="{StaticResource InvicoTextBoxStyle}"
+												   Text=""
+												   PreviewKeyDown="txtSoLuong_PreviewKeyDown">
+
+							  <i:Interaction.Triggers>
+								<i:EventTrigger EventName="PreviewKeyUp">
+								  <i:InvokeCommandAction Command="{Binding DataContext.KeyUpChangeSoLuongCommand, 
                                             RelativeSource={RelativeSource AncestorType=help:NounicodeTextBox}}"
-													 CommandParameter="{Binding ElementName=txtSoLuong}" />
-							</i:EventTrigger>
-						  </i:Interaction.Triggers>
+														 CommandParameter="{Binding ElementName=txtSoLuong}" />
+								</i:EventTrigger>
+							  </i:Interaction.Triggers>
 
-						</help:NounicodeTextBox>
+							</help:NounicodeTextBox>
 
-						<TextBlock IsHitTestVisible="False"
-								   Text="Nhập số lượng..."
-								   VerticalAlignment="Center"
-								   HorizontalAlignment="Center"
-								   Foreground="DarkGray"
-								   Margin="7,0,0,0">
-						  <TextBlock.Style>
-							<Style TargetType="{x:Type TextBlock}">
-							  <Setter Property="Visibility"
-									  Value="Collapsed" />
-							  <Style.Triggers>
-								<DataTrigger Binding="{Binding Text, ElementName=txtSoLuong}"
-											 Value="">
+							<TextBlock IsHitTestVisible="False"
+									   Text="Nhập số lượng..."
+									   VerticalAlignment="Center"
+									   HorizontalAlignment="Center"
+									   Foreground="DarkGray"
+									   Margin="7,0,0,0">
+							  <TextBlock.Style>
+								<Style TargetType="{x:Type TextBlock}">
 								  <Setter Property="Visibility"
-										  Value="Visible" />
-								</DataTrigger>
-							  </Style.Triggers>
-							</Style>
-						  </TextBlock.Style>
-						</TextBlock>
+										  Value="Collapsed" />
+								  <Style.Triggers>
+									<DataTrigger Binding="{Binding Text, ElementName=txtSoLuong}"
+												 Value="">
+									  <Setter Property="Visibility"
+											  Value="Visible" />
+									</DataTrigger>
+								  </Style.Triggers>
+								</Style>
+							  </TextBlock.Style>
+							</TextBlock>
+						  </Grid>
+
+						</DockPanel>
+
+						<StackPanel Orientation="Horizontal"
+									HorizontalAlignment="Center">
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 x:Name="lblSoLuong"
+								 Content="0" />
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 Content="Kg" />
+
+						</StackPanel>
+
+					  </StackPanel>
+
+					</GroupBox>
+
+					<GroupBox Header="Đơn giá(F7)(nhấn 'N' để thêm 3 số 0)"
+							  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+					  <StackPanel>
+
+						<DockPanel>
+
+						  <Grid>
+							<help:NounicodeTextBox x:Name="txtDonGia"
+												   StringFilter="^[0-9]+$"
+												   MaxLength="10"
+												   Height="30"
+												   VerticalContentAlignment="Center"
+												   HorizontalContentAlignment="Center"
+												   Style="{StaticResource InvicoTextBoxStyle}"
+												   Text=""
+												   PreviewKeyDown="txtDonGia_PreviewKeyDown">
+
+							  <i:Interaction.Triggers>
+								<i:EventTrigger EventName="PreviewKeyUp">
+								  <i:InvokeCommandAction Command="{Binding DataContext.KeyUpChangeDonGiaCommand, 
+                                            RelativeSource={RelativeSource AncestorType=help:NounicodeTextBox}}"
+														 CommandParameter="{Binding ElementName=txtDonGia}" />
+								</i:EventTrigger>
+							  </i:Interaction.Triggers>
+
+							</help:NounicodeTextBox>
+
+							<TextBlock IsHitTestVisible="False"
+									   Text="Nhập đơn giá..."
+									   VerticalAlignment="Center"
+									   HorizontalAlignment="Center"
+									   Foreground="DarkGray"
+									   Margin="7,0,0,0">
+							  <TextBlock.Style>
+								<Style TargetType="{x:Type TextBlock}">
+								  <Setter Property="Visibility"
+										  Value="Collapsed" />
+								  <Style.Triggers>
+									<DataTrigger Binding="{Binding Text, ElementName=txtDonGia}"
+												 Value="">
+									  <Setter Property="Visibility"
+											  Value="Visible" />
+									</DataTrigger>
+								  </Style.Triggers>
+								</Style>
+							  </TextBlock.Style>
+							</TextBlock>
+						  </Grid>
+
+						</DockPanel>
+
+						<StackPanel Orientation="Horizontal"
+									HorizontalAlignment="Center">
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 x:Name="lblDonGia"
+								 Content="0" />
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 Content="vnđ" />
+
+						</StackPanel>
+
+					  </StackPanel>
+
+					</GroupBox>
+
+					<Grid>
+					  <GroupBox Header="Thành tiền"
+								Style="{DynamicResource InvicoGroupBoxStyle}">
+
+						<StackPanel>
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 Content="{Binding ElementName=lblNameProduct,Path=Content}" />
+
+						  <StackPanel Orientation="Horizontal">
+							<Label Style="{DynamicResource InvicoLabelModalStyle}"
+								   Content="{Binding ElementName=lblSoLuong,Path=Content}" />
+
+							<Label Style="{DynamicResource InvicoLabelModalStyle}"
+								   Content="(Kg)" />
+
+							<Label Style="{DynamicResource InvicoLabelModalStyle}"
+								   Content="x" />
+
+							<Label Style="{DynamicResource InvicoLabelModalStyle}"
+								   Content="{Binding ElementName=lblDonGia,Path=Content}" />
+
+							<Label Style="{DynamicResource InvicoLabelModalStyle}"
+								   Content="(đ)" />
+
+						  </StackPanel>
+
+						  <StackPanel Orientation="Horizontal">
+							<Label Style="{DynamicResource InvicoLabelModalStyle}"
+								   Content="=" />
+
+							<Label Style="{DynamicResource InvicoLabelModalStyle}"
+								   x:Name="lblThanhTien"
+								   Content="0" />
+
+							<Label Style="{DynamicResource InvicoLabelModalStyle}"
+								   Content="đ" />
+						  </StackPanel>
+
+						</StackPanel>
+
+					  </GroupBox>
+
+					  <Grid Background="Transparent">
+
+						<i:Interaction.Triggers>
+						  <i:EventTrigger EventName="PreviewMouseMove">
+							<i:InvokeCommandAction Command="{Binding ThanhTienPreviewMouseMoveCommand}" />
+						  </i:EventTrigger>
+						</i:Interaction.Triggers>
+
 					  </Grid>
+					</Grid>
 
-					</DockPanel>
-
-					<StackPanel Orientation="Horizontal"
-								HorizontalAlignment="Center">
-
-					  <Label Style="{DynamicResource InvicoLabelModalStyle}"
-							 x:Name="lblSoLuong"
-							 Content="..." />
-
-					  <Label Style="{DynamicResource InvicoLabelModalStyle}"
-							 Content="Kg"/>
-
-					</StackPanel>
-					
+					<Button Style="{DynamicResource InvicoButtonStyle}"
+							Margin="0,5"
+							Height="30"
+							Content="Thêm vào đơn hàng"
+							Command="{Binding ImportCommand}" />
 				  </StackPanel>
 
-				</GroupBox>
+				  <Grid>
 
-				<GroupBox Header="Đơn giá(F7)(nhấn 'N' để thêm 3 số 0)"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
+					<Grid.Style>
+					  <Style TargetType="Grid">
+						<Setter Property="Visibility"
+								Value="Collapsed" />
+						<Style.Triggers>
+						  <DataTrigger Binding="{Binding ElementName=txtName,Path=IsFocused}"
+									   Value="True">
+							<Setter Property="Visibility"
+									Value="Visible" />
+						  </DataTrigger>
+						</Style.Triggers>
+					  </Style>
+					</Grid.Style>
 
-				  <StackPanel>
-					
-					<DockPanel>
+					<GroupBox Header="Danh sách gợi ý"
+							  Height="{Binding ElementName=stackPanelConLai,Path=ActualHeight}"
+							  Style="{DynamicResource InvicoGroupBoxStyle}">
 
-					  <Grid>
-						<help:NounicodeTextBox x:Name="txtDonGia"
-											   StringFilter="^[0-9]+$"
-											   MaxLength="10"
-											   Height="30"
-											   VerticalContentAlignment="Center"
-											   HorizontalContentAlignment="Center"
-											   Style="{StaticResource InvicoTextBoxStyle}"
-											   Text=""
-											   PreviewKeyDown="txtDonGia_PreviewKeyDown">
+					  <DockPanel>
 
-						  <i:Interaction.Triggers>
-							<i:EventTrigger EventName="PreviewKeyUp">
-							  <i:InvokeCommandAction Command="{Binding DataContext.KeyUpChangeDonGiaCommand, 
-                                            RelativeSource={RelativeSource AncestorType=help:NounicodeTextBox}}"
-													 CommandParameter="{Binding ElementName=txtDonGia}" />
-							</i:EventTrigger>
-						  </i:Interaction.Triggers>
+						<Button Style="{DynamicResource InvicoButtonStyle}"
+								DockPanel.Dock="Top"
+								HorizontalAlignment="Right"
+								Margin="0,5"
+								Width="120"
+								Height="30"
+								Content="Đóng gợi ý"
+								Command="{Binding CloseSuggestNameProductCommand}" />
 
-						</help:NounicodeTextBox>
+						<DataGrid Style="{DynamicResource InvicoDataGridStyle}"
+								  ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
+								  VerticalAlignment="Stretch"
+								  x:Name="dgvGoiYNameProduct"
+								  ItemsSource="{Binding LstGridSuggest}"
+								  SelectedItem="{Binding SelectedRowSuggest}">
 
-						<TextBlock IsHitTestVisible="False"
-								   Text="Nhập đơn giá..."
-								   VerticalAlignment="Center"
-								   HorizontalAlignment="Center"
-								   Foreground="DarkGray"
-								   Margin="7,0,0,0">
-						  <TextBlock.Style>
-							<Style TargetType="{x:Type TextBlock}">
-							  <Setter Property="Visibility"
-									  Value="Collapsed" />
-							  <Style.Triggers>
-								<DataTrigger Binding="{Binding Text, ElementName=txtDonGia}"
-											 Value="">
-								  <Setter Property="Visibility"
-										  Value="Visible" />
-								</DataTrigger>
-							  </Style.Triggers>
-							</Style>
-						  </TextBlock.Style>
-						</TextBlock>
-					  </Grid>
+						  <DataGrid.Columns>
+							<DataGridTemplateColumn Header="STT"
+													Width="40">
+							  <DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+								  <TextBlock Margin="3,0"
+											 VerticalAlignment="Center"
+											 HorizontalAlignment="Center"
+											 Text="{Binding Stt}" />
+								</DataTemplate>
+							  </DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
 
-					</DockPanel>
+							<DataGridTemplateColumn Header=" Ký tự "
+													Width="1*">
+							  <DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+								  <Grid>
+									<Grid.ColumnDefinitions>
+									  <ColumnDefinition />
+									  <ColumnDefinition Width="auto" />
+									</Grid.ColumnDefinitions>
 
-					<StackPanel Orientation="Horizontal"
-								HorizontalAlignment="Center">
+									<TextBlock TextAlignment="Left"
+											   Grid.Column="0"
+											   TextTrimming="CharacterEllipsis"
+											   VerticalAlignment="Center"
+											   Margin="2,0"
+											   Text="{Binding StrName}"
+											   ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
 
-					  <Label Style="{DynamicResource InvicoLabelModalStyle}"
-							 x:Name="lblDonGia"
-							 Content="..." />
+									<Grid Grid.Column="1"
+										  Margin="3,0">
 
-					  <Label Style="{DynamicResource InvicoLabelModalStyle}"
-							 Content="vnđ" />
+									  <i:Interaction.Triggers>
+										<i:EventTrigger EventName="MouseLeftButtonUp">
+										  <i:InvokeCommandAction Command="{Binding DataContext.QuickEditQuestionCommand, 
+                                            RelativeSource={RelativeSource AncestorType=DataGrid}}"
+																 CommandParameter="{Binding}" />
+										</i:EventTrigger>
+									  </i:Interaction.Triggers>
 
-					</StackPanel>
-					
-				  </StackPanel>
+									  <Rectangle Fill="Transparent" />
 
-				</GroupBox>
+									  <StackPanel Orientation="Horizontal">
 
-				<GroupBox Header="Thành tiền"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
+										<Label Template="{StaticResource CheckOkIcon}"
+											   Width="{Binding DoubleWidthHeightIconOk}"
+											   Height="{Binding DoubleWidthHeightIconOk}"
+											   VerticalAlignment="Center">
+										  <Label.ToolTip>
+											<StackPanel>
+											  <TextBlock Text="Tên vị thuốc này đã có trong danh sách" />
+											  <TextBlock Text="" />
+											</StackPanel>
+										  </Label.ToolTip>
+										</Label>
 
-				  <Label Style="{DynamicResource InvicoLabelModalStyle}"
-						 Content="= 200,000 đ" />
+										<Label Template="{StaticResource AlertIcon}"
+											   Width="{Binding DoubleWidthHeightIconAlert}"
+											   Height="{Binding DoubleWidthHeightIconAlert}"
+											   VerticalAlignment="Center">
+										  <Label.ToolTip>
+											<StackPanel>
+											  <TextBlock Text="Tên vị thuốc này chưa có trong danh sách" />
+											  <TextBlock Text="(Nếu bạn thêm tên vị thuốc này vào đơn hàng:" />
+											  <TextBlock Text="Tên vị thuốc này sẽ được lưu lại để gợi ý lần sau)" />
+											</StackPanel>
+										  </Label.ToolTip>
+										</Label>
 
-				</GroupBox>
+									  </StackPanel>
 
-				<Button Style="{DynamicResource InvicoButtonStyle}"
-						Margin="0,5"
-						Height="30"
-						Content="Thêm món ăn trên vào hóa đơn"
-						Command="{Binding ImportCommand}" />
+									</Grid>
+
+								  </Grid>
+								</DataTemplate>
+							  </DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+
+						  </DataGrid.Columns>
+						</DataGrid>
+					  </DockPanel>
+
+					</GroupBox>
+				  </Grid>
+
+				</Grid>
 
 			  </StackPanel>
 			</GroupBox>
@@ -370,236 +548,141 @@
 
 		  <DockPanel Grid.Column="1">
 
-			<GroupBox Header="Danh sách gợi ý"
-					  DockPanel.Dock="Left"
-					  Width="220"
-					  Style="{DynamicResource InvicoGroupBoxStyle}">
+			<Grid>
+			  <GroupBox Header="Chi tiết hóa đơn"
+						x:Name="grbMain"
+						Style="{DynamicResource InvicoGroupBoxStyle}">
 
-			  <DataGrid Style="{DynamicResource InvicoDataGridStyle}"
-						ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
-						VerticalAlignment="Stretch"
-						ItemsSource="{Binding LstGridSuggest}"
-						SelectedItem="{Binding SelectedRowSuggest}">
+				<Grid>
+				  <Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition />
+				  </Grid.RowDefinitions>
 
-				<DataGrid.Columns>
-				  <DataGridTemplateColumn Header="STT"
-										  Width="40">
-					<DataGridTemplateColumn.CellTemplate>
-					  <DataTemplate>
-						<TextBlock Margin="3,0"
-								   VerticalAlignment="Center"
-								   HorizontalAlignment="Center"
-								   Text="{Binding Stt}" />
-					  </DataTemplate>
-					</DataGridTemplateColumn.CellTemplate>
-				  </DataGridTemplateColumn>
+				  <DataGrid Style="{DynamicResource InvicoDataGridStyle}"
+							Grid.Row="1"
+							ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
+							VerticalAlignment="Stretch"
+							ItemsSource="{Binding LstGridMain}"
+							SelectedItem="{Binding SelectedRow}">
 
-				  <DataGridTemplateColumn Header=" Ký tự "
-										  Width="1*">
-					<DataGridTemplateColumn.CellTemplate>
-					  <DataTemplate>
-						<Grid>
-						  <Grid.ColumnDefinitions>
-							<ColumnDefinition />
-							<ColumnDefinition Width="auto" />
-						  </Grid.ColumnDefinitions>
+					<DataGrid.Columns>
+					  <DataGridTemplateColumn Header="STT"
+											  Width="40">
+						<DataGridTemplateColumn.CellTemplate>
+						  <DataTemplate>
+							<TextBlock Margin="3,0"
+									   VerticalAlignment="Center"
+									   HorizontalAlignment="Center"
+									   Text="{Binding Stt}"
+									   ToolTip="{Binding StrId}" />
+						  </DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					  </DataGridTemplateColumn>
 
-						  <TextBlock TextAlignment="Left"
-									 Grid.Column="0"
-									 TextTrimming="CharacterEllipsis"
-									 VerticalAlignment="Center"
-									 Margin="2,0"
-									 Text="{Binding StrName}"
-									 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+					  <DataGridTemplateColumn Header=" Tên vị thuốc "
+											  Width="1*">
+						<DataGridTemplateColumn.CellTemplate>
+						  <DataTemplate>
+							<TextBlock TextAlignment="Left"
+									   VerticalAlignment="Center"
+									   Margin="3,0"
+									   TextTrimming="CharacterEllipsis"
+									   Text="{Binding StrNameDrug}"
+									   ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+						  </DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					  </DataGridTemplateColumn>
 
-						  <Grid Grid.Column="1"
-								Margin="3,0">
+					  <DataGridTemplateColumn Header=" Số lượng "
+											  Width="auto">
+						<DataGridTemplateColumn.CellTemplate>
+						  <DataTemplate>
+							<TextBlock TextAlignment="Right"
+									   VerticalAlignment="Center"
+									   Margin="3,0"
+									   Text="{Binding StrSumKg}"
+									   ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+						  </DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					  </DataGridTemplateColumn>
 
-							<i:Interaction.Triggers>
-							  <i:EventTrigger EventName="MouseLeftButtonUp">
-								<i:InvokeCommandAction Command="{Binding DataContext.QuickEditQuestionCommand, 
-                                            RelativeSource={RelativeSource AncestorType=DataGrid}}"
-													   CommandParameter="{Binding}" />
-							  </i:EventTrigger>
-							</i:Interaction.Triggers>
+					  <DataGridTemplateColumn Header=" Đơn vị "
+											  Width="auto">
+						<DataGridTemplateColumn.CellTemplate>
+						  <DataTemplate>
+							<TextBlock TextAlignment="Left"
+									   VerticalAlignment="Center"
+									   Margin="3,0"
+									   Text="{Binding StrDonVi}"
+									   ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+						  </DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					  </DataGridTemplateColumn>
 
-							<Rectangle Fill="Transparent" />
+					  <DataGridTemplateColumn Header=" Đơn giá "
+											  Width="auto">
+						<DataGridTemplateColumn.CellTemplate>
+						  <DataTemplate>
+							<TextBlock TextAlignment="Right"
+									   VerticalAlignment="Center"
+									   Margin="3,0"
+									   Text="{Binding StrDonGia}"
+									   ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+						  </DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					  </DataGridTemplateColumn>
 
-							<StackPanel Orientation="Horizontal">
+					  <DataGridTemplateColumn Header=" Thành tiền "
+											  Width="auto">
+						<DataGridTemplateColumn.CellTemplate>
+						  <DataTemplate>
+							<TextBlock TextAlignment="Right"
+									   VerticalAlignment="Center"
+									   Margin="3,0"
+									   Text="{Binding StrThanhTien}"
+									   ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+						  </DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					  </DataGridTemplateColumn>
 
-							  <Label Template="{StaticResource CheckOkIcon}"
-									 Width="{Binding DoubleWidthHeightIconOk}"
-									 Height="{Binding DoubleWidthHeightIconOk}"
-									 VerticalAlignment="Center">
-								<Label.ToolTip>
-								  <StackPanel>
-									<TextBlock Text="Tên vị thuốc này đã có trong danh sách" />
-									<TextBlock Text="" />
-								  </StackPanel>
-								</Label.ToolTip>
-							  </Label>
+					  <DataGridTemplateColumn Header=" Thao tác "
+											  Width="60"
+											  HeaderStyle="{StaticResource InvicoColumnHeaderStyle}">
+						<DataGridTemplateColumn.CellTemplate>
+						  <DataTemplate>
 
-							  <Label Template="{StaticResource AlertIcon}"
-									 Width="{Binding DoubleWidthHeightIconAlert}"
-									 Height="{Binding DoubleWidthHeightIconAlert}"
-									 VerticalAlignment="Center">
-								<Label.ToolTip>
-								  <StackPanel>
-									<TextBlock Text="Tên vị thuốc này chưa có trong danh sách" />
-									<TextBlock Text="(Nếu bạn thêm tên vị thuốc này vào đơn hàng:" />
-									<TextBlock Text="Tên vị thuốc này sẽ được lưu lại để gợi ý lần sau)" />
-								  </StackPanel>
-								</Label.ToolTip>
-							  </Label>
+							<StackPanel Orientation="Horizontal"
+										HorizontalAlignment="Center">
+
+							  <Button Template="{StaticResource EditQuestion}"
+									  Width="20"
+									  Height="20"
+									  RenderTransformOrigin="0.435,1"
+									  ToolTip="Sửa thông tin"
+									  Margin="3,0" />
+
+							  <Button Template="{StaticResource ExportFileIcon}"
+									  Width="20"
+									  Height="20"
+									  RenderTransformOrigin="0.435,1"
+									  ToolTip="Xuất file key.txt"
+									  Margin="3,0" />
 
 							</StackPanel>
 
-						  </Grid>
+						  </DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					  </DataGridTemplateColumn>
 
-						</Grid>
-					  </DataTemplate>
-					</DataGridTemplateColumn.CellTemplate>
-				  </DataGridTemplateColumn>
+					</DataGrid.Columns>
+				  </DataGrid>
 
-				</DataGrid.Columns>
-			  </DataGrid>
+				</Grid>
 
-			</GroupBox>
+			  </GroupBox>
 
-			<GroupBox Header="Chi tiết hóa đơn"
-					  Tag="Danh sách key"
-					  x:Name="grbMain"
-					  Style="{DynamicResource InvicoGroupBoxStyle}"
-					  IsEnabled="{Binding ElementName=chkSaveThongSo,Path=IsChecked}">
-
-			  <Grid>
-				<Grid.RowDefinitions>
-				  <RowDefinition Height="auto" />
-				  <RowDefinition />
-				</Grid.RowDefinitions>
-
-				<DataGrid Style="{DynamicResource InvicoDataGridStyle}"
-						  Grid.Row="1"
-						  ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
-						  VerticalAlignment="Stretch"
-						  ItemsSource="{Binding LstGridMain}"
-						  SelectedItem="{Binding SelectedRow}">
-
-				  <DataGrid.Columns>
-					<DataGridTemplateColumn Header="STT"
-											Width="40">
-					  <DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-						  <TextBlock Margin="3,0"
-									 VerticalAlignment="Center"
-									 HorizontalAlignment="Center"
-									 Text="{Binding Stt}"
-									 ToolTip="{Binding StrId}" />
-						</DataTemplate>
-					  </DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-
-					<DataGridTemplateColumn Header=" Tên vị thuốc "
-											Width="1*">
-					  <DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-						  <TextBlock TextAlignment="Left"
-									 VerticalAlignment="Center"
-									 Margin="3,0"
-									 TextTrimming="CharacterEllipsis"
-									 Text="{Binding StrNameDrug}"
-									 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
-						</DataTemplate>
-					  </DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-
-					<DataGridTemplateColumn Header=" Số lượng "
-											Width="auto">
-					  <DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-						  <TextBlock TextAlignment="Right"
-									 VerticalAlignment="Center"
-									 Margin="3,0"
-									 Text="{Binding StrSumKg}"
-									 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
-						</DataTemplate>
-					  </DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-
-					<DataGridTemplateColumn Header=" Đơn vị "
-											Width="auto">
-					  <DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-						  <TextBlock TextAlignment="Left"
-									 VerticalAlignment="Center"
-									 Margin="3,0"
-									 Text="{Binding StrDonVi}"
-									 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
-						</DataTemplate>
-					  </DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-
-					<DataGridTemplateColumn Header=" Đơn giá "
-											Width="auto">
-					  <DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-						  <TextBlock TextAlignment="Right"
-									 VerticalAlignment="Center"
-									 Margin="3,0"
-									 Text="{Binding StrDonGia}"
-									 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
-						</DataTemplate>
-					  </DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-
-					<DataGridTemplateColumn Header=" Thành tiền "
-											Width="auto">
-					  <DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-						  <TextBlock TextAlignment="Right"
-									 VerticalAlignment="Center"
-									 Margin="3,0"
-									 Text="{Binding StrThanhTien}"
-									 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
-						</DataTemplate>
-					  </DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-
-					<DataGridTemplateColumn Header=" Thao tác "
-											Width="60"
-											HeaderStyle="{StaticResource InvicoColumnHeaderStyle}">
-					  <DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-
-						  <StackPanel Orientation="Horizontal"
-									  HorizontalAlignment="Center">
-
-							<Button Template="{StaticResource EditQuestion}"
-									Width="20"
-									Height="20"
-									RenderTransformOrigin="0.435,1"
-									ToolTip="Sửa thông tin"
-									Margin="3,0" />
-
-							<Button Template="{StaticResource ExportFileIcon}"
-									Width="20"
-									Height="20"
-									RenderTransformOrigin="0.435,1"
-									ToolTip="Xuất file key.txt"
-									Margin="3,0" />
-
-						  </StackPanel>
-
-						</DataTemplate>
-					  </DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-
-				  </DataGrid.Columns>
-				</DataGrid>
-
-			  </Grid>
-
-			</GroupBox>
+			</Grid>
 
 		  </DockPanel>
 		</Grid>
