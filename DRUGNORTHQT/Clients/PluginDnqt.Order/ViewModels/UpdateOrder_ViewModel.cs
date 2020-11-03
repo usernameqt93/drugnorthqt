@@ -3,9 +3,7 @@ using log4net;
 using PluginDnqt.Order.Models;
 using PluginDnqt.Order.Views;
 using QT.Framework.LoadingPopup.View;
-using QT.Framework.ToolCommon;
 using QT.Framework.ToolCommon.Helpers;
-using QT.Framework.ToolCommon.Models;
 using QT.MessageBox;
 using System;
 using System.Collections.Generic;
@@ -71,14 +69,14 @@ namespace PluginDnqt.Order.ViewModels {
 
 	#region DataGrid Suggest
 
-	private ModelRowMain _selectedRowSuggest;
+	private ModelRowGoiYNameProduct _selectedRowSuggest;
 
-	public ModelRowMain SelectedRowSuggest {
+	public ModelRowGoiYNameProduct SelectedRowSuggest {
 	  get { return this._selectedRowSuggest; }
 	  set { _selectedRowSuggest=value; OnPropertyChanged(nameof(SelectedRowSuggest)); }
 	}
 
-	private ObservableCollection<ModelRowMain> _lstGridSuggest = new ObservableCollection<ModelRowMain>();
+	private ObservableCollection<ModelRowGoiYNameProduct> _lstGridSuggest = new ObservableCollection<ModelRowGoiYNameProduct>();
 	private CollectionViewSource SuggestCollection = new CollectionViewSource();
 
 	public ICollectionView LstGridSuggest {
@@ -323,7 +321,7 @@ namespace PluginDnqt.Order.ViewModels {
 	  }
 	});
 
-	public ICommand KeyDownChangeNameCommand => new DelegateCommand(p => {
+	public ICommand KeyUpChangeNameCommand => new DelegateCommand(p => {
 	  try {
 		if(KeyEventDownNameProduct==null) {
 		  return;
@@ -375,7 +373,13 @@ namespace PluginDnqt.Order.ViewModels {
 		  return;
 		}
 
-		string strText = _mainUserControl.txtName.Text.Trim();
+		string strText = _mainUserControl.txtName.Text.TrimStart();
+		_mainUserControl.txtName.Text=strText;
+		if(strText=="") {
+		  _lstGridSuggest.Clear();
+		  return;
+		}
+
 		_bllPlugin.LoadGridSuggestByDataTableByFilter(ref _lstGridSuggest,DT_AllIdNameProduct,strText);
 
 		if(_lstGridSuggest.Count>0) {

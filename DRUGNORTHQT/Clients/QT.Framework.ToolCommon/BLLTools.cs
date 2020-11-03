@@ -402,5 +402,19 @@ namespace QT.Framework.ToolCommon {
 	  }
 	}
 
+	public static void UpperTextStartByQuantity(ref string strOutput,string strInput,int intSoKyTuDauTien) {
+	  if(intSoKyTuDauTien<=0) {
+		strOutput=strInput;
+		return;
+	  }
+
+	  if(intSoKyTuDauTien>=strInput.Length) {
+		strOutput=strInput.ToUpper();
+		return;
+	  }
+
+	  strOutput=strInput.Substring(0,intSoKyTuDauTien).ToUpper()+strInput.Substring(intSoKyTuDauTien);
+	}
+
   }
 }

@@ -267,48 +267,60 @@ namespace PluginDnqt.Order.ViewModels {
 
 	#region Funtion for UpdateOrder_ViewModel
 
-	//internal void LoadGridSuggestByListStringByFilter(ref ObservableCollection<ModelRowMain> lstGridMain
- // ,List<string> lstInput,string strTextFilter) {
-	//  lstGridMain.Clear();
-
-	//  var lstTemp = new List<string>();
-	//  foreach(var item in lstInput) {
-	//	lstTemp.Add(item);
-	//  }
-	//  lstTemp.Sort();
-
-	//  int intIndexIncrease = 0;
-	//  foreach(var item in lstTemp) {
-	//	if(!item.Contains(strTextFilter)) {
-	//	  continue;
-	//	}
-
-	//	var mitem = new ModelRowMain();
-	//	mitem.Stt=++intIndexIncrease;
-	//	mitem.StrName=item;
-
-	//	lstGridMain.Add(mitem);
-	//  }
-	//}
-
-	internal void LoadGridSuggestByDataTableByFilter(ref ObservableCollection<ModelRowMain> lstGridMain
+	internal void LoadGridSuggestByDataTableByFilter(ref ObservableCollection<ModelRowGoiYNameProduct> lstGridMain
 	  ,DataTable dtInput,string strTextFilter) {
 	  lstGridMain.Clear();
 
-	  int intIndexIncrease = 0;
+	  var lstTemp = new List<string>();
 	  foreach(DataRow dRow in dtInput.Rows) {
 		string item = dRow[Table_BangViThuoc.Col_TenViThuoc.NAME].ToString();
+		lstTemp.Add(item);
+	  }
+
+	  int intIndexIncrease = 0;
+
+	  int intSoItemDaCo = 0;
+	  foreach(var item in lstTemp) {
+		if(item.ToLower()==(strTextFilter.ToLower())) {
+		  intSoItemDaCo++;
+		  break;
+		}
+	  }
+
+	  int intWidthHeight = 16;
+	  if(intSoItemDaCo==0) {
+		var mitem = new ModelRowGoiYNameProduct();
+		mitem.Stt=++intIndexIncrease;
+
+		mitem.DoubleWidthHeightIconAlert=0;
+		mitem.DoubleWidthHeightIconOk=0;
+
+		mitem.DoubleWidthHeightIconAlert=intWidthHeight;
+
+		string strTextVietHoa = "";
+		BLLTools.UpperTextStartByQuantity(ref strTextVietHoa,strTextFilter,1);
+		mitem.StrName=strTextVietHoa;
+
+		lstGridMain.Add(mitem);
+	  }
+
+	  foreach(var item in lstTemp) {
 		if(!item.ToLower().Contains(strTextFilter.ToLower())) {
 		  continue;
 		}
 
-		var mitem = new ModelRowMain();
+		var mitem = new ModelRowGoiYNameProduct();
 		mitem.Stt=++intIndexIncrease;
+
+		mitem.DoubleWidthHeightIconAlert=0;
+		mitem.DoubleWidthHeightIconOk=0;
+
+		mitem.DoubleWidthHeightIconOk=intWidthHeight;
 		mitem.StrName=item;
 
 		lstGridMain.Add(mitem);
-
 	  }
+
 	}
 
 	#endregion

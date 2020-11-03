@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="ConnectionSDK.cs" />
     <Compile Include="Models\ModelRowDetailOrder.cs" />
+    <Compile Include="Models\ModelRowGoiYNameProduct.cs" />
     <Compile Include="Models\ModelRowMain.cs" />
     <Compile Include="Models\ModelRowOrder.cs" />
     <Compile Include="ViewModels\BLLPlugin.cs" />
