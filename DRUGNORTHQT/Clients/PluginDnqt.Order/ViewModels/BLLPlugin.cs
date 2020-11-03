@@ -323,6 +323,15 @@ namespace PluginDnqt.Order.ViewModels {
 
 	}
 
+	internal void HienThiLabelDonGiaByDecimal(ref Label lblOutput,decimal decInput) {
+	  if(decInput==0) {
+		lblOutput.Content="0";
+		return;
+	  }
+
+	  lblOutput.Content=""+string.Format("{0:0,0}",decInput);
+	}
+
 	#endregion
 
   }

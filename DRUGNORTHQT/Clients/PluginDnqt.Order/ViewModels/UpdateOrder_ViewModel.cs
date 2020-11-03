@@ -413,7 +413,7 @@ namespace PluginDnqt.Order.ViewModels {
 	  }
 	});
 
-	public ICommand KeyDownChangeSoLuongCommand => new DelegateCommand(p => {
+	public ICommand KeyUpChangeSoLuongCommand => new DelegateCommand(p => {
 	  try {
 		if(KeyEventDownSoLuong==null) {
 		  return;
@@ -423,13 +423,12 @@ namespace PluginDnqt.Order.ViewModels {
 		  return;
 		}
 
+		string strText = _mainUserControl.txtSoLuong.Text.Trim();
 		if(KeyEventDownSoLuong.Key==Key.Enter) {
-		  string strText = _mainUserControl.txtSoLuong.Text.Trim();
-		  _mainUserControl.txtSoLuong.Text=strText;
 
-		  float objTemp = 0;
+		  decimal objTemp = 0;
 		  try {
-			objTemp=Convert.ToSingle(strText);
+			objTemp=Convert.ToDecimal(strText);
 		  } catch(Exception e) {
 			string str = e.Message;
 			QTMessageBox.ShowNotify("Số lượng bạn nhập không hợp lệ, bạn vui lòng kiểm tra lại!");
@@ -447,6 +446,17 @@ namespace PluginDnqt.Order.ViewModels {
 		  return;
 		}
 
+		{
+		  decimal objTemp = 0;
+		  try {
+			objTemp=Convert.ToDecimal(strText);
+		  } catch(Exception e) {
+			string str = e.Message;
+		  }
+
+		  _mainUserControl.lblSoLuong.Content=""+string.Format("{0:0.####}",objTemp);
+		}
+
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
@@ -454,7 +464,7 @@ namespace PluginDnqt.Order.ViewModels {
 	  }
 	});
 
-	public ICommand KeyDownChangeDonGiaCommand => new DelegateCommand(p => {
+	public ICommand KeyUpChangeDonGiaCommand => new DelegateCommand(p => {
 	  try {
 		if(KeyEventDownDonGia==null) {
 		  return;
@@ -464,9 +474,9 @@ namespace PluginDnqt.Order.ViewModels {
 		  return;
 		}
 
+		string strText = _mainUserControl.txtDonGia.Text.Trim();
 		if(KeyEventDownDonGia.Key==Key.Enter||KeyEventDownDonGia.Key==Key.N) {
-		  string strText = _mainUserControl.txtDonGia.Text.Trim();
-		  _mainUserControl.txtDonGia.Text=strText;
+		  //_mainUserControl.txtDonGia.Text=strText;
 
 		  decimal objTemp = 0;
 		  try {
@@ -480,6 +490,9 @@ namespace PluginDnqt.Order.ViewModels {
 
 		  if(KeyEventDownDonGia.Key==Key.N) {
 			_mainUserControl.txtDonGia.Text=(objTemp*1000).ToString();
+
+			_bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblDonGia,objTemp*1000);
+
 			_mainUserControl.txtDonGia.SelectAll();
 			return;
 		  }
@@ -492,6 +505,17 @@ namespace PluginDnqt.Order.ViewModels {
 		  return;
 		}
 
+		{
+		  decimal objTemp = 0;
+		  try {
+			objTemp=Convert.ToDecimal(strText);
+		  } catch(Exception e) {
+			string str = e.Message;
+		  }
+
+		  _bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblDonGia,objTemp);
+
+		}
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
