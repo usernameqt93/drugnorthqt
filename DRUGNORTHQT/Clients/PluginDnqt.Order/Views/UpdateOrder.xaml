@@ -77,48 +77,118 @@
 				<GroupBox Header="Tên vị thuốc(F5)"
 						  Style="{DynamicResource InvicoGroupBoxStyle}">
 
-				  <Grid>
-					<TextBox Style="{DynamicResource InvicoTextBoxStyle}"
-							 AcceptsReturn="False"
-							 x:Name="txtName"
-							 MaxLength="50"
-							 HorizontalAlignment="Stretch"
-							 HorizontalContentAlignment="Center"
-							 VerticalAlignment="Center"
-							 VerticalContentAlignment="Center"
-							 Height="30"
-							 PreviewKeyDown="txtName_PreviewKeyDown">
+				  <StackPanel>
+					
+					<DockPanel>
 
-					  <i:Interaction.Triggers>
-						<i:EventTrigger EventName="PreviewKeyUp">
-						  <i:InvokeCommandAction Command="{Binding DataContext.KeyUpChangeNameCommand, 
+					  <Grid>
+						<TextBox Style="{DynamicResource InvicoTextBoxStyle}"
+								 AcceptsReturn="False"
+								 x:Name="txtName"
+								 MaxLength="50"
+								 HorizontalAlignment="Stretch"
+								 HorizontalContentAlignment="Center"
+								 VerticalAlignment="Center"
+								 VerticalContentAlignment="Center"
+								 Height="30"
+								 PreviewKeyDown="txtName_PreviewKeyDown">
+
+						  <i:Interaction.Triggers>
+							<i:EventTrigger EventName="PreviewKeyUp">
+							  <i:InvokeCommandAction Command="{Binding DataContext.KeyUpChangeNameCommand, 
                                             RelativeSource={RelativeSource AncestorType=TextBox}}"
-												 CommandParameter="{Binding ElementName=txtName}" />
-						</i:EventTrigger>
-					  </i:Interaction.Triggers>
+													 CommandParameter="{Binding ElementName=txtName}" />
+							</i:EventTrigger>
+						  </i:Interaction.Triggers>
 
-					</TextBox>
-					<TextBlock IsHitTestVisible="False"
-							   Text="Nhập tên vị thuốc..."
-							   VerticalAlignment="Center"
-							   HorizontalAlignment="Center"
-							   Foreground="DarkGray"
-							   Margin="7,0,0,0">
-					  <TextBlock.Style>
-						<Style TargetType="{x:Type TextBlock}">
-						  <Setter Property="Visibility"
-								  Value="Collapsed" />
-						  <Style.Triggers>
-							<DataTrigger Binding="{Binding Text, ElementName=txtName}"
-										 Value="">
+						</TextBox>
+						<TextBlock IsHitTestVisible="False"
+								   Text="Nhập tên vị thuốc..."
+								   VerticalAlignment="Center"
+								   HorizontalAlignment="Center"
+								   Foreground="DarkGray"
+								   Margin="7,0,0,0">
+						  <TextBlock.Style>
+							<Style TargetType="{x:Type TextBlock}">
 							  <Setter Property="Visibility"
-									  Value="Visible" />
-							</DataTrigger>
-						  </Style.Triggers>
-						</Style>
-					  </TextBlock.Style>
-					</TextBlock>
-				  </Grid>
+									  Value="Collapsed" />
+							  <Style.Triggers>
+								<DataTrigger Binding="{Binding Text, ElementName=txtName}"
+											 Value="">
+								  <Setter Property="Visibility"
+										  Value="Visible" />
+								</DataTrigger>
+							  </Style.Triggers>
+							</Style>
+						  </TextBlock.Style>
+						</TextBlock>
+					  </Grid>
+
+					</DockPanel>
+
+					<DockPanel>
+
+					  <Grid DockPanel.Dock="Right"
+							Width="{Binding ElementName=lblVnd,Path=ActualWidth}">
+						<StackPanel Orientation="Horizontal"
+									HorizontalAlignment="Center">
+
+						  <Label Template="{StaticResource CheckOkIcon}"
+								 x:Name="lblNameOkIcon"
+								 Width="16"
+								 Height="16"
+								 Visibility="Collapsed"
+								 VerticalAlignment="Center">
+							<Label.ToolTip>
+							  <StackPanel>
+								<TextBlock Text="Tên vị thuốc này đã có trong danh sách" />
+								<TextBlock Text="" />
+							  </StackPanel>
+							</Label.ToolTip>
+						  </Label>
+
+						  <Grid>
+							<Grid.Style>
+							  <Style TargetType="Grid">
+								<Style.Triggers>
+								  <DataTrigger Binding="{Binding ElementName=lblNameOkIcon, Path=Visibility}"
+											   Value="Visible">
+									<Setter Property="Visibility"
+											Value="Collapsed" />
+								  </DataTrigger>
+								  <DataTrigger Binding="{Binding ElementName=lblNameOkIcon, Path=Visibility}"
+											   Value="Collapsed">
+									<Setter Property="Visibility"
+											Value="Visible" />
+								  </DataTrigger>
+								</Style.Triggers>
+							  </Style>
+							</Grid.Style>
+
+							<Label Template="{StaticResource AlertIcon}"
+								   Width="16"
+								   Height="16"
+								   VerticalAlignment="Center">
+							  <Label.ToolTip>
+								<StackPanel>
+								  <TextBlock Text="Tên vị thuốc này chưa có trong danh sách" />
+								  <TextBlock Text="(Nếu bạn thêm tên vị thuốc này vào đơn hàng:" />
+								  <TextBlock Text="Tên vị thuốc này sẽ được lưu lại để gợi ý lần sau)" />
+								</StackPanel>
+							  </Label.ToolTip>
+							</Label>
+						  </Grid>
+
+						</StackPanel>
+					  </Grid>
+
+					  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+							 x:Name="lblNameProduct"
+							 Content="..."
+							 HorizontalAlignment="Center" />
+					</DockPanel>
+
+				  </StackPanel>
 
 				</GroupBox>
 
@@ -322,7 +392,6 @@
 									 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
 
 						  <Grid Grid.Column="1"
-								Cursor="Hand"
 								Margin="3,0">
 
 							<i:Interaction.Triggers>

@@ -235,6 +235,22 @@ namespace PluginDnqt.Order.ViewModels {
 	  }
 	}
 
+	private void HienThiNameProductTheoRowGoiY() {
+	  try {
+		_mainUserControl.lblNameProduct.Content=SelectedRowSuggest.StrName;
+
+		if(SelectedRowSuggest.DoubleWidthHeightIconOk==0) {
+		  _mainUserControl.lblNameOkIcon.Visibility=Visibility.Collapsed;
+		} else {
+		  _mainUserControl.lblNameOkIcon.Visibility=Visibility.Visible;
+		}
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	}
+
 	private void timerChanged_Tick(object sender,EventArgs e) {
 	  TimerChanged.Stop();
 
@@ -336,7 +352,8 @@ namespace PluginDnqt.Order.ViewModels {
 			return;
 		  }
 
-		  _mainUserControl.txtName.Text=SelectedRowSuggest.StrName;
+		  HienThiNameProductTheoRowGoiY();
+
 		  _mainUserControl.txtSoLuong.Focus();
 		  return;
 		}
@@ -349,6 +366,7 @@ namespace PluginDnqt.Order.ViewModels {
 		  if(SelectedRowSuggest.Stt<_lstGridSuggest.Count) {
 			int intSTTTemp = SelectedRowSuggest.Stt;
 			SelectedRowSuggest=_lstGridSuggest[intSTTTemp];
+			HienThiNameProductTheoRowGoiY();
 		  }
 
 		  return;
@@ -362,6 +380,7 @@ namespace PluginDnqt.Order.ViewModels {
 		  if(SelectedRowSuggest.Stt>1) {
 			int intSTTTemp = SelectedRowSuggest.Stt-2;
 			SelectedRowSuggest=_lstGridSuggest[intSTTTemp];
+			HienThiNameProductTheoRowGoiY();
 		  }
 
 		  return;
@@ -374,8 +393,9 @@ namespace PluginDnqt.Order.ViewModels {
 		}
 
 		string strText = _mainUserControl.txtName.Text.TrimStart();
-		_mainUserControl.txtName.Text=strText;
 		if(strText=="") {
+		  _mainUserControl.lblNameProduct.Content=strText;
+		  _mainUserControl.lblNameOkIcon.Visibility=Visibility.Collapsed;
 		  _lstGridSuggest.Clear();
 		  return;
 		}
@@ -384,6 +404,7 @@ namespace PluginDnqt.Order.ViewModels {
 
 		if(_lstGridSuggest.Count>0) {
 		  SelectedRowSuggest=_lstGridSuggest[0];
+		  HienThiNameProductTheoRowGoiY();
 		}
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
