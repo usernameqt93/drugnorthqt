@@ -92,5 +92,27 @@ namespace DNQTDataAccessLayer {
 	  strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} ;";
 	}
 
+	internal void GetQueryLayListDonGiaByListId(ref string strQuery,List<string> lstStringId) {
+	  string strSelect = "";
+	  _bllSelect.GetQueryLayListDonGiaByListId_Select(ref strSelect);
+
+	  string strFrom = "";
+	  _bllFrom.GetQueryLayListDonGiaByListId_From(ref strFrom);
+
+	  string strWhere = "";
+
+	  string strListId = "";
+	  _bllClass.GetStringJoinSplitChar(ref strListId,lstStringId,",","");
+
+	  strWhere+=$"\n {Table_BangViThuoc.NAME}.{Table_BangViThuoc.Col_MaViThuoc.NAME} IN ({strListId}) ";
+
+	  //string strOrderBy = "";
+	  //strOrderBy+=$"\n {Table_BangChiTietDonHang.NAME}.{Table_BangChiTietDonHang.Col_MaChiTietDonHang.NAME} ";
+
+	  //strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} \nORDER BY {strOrderBy} ;";
+
+	  strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} ;";
+	}
+
   }
 }

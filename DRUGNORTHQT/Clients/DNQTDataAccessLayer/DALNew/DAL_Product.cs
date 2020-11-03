@@ -29,5 +29,18 @@ namespace DNQTDataAccessLayer.DALNew {
 		exOutput=ex;
 	  }
 	}
+
+	public void GetDTListDonGiaByListIdProduct(ref DataTable dtOutput,ref Exception exOutput
+	  ,List<string> lstStringId) {
+	  try {
+		string strQuery = "";
+		_bllQuery.GetQueryLayListDonGiaByListId(ref strQuery,lstStringId);
+
+		dtOutput=dataTableThucThiQuery(strQuery,CommandType.Text,null);
+	  } catch(Exception ex) {
+		exOutput=ex;
+	  }
+	}
+
   }
 }
