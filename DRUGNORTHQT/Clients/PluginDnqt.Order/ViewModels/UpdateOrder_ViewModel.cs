@@ -38,6 +38,7 @@ namespace PluginDnqt.Order.ViewModels {
 	private DAL_Product DALProduct = new DAL_Product();
 
 	private DataTable DT_AllIdNameProduct = null;
+	private string Str_Id_LichSuDonGia_Truoc = "";
 
 	private DAL_Order DALOrder = new DAL_Order();
 	internal System.Windows.Input.KeyEventArgs KeyEventDownNameProduct = null;
@@ -316,6 +317,18 @@ namespace PluginDnqt.Order.ViewModels {
 	  }
 	}
 
+	private void SelectAndScrollGridGoiYDonGiaByIndex(int intIndex) {
+	  try {
+		SelectedRowDonGia=_lstGridDonGia[intIndex];
+		_mainUserControl.dgvDonGia.ScrollIntoView(SelectedRowDonGia);
+		SelectDonGiaGoiYCommand.Execute(null);
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	}
+
 	private void timerChanged_Tick(object sender,EventArgs e) {
 	  TimerChanged.Stop();
 
@@ -565,6 +578,30 @@ namespace PluginDnqt.Order.ViewModels {
 		  return;
 		}
 
+		if(KeyEventDownDonGia.Key==Key.Down) {
+		  if(SelectedRowDonGia==null||_lstGridDonGia.Count<2) {
+			return;
+		  }
+
+		  if(SelectedRowDonGia.Stt<_lstGridDonGia.Count) {
+			SelectAndScrollGridGoiYDonGiaByIndex(SelectedRowDonGia.Stt);
+		  }
+
+		  return;
+		}
+
+		if(KeyEventDownDonGia.Key==Key.Up) {
+		  if(SelectedRowDonGia==null||_lstGridDonGia.Count<2) {
+			return;
+		  }
+
+		  if(SelectedRowDonGia.Stt>1) {
+			SelectAndScrollGridGoiYDonGiaByIndex(SelectedRowDonGia.Stt-2);
+		  }
+
+		  return;
+		}
+
 		bool blnPressF5F6F7 = true;
 		KiemTraPhimF5F6F7VaFocus(ref blnPressF5F6F7,KeyEventDownDonGia);
 		if(blnPressF5F6F7) {
@@ -633,37 +670,9 @@ namespace PluginDnqt.Order.ViewModels {
 	  }
 	});
 
-	public ICommand HienThiDonGiaDaSuDungCommand => new DelegateCommand(p => {
-	  try {
-		if(_mainUserControl.chkHienThiListDonGia.IsChecked!=true) {
-		  return;
-		}
-
-		object objTemp = _mainUserControl.lblNameProduct.Tag;
-		if(objTemp==null) {
-		  return;
-		}
-
-		string strId = objTemp.ToString();
-		if(strId=="") {
-		  return;
-		}
-
-		_bllPlugin.LoadGridDonGiaByIdProduct(ref _lstGridDonGia,strId);
-
-		if(_lstGridDonGia.Count>0) {
-		  SelectedRowDonGia=_lstGridDonGia[_lstGridDonGia.Count-1];
-		  _mainUserControl.dgvDonGia.ScrollIntoView(SelectedRowDonGia);
-		}
-	  } catch(Exception ex) {
-		Log4Net.Error(ex.Message);
-		Log4Net.Error(ex.StackTrace);
-		ShowException(ex);
-	  }
-	});
-
 	public ICommand GotFocusNameProductCommand => new DelegateCommand(p => {
 	  try {
+		_mainUserControl.gridGoiYDonGia.Visibility=Visibility.Collapsed;
 		_mainUserControl.gridGoiYNameProduct.Visibility=Visibility.Visible;
 
 		KeyEventDownNameProduct=new KeyEventArgs(Keyboard.PrimaryDevice,
@@ -689,6 +698,67 @@ namespace PluginDnqt.Order.ViewModels {
 
 		KeyUpChangeNameCommand.Execute(null);
 
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand GotFocusDonGiaCommand => new DelegateCommand(p => {
+	  try {
+		if(_mainUserControl.chkHienThiListDonGia.IsChecked!=true) {
+		  _mainUserControl.gridGoiYDonGia.Visibility=Visibility.Collapsed;
+		  return;
+		}
+
+		_mainUserControl.gridGoiYDonGia.Visibility=Visibility.Visible;
+		//_lstGridDonGia.Clear();
+
+		object objTemp = _mainUserControl.lblNameProduct.Tag;
+		if(objTemp==null) {
+		  return;
+		}
+
+		string strId = objTemp.ToString();
+		if(strId=="") {
+		  return;
+		}
+
+		if(Str_Id_LichSuDonGia_Truoc==strId) {
+		  return;
+		}
+		Str_Id_LichSuDonGia_Truoc=strId;
+
+		_bllPlugin.LoadGridDonGiaByIdProduct(ref _lstGridDonGia,strId);
+
+		if(_lstGridDonGia.Count>0) {
+		  SelectAndScrollGridGoiYDonGiaByIndex(_lstGridDonGia.Count-1);
+		  //SelectedRowDonGia =_lstGridDonGia[_lstGridDonGia.Count-1];
+		  //_mainUserControl.dgvDonGia.ScrollIntoView(SelectedRowDonGia);
+		  //SelectDonGiaGoiYCommand.Execute(null);
+		}
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand SelectDonGiaGoiYCommand => new DelegateCommand(p => {
+	  try {
+		if(SelectedRowDonGia==null) {
+		  return;
+		}
+
+		_mainUserControl.txtDonGia.Text=""+SelectedRowDonGia.DecimalDonGia;
+
+		KeyEventDownDonGia=new KeyEventArgs(Keyboard.PrimaryDevice,
+	new HwndSource(0,0,0,0,0,"",IntPtr.Zero),0,Key.LeftCtrl);
+
+		KeyUpChangeDonGiaCommand.Execute(null);
+
+		ChangeFocusToTextBoxDonGia();
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);

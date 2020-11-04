@@ -314,6 +314,11 @@
                                             RelativeSource={RelativeSource AncestorType=help:NounicodeTextBox}}"
 														   CommandParameter="{Binding ElementName=txtDonGia}" />
 								  </i:EventTrigger>
+								  <i:EventTrigger EventName="GotFocus">
+									<i:InvokeCommandAction Command="{Binding DataContext.GotFocusDonGiaCommand, 
+                                            RelativeSource={RelativeSource AncestorType=TextBox}}"
+														   CommandParameter="{Binding ElementName=txtName}" />
+								  </i:EventTrigger>
 								</i:Interaction.Triggers>
 
 							  </help:NounicodeTextBox>
@@ -431,20 +436,6 @@
 
 				  <Grid x:Name="gridGoiYNameProduct"
 						Visibility="Collapsed">
-
-					<!--<Grid.Style>
-					  <Style TargetType="Grid">
-						<Setter Property="Visibility"
-								Value="Collapsed" />
-						<Style.Triggers>
-						  <DataTrigger Binding="{Binding ElementName=txtName,Path=IsFocused}"
-									   Value="True">
-							<Setter Property="Visibility"
-									Value="Visible" />
-						  </DataTrigger>
-						</Style.Triggers>
-					  </Style>
-					</Grid.Style>-->
 
 					<GroupBox Header="Danh sách gợi ý"
 							  Height="{Binding ElementName=dockPanelConLai,Path=ActualHeight}"
@@ -583,7 +574,7 @@
 						Content="Hiển thị những đơn giá đã sử dụng"
 						HorizontalAlignment="Right"
 						VerticalAlignment="Center"
-						Command="{Binding HienThiDonGiaDaSuDungCommand}"
+						Command="{Binding GotFocusDonGiaCommand}"
 						Margin="2,0" />
 
 			  <GroupBox Header="Chi tiết hóa đơn"
@@ -722,27 +713,20 @@
 			</DockPanel>
 
 			<Grid Width="240"
+				  x:Name="gridGoiYDonGia"
+				  Visibility="Collapsed"
 				  HorizontalAlignment="Left">
-
-			  <Grid.Style>
-				<Style TargetType="Grid">
-				  <Setter Property="Visibility"
-						  Value="Collapsed" />
-				  <Style.Triggers>
-					<DataTrigger Binding="{Binding ElementName=txtDonGia,Path=IsFocused}"
-								 Value="True">
-					  <Setter Property="Visibility"
-							  Value="Visible" />
-					</DataTrigger>
-				  </Style.Triggers>
-				</Style>
-			  </Grid.Style>
 
 			  <GroupBox Header="Danh sách đơn giá"
 						Style="{DynamicResource InvicoGroupBoxStyle}">
 
 				<DockPanel>
 
+				  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+						 DockPanel.Dock="Top"
+						 Content="{Binding ElementName=lblNameProduct,Path=Content}"
+						 HorizontalAlignment="Center" />
+				  
 				  <DataGrid Style="{DynamicResource InvicoDataGridStyle}"
 							x:Name="dgvDonGia"
 							ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
@@ -784,6 +768,7 @@
 
 							  <StackPanel Orientation="Horizontal">
 								<TextBlock VerticalAlignment="Center"
+										   Foreground="Red"
 										   Text="{Binding StrDonGia}" />
 
 								<TextBlock VerticalAlignment="Center"
@@ -805,6 +790,14 @@
 					  </DataGridTemplateColumn>
 
 					</DataGrid.Columns>
+
+					<i:Interaction.Triggers>
+					  <i:EventTrigger EventName="MouseLeftButtonUp">
+						<i:InvokeCommandAction Command="{Binding DataContext.SelectDonGiaGoiYCommand, 
+                                            RelativeSource={RelativeSource AncestorType=DataGrid}}"
+											   CommandParameter="{Binding}" />
+					  </i:EventTrigger>
+					</i:Interaction.Triggers>
 
 					<DataGrid.CellStyle>
 					  <Style TargetType="{x:Type DataGridCell}">
