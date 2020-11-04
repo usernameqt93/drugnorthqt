@@ -13,6 +13,7 @@ using System.Data;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Interop;
 
 namespace PluginDnqt.Order.ViewModels {
   class UpdateOrder_ViewModel:ModelBase {
@@ -418,7 +419,8 @@ namespace PluginDnqt.Order.ViewModels {
 
 		  HienThiNameProductTheoRowGoiY();
 
-		  ChangeFocusToTextBoxSoLuong();
+		  CloseSuggestNameProductCommand.Execute(null);
+		  //ChangeFocusToTextBoxSoLuong();
 		  return;
 		}
 
@@ -452,7 +454,8 @@ namespace PluginDnqt.Order.ViewModels {
 		  return;
 		}
 
-		string strText = _mainUserControl.txtName.Text.TrimStart();
+		//string strText = _mainUserControl.txtName.Text.TrimStart();
+		string strText = _mainUserControl.txtName.Text.Trim();
 		if(strText=="") {
 		  _mainUserControl.lblNameProduct.Content=strText;
 		  _mainUserControl.lblNameOkIcon.Visibility=Visibility.Collapsed;
@@ -620,6 +623,8 @@ namespace PluginDnqt.Order.ViewModels {
 
 	public ICommand CloseSuggestNameProductCommand => new DelegateCommand(p => {
 	  try {
+		_mainUserControl.txtName.Text=_mainUserControl.lblNameProduct.Content.ToString();
+		_mainUserControl.gridGoiYNameProduct.Visibility=Visibility.Collapsed;
 		ChangeFocusToTextBoxSoLuong();
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
@@ -650,6 +655,40 @@ namespace PluginDnqt.Order.ViewModels {
 		  SelectedRowDonGia=_lstGridDonGia[_lstGridDonGia.Count-1];
 		  _mainUserControl.dgvDonGia.ScrollIntoView(SelectedRowDonGia);
 		}
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand GotFocusNameProductCommand => new DelegateCommand(p => {
+	  try {
+		_mainUserControl.gridGoiYNameProduct.Visibility=Visibility.Visible;
+
+		KeyEventDownNameProduct=new KeyEventArgs(Keyboard.PrimaryDevice,
+	new HwndSource(0,0,0,0,0,"",IntPtr.Zero),0,Key.LeftCtrl);
+
+		KeyUpChangeNameCommand.Execute(null);
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand SelectNameProductGoiYCommand => new DelegateCommand(p => {
+	  try {
+		if(SelectedRowSuggest==null) {
+		  return;
+		}
+
+		KeyEventDownNameProduct=new KeyEventArgs(Keyboard.PrimaryDevice,
+	new HwndSource(0,0,0,0,0,"",IntPtr.Zero),0,Key.Enter);
+
+		KeyUpChangeNameCommand.Execute(null);
+
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
