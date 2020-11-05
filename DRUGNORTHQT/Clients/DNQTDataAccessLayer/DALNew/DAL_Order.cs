@@ -48,7 +48,7 @@ namespace DNQTDataAccessLayer.DALNew {
 	  ,Dictionary<string,object> dicInput) {
 	  try {
 		string strQuery = "";
-		_bllQuery.AddProductExistToOrderDetail(ref strQuery,dicInput);
+		_bllQuery.AddProductExistToOrderDetail(ref strQuery);
 
 		var lstTupleParameter = new List<Tuple<string,object>>();
 		{
