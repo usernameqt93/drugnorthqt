@@ -58,76 +58,76 @@ namespace PluginDnqt.Order.ViewModels {
 	  }
 	}
 
-	internal void LoadGridMainByDataTable(ref ObservableCollection<ModelRowOrder> lstGridMain
-	  ,DataTable dtInput) {
-	  lstGridMain.Clear();
+	//internal void LoadGridMainByDataTable(ref ObservableCollection<ModelRowOrder> lstGridMain
+	//  ,DataTable dtInput) {
+	//  lstGridMain.Clear();
 
-	  int intStartIndex = 0;
-	  int intEndIndex = dtInput.Rows.Count;
+	//  int intStartIndex = 0;
+	//  int intEndIndex = dtInput.Rows.Count;
 
-	  int intIndexIncrease = 0;
-	  for(int i = intStartIndex;i<intEndIndex;i++) {
-		var mitem = new ModelRowOrder();
-		mitem.Stt=++intIndexIncrease;
+	//  int intIndexIncrease = 0;
+	//  for(int i = intStartIndex;i<intEndIndex;i++) {
+	//	var mitem = new ModelRowOrder();
+	//	mitem.Stt=++intIndexIncrease;
 
-		mitem.StrId=""+dtInput.Rows[i][Table_BangDanhSachDonHang.Col_MaDonHang.NAME].ToString().Trim();
-		mitem.StrNameKH=""+dtInput.Rows[i][Table_BangKhachHang.Col_TenKhachHang.NAME].ToString().Trim();
+	//	mitem.StrId=""+dtInput.Rows[i][Table_BangDanhSachDonHang.Col_MaDonHang.NAME].ToString().Trim();
+	//	mitem.StrNameKH=""+dtInput.Rows[i][Table_BangKhachHang.Col_TenKhachHang.NAME].ToString().Trim();
 
-		{
-		  string strTemp = "Định dạng TG False";
-		  DateTime objTemp = CVPConstValuePlugin.DTimeMacDinh;
-		  try {
-			objTemp=Convert.ToDateTime(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_ThoiGianVietDonHangNay.NAME]);
-			strTemp=objTemp.ToString("yyyy-MM-dd HH:mm:ss");
-		  } catch(Exception e) {
-			string str = e.Message;
-		  }
-		  mitem.DTimeViet=objTemp;
-		  mitem.StrDTimeViet=strTemp;
-		}
+	//	{
+	//	  string strTemp = "Định dạng TG False";
+	//	  DateTime objTemp = CVPConstValuePlugin.DTimeMacDinh;
+	//	  try {
+	//		objTemp=Convert.ToDateTime(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_ThoiGianVietDonHangNay.NAME]);
+	//		strTemp=objTemp.ToString("yyyy-MM-dd HH:mm:ss");
+	//	  } catch(Exception e) {
+	//		string str = e.Message;
+	//	  }
+	//	  mitem.DTimeViet=objTemp;
+	//	  mitem.StrDTimeViet=strTemp;
+	//	}
 
-		try {
-		  mitem.IntSumProduct=Convert.ToInt32(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_TongViThuoc.NAME]);
-		} catch(Exception e) {
-		  string str = e.Message;
-		}
+	//	try {
+	//	  mitem.IntSumProduct=Convert.ToInt32(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_TongViThuoc.NAME]);
+	//	} catch(Exception e) {
+	//	  string str = e.Message;
+	//	}
 
-		{
-		  string strTemp = "Định dạng Float False";
-		  float objTemp = 0;
-		  try {
-			objTemp=Convert.ToSingle(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_TongKhoiLuong.NAME]);
-			//strTemp=string.Format("{0:N3}",objTemp);
-			strTemp=string.Format("{0:0.###}",objTemp);
-		  } catch(Exception e) {
-			string str = e.Message;
-		  }
-		  mitem.FloatSumKg=objTemp;
-		  mitem.StrSumKg=strTemp;
-		}
+	//	{
+	//	  string strTemp = "Định dạng Float False";
+	//	  float objTemp = 0;
+	//	  try {
+	//		objTemp=Convert.ToSingle(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_TongKhoiLuong.NAME]);
+	//		//strTemp=string.Format("{0:N3}",objTemp);
+	//		strTemp=string.Format("{0:0.###}",objTemp);
+	//	  } catch(Exception e) {
+	//		string str = e.Message;
+	//	  }
+	//	  mitem.FloatSumKg=objTemp;
+	//	  mitem.StrSumKg=strTemp;
+	//	}
 
-		{
-		  string strTemp = "Định dạng Decimal False";
-		  decimal objTemp = 0;
-		  try {
-			objTemp=Convert.ToDecimal(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_TongGiaTriDonHang.NAME]);
-			//strTemp=string.Format("{0:N3}",objTemp);
-			strTemp=string.Format("{0:0,0}",objTemp)+" đ";
-			//strTemp=double.Parse(objTemp.ToString()).ToString("#,###",CultureInfo.GetCultureInfo("vi-VN"))+" vnđ";
-		  } catch(Exception e) {
-			string str = e.Message;
-		  }
-		  mitem.DecimalSumGiaTri=objTemp;
-		  mitem.StrSumGiaTri=strTemp;
-		}
+	//	{
+	//	  string strTemp = "Định dạng Decimal False";
+	//	  decimal objTemp = 0;
+	//	  try {
+	//		objTemp=Convert.ToDecimal(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_TongGiaTriDonHang.NAME]);
+	//		//strTemp=string.Format("{0:N3}",objTemp);
+	//		strTemp=string.Format("{0:0,0}",objTemp)+" đ";
+	//		//strTemp=double.Parse(objTemp.ToString()).ToString("#,###",CultureInfo.GetCultureInfo("vi-VN"))+" vnđ";
+	//	  } catch(Exception e) {
+	//		string str = e.Message;
+	//	  }
+	//	  mitem.DecimalSumGiaTri=objTemp;
+	//	  mitem.StrSumGiaTri=strTemp;
+	//	}
 
-		mitem.Selected=false;
-		lstGridMain.Add(mitem);
-	  }
-	}
+	//	mitem.Selected=false;
+	//	lstGridMain.Add(mitem);
+	//  }
+	//}
 
 	internal void LoadGridChiTietDHByDataTable(ref ObservableCollection<ModelRowDetailOrder> lstGridMain
-	  ,DataTable dtInput) {
+	  ,DataTable dtInput,string strIdOrder) {
 	  lstGridMain.Clear();
 
 	  int intStartIndex = 0;
@@ -135,6 +135,11 @@ namespace PluginDnqt.Order.ViewModels {
 
 	  int intIndexIncrease = 0;
 	  for(int i = intStartIndex;i<intEndIndex;i++) {
+		string strIdOrderInTable = ""+dtInput.Rows[i][Table_BangChiTietDonHang.Col_MaDonHang.NAME].ToString();
+		if(strIdOrderInTable!=strIdOrder) {
+		  continue;
+		}
+
 		var mitem = new ModelRowDetailOrder();
 		mitem.Stt=++intIndexIncrease;
 
@@ -265,6 +270,88 @@ namespace PluginDnqt.Order.ViewModels {
 		string strColumnName = lstTupleMaxCharInColumn[intIndexIncrease].Item1;
 		lstTupleMaxCharInColumn[intIndexIncrease]=new Tuple<string,int,string>
 		  (strColumnName,intNewMaxlenght,strTemp);
+	  }
+	}
+
+	internal void LoadGridMainByDataTableDetail(ref ObservableCollection<ModelRowOrder> lstGridMain
+	  ,DataTable dT_AllDetailOrderByListIdOrder) {
+	  foreach(var mitem in lstGridMain) {
+		//var lstGridDetail = new ObservableCollection<ModelRowDetailOrder>();
+		//LoadGridChiTietDHByDataTable(ref lstGridDetail,dT_AllDetailOrderByListIdOrder,mitem.StrId);
+		//mitem.LstGridDetailOrder=lstGridDetail;
+
+		//mitem.IntSumProduct=lstGridDetail.Count;
+
+		//float floatSumKg = 0;
+		//decimal decimalSumGiaTri = 0;
+		//foreach(var item in lstGridDetail) {
+		//  floatSumKg+=item.FloatSumKg;
+		//  decimalSumGiaTri+=(decimal)item.FloatSumKg*item.DecimalDonGia;
+		//}
+
+		//mitem.FloatSumKg=floatSumKg;
+		//mitem.StrSumKg=string.Format("{0:0.###}",floatSumKg);
+
+		//mitem.DecimalSumGiaTri=decimalSumGiaTri;
+		//mitem.StrSumGiaTri=string.Format("{0:0,0}",decimalSumGiaTri)+" đ";
+
+		LoadOneOrderByTableDetail(mitem,dT_AllDetailOrderByListIdOrder);
+	  }
+	}
+
+	internal void LoadOneOrderByTableDetail(ModelRowOrder mitem,DataTable dT_AllDetailOrderByListIdOrder) {
+	  var lstGridDetail = new ObservableCollection<ModelRowDetailOrder>();
+	  LoadGridChiTietDHByDataTable(ref lstGridDetail,dT_AllDetailOrderByListIdOrder,mitem.StrId);
+	  mitem.LstGridDetailOrder=lstGridDetail;
+
+	  mitem.IntSumProduct=lstGridDetail.Count;
+
+	  float floatSumKg = 0;
+	  decimal decimalSumGiaTri = 0;
+	  foreach(var item in lstGridDetail) {
+		floatSumKg+=item.FloatSumKg;
+		decimalSumGiaTri+=(decimal)item.FloatSumKg*item.DecimalDonGia;
+	  }
+
+	  mitem.FloatSumKg=floatSumKg;
+	  mitem.StrSumKg=string.Format("{0:0.###}",floatSumKg);
+
+	  mitem.DecimalSumGiaTri=decimalSumGiaTri;
+	  mitem.StrSumGiaTri=string.Format("{0:0,0}",decimalSumGiaTri)+" đ";
+	}
+
+	internal void LoadGridMainIdTenKHByPage(ref ObservableCollection<ModelRowOrder> lstGridMain
+	  ,int intIdPage,int CONST_INT_PAGE_SIZE,DataTable dtInput) {
+	  lstGridMain.Clear();
+
+	  int intStartIndex = intIdPage*CONST_INT_PAGE_SIZE;
+	  int intMaxEndIndexByPage = (intIdPage+1)*CONST_INT_PAGE_SIZE;
+	  int intEndIndex = dtInput.Rows.Count<intMaxEndIndexByPage ?
+		dtInput.Rows.Count : intMaxEndIndexByPage;
+
+	  int intIndexIncrease = 0;
+	  for(int i = intStartIndex;i<intEndIndex;i++) {
+		var mitem = new ModelRowOrder();
+		mitem.Stt=++intIndexIncrease;
+
+		mitem.StrId=""+dtInput.Rows[i][Table_BangDanhSachDonHang.Col_MaDonHang.NAME].ToString().Trim();
+		mitem.StrNameKH=""+dtInput.Rows[i][Table_BangKhachHang.Col_TenKhachHang.NAME].ToString().Trim();
+
+		{
+		  string strTemp = "Định dạng TG False";
+		  DateTime objTemp = CVPConstValuePlugin.DTimeMacDinh;
+		  try {
+			objTemp=Convert.ToDateTime(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_ThoiGianVietDonHangNay.NAME]);
+			strTemp=objTemp.ToString("yyyy-MM-dd HH:mm:ss");
+		  } catch(Exception e) {
+			string str = e.Message;
+		  }
+		  mitem.DTimeViet=objTemp;
+		  mitem.StrDTimeViet=strTemp;
+		}
+
+		mitem.Selected=false;
+		lstGridMain.Add(mitem);
 	  }
 	}
 
@@ -427,6 +514,16 @@ namespace PluginDnqt.Order.ViewModels {
 
 		mitem.Selected=false;
 		lstGridMain.Add(mitem);
+	  }
+	}
+
+	internal void GetDecimalFromObject(ref decimal decOutput,object objInput) {
+	  if(objInput!=null) {
+		try {
+		  decOutput=(decimal)objInput;
+		} catch(Exception e) {
+		  string str = e.Message;
+		}
 	  }
 	}
 

@@ -70,11 +70,14 @@
 					 Width="270">
 
 			<GroupBox Header="Tổng giá đơn hàng hiện tại"
+					  Tag="Tổng giá đơn hàng hiện tại"
+					  x:Name="grbSumGiaTriDH"
 					  DockPanel.Dock="Bottom"
 					  Style="{DynamicResource InvicoGroupBoxStyle}">
 			  <StackPanel>
 
 				<Label Style="{DynamicResource InvicoLabelModalStyle}"
+					   x:Name="lblSumGiaTriDH"
 					   Content="0 đ"
 					   HorizontalAlignment="Center" />
 
@@ -427,7 +430,7 @@
 								Margin="0,5"
 								Height="30"
 								Content="Thêm vào đơn hàng"
-								Command="{Binding ImportCommand}" />
+								Command="{Binding AddCommand}" />
 					  </StackPanel>
 
 					</Grid>

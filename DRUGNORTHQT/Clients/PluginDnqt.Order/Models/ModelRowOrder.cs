@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 
 namespace PluginDnqt.Order.Models {
   class ModelRowOrder:ModelRowMain {
@@ -53,6 +54,9 @@ namespace PluginDnqt.Order.Models {
 	  get { return _strNameKH; }
 	  set { _strNameKH=value;OnPropertyChanged(nameof(StrNameKH)); }
 	}
+
+	public ObservableCollection<ModelRowDetailOrder> LstGridDetailOrder { get; set; } = 
+	  new ObservableCollection<ModelRowDetailOrder>();
 
   }
 }

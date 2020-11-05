@@ -37,6 +37,7 @@ namespace PluginDnqt.Order.ViewModels {
 	private DAL_Order DALOrder = new DAL_Order();
 
 	private DataTable DT_AllIdOrder = null;
+	private DataTable DT_AllDetailOrderByListIdOrder = null;
 
 	#region === Những thuộc tính binding ===
 
@@ -182,6 +183,49 @@ namespace PluginDnqt.Order.ViewModels {
 
 	#region === Command ===
 
+	//public ICommand PageSelectionChangedCommand => new DelegateCommand(p => {
+	//  try {
+	//	if(MOCPage.MItemSelected==null) {
+	//	  return;
+	//	}
+
+	//	var lstStringId = new List<string>();
+	//	_bllPlugin.GetListStringIdInDataTable(ref lstStringId
+	//	  ,MOCPage.MItemSelected.ID,ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN,DT_AllIdOrder,"MaDonHang");
+	//	if(lstStringId.Count==0) {
+	//	  QTMessageBox.ShowNotify(
+	//		"Hiện tại không tìm thấy mã dữ liệu trên trang này, bạn vui lòng thao tác lại!"
+	//		,"(lstStringId.Count==0)");
+	//	  return;
+	//	}
+
+	//	Exception exOutput = null;
+	//	DataTable DT_OrderByListId = null;
+	//	DALOrder.GetDTOrderByListId(ref DT_OrderByListId,ref exOutput,lstStringId);
+	//	if(exOutput!=null) {
+	//	  Log4Net.Error(exOutput.Message);
+	//	  Log4Net.Error(exOutput.StackTrace);
+	//	  ShowException(exOutput);
+	//	  return;
+	//	}
+
+	//	if(DT_OrderByListId==null) {
+	//	  QTMessageBox.ShowNotify(
+	//		"Dữ liệu trang này tải không thành công, bạn vui lòng thao tác lại!"
+	//		,"(DT_OrderByListId==null)");
+	//	  return;
+	//	}
+
+	//	_bllPlugin.LoadGridMainByDataTable(ref _lstGridMain,DT_OrderByListId);
+
+	//	ScrollToLastRowOnGrid();
+	//  } catch(Exception ex) {
+	//	Log4Net.Error(ex.Message);
+	//	Log4Net.Error(ex.StackTrace);
+	//	ShowException(ex);
+	//  }
+	//});
+
 	public ICommand PageSelectionChangedCommand => new DelegateCommand(p => {
 	  try {
 		if(MOCPage.MItemSelected==null) {
@@ -198,21 +242,27 @@ namespace PluginDnqt.Order.ViewModels {
 		  return;
 		}
 
-		Exception exDAL = null;
-		DataTable DT_OrderByListId = null;
-		DALOrder.GetDTOrderByListId(ref DT_OrderByListId,ref exDAL,lstStringId);
-		if(exDAL!=null) {
-		  throw exDAL;
-		}
-
-		if(DT_OrderByListId==null) {
-		  QTMessageBox.ShowNotify(
-			"Dữ liệu trang này tải không thành công, bạn vui lòng thao tác lại!"
-			,"(DT_OrderByListId==null)");
+		Exception exOutput = null;
+		DT_AllDetailOrderByListIdOrder=null;
+		DALOrder.GetDTDetailOrderByListIdOrder(ref DT_AllDetailOrderByListIdOrder,ref exOutput,lstStringId);
+		if(exOutput!=null) {
+		  Log4Net.Error(exOutput.Message);
+		  Log4Net.Error(exOutput.StackTrace);
+		  ShowException(exOutput);
 		  return;
 		}
 
-		_bllPlugin.LoadGridMainByDataTable(ref _lstGridMain,DT_OrderByListId);
+		if(DT_AllDetailOrderByListIdOrder==null) {
+		  QTMessageBox.ShowNotify(
+			"Dữ liệu trang này tải không thành công, bạn vui lòng thao tác lại!"
+			,"(DT_AllDetailOrderByListIdOrder==null)");
+		  return;
+		}
+
+		_bllPlugin.LoadGridMainIdTenKHByPage(ref _lstGridMain
+		  ,MOCPage.MItemSelected.ID,ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN,DT_AllIdOrder);
+
+		_bllPlugin.LoadGridMainByDataTableDetail(ref _lstGridMain,DT_AllDetailOrderByListIdOrder);
 
 		ScrollToLastRowOnGrid();
 	  } catch(Exception ex) {
@@ -224,11 +274,14 @@ namespace PluginDnqt.Order.ViewModels {
 
 	public ICommand TimerChangedCommand => new DelegateCommand(p => {
 	  try {
-		Exception exDAL = null;
+		Exception exOutput = null;
 		DT_AllIdOrder=null;
-		DALOrder.GetDTAllIdOrder(ref DT_AllIdOrder,ref exDAL);
-		if(exDAL!=null) {
-		  throw exDAL;
+		DALOrder.GetDTAllIdOrder(ref DT_AllIdOrder,ref exOutput);
+		if(exOutput!=null) {
+		  Log4Net.Error(exOutput.Message);
+		  Log4Net.Error(exOutput.StackTrace);
+		  ShowException(exOutput);
+		  return;
 		}
 
 		if(DT_AllIdOrder==null) {
@@ -258,6 +311,28 @@ namespace PluginDnqt.Order.ViewModels {
 		if(SelectedRow==null) {
 		  return;
 		}
+
+		var lstStringId = new List<string>();
+		lstStringId.Add(SelectedRow.StrId);
+
+		Exception exOutput = null;
+		DataTable DT_DetailOrderByListId = null;
+		DALOrder.GetDTDetailOrderByListIdOrder(ref DT_DetailOrderByListId,ref exOutput,lstStringId);
+		if(exOutput!=null) {
+		  Log4Net.Error(exOutput.Message);
+		  Log4Net.Error(exOutput.StackTrace);
+		  ShowException(exOutput);
+		  return;
+		}
+
+		if(DT_DetailOrderByListId==null) {
+		  QTMessageBox.ShowNotify(
+			"Dữ liệu đơn hàng này tải không thành công, bạn vui lòng thao tác lại!"
+			,"(DT_DetailOrderByListId==null)");
+		  return;
+		}
+
+		_bllPlugin.LoadOneOrderByTableDetail(SelectedRow,DT_DetailOrderByListId);
 
 		var dicInput = new Dictionary<string,object>();
 		dicInput.Add("DELEGATE_VOID_IN_OTHER_USERCONTROL",
