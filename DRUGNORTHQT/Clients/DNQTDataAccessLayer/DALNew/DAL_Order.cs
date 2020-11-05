@@ -92,66 +92,16 @@ namespace DNQTDataAccessLayer.DALNew {
 	  }
 	}
 
-	public void AddProductNotExistToOrderDetail(ref Dictionary<string,object> dicOutput,ref Exception exOutput
-	  ,Dictionary<string,object> dicInput) {
+	public void DeleteOrderDetailByListId(ref bool blnSuccess,ref string strError,ref Exception exOutput
+	  ,List<string> lstStringId) {
 	  try {
-		string strMaViThuocVuaThem = "MaViThuocVuaThem";
-		string strMaGiaThuocVuaThem = "MaGiaThuocVuaThem";
-
 		string strQuery = "";
-		//_bllQuery.AddProductToOrderDetail(ref strQuery,dicInput);
+		_bllQuery.DeleteOrderDetailByListId(ref strQuery,lstStringId);
 
-		strQuery+=$"\n declare @{strMaViThuocVuaThem} int;";
-		strQuery+=$"\n declare @{strMaGiaThuocVuaThem} int;";
-
-		{
-		  var lstColumnTable = new List<string>();
-		  lstColumnTable.Add(Table_BangViThuoc.Col_TenViThuoc.NAME);
-
-		  string strTemp = "";
-		  _bllClass.GetQueryUseParameter(ref strTemp,"insert into"
-			,Table_BangViThuoc.NAME,"values",lstColumnTable);
-		  strQuery+=$"\n {strTemp}";
-		}
-
-		strQuery+=$"\n set @{strMaViThuocVuaThem} = (select @@IDENTITY);";
-
-		{
-		  var lstColumnTable = new List<string>();
-		  lstColumnTable.Add(Table_BangGiaViThuoc.Col_MaViThuoc.NAME);
-		  lstColumnTable.Add(Table_BangGiaViThuoc.Col_GiaViThuoc.NAME);
-		  lstColumnTable.Add(Table_BangGiaViThuoc.Col_DonViGiaThuoc.NAME);
-		  lstColumnTable.Add(Table_BangGiaViThuoc.Col_ThoiGianBatDauCoGiaNay.NAME);
-
-		  string strTemp = "";
-		  _bllClass.GetQueryUseParameter(ref strTemp,"insert into"
-			,Table_BangGiaViThuoc.NAME,"values",lstColumnTable);
-		  strQuery+=$"\n {strTemp}";
-		}
-
-		strQuery+=$"\n set @{strMaGiaThuocVuaThem} = (select @@IDENTITY);";
-
-		{
-		  var lstColumnTable = new List<string>();
-		  lstColumnTable.Add(Table_BangChiTietDonHang.Col_MaDonHang.NAME);
-		  lstColumnTable.Add(Table_BangChiTietDonHang.Col_MaGiaThuoc.NAME);
-		  lstColumnTable.Add(Table_BangChiTietDonHang.Col_SoLuongViThuoc.NAME);
-		  lstColumnTable.Add(Table_BangChiTietDonHang.Col_ThanhTienTamThoi.NAME);
-
-		  string strTemp = "";
-		  _bllClass.GetQueryUseParameter(ref strTemp,"insert into"
-			,Table_BangGiaViThuoc.NAME,"values",lstColumnTable);
-		  strQuery+=$"\n {strTemp}";
-		}
-
-
-		var lstTupleParameter = new List<Tuple<string,object>>();
-
-		//dtOutput =dataTableThucThiQuery(strQuery,CommandType.Text,null);
+		blnSuccess=blnThucThiNonQuery(strQuery,CommandType.Text,ref strError,null);
 	  } catch(Exception ex) {
 		exOutput=ex;
 	  }
 	}
-
   }
 }

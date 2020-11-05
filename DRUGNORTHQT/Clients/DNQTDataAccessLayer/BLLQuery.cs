@@ -84,11 +84,6 @@ namespace DNQTDataAccessLayer {
 
 	  strWhere+=$"\n {Table_BangViThuoc.NAME}.{Table_BangViThuoc.Col_MaViThuoc.NAME} IN ({strListId}) ";
 
-	  //string strOrderBy = "";
-	  //strOrderBy+=$"\n {Table_BangChiTietDonHang.NAME}.{Table_BangChiTietDonHang.Col_MaChiTietDonHang.NAME} ";
-
-	  //strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} \nORDER BY {strOrderBy} ;";
-
 	  strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} ;";
 	}
 
@@ -105,11 +100,6 @@ namespace DNQTDataAccessLayer {
 	  _bllClass.GetStringJoinSplitChar(ref strListId,lstStringId,",","");
 
 	  strWhere+=$"\n {Table_BangViThuoc.NAME}.{Table_BangViThuoc.Col_MaViThuoc.NAME} IN ({strListId}) ";
-
-	  //string strOrderBy = "";
-	  //strOrderBy+=$"\n {Table_BangChiTietDonHang.NAME}.{Table_BangChiTietDonHang.Col_MaChiTietDonHang.NAME} ";
-
-	  //strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} \nORDER BY {strOrderBy} ;";
 
 	  strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} ;";
 	}
@@ -150,6 +140,18 @@ namespace DNQTDataAccessLayer {
 	values(@MaDonHang,@MaGiaThuocVuaThem,@SoLuongViThuoc,@ThanhTienTamThoi);";
 
 	  strQuery=strOutput;
+	}
+
+	internal void DeleteOrderDetailByListId(ref string strQuery,List<string> lstStringId) {
+
+	  string strWhere = "";
+
+	  string strListId = "";
+	  _bllClass.GetStringJoinSplitChar(ref strListId,lstStringId,",","");
+
+	  strWhere+=$"\n {Table_BangChiTietDonHang.Col_MaChiTietDonHang.NAME} IN ({strListId}) ";
+
+	  strQuery=$"DELETE FROM \n{Table_BangChiTietDonHang.NAME} \nWHERE {strWhere} ;";
 	}
 
 	internal void GetDTIdNewByInsertNameProduct(ref string strQuery) {
