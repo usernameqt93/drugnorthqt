@@ -161,7 +161,7 @@ namespace PluginDnqt.Order.ViewModels {
 
 	private void LoadControlDefault() {
 	  try {
-
+		//_mainUserControl.chkHienThiListDonGia.Visibility=Visibility.Collapsed;
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
@@ -209,6 +209,12 @@ namespace PluginDnqt.Order.ViewModels {
 
 	private void LoadListProductGoiY() {
 	  try {
+		string strKey = "DataTable";
+		if(DicDataInPreviousUC.ContainsKey(strKey)) {
+		  DT_AllIdNameProduct=DicDataInPreviousUC[strKey] as DataTable;
+		  return;
+		}
+
 		Exception exOutput = null;
 		DT_AllIdNameProduct=null;
 		DALProduct.GetDTAllIdProduct(ref DT_AllIdNameProduct,ref exOutput);
@@ -353,6 +359,8 @@ namespace PluginDnqt.Order.ViewModels {
 	  _mainUserControl.grbSumGiaTriDH.Header=""+_mainUserControl.grbSumGiaTriDH.Tag.ToString()
 		+$"({mOrder.StrSumKg} Kg)";
 	  _mainUserControl.lblSumGiaTriDH.Content=mOrder.StrSumGiaTri;
+
+	  ChangeFocusToTextBoxNameProduct();
 
 	  LoadListProductGoiY();
 	}
@@ -517,15 +525,15 @@ namespace PluginDnqt.Order.ViewModels {
 		string strText = _mainUserControl.txtSoLuong.Text.Trim();
 		if(KeyEventDownSoLuong.Key==Key.Enter) {
 
-		  decimal objTemp = 0;
-		  try {
-			objTemp=Convert.ToDecimal(strText);
-		  } catch(Exception e) {
-			string str = e.Message;
-			QTMessageBox.ShowNotify("Số lượng bạn nhập không hợp lệ, bạn vui lòng kiểm tra lại!");
-			_mainUserControl.txtSoLuong.SelectAll();
-			return;
-		  }
+		 // decimal objTemp = 0;
+		 // try {
+			//objTemp=Convert.ToDecimal(strText);
+		 // } catch(Exception e) {
+			//string str = e.Message;
+			//QTMessageBox.ShowNotify("Số lượng bạn nhập không hợp lệ, bạn vui lòng kiểm tra lại!");
+			//_mainUserControl.txtSoLuong.SelectAll();
+			//return;
+		 // }
 
 		  ChangeFocusToTextBoxDonGia();
 		  return;
@@ -575,9 +583,9 @@ namespace PluginDnqt.Order.ViewModels {
 			objTemp=Convert.ToDecimal(strText);
 		  } catch(Exception e) {
 			string str = e.Message;
-			QTMessageBox.ShowNotify("Đơn giá bạn nhập không hợp lệ, bạn vui lòng kiểm tra lại!");
-			_mainUserControl.txtDonGia.SelectAll();
-			return;
+			//QTMessageBox.ShowNotify("Đơn giá bạn nhập không hợp lệ, bạn vui lòng kiểm tra lại!");
+			//_mainUserControl.txtDonGia.SelectAll();
+			//return;
 		  }
 
 		  if(KeyEventDownDonGia.Key==Key.N) {
@@ -678,7 +686,7 @@ namespace PluginDnqt.Order.ViewModels {
 	public ICommand CloseSuggestNameProductCommand => new DelegateCommand(p => {
 	  try {
 		_mainUserControl.txtName.Text=_mainUserControl.lblNameProduct.Content.ToString();
-		_mainUserControl.gridGoiYNameProduct.Visibility=Visibility.Collapsed;
+		//_mainUserControl.gridGoiYNameProduct.Visibility=Visibility.Collapsed;
 		ChangeFocusToTextBoxSoLuong();
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
@@ -690,6 +698,10 @@ namespace PluginDnqt.Order.ViewModels {
 	public ICommand GotFocusNameProductCommand => new DelegateCommand(p => {
 	  try {
 		_mainUserControl.gridGoiYDonGia.Visibility=Visibility.Collapsed;
+		//if(_mainUserControl.txtName.Text=="") {
+		//  return;
+		//}
+
 		_mainUserControl.gridGoiYNameProduct.Visibility=Visibility.Visible;
 
 		KeyEventDownNameProduct=new KeyEventArgs(Keyboard.PrimaryDevice,
@@ -715,6 +727,29 @@ namespace PluginDnqt.Order.ViewModels {
 
 		KeyUpChangeNameCommand.Execute(null);
 
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand GotFocusSoLuongCommand => new DelegateCommand(p => {
+	  try {
+		_mainUserControl.gridGoiYDonGia.Visibility=Visibility.Collapsed;
+		_mainUserControl.gridGoiYNameProduct.Visibility=Visibility.Collapsed;
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand CloseSuggestDonGiaCommand => new DelegateCommand(p => {
+	  try {
+		//_mainUserControl.txtName.Text=_mainUserControl.lblNameProduct.Content.ToString();
+		//_mainUserControl.gridGoiYNameProduct.Visibility=Visibility.Collapsed;
+		ChangeFocusToTextBoxSoLuong();
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
@@ -785,8 +820,8 @@ namespace PluginDnqt.Order.ViewModels {
 
 	public ICommand AddCommand => new DelegateCommand(p => {
 	  try {
+		object objTemp = _mainUserControl.lblNameProduct.Content;
 		{
-		  object objTemp = _mainUserControl.lblNameProduct.Content;
 		  if(objTemp==null||objTemp.ToString().Trim().Length<2) {
 			QTMessageBox.ShowNotify(
 			  "Tên vị thuốc phải từ 2 ký tự chữ trở lên, bạn vui lòng kiểm tra lại!"
@@ -818,9 +853,9 @@ namespace PluginDnqt.Order.ViewModels {
 
 		string strIdProduct = "";
 		{
-		  object objTemp = _mainUserControl.lblNameProduct.Tag;
-		  if(objTemp!=null) {
-			strIdProduct=objTemp.ToString();
+		  object objTempTag = _mainUserControl.lblNameProduct.Tag;
+		  if(objTempTag!=null) {
+			strIdProduct=objTempTag.ToString();
 		  }
 		}
 
@@ -851,6 +886,20 @@ namespace PluginDnqt.Order.ViewModels {
 			  ,dicOutput[strKeyError] as string);
 			return;
 		  }
+
+		  string strMessage = "THÊM VÀO ĐƠN HÀNG THÀNH CÔNG!";
+		  strMessage+=$"\n'{objTemp.ToString()}' đã có trong danh sách vị thuốc của phần mềm.";
+		  QTMessageBox.ShowNotify(strMessage);
+
+		  BackCommand.Execute(null);
+
+		  if(ExcuteInOtherUserControl!=null) {
+			var dicInput2 = new Dictionary<string,object>();
+			dicInput2["DataTable"]=DT_AllIdNameProduct;
+
+			ExcuteInOtherUserControl(ref dicInput2);
+		  }
+
 		}
 
 	  } catch(Exception ex) {

@@ -36,6 +36,7 @@ namespace PluginDnqt.Order.ViewModels {
 
 	private DAL_Order DALOrder = new DAL_Order();
 
+	private DataTable DT_AllIdNameProduct = null;
 	private DataTable DT_AllIdOrder = null;
 	private DataTable DT_AllDetailOrderByListIdOrder = null;
 
@@ -100,6 +101,15 @@ namespace PluginDnqt.Order.ViewModels {
 
 	private void ExcuteFromOtherUserControl(ref Dictionary<string,object> dic) {
 
+	}
+
+	private void ExcuteFromUpdateOrderUC(ref Dictionary<string,object> dic) {
+	  string strKey = "DataTable";
+	  if(dic.ContainsKey(strKey)) {
+		DT_AllIdNameProduct=dic[strKey] as DataTable;
+	  }
+
+	  EditCommand.Execute(null);
 	}
 
 	private void LoadForm() {
@@ -336,10 +346,13 @@ namespace PluginDnqt.Order.ViewModels {
 
 		var dicInput = new Dictionary<string,object>();
 		dicInput.Add("DELEGATE_VOID_IN_OTHER_USERCONTROL",
-					  new UpdateOrder_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromOtherUserControl));
+					  new UpdateOrder_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromUpdateOrderUC));
 
 		//var mBaiThiInput = DicDataInPreviousUC["SubjectInfo"] as SubjectInfo;
 		BLLTools.AddDeepModelToDictionary(ref dicInput,"ModelRowOrder",SelectedRow);
+		if(DT_AllIdNameProduct!=null) {
+		  dicInput["DataTable"]=DT_AllIdNameProduct;
+		}
 
 		//dicInput["string"]=_mainUserControl.lblFolderPath.Content.ToString();
 		//dicInput["List<StudentInfo>"]=lstInput;
