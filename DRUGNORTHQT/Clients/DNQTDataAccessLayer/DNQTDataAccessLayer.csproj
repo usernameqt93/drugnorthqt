@@ -51,6 +51,7 @@
     <Compile Include="BLLSelectFromWhere\BLLFrom.cs" />
     <Compile Include="BLLSelectFromWhere\BLLSelect.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="DALNew\DAL_Common.cs" />
     <Compile Include="DALNew\DAL_Order.cs" />
     <Compile Include="DALNew\DAL_Product.cs" />
     <Compile Include="DAO_CaiDat.cs" />

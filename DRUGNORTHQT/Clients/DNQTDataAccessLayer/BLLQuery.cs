@@ -114,5 +114,43 @@ namespace DNQTDataAccessLayer {
 	  strQuery=$"SELECT \n{strSelect} \nFROM {strFrom} \nWHERE {strWhere} ;";
 	}
 
+	internal void AddProductExistToOrderDetail(ref string strQuery,Dictionary<string,object> dicInput) {
+	  string strOutput = "";
+	  string strMaGiaThuocVuaThem = "MaGiaThuocVuaThem";
+	  strOutput+=$"\n declare @{strMaGiaThuocVuaThem} int;";
+
+	  {
+		var lstColumnTable = new List<string>();
+		lstColumnTable.Add(Table_BangGiaViThuoc.Col_MaViThuoc.NAME);
+		lstColumnTable.Add(Table_BangGiaViThuoc.Col_GiaViThuoc.NAME);
+		lstColumnTable.Add(Table_BangGiaViThuoc.Col_DonViGiaThuoc.NAME);
+		lstColumnTable.Add(Table_BangGiaViThuoc.Col_ThoiGianBatDauCoGiaNay.NAME);
+
+		string strTemp = "";
+		_bllClass.GetQueryUseParameter(ref strTemp,"insert into"
+		  ,Table_BangGiaViThuoc.NAME,"values",lstColumnTable);
+		strOutput+=$"\n {strTemp}";
+	  }
+
+	  strOutput+=$"\n set @{strMaGiaThuocVuaThem} = (select @@IDENTITY);";
+
+	  // {
+	  //var lstColumnTable = new List<string>();
+	  //lstColumnTable.Add(Table_BangChiTietDonHang.Col_MaDonHang.NAME);
+	  //lstColumnTable.Add(Table_BangChiTietDonHang.Col_MaGiaThuoc.NAME);
+	  //lstColumnTable.Add(Table_BangChiTietDonHang.Col_SoLuongViThuoc.NAME);
+	  //lstColumnTable.Add(Table_BangChiTietDonHang.Col_ThanhTienTamThoi.NAME);
+
+	  //string strTemp = "";
+	  //_bllClass.GetQueryUseParameter(ref strTemp,"insert into"
+	  //  ,Table_BangGiaViThuoc.NAME,"values",lstColumnTable);
+	  //strOutput+=$"\n {strTemp}";
+	  // }
+	  strOutput+="\n "+@"Insert into BangChiTietDonHang(MaDonHang,MaGiaThuoc,SoLuongViThuoc,ThanhTienTamThoi)
+	values(@MaDonHang,@MaGiaThuocVuaThem,@SoLuongViThuoc,@ThanhTienTamThoi);";
+
+	  strQuery=strOutput;
+	}
+
   }
 }

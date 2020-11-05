@@ -88,6 +88,7 @@ namespace DNQTDataAccessLayer.BLLSelectFromWhere {
 	  {
 		string strListColumnJoinTable = "";
 		var lstColumnTable = new List<string>();
+		lstColumnTable.Add(Table_BangChiTietDonHang.Col_MaDonHang.NAME);
 		lstColumnTable.Add(Table_BangChiTietDonHang.Col_MaChiTietDonHang.NAME);
 		lstColumnTable.Add(Table_BangChiTietDonHang.Col_SoLuongViThuoc.NAME);
 		lstColumnTable.Add(Table_BangChiTietDonHang.Col_ThanhTienTamThoi.NAME);

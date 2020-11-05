@@ -37,6 +37,35 @@ namespace DNQTDataAccessLayer {
 
 	/// <summary>
 	/// Ví dụ list string là a b c 
+	/// thì output là "a,b,c" hoặc "t.a,t.b,t.c" với 't.' là tiền tố, dấu phẩy là phân cách
+	/// </summary>
+	/// <param name="strOutput"></param>
+	/// <param name="lstStringInput"></param>
+	/// <param name="strCharSplit"></param>
+	/// <param name="strTienTo"></param>
+	internal void GetStringJoinSplitCharNotDot(ref string strOutput
+	  ,List<string> lstStringInput,string strCharSplit,string strTienTo) {
+	  if(lstStringInput.Count==0) {
+		return;
+	  }
+
+	  string strThemVao = "";
+	  if(strTienTo!="") {
+		strThemVao=$"{strTienTo}";
+	  }
+
+	  for(int i = 0;i<lstStringInput.Count;i++) {
+		if(i==0) {
+		  strOutput+=strThemVao+lstStringInput[i];
+		  continue;
+		}
+
+		strOutput+=strCharSplit+strThemVao+lstStringInput[i];
+	  }
+	}
+
+	/// <summary>
+	/// Ví dụ list string là a b c 
 	/// thì output là "a,b,c" hoặc "t.a,t.b,t.c" với t là tiền tố, dấu phẩy là phân cách
 	/// </summary>
 	/// <param name="strOutput"></param>
@@ -78,6 +107,19 @@ namespace DNQTDataAccessLayer {
 	  strOutput+=$" {tupleBangJoinVaColumn.Item1} {tupleBangJoinVaColumn.Item1} ";
 	  strOutput+=$"\n ON ";
 	  strOutput+=$"\n {tupleBangJoinVaColumn.Item1}.{tupleBangJoinVaColumn.Item2}={tupleBangGocVaColumn.Item1}.{tupleBangGocVaColumn.Item2} ";
+	}
+
+	internal void GetQueryUseParameter(ref string strOutput,string strOne,string strTableName
+	  ,string strTwo,List<string> lstColumnTable) {
+	  string strListColumnJoinTable1 = "";
+	  GetStringJoinSplitCharNotDot(ref strListColumnJoinTable1
+	  ,lstColumnTable,",","");
+
+	  string strListColumnJoinTable2 = "";
+	  GetStringJoinSplitCharNotDot(ref strListColumnJoinTable2
+	  ,lstColumnTable,",","@");
+
+	  strOutput=$"{strOne} {strTableName}({strListColumnJoinTable1}) {strTwo}({strListColumnJoinTable2});";
 	}
 
 	#endregion
