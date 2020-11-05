@@ -1,4 +1,5 @@
-﻿using DNQTDataAccessLayer.DALNew;
+﻿using DNQTConstTable.ListTableDatabase;
+using DNQTDataAccessLayer.DALNew;
 using log4net;
 using PluginDnqt.Order.Models;
 using PluginDnqt.Order.Views;
@@ -195,10 +196,15 @@ namespace PluginDnqt.Order.ViewModels {
 
 		////_bllPlugin.LoadGridChiTietDHByDataTable(ref _lstGridMain,DT_DetailOrderByListId,mOrder.StrId);
 
-		//_lstGridMain.Clear();
-		//foreach(var item in mOrder.LstGridDetailOrder) {
-		//  _lstGridMain.Add(item);
-		//}
+		ModelRowOrder mOrder = DicDataInPreviousUC["ModelRowOrder"] as ModelRowOrder;
+		_lstGridMain.Clear();
+		foreach(var item in mOrder.LstGridDetailOrder) {
+		  _lstGridMain.Add(item);
+		}
+
+		_mainUserControl.grbSumGiaTriDH.Header=""+_mainUserControl.grbSumGiaTriDH.Tag.ToString()
+		  +$"({mOrder.StrSumKg} Kg)";
+		_mainUserControl.lblSumGiaTriDH.Content=mOrder.StrSumGiaTri;
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
@@ -342,23 +348,6 @@ namespace PluginDnqt.Order.ViewModels {
 
 	private void timerChanged_Tick(object sender,EventArgs e) {
 	  TimerChanged.Stop();
-
-	  // if(DT_DetailOrderByListId==null) {
-	  //QTMessageBox.ShowNotify(
-	  //  "Dữ liệu đơn hàng này tải không thành công, bạn vui lòng thao tác lại!"
-	  //  ,"(DT_DetailOrderByListId==null)");
-	  //return;
-	  // }
-
-	  ModelRowOrder mOrder = DicDataInPreviousUC["ModelRowOrder"] as ModelRowOrder;
-	  _lstGridMain.Clear();
-	  foreach(var item in mOrder.LstGridDetailOrder) {
-		_lstGridMain.Add(item);
-	  }
-
-	  _mainUserControl.grbSumGiaTriDH.Header=""+_mainUserControl.grbSumGiaTriDH.Tag.ToString()
-		+$"({mOrder.StrSumKg} Kg)";
-	  _mainUserControl.lblSumGiaTriDH.Content=mOrder.StrSumGiaTri;
 
 	  ChangeFocusToTextBoxNameProduct();
 
@@ -576,7 +565,7 @@ namespace PluginDnqt.Order.ViewModels {
 		}
 
 		string strText = _mainUserControl.txtDonGia.Text.Trim();
-		if(KeyEventDownDonGia.Key==Key.Enter||KeyEventDownDonGia.Key==Key.N) {
+		if(KeyEventDownDonGia.Key==Key.N) {
 
 		  decimal objTemp = 0;
 		  try {
@@ -598,6 +587,11 @@ namespace PluginDnqt.Order.ViewModels {
 			_mainUserControl.txtDonGia.SelectAll();
 			return;
 		  }
+		  return;
+		}
+
+		if(KeyEventDownDonGia.Key==Key.Enter) {
+		  AddCommand.Execute(null);
 		  return;
 		}
 
@@ -655,23 +649,9 @@ namespace PluginDnqt.Order.ViewModels {
 	public ICommand ThanhTienPreviewMouseMoveCommand => new DelegateCommand(p => {
 	  try {
 		decimal decSoLuong = 0;
-		//if(_mainUserControl.lblSoLuong.Tag!=null) {
-		//  try {
-		//	decSoLuong=(decimal)_mainUserControl.lblSoLuong.Tag;
-		//  } catch(Exception e) {
-		//	string str = e.Message;
-		//  }
-		//}
 		_bllPlugin.GetDecimalFromObject(ref decSoLuong,_mainUserControl.lblSoLuong.Tag);
 
 		decimal decDonGia = 0;
-		//if(_mainUserControl.lblDonGia.Tag!=null) {
-		//  try {
-		//	decDonGia=(decimal)_mainUserControl.lblDonGia.Tag;
-		//  } catch(Exception e) {
-		//	string str = e.Message;
-		//  }
-		//}
 		_bllPlugin.GetDecimalFromObject(ref decDonGia,_mainUserControl.lblDonGia.Tag);
 
 		_bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblThanhTien,decSoLuong*decDonGia);
@@ -831,6 +811,17 @@ namespace PluginDnqt.Order.ViewModels {
 		  }
 		}
 
+		string strNameProduct = objTemp.ToString().Trim();
+		foreach(var item in _lstGridMain) {
+		  if(item.StrNameDrug.Trim()==strNameProduct) {
+			string strTemp = "Tên vị thuốc này đã có trong đơn hàng rồi, bạn vui lòng kiểm tra lại!";
+			strTemp+="\nNếu bạn muốn thay đổi số lượng hoặc đơn giá, vui lòng bấm 'Sửa' ở bảng!";
+			QTMessageBox.ShowNotify(strTemp,"(item.StrNameDrug.Trim()==strNameProduct)");
+			ChangeFocusToTextBoxNameProduct();
+			return;
+		  }
+		}
+
 		decimal decSoLuong = 0;
 		_bllPlugin.GetDecimalFromObject(ref decSoLuong,_mainUserControl.lblSoLuong.Tag);
 		if(decSoLuong<=0) {
@@ -859,16 +850,46 @@ namespace PluginDnqt.Order.ViewModels {
 		  }
 		}
 
+		bool blnAddNewProduct = false;
+		if(strIdProduct=="") {
+		  Exception exOutput = null;
+		  DataTable dtOutput = null;
+		  DALProduct.GetDTIdNewByInsertNameProduct(ref dtOutput,ref exOutput,strNameProduct);
+		  if(exOutput!=null) {
+			Log4Net.Error(exOutput.Message);
+			Log4Net.Error(exOutput.StackTrace);
+			ShowException(exOutput);
+			return;
+		  }
+		  if(dtOutput==null) {
+			QTMessageBox.ShowNotify(
+			  "Thêm tên vị thuốc mới không thành công, bạn vui lòng thử lại!"
+			  ,"(dtOutput==null)");
+			BackCommand.Execute(null);
+			return;
+		  }
+
+		  foreach(DataRow dRow in dtOutput.Rows) {
+			strIdProduct=""+dRow[Table_BangViThuoc.Col_MaViThuoc.NAME].ToString().Trim();
+		  }
+
+		  blnAddNewProduct=true;
+		}
+
+		if(strIdProduct=="") {
+		  return;
+		}
+
 		var dicInput = new Dictionary<string,object>();
-		if(strIdProduct!="") {
-		  dicInput["string.strIdProduct"]=strIdProduct;
-		  dicInput["decimal.decSoLuong"]=decSoLuong;
-		  dicInput["decimal.decDonGia"]=decDonGia;
-		  dicInput["decimal.decThanhTien"]=decDonGia*decSoLuong;
+		dicInput["string.strIdProduct"]=strIdProduct;
+		dicInput["decimal.decSoLuong"]=decSoLuong;
+		dicInput["decimal.decDonGia"]=decDonGia;
+		dicInput["decimal.decThanhTien"]=decDonGia*decSoLuong;
 
-		  ModelRowOrder mOrder = DicDataInPreviousUC["ModelRowOrder"] as ModelRowOrder;
-		  dicInput["string.strIdOrder"]=mOrder.StrId;
+		ModelRowOrder mOrder = DicDataInPreviousUC["ModelRowOrder"] as ModelRowOrder;
+		dicInput["string.strIdOrder"]=mOrder.StrId;
 
+		{
 		  var dicOutput = new Dictionary<string,object>();
 		  Exception exOutput = null;
 		  DALOrder.AddProductExistToOrderDetail(ref dicOutput,ref exOutput,dicInput);
@@ -882,25 +903,59 @@ namespace PluginDnqt.Order.ViewModels {
 		  string strKeyError = "string";
 		  if(dicOutput.ContainsKey(strKeyError)) {
 			QTMessageBox.ShowNotify(
-			  "Thêm tên vị thuốc đã có trong danh sách vào đơn hàng không thành công, bạn vui lòng thử lại!"
+			  "Thêm tên vị thuốc vào đơn hàng không thành công, bạn vui lòng thử lại!"
 			  ,dicOutput[strKeyError] as string);
 			return;
 		  }
+		}
 
-		  string strMessage = "THÊM VÀO ĐƠN HÀNG THÀNH CÔNG!";
-		  strMessage+=$"\n'{objTemp.ToString()}' đã có trong danh sách vị thuốc của phần mềm.";
-		  QTMessageBox.ShowNotify(strMessage);
+		string strMessage = "THÊM VÀO ĐƠN HÀNG THÀNH CÔNG!";
+		if(blnAddNewProduct==false) {
+		  strMessage+=$"\n'{strNameProduct}' đã có trong danh sách vị thuốc của phần mềm.";
+		} else {
+		  strMessage+=$"\n'{strNameProduct}' chưa có trong danh sách vị thuốc của phần mềm.";
+		  strMessage+=$"\nHệ thống đã tự động thêm tên vị thuốc này vào danh sách vị thuốc.";
+		}
+		QTMessageBox.ShowNotify(strMessage);
 
-		  BackCommand.Execute(null);
+		BackCommand.Execute(null);
 
-		  if(ExcuteInOtherUserControl!=null) {
-			var dicInput2 = new Dictionary<string,object>();
+		if(ExcuteInOtherUserControl!=null) {
+		  var dicInput2 = new Dictionary<string,object>();
+		  if(blnAddNewProduct==false) {
 			dicInput2["DataTable"]=DT_AllIdNameProduct;
-
-			ExcuteInOtherUserControl(ref dicInput2);
 		  }
 
+		  ExcuteInOtherUserControl(ref dicInput2);
 		}
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand DeleteCommand => new DelegateCommand(p => {
+	  try {
+		if(SelectedRow==null) {
+		  return;
+		}
+		
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand EditCommand => new DelegateCommand(p => {
+	  try {
+		if(SelectedRow==null) {
+		  return;
+		}
+		
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);

@@ -104,6 +104,7 @@ namespace PluginDnqt.Order.ViewModels {
 	}
 
 	private void ExcuteFromUpdateOrderUC(ref Dictionary<string,object> dic) {
+	  DT_AllIdNameProduct=null;
 	  string strKey = "DataTable";
 	  if(dic.ContainsKey(strKey)) {
 		DT_AllIdNameProduct=dic[strKey] as DataTable;
@@ -352,10 +353,8 @@ namespace PluginDnqt.Order.ViewModels {
 		BLLTools.AddDeepModelToDictionary(ref dicInput,"ModelRowOrder",SelectedRow);
 		if(DT_AllIdNameProduct!=null) {
 		  dicInput["DataTable"]=DT_AllIdNameProduct;
+		  DT_AllIdNameProduct=null;
 		}
-
-		//dicInput["string"]=_mainUserControl.lblFolderPath.Content.ToString();
-		//dicInput["List<StudentInfo>"]=lstInput;
 
 		_mainUserControl.modalPresenter.Visibility=Visibility.Hidden;
 		_mainUserControl.modelChildren.Visibility=Visibility.Visible;

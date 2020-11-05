@@ -266,7 +266,7 @@
 							  </help:NounicodeTextBox>
 
 							  <TextBlock IsHitTestVisible="False"
-										 Text="Nhập khối lượng..."
+										 Text="Nhập số lượng..."
 										 VerticalAlignment="Center"
 										 HorizontalAlignment="Center"
 										 Foreground="DarkGray"
@@ -457,117 +457,129 @@
 							  Height="{Binding ElementName=dockPanelConLai,Path=ActualHeight}"
 							  Style="{DynamicResource InvicoGroupBoxStyle}">
 
-					  <DockPanel>
+					  <Grid>
+						<DockPanel>
 
-						<Button Style="{DynamicResource InvicoButtonStyle}"
-								DockPanel.Dock="Top"
-								HorizontalAlignment="Right"
-								Margin="0,5"
-								Width="90"
-								Height="30"
-								Content="Đóng gợi ý"
-								Command="{Binding CloseSuggestNameProductCommand}" />
+						  <!--<Button Style="{DynamicResource InvicoButtonStyle}"
+								  DockPanel.Dock="Top"
+								  HorizontalAlignment="Center"
+								  Margin="0,5"
+								  Width="90"
+								  Height="30"
+								  Content="Đóng gợi ý"
+								  Command="{Binding CloseSuggestNameProductCommand}" />-->
 
-						<DataGrid Style="{DynamicResource InvicoDataGridStyle}"
-								  ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
-								  VerticalAlignment="Stretch"
-								  x:Name="dgvGoiYNameProduct"
-								  ItemsSource="{Binding LstGridSuggest}"
-								  SelectedItem="{Binding SelectedRowSuggest}">
+						  <DataGrid Style="{DynamicResource InvicoDataGridStyle}"
+									ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
+									VerticalAlignment="Stretch"
+									x:Name="dgvGoiYNameProduct"
+									ItemsSource="{Binding LstGridSuggest}"
+									SelectedItem="{Binding SelectedRowSuggest}">
 
-						  <DataGrid.Columns>
-							<DataGridTemplateColumn Header="STT"
-													Width="40">
-							  <DataGridTemplateColumn.CellTemplate>
-								<DataTemplate>
-								  <TextBlock Margin="3,0"
-											 VerticalAlignment="Center"
-											 HorizontalAlignment="Center"
-											 Text="{Binding Stt}"
-											 ToolTip="{Binding StrId}" />
-								</DataTemplate>
-							  </DataGridTemplateColumn.CellTemplate>
-							</DataGridTemplateColumn>
-
-							<DataGridTemplateColumn Header=" Ký tự "
-													Width="1*">
-							  <DataGridTemplateColumn.CellTemplate>
-								<DataTemplate>
-								  <Grid>
-									<Grid.ColumnDefinitions>
-									  <ColumnDefinition />
-									  <ColumnDefinition Width="auto" />
-									</Grid.ColumnDefinitions>
-
-									<TextBlock TextAlignment="Left"
-											   Grid.Column="0"
-											   TextTrimming="CharacterEllipsis"
+							<DataGrid.Columns>
+							  <DataGridTemplateColumn Header="STT"
+													  Width="40">
+								<DataGridTemplateColumn.CellTemplate>
+								  <DataTemplate>
+									<TextBlock Margin="3,0"
 											   VerticalAlignment="Center"
-											   Margin="2,0"
-											   Text="{Binding StrName}"
-											   ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+											   HorizontalAlignment="Center"
+											   Text="{Binding Stt}"
+											   ToolTip="{Binding StrId}" />
+								  </DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							  </DataGridTemplateColumn>
 
-									<Grid Grid.Column="1"
-										  Margin="3,0">
+							  <DataGridTemplateColumn Header=" Ký tự "
+													  Width="1*">
+								<DataGridTemplateColumn.CellTemplate>
+								  <DataTemplate>
+									<Grid>
+									  <Grid.ColumnDefinitions>
+										<ColumnDefinition />
+										<ColumnDefinition Width="auto" />
+									  </Grid.ColumnDefinitions>
 
-									  <i:Interaction.Triggers>
-										<i:EventTrigger EventName="MouseLeftButtonUp">
-										  <i:InvokeCommandAction Command="{Binding DataContext.QuickEditQuestionCommand, 
+									  <TextBlock TextAlignment="Left"
+												 Grid.Column="0"
+												 TextTrimming="CharacterEllipsis"
+												 VerticalAlignment="Center"
+												 Margin="2,0"
+												 Text="{Binding StrName}"
+												 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+
+									  <Grid Grid.Column="1"
+											Margin="3,0">
+
+										<i:Interaction.Triggers>
+										  <i:EventTrigger EventName="MouseLeftButtonUp">
+											<i:InvokeCommandAction Command="{Binding DataContext.QuickEditQuestionCommand, 
                                             RelativeSource={RelativeSource AncestorType=DataGrid}}"
-																 CommandParameter="{Binding}" />
-										</i:EventTrigger>
-									  </i:Interaction.Triggers>
+																   CommandParameter="{Binding}" />
+										  </i:EventTrigger>
+										</i:Interaction.Triggers>
 
-									  <Rectangle Fill="Transparent" />
+										<Rectangle Fill="Transparent" />
 
-									  <StackPanel Orientation="Horizontal">
+										<StackPanel Orientation="Horizontal">
 
-										<Label Template="{StaticResource CheckOkIcon}"
-											   Width="{Binding DoubleWidthHeightIconOk}"
-											   Height="{Binding DoubleWidthHeightIconOk}"
-											   VerticalAlignment="Center">
-										  <Label.ToolTip>
-											<StackPanel>
-											  <TextBlock Text="Tên vị thuốc này đã có trong danh sách" />
-											  <TextBlock Text="" />
-											</StackPanel>
-										  </Label.ToolTip>
-										</Label>
+										  <Label Template="{StaticResource CheckOkIcon}"
+												 Width="{Binding DoubleWidthHeightIconOk}"
+												 Height="{Binding DoubleWidthHeightIconOk}"
+												 VerticalAlignment="Center">
+											<Label.ToolTip>
+											  <StackPanel>
+												<TextBlock Text="Tên vị thuốc này đã có trong danh sách" />
+												<TextBlock Text="" />
+											  </StackPanel>
+											</Label.ToolTip>
+										  </Label>
 
-										<Label Template="{StaticResource AlertIcon}"
-											   Width="{Binding DoubleWidthHeightIconAlert}"
-											   Height="{Binding DoubleWidthHeightIconAlert}"
-											   VerticalAlignment="Center">
-										  <Label.ToolTip>
-											<StackPanel>
-											  <TextBlock Text="Tên vị thuốc này chưa có trong danh sách" />
-											  <TextBlock Text="(Nếu bạn thêm tên vị thuốc này vào đơn hàng:" />
-											  <TextBlock Text="Tên vị thuốc này sẽ được lưu lại để gợi ý lần sau)" />
-											</StackPanel>
-										  </Label.ToolTip>
-										</Label>
+										  <Label Template="{StaticResource AlertIcon}"
+												 Width="{Binding DoubleWidthHeightIconAlert}"
+												 Height="{Binding DoubleWidthHeightIconAlert}"
+												 VerticalAlignment="Center">
+											<Label.ToolTip>
+											  <StackPanel>
+												<TextBlock Text="Tên vị thuốc này chưa có trong danh sách" />
+												<TextBlock Text="(Nếu bạn thêm tên vị thuốc này vào đơn hàng:" />
+												<TextBlock Text="Tên vị thuốc này sẽ được lưu lại để gợi ý lần sau)" />
+											  </StackPanel>
+											</Label.ToolTip>
+										  </Label>
 
-									  </StackPanel>
+										</StackPanel>
+
+									  </Grid>
 
 									</Grid>
+								  </DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							  </DataGridTemplateColumn>
 
-								  </Grid>
-								</DataTemplate>
-							  </DataGridTemplateColumn.CellTemplate>
-							</DataGridTemplateColumn>
+							</DataGrid.Columns>
 
-						  </DataGrid.Columns>
-
-						  <i:Interaction.Triggers>
-							<i:EventTrigger EventName="MouseLeftButtonUp">
-							  <i:InvokeCommandAction Command="{Binding DataContext.SelectNameProductGoiYCommand, 
+							<i:Interaction.Triggers>
+							  <i:EventTrigger EventName="MouseLeftButtonUp">
+								<i:InvokeCommandAction Command="{Binding DataContext.SelectNameProductGoiYCommand, 
                                             RelativeSource={RelativeSource AncestorType=DataGrid}}"
-													 CommandParameter="{Binding}" />
-							</i:EventTrigger>
-						  </i:Interaction.Triggers>
+													   CommandParameter="{Binding}" />
+							  </i:EventTrigger>
+							</i:Interaction.Triggers>
 
-						</DataGrid>
-					  </DockPanel>
+						  </DataGrid>
+						</DockPanel>
+
+						<Button Template="{StaticResource IconFalseAnswer}"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Top"
+								ToolTip="Đóng gợi ý"
+								Width="22"
+								Height="22"
+								Margin="0,5,5,0"
+								Command="{Binding CloseSuggestNameProductCommand}" />
+
+					  </Grid>
 
 					</GroupBox>
 				  </Grid>
@@ -692,7 +704,7 @@
 					  </DataGridTemplateColumn>
 
 					  <DataGridTemplateColumn Header=" Thao tác "
-											  Width="60"
+											  Width="auto"
 											  HeaderStyle="{StaticResource InvicoColumnHeaderStyle}">
 						<DataGridTemplateColumn.CellTemplate>
 						  <DataTemplate>
@@ -701,17 +713,23 @@
 										HorizontalAlignment="Center">
 
 							  <Button Template="{StaticResource EditQuestion}"
+									  Command="{Binding Path=DataContext.EditCommand, 
+                                                        RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+									  CommandParameter="{Binding}"
 									  Width="20"
 									  Height="20"
 									  RenderTransformOrigin="0.435,1"
-									  ToolTip="Sửa thông tin"
+									  ToolTip="Sửa"
 									  Margin="3,0" />
 
-							  <Button Template="{StaticResource ExportFileIcon}"
+							  <Button Template="{StaticResource DeleteIcon}"
+									  Command="{Binding Path=DataContext.DeleteCommand, 
+                                                        RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+									  CommandParameter="{Binding}"
 									  Width="20"
 									  Height="20"
 									  RenderTransformOrigin="0.435,1"
-									  ToolTip="Xuất file key.txt"
+									  ToolTip="Xóa"
 									  Margin="3,0" />
 
 							</StackPanel>
@@ -740,19 +758,27 @@
 
 				  <DockPanel DockPanel.Dock="Top">
 
-					<Button Style="{DynamicResource InvicoButtonStyle}"
+					<Button Template="{StaticResource IconFalseAnswer}"
 							DockPanel.Dock="Right"
-							Margin="0,5"
-							Width="90"
-							Height="30"
-							Content="Đóng gợi ý"
+							ToolTip="Đóng gợi ý"
+							Width="22"
+							Height="22"
 							Command="{Binding CloseSuggestDonGiaCommand}" />
 
 					<Label Style="{DynamicResource InvicoLabelModalStyle}"
 						   Content="{Binding ElementName=lblNameProduct,Path=Content}"
 						   VerticalAlignment="Center"
 						   HorizontalAlignment="Left" />
+
 				  </DockPanel>
+
+				  <!--<Button Style="{DynamicResource InvicoButtonStyle}"
+						  DockPanel.Dock="Bottom"
+						  Margin="0,3"
+						  Width="90"
+						  Height="30"
+						  Content="Đóng gợi ý"
+						  Command="{Binding CloseSuggestDonGiaCommand}" />-->
 
 				  <DataGrid Style="{DynamicResource InvicoDataGridStyle}"
 							x:Name="dgvDonGia"
@@ -867,26 +893,6 @@
 		  </Grid>
 		  
 		</Grid>
-
-		<!--<DockPanel Grid.Row="3"
-				   HorizontalAlignment="Center">
-
-		  <Button Style="{DynamicResource InvicoButtonStyle}"
-				  Margin="3"
-				  Height="30"
-				  Width="100"
-				  Content="Lưu"
-				  Command="{Binding Path= DataContext.SaveCommand, 
-                                    RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
-		  <Button Style="{DynamicResource InvicoButtonStyle}"
-				  x:Name="btnBack"
-				  Margin="3"
-				  Height="30"
-				  Width="100"
-				  Content="Đóng"
-				  Command="{Binding Path= DataContext.BackCommand, 
-                                    RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
-		</DockPanel>-->
 
 	  </Grid>
 
