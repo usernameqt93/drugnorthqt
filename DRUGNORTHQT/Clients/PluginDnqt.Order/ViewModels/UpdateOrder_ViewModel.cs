@@ -634,7 +634,6 @@ namespace PluginDnqt.Order.ViewModels {
 		  }
 
 		  _bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblDonGia,objTemp);
-
 		}
 
 		ThanhTienPreviewMouseMoveCommand.Execute(null);
@@ -941,7 +940,44 @@ namespace PluginDnqt.Order.ViewModels {
 		if(SelectedRow==null) {
 		  return;
 		}
-		
+
+		string strMessage = "Vị thuốc bạn chọn sẽ bị xóa khỏi đơn hàng này!";
+		strMessage+="\n"+"Tổng giá đơn hàng sẽ giảm đi tương ứng!";
+		strMessage+="\n"+"Bạn chắc chắn muốn thực hiện thao tác này?";
+		if(QTMessageBox.ShowConfirm(strMessage)!=MessageBoxResult.Yes) {
+		  return;
+		}
+
+		var lstStringId = new List<string>();
+		lstStringId.Add(SelectedRow.StrId);
+
+		string strError = "";
+		Exception exOutput = null;
+		bool blnSuccess = false;
+		DALOrder.DeleteOrderDetailByListId(ref blnSuccess,ref strError,ref exOutput,lstStringId);
+		if(exOutput!=null) {
+		  Log4Net.Error(exOutput.Message);
+		  Log4Net.Error(exOutput.StackTrace);
+		  ShowException(exOutput);
+		  return;
+		}
+
+		if(blnSuccess==false) {
+		  QTMessageBox.ShowNotify("Thao tác không thành công, bạn vui lòng kiểm tra lại!"
+			,strError);
+		  return;
+		}
+
+		QTMessageBox.ShowNotify("Thao tác thành công!");
+
+		BackCommand.Execute(null);
+
+		if(ExcuteInOtherUserControl!=null) {
+		  var dicInput2 = new Dictionary<string,object>();
+		  dicInput2["DataTable"]=DT_AllIdNameProduct;
+
+		  ExcuteInOtherUserControl(ref dicInput2);
+		}
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
@@ -955,7 +991,21 @@ namespace PluginDnqt.Order.ViewModels {
 		if(SelectedRow==null) {
 		  return;
 		}
-		
+
+		var dicInput = new Dictionary<string,object>();
+		dicInput.Add("DELEGATE_VOID_IN_OTHER_USERCONTROL",
+					  new UpdateDetailOrder_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromOtherUserControl));
+
+		dicInput["ModelRowDetailOrder"]=SelectedRow;
+
+		_mainUserControl.modalPresenter.Visibility=Visibility.Hidden;
+		_mainUserControl.modelChildren.Visibility=Visibility.Visible;
+		_mainUserControl.modelChildren.Margin=new Thickness(0);
+
+		_mainUserControl.gridChildren.Children.Clear();
+
+		var userControl = new UpdateDetailOrder(dicInput);
+		_mainUserControl.gridChildren.Children.Add(userControl);
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);

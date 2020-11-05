@@ -1,0 +1,265 @@
+﻿<UserControl x:Class="PluginDnqt.Order.Views.UpdateDetailOrder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:PluginDnqt.Order.Views"
+			 xmlns:help="clr-namespace:QT.Framework.ToolCommon.Helpers;assembly=QT.Framework.ToolCommon"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 mc:Ignorable="d"
+			 d:DesignHeight="800"
+			 d:DesignWidth="1200"
+			 x:Name="ucMain">
+  <UserControl.Resources>
+	<ResourceDictionary>
+	  <ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="pack://application:,,,/QT.Framework.Styles.Library;Component/QTStyle.xaml" />
+	  </ResourceDictionary.MergedDictionaries>
+	</ResourceDictionary>
+  </UserControl.Resources>
+
+  <i:Interaction.Triggers>
+	<i:EventTrigger EventName="Loaded">
+	  <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+	</i:EventTrigger>
+  </i:Interaction.Triggers>
+
+  <Grid>
+	<help:ModalContentPresenter x:Name="modalPresenter"
+								IsModal="True">
+	  <Grid Background="White">
+
+	  </Grid>
+
+	  <help:ModalContentPresenter.ModalContent>
+		<Grid>
+		  <Border Visibility="Visible"
+				  Height="390"
+				  Width="310"
+				  Background="White"
+				  BorderBrush="LightGray"
+				  BorderThickness="1,1,1,1"
+				  CornerRadius="3,3,3,3">
+			<Grid>
+			  <Grid.RowDefinitions>
+				<RowDefinition Height="30" />
+				<RowDefinition Height="5" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="35" />
+			  </Grid.RowDefinitions>
+			  <Grid Grid.Row="0"
+					VerticalAlignment="Center">
+				<Label Content="CẬP NHẬT SỐ LƯỢNG VÀ ĐƠN GIÁ"
+					   Style="{DynamicResource InvicoTitlePopupStyle}"
+					   HorizontalAlignment="Center"
+					   VerticalContentAlignment="Center"
+					   Height="Auto"
+					   VerticalAlignment="Stretch" />
+			  </Grid>
+			  <Separator Grid.Row="1"
+						 Style="{StaticResource CustomSeparatorStyle}"
+						 Margin="3,0"
+						 VerticalAlignment="Top" />
+
+			  <Grid Grid.Row="2"
+					Margin="5,0">
+				<StackPanel>
+
+				  <GroupBox Header="Tên vị thuốc thay đổi"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
+					<StackPanel>
+
+					  <Label Content="..."
+							 HorizontalAlignment="Center"
+							 x:Name="lblNameProduct"
+							 Style="{DynamicResource InvicoLabelModalStyle}" />
+
+					</StackPanel>
+				  </GroupBox>
+
+				  <StackPanel x:Name="stackPanelThaoTac">
+					<GroupBox Header="Số lượng mới"
+							  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+					  <StackPanel>
+						<Grid>
+						  <help:NounicodeTextBox x:Name="txtSoLuong"
+												 StringFilter="^[0-9.]+$"
+												 MaxLength="10"
+												 Height="30"
+												 VerticalContentAlignment="Center"
+												 HorizontalContentAlignment="Center"
+												 Style="{StaticResource InvicoTextBoxStyle}"
+												 Text="">
+
+						  </help:NounicodeTextBox>
+
+						  <TextBlock IsHitTestVisible="False"
+									 Text="Nhập số lượng..."
+									 VerticalAlignment="Center"
+									 HorizontalAlignment="Center"
+									 Foreground="DarkGray"
+									 Margin="7,0,0,0">
+							<TextBlock.Style>
+							  <Style TargetType="{x:Type TextBlock}">
+								<Setter Property="Visibility"
+										Value="Collapsed" />
+								<Style.Triggers>
+								  <DataTrigger Binding="{Binding Text, ElementName=txtSoLuong}"
+											   Value="">
+									<Setter Property="Visibility"
+											Value="Visible" />
+								  </DataTrigger>
+								</Style.Triggers>
+							  </Style>
+							</TextBlock.Style>
+						  </TextBlock>
+						</Grid>
+
+						<StackPanel Orientation="Horizontal"
+									HorizontalAlignment="Center"
+									Visibility="{Binding ElementName=stackPanelThanhTien,Path=Visibility}">
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 x:Name="lblSoLuong"
+								 Foreground="Red"
+								 Content="0" />
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 Content="Kg" />
+
+						</StackPanel>
+					  </StackPanel>
+
+					</GroupBox>
+
+					<GroupBox Header="Đơn giá mới"
+							  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+					  <StackPanel>
+						<Grid>
+						  <help:NounicodeTextBox x:Name="txtDonGia"
+												 StringFilter="^[0-9]+$"
+												 MaxLength="10"
+												 Height="30"
+												 VerticalContentAlignment="Center"
+												 HorizontalContentAlignment="Center"
+												 Style="{StaticResource InvicoTextBoxStyle}"
+												 Text="">
+
+						  </help:NounicodeTextBox>
+
+						  <TextBlock IsHitTestVisible="False"
+									 Text="Nhập đơn giá..."
+									 VerticalAlignment="Center"
+									 HorizontalAlignment="Center"
+									 Foreground="DarkGray"
+									 Margin="7,0,0,0">
+							<TextBlock.Style>
+							  <Style TargetType="{x:Type TextBlock}">
+								<Setter Property="Visibility"
+										Value="Collapsed" />
+								<Style.Triggers>
+								  <DataTrigger Binding="{Binding Text, ElementName=txtDonGia}"
+											   Value="">
+									<Setter Property="Visibility"
+											Value="Visible" />
+								  </DataTrigger>
+								</Style.Triggers>
+							  </Style>
+							</TextBlock.Style>
+						  </TextBlock>
+						</Grid>
+
+						<StackPanel Orientation="Horizontal"
+									HorizontalAlignment="Center"
+									Visibility="{Binding ElementName=stackPanelThanhTien,Path=Visibility}">
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 x:Name="lblDonGia"
+								 Foreground="Red"
+								 Content="0" />
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 Content="vnđ" />
+
+						</StackPanel>
+
+					  </StackPanel>
+
+					</GroupBox>
+				  </StackPanel>
+
+				  <GroupBox Header="Thành tiền"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
+					<StackPanel>
+
+					  <Label Content="Chọn 'Xác nhận thay đổi' để hiển thị"
+							 HorizontalAlignment="Center"
+							 x:Name="lblChonDeHienThi"
+							 Style="{DynamicResource InvicoLabelModalStyle}" />
+
+					  <StackPanel Orientation="Horizontal"
+								  HorizontalAlignment="Center"
+								  x:Name="stackPanelThanhTien">
+						<Label Style="{DynamicResource InvicoLabelModalStyle}"
+							   Content="=" />
+
+						<Label Style="{DynamicResource InvicoLabelModalStyle}"
+							   x:Name="lblThanhTien"
+							   Foreground="Red"
+							   Content="0" />
+
+						<Label Style="{DynamicResource InvicoLabelModalStyle}"
+							   Content="đ" />
+					  </StackPanel>
+
+					</StackPanel>
+				  </GroupBox>
+
+				</StackPanel>
+
+				<CheckBox Cursor="Hand"
+						  x:Name="chkXacNhan"
+						  Style="{DynamicResource InvicoSliderCheckBoxStyle}"
+						  Content="Xác nhận thay đổi"
+						  HorizontalAlignment="Center"
+						  VerticalAlignment="Bottom"
+						  Command="{Binding XacNhanCheckedChangedCommand}"
+						  Margin="0,25" />
+
+			  </Grid>
+
+			  <DockPanel Grid.Row="3"
+						 HorizontalAlignment="Center">
+				<Button Style="{DynamicResource InvicoButtonStyle}"
+						IsEnabled="{Binding ElementName=chkXacNhan,Path=IsChecked}"
+						Margin="3"
+						Height="30"
+						Width="100"
+						Content="Lưu lại"
+						Command="{Binding Path= DataContext.SaveCommand, 
+                                    RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+				<Button Style="{DynamicResource InvicoButtonStyle}"
+						Margin="3"
+						Height="30"
+						Width="100"
+						Content="Hủy bỏ"
+						Command="{Binding Path= DataContext.BackCommand, 
+                                    RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+			  </DockPanel>
+			</Grid>
+		  </Border>
+		</Grid>
+	  </help:ModalContentPresenter.ModalContent>
+	</help:ModalContentPresenter>
+
+	<help:ModalContentPresenter x:Name="modelChildren"
+								Margin="1500,0,0,0"
+								Visibility="Hidden">
+	  <Grid x:Name="gridChildren">
+
+	  </Grid>
+	</help:ModalContentPresenter>
+  </Grid>
+</UserControl>

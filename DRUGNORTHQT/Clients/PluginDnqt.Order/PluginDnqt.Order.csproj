@@ -107,6 +107,7 @@
     <Compile Include="ViewModels\BLLPlugin.cs" />
     <Compile Include="ViewModels\CVPConstValuePlugin.cs" />
     <Compile Include="ViewModels\PrintOrder_ViewModel.cs" />
+    <Compile Include="ViewModels\UpdateDetailOrder_ViewModel.cs" />
     <Compile Include="ViewModels\UpdateOrder_ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelMain.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -117,6 +118,9 @@
     </Compile>
     <Compile Include="Views\TextBoxWithHint.xaml.cs">
       <DependentUpon>TextBoxWithHint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateDetailOrder.xaml.cs">
+      <DependentUpon>UpdateDetailOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdateOrder.xaml.cs">
       <DependentUpon>UpdateOrder.xaml</DependentUpon>
@@ -155,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TextBoxWithHint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateDetailOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
