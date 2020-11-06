@@ -1,0 +1,221 @@
+﻿<UserControl x:Class="PluginDnqt.Customer.Views.MainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:PluginDnqt.Customer.Views"
+			 xmlns:help="clr-namespace:QT.Framework.ToolCommon.Helpers;assembly=QT.Framework.ToolCommon"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 mc:Ignorable="d"
+			 d:DesignHeight="800"
+			 d:DesignWidth="1200"
+			 x:Name="ucMain">
+  <UserControl.Resources>
+	<ResourceDictionary>
+	  <ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="pack://application:,,,/QT.Framework.Styles.Library;Component/QTStyle.xaml" />
+	  </ResourceDictionary.MergedDictionaries>
+	  <help:BindingProxy x:Key="ProxyKey"
+						 Data="{Binding ElementName=ucMain, Path=DataContext}" />
+	</ResourceDictionary>
+  </UserControl.Resources>
+
+  <i:Interaction.Triggers>
+	<i:EventTrigger EventName="Loaded">
+	  <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+	</i:EventTrigger>
+  </i:Interaction.Triggers>
+
+  <Grid>
+	<help:ModalContentPresenter x:Name="modalPresenter"
+								IsModal="{Binding IsTiling}">
+	  <Grid Background="White">
+		<Grid.RowDefinitions>
+		  <RowDefinition Height="auto" />
+		  <RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<DockPanel Grid.Row="0"
+				   Margin="5,5,5,0"
+				   LastChildFill="True">
+
+		  <StackPanel DockPanel.Dock="Left"
+					  Orientation="Horizontal">
+
+			<GroupBox Header="Dữ liệu hiện có"
+					  Style="{DynamicResource InvicoGroupBoxStyle}">
+			  <StackPanel HorizontalAlignment="Left"
+						  VerticalAlignment="Center"
+						  Orientation="Horizontal">
+
+				<Label Content="0"
+					   x:Name="lblSumProduct"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+				<Label Content="tên khách hàng"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+				<Label Content="-"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+				<Label Content="0"
+					   x:Name="lblSumPage"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+				<Label Content="trang"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+				<Label Content="(0 dữ liệu/ 1 trang)"
+					   x:Name="lblSoRow1Page"
+					   Style="{DynamicResource InvicoLabelStyle}" />
+
+			  </StackPanel>
+			</GroupBox>
+
+		  </StackPanel>
+
+		  <StackPanel DockPanel.Dock="Right"
+					  Orientation="Horizontal">
+
+			<Label Content="Trang"
+				   VerticalAlignment="Bottom"
+				   Style="{DynamicResource InvicoLabelStyle}" />
+
+			<ComboBox Style="{DynamicResource InvicoComboBoxStyle}"
+					  Margin="1,0"
+					  Height="30"
+					  VerticalAlignment="Bottom"
+					  ItemsSource="{Binding MOCPage.LstCbo}"
+					  SelectedItem="{Binding MOCPage.MItemSelected}"
+					  DisplayMemberPath="Name"
+					  SelectedValuePath="ID">
+			  <i:Interaction.Triggers>
+				<i:EventTrigger EventName="SelectionChanged">
+				  <i:InvokeCommandAction Command="{Binding PageSelectionChangedCommand}" />
+				</i:EventTrigger>
+			  </i:Interaction.Triggers>
+			</ComboBox>
+		  </StackPanel>
+
+		  <Grid>
+
+		  </Grid>
+
+		</DockPanel>
+
+		<GroupBox Grid.Row="1"
+				  Header="Danh sách"
+				  Style="{DynamicResource InvicoGroupBoxStyle}"
+				  Margin="5">
+		  <DockPanel>
+
+			<DockPanel DockPanel.Dock="Top">
+
+			  <Grid DockPanel.Dock="Right"
+					Margin="0,5">
+				<CheckBox x:Name="chkShowSumOrder"
+						  Style="{StaticResource InvicoCheckBoxStyle}"
+						  Content="Hiển thị số lượng đơn hàng có tên vị thuốc"
+						  Command="{Binding ChkShowSumOrderChangedCommand}" />
+			  </Grid>
+
+			  <Grid>
+
+			  </Grid>
+
+			</DockPanel>
+
+			<DataGrid Style="{DynamicResource InvicoDataGridStyle}"
+					  ColumnHeaderStyle="{DynamicResource InvicoColumnHeaderStyle}"
+					  VerticalAlignment="Stretch"
+					  ItemsSource="{Binding LstGridMain}"
+					  SelectedItem="{Binding SelectedRow}">
+
+			  <DataGrid.Columns>
+				<DataGridTemplateColumn Header="STT"
+										Width="40">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					  <TextBlock Margin="3,0"
+								 VerticalAlignment="Center"
+								 HorizontalAlignment="Center"
+								 Text="{Binding Stt}" />
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										Header=" Mã dữ liệu "
+										Width="auto">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					  <TextBlock TextAlignment="Center"
+								 VerticalAlignment="Center"
+								 Text="{Binding MBC000.Str}" />
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										Header="Tên khách hàng"
+										Width="1*">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					  <TextBlock Margin="3,0"
+								 VerticalAlignment="Center"
+								 TextTrimming="CharacterEllipsis"
+								 Text="{Binding MBC001.Str}"
+								 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										x:Name="colSumOrder"
+										Header=" Column3 "
+										Width="auto">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					  <TextBlock Margin="3,0"
+								 VerticalAlignment="Center"
+								 HorizontalAlignment="Center"
+								 Text="{Binding MBC002.Str}"
+								 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										x:Name="colListOrder"
+										Header="Danh sách đơn hàng"
+										Width="2*">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					  <TextBlock Margin="3,0"
+								 VerticalAlignment="Center"
+								 HorizontalAlignment="Center"
+								 TextTrimming="CharacterEllipsis"
+								 Text="{Binding StrListOrder}"
+								 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+			  </DataGrid.Columns>
+			</DataGrid>
+
+		  </DockPanel>
+		</GroupBox>
+	  </Grid>
+
+	</help:ModalContentPresenter>
+
+	<help:ModalContentPresenter x:Name="modelChildren"
+								Margin="1500,0,0,0"
+								Visibility="Hidden">
+	  <Grid x:Name="gridChildren">
+
+	  </Grid>
+	</help:ModalContentPresenter>
+  </Grid>
+</UserControl>
