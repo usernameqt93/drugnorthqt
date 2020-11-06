@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using DNQTDataAccessLayer.DALNew;
+using log4net;
 using PluginDnqt.Order.Models;
 using PluginDnqt.Order.Views;
 using QT.Framework.ToolCommon.Helpers;
@@ -27,6 +28,8 @@ namespace PluginDnqt.Order.ViewModels {
 	};
 
 	private const int CONST_INT_INTERVAL_TIMER = 50;
+
+	private DAL_Order DALOrder = new DAL_Order();
 
 	private readonly BLLPlugin _bllPlugin = new BLLPlugin();
 
@@ -206,6 +209,80 @@ namespace PluginDnqt.Order.ViewModels {
 		_bllPlugin.GetDecimalFromObject(ref decDonGia,_mainUserControl.lblDonGia.Tag);
 
 		_bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblThanhTien,decSoLuong*decDonGia);
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand SaveCommand => new DelegateCommand(p => {
+	  try {
+		if(_mainUserControl.chkXacNhan.IsChecked==false) {
+		  return;
+		}
+
+		decimal decSoLuong = 0;
+		_bllPlugin.GetDecimalFromObject(ref decSoLuong,_mainUserControl.lblSoLuong.Tag);
+		if(decSoLuong<=0) {
+		  _mainUserControl.chkXacNhan.IsChecked=false;
+		  QTMessageBox.ShowNotify(
+			"Số lượng đang bằng 0 hoặc không hợp lệ, bạn vui lòng kiểm tra lại!"
+			,"(decSoLuong<=0)");
+		  ChangeFocusToTextBoxSoLuong();
+		  return;
+		}
+
+		decimal decDonGia = 0;
+		_bllPlugin.GetDecimalFromObject(ref decDonGia,_mainUserControl.lblDonGia.Tag);
+		if(decDonGia<=1000) {
+		  _mainUserControl.chkXacNhan.IsChecked=false;
+		  QTMessageBox.ShowNotify(
+			"Đơn giá đang nhỏ hơn 1000 hoặc không hợp lệ, bạn vui lòng kiểm tra lại!"
+			,"(decDonGia<=1000)");
+		  ChangeFocusToTextBoxDonGia();
+		  return;
+		}
+
+		ModelRowDetailOrder mOrder = DicDataInPreviousUC["ModelRowDetailOrder"] as ModelRowDetailOrder;
+
+		var dicInput = new Dictionary<string,object>();
+		dicInput["string.strIdDetailOrder"]=mOrder.StrId;
+		dicInput["decimal.decSoLuong"]=decSoLuong;
+		dicInput["decimal.decDonGia"]=decDonGia;
+		dicInput["decimal.decThanhTien"]=decDonGia*decSoLuong;
+
+		{
+		  var dicOutput = new Dictionary<string,object>();
+		  Exception exOutput = null;
+		  DALOrder.UpdateOrderDetail(ref dicOutput,ref exOutput,dicInput);
+		  if(exOutput!=null) {
+			Log4Net.Error(exOutput.Message);
+			Log4Net.Error(exOutput.StackTrace);
+			ShowException(exOutput);
+			return;
+		  }
+
+		  string strKeyError = "string";
+		  if(dicOutput.ContainsKey(strKeyError)) {
+			QTMessageBox.ShowNotify(
+			  "Cập nhật số lượng và đơn giá mới không thành công, bạn vui lòng thử lại!"
+			  ,dicOutput[strKeyError] as string);
+			return;
+		  }
+		}
+
+		string strMessage = "THAO TÁC THÀNH CÔNG!";
+		QTMessageBox.ShowNotify(strMessage);
+
+		BackCommand.Execute(null);
+
+		if(ExcuteInOtherUserControl!=null) {
+		  var dicInput2 = new Dictionary<string,object>();
+
+		  ExcuteInOtherUserControl(ref dicInput2);
+		}
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);

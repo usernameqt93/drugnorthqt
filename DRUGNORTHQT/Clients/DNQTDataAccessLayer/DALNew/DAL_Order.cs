@@ -103,5 +103,54 @@ namespace DNQTDataAccessLayer.DALNew {
 		exOutput=ex;
 	  }
 	}
+
+	public void UpdateOrderDetail(ref Dictionary<string,object> dicOutput,ref Exception exOutput
+	  ,Dictionary<string,object> dicInput) {
+	  try {
+		string strQuery = "";
+		_bllQuery.UpdateOrderDetail(ref strQuery);
+
+		var lstTupleParameter = new List<Tuple<string,object>>();
+		{
+		  string objTemp = dicInput["string.strIdDetailOrder"] as string;
+		  lstTupleParameter.Add(new Tuple<string,object>
+			(Table_BangChiTietDonHang.Col_MaChiTietDonHang.NAME,objTemp));
+		}
+		{
+		  decimal objTemp = (decimal)dicInput["decimal.decDonGia"];
+		  lstTupleParameter.Add(new Tuple<string,object>
+			(Table_BangGiaViThuoc.Col_GiaViThuoc.NAME,objTemp));
+		}
+		//lstTupleParameter.Add(new Tuple<string,object>
+		//  (Table_BangGiaViThuoc.Col_DonViGiaThuoc.NAME,"Kg"));
+		lstTupleParameter.Add(new Tuple<string,object>
+		  (Table_BangGiaViThuoc.Col_ThoiGianBatDauCoGiaNay.NAME,DateTime.Now));
+		//{
+		//  string objTemp = dicInput["string.strIdOrder"] as string;
+		//  lstTupleParameter.Add(new Tuple<string,object>
+		//	(Table_BangChiTietDonHang.Col_MaDonHang.NAME,objTemp));
+		//}
+		{
+		  decimal objTemp = (decimal)dicInput["decimal.decSoLuong"];
+		  lstTupleParameter.Add(new Tuple<string,object>
+			(Table_BangChiTietDonHang.Col_SoLuongViThuoc.NAME,objTemp));
+		}
+		{
+		  decimal objTemp = (decimal)dicInput["decimal.decThanhTien"];
+		  lstTupleParameter.Add(new Tuple<string,object>
+			(Table_BangChiTietDonHang.Col_ThanhTienTamThoi.NAME,objTemp));
+		}
+
+		bool blnResult = false;
+		string strError = "";
+		DALCommon.ExcuteQueryWithListTupleParameter(ref strError,ref blnResult,strQuery,lstTupleParameter);
+		if(blnResult==false&&strError!="2") {
+		  dicOutput["string"]=strError;
+		}
+	  } catch(Exception ex) {
+		exOutput=ex;
+	  }
+	}
+
   }
 }

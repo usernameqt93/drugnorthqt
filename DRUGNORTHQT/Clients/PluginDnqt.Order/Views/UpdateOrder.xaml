@@ -78,6 +78,7 @@
 
 				  <Label Style="{DynamicResource InvicoLabelModalStyle}"
 						 x:Name="lblSumGiaTriDH"
+						 FontSize="24"
 						 Content="0 đ"
 						 HorizontalAlignment="Center" />
 
@@ -174,8 +175,7 @@
 								 VerticalAlignment="Center">
 							<Label.ToolTip>
 							  <StackPanel>
-								<TextBlock Text="Tên vị thuốc này đã có trong danh sách" />
-								<TextBlock Text="" />
+								<TextBlock Text="Tên vị thuốc hợp lệ" />
 							  </StackPanel>
 							</Label.ToolTip>
 						  </Label>
@@ -204,7 +204,7 @@
 								   VerticalAlignment="Center">
 							  <Label.ToolTip>
 								<StackPanel>
-								  <TextBlock Text="Tên vị thuốc này chưa có trong danh sách" />
+								  <TextBlock Text="Tên vị thuốc mới" />
 								  <TextBlock Text="(Nếu bạn thêm tên vị thuốc này vào đơn hàng:" />
 								  <TextBlock Text="Tên vị thuốc này sẽ được lưu lại để gợi ý lần sau)" />
 								</StackPanel>
@@ -390,37 +390,42 @@
 
 							<StackPanel>
 
-							  <Label Style="{DynamicResource InvicoLabelModalStyle}"
-									 Content="{Binding ElementName=lblNameProduct,Path=Content}" />
-
-							  <StackPanel Orientation="Horizontal">
+							  <StackPanel Visibility="Collapsed">
 								<Label Style="{DynamicResource InvicoLabelModalStyle}"
-									   Content="{Binding ElementName=lblSoLuong,Path=Content}" />
+									   Content="{Binding ElementName=lblNameProduct,Path=Content}" />
 
-								<Label Style="{DynamicResource InvicoLabelModalStyle}"
-									   Content="(Kg)" />
+								<StackPanel Orientation="Horizontal">
+								  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+										 Content="{Binding ElementName=lblSoLuong,Path=Content}" />
 
-								<Label Style="{DynamicResource InvicoLabelModalStyle}"
-									   Content="x" />
+								  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+										 Content="(Kg)" />
 
-								<Label Style="{DynamicResource InvicoLabelModalStyle}"
-									   Content="{Binding ElementName=lblDonGia,Path=Content}" />
+								  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+										 Content="x" />
 
-								<Label Style="{DynamicResource InvicoLabelModalStyle}"
-									   Content="(đ)" />
+								  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+										 Content="{Binding ElementName=lblDonGia,Path=Content}" />
 
+								  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+										 Content="(đ)" />
+
+								</StackPanel>
 							  </StackPanel>
 
 							  <StackPanel Orientation="Horizontal">
 								<Label Style="{DynamicResource InvicoLabelModalStyle}"
+									   FontSize="18"
 									   Content="=" />
 
 								<Label Style="{DynamicResource InvicoLabelModalStyle}"
 									   x:Name="lblThanhTien"
+									   FontSize="18"
 									   Foreground="Red"
 									   Content="0" />
 
 								<Label Style="{DynamicResource InvicoLabelModalStyle}"
+									   FontSize="18"
 									   Content="đ" />
 							  </StackPanel>
 
@@ -529,8 +534,7 @@
 												 VerticalAlignment="Center">
 											<Label.ToolTip>
 											  <StackPanel>
-												<TextBlock Text="Tên vị thuốc này đã có trong danh sách" />
-												<TextBlock Text="" />
+												<TextBlock Text="Tên vị thuốc hợp lệ" />
 											  </StackPanel>
 											</Label.ToolTip>
 										  </Label>
@@ -541,7 +545,7 @@
 												 VerticalAlignment="Center">
 											<Label.ToolTip>
 											  <StackPanel>
-												<TextBlock Text="Tên vị thuốc này chưa có trong danh sách" />
+												<TextBlock Text="Tên vị thuốc mới" />
 												<TextBlock Text="(Nếu bạn thêm tên vị thuốc này vào đơn hàng:" />
 												<TextBlock Text="Tên vị thuốc này sẽ được lưu lại để gợi ý lần sau)" />
 											  </StackPanel>

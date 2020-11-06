@@ -374,6 +374,17 @@ namespace PluginDnqt.Order.ViewModels {
 
 	#endregion
 
+	private void ExcuteFromUpdateDetailOrderUC(ref Dictionary<string,object> dicInput) {
+	  BackCommand.Execute(null);
+
+	  if(ExcuteInOtherUserControl!=null) {
+		var dicInput2 = new Dictionary<string,object>();
+		dicInput2["DataTable"]=DT_AllIdNameProduct;
+
+		ExcuteInOtherUserControl(ref dicInput2);
+	  }
+	}
+
 	private void ExcuteFromOtherUserControl(ref Dictionary<string,object> dicInput) {
 
 	}
@@ -403,10 +414,6 @@ namespace PluginDnqt.Order.ViewModels {
 		dicInput.Add("DELEGATE_VOID_IN_OTHER_USERCONTROL",
 					  new PrintOrder_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromOtherUserControl));
 
-		//var mBaiThiInput = DicDataInPreviousUC["SubjectInfo"] as SubjectInfo;
-		//BLLTools.AddDeepModelToDictionary(ref dicInput,"ModelRowOrder",SelectedRow);
-
-		//dicInput["string"]=_mainUserControl.lblFolderPath.Content.ToString();
 		dicInput["ObservableCollection<ModelRowDetailOrder>"]=_lstGridMain;
 		dicInput["DataTable"]=dtReport;
 		dicInput["List<Tuple<string,int,string>>"]=lstTupleMaxCharInColumn;
@@ -994,7 +1001,7 @@ namespace PluginDnqt.Order.ViewModels {
 
 		var dicInput = new Dictionary<string,object>();
 		dicInput.Add("DELEGATE_VOID_IN_OTHER_USERCONTROL",
-					  new UpdateDetailOrder_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromOtherUserControl));
+					  new UpdateDetailOrder_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromUpdateDetailOrderUC));
 
 		dicInput["ModelRowDetailOrder"]=SelectedRow;
 

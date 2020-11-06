@@ -175,5 +175,20 @@ namespace DNQTDataAccessLayer {
 	  strQuery=strOutput;
 	}
 
+	internal void UpdateOrderDetail(ref string strQuery) {
+	  string strOutput = "";
+	  strOutput+="\n"+"declare @MaGiaThuoc int;";
+	  strOutput+="\n"+@"set @MaGiaThuoc ="
++" (select MaGiaThuoc from BangChiTietDonHang  where MaChiTietDonHang=@MaChiTietDonHang);";
+
+	  strOutput+="\n"+@"update BangGiaViThuoc"
++" set GiaViThuoc=@GiaViThuoc,ThoiGianBatDauCoGiaNay=@ThoiGianBatDauCoGiaNay where MaGiaThuoc=@MaGiaThuoc;";
+	  strOutput+="\n"+@"update BangChiTietDonHang"
++" set SoLuongViThuoc=@SoLuongViThuoc,ThanhTienTamThoi=@ThanhTienTamThoi"
++" where MaChiTietDonHang=@MaChiTietDonHang;";
+
+	  strQuery=strOutput;
+	}
+
   }
 }
