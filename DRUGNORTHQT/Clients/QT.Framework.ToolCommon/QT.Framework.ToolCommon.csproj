@@ -81,7 +81,9 @@
     <Compile Include="Helpers\NumericBox.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\UpKeyHelpers.cs" />
+    <Compile Include="Models\ModelBaseCell.cs" />
     <Compile Include="Models\ModelBaseDataGrid.cs" />
+    <Compile Include="Models\ModelBaseRow.cs" />
     <Compile Include="Models\ModelEnum.cs" />
     <Compile Include="Models\ModelItems.cs" />
     <Compile Include="Models\ModelOneCombobox.cs" />
