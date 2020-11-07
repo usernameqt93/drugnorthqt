@@ -115,145 +115,147 @@
 						Header="Thay đổi tiền nợ"
 						Style="{DynamicResource InvicoGroupBoxStyle}">
 				<StackPanel>
-				  <StackPanel x:Name="stackPanelThaoTac">
-					<Grid>
-					  <Grid.ColumnDefinitions>
-						<ColumnDefinition />
-						<ColumnDefinition />
-					  </Grid.ColumnDefinitions>
+				  <StackPanel>
+					<StackPanel x:Name="stackPanelThaoTac">
+					  <Grid>
+						<Grid.ColumnDefinitions>
+						  <ColumnDefinition />
+						  <ColumnDefinition />
+						</Grid.ColumnDefinitions>
 
-					  <GroupBox Grid.Column="0"
-								Header="Tùy chọn"
-								Style="{DynamicResource InvicoGroupBoxStyle}">
-
-						<StackPanel Orientation="Horizontal"
-									Margin="0,5">
-
-						  <RadioButton x:Name="rdbDaTra"
-									   Margin="3,0"
-									   IsChecked="True"
-									   Style="{StaticResource InvicoRadioButtonStyle}"
-									   VerticalAlignment="Center"
-									   Content="Đã trả (-)"
-									   Command="{Binding RadioButtonTuyChonCheckedCommand}" />
-
-						  <RadioButton x:Name="rdbVayThem"
-									   Margin="3,0"
-									   Style="{StaticResource InvicoRadioButtonStyle}"
-									   VerticalAlignment="Center"
-									   Content="Vay thêm (+)"
-									   Command="{Binding RadioButtonTuyChonCheckedCommand}" />
-
-						  <RadioButton x:Name="rdbSuaThanh"
-									   Margin="3,0"
-									   Style="{StaticResource InvicoRadioButtonStyle}"
-									   VerticalAlignment="Center"
-									   Content="Sửa thành"
-									   Command="{Binding RadioButtonTuyChonCheckedCommand}" />
-
-						</StackPanel>
-
-					  </GroupBox>
-
-					  <GroupBox Grid.Column="1"
-								Header="Số tiền"
-								Style="{DynamicResource InvicoGroupBoxStyle}">
-
-						<DockPanel>
+						<GroupBox Grid.Column="0"
+								  Header="Tùy chọn"
+								  Style="{DynamicResource InvicoGroupBoxStyle}">
 
 						  <StackPanel Orientation="Horizontal"
-									  DockPanel.Dock="Right"
-									  VerticalAlignment="Center"
-									  Visibility="{Binding ElementName=stackPanelChiTiet,Path=Visibility}">
+									  Margin="0,5">
 
-							<Label Style="{DynamicResource InvicoLabelModalStyle}"
-								   x:Name="lblDonGia"
-								   Foreground="Red"
-								   Content="0" />
+							<RadioButton x:Name="rdbDaTra"
+										 Margin="3,0"
+										 IsChecked="True"
+										 Style="{StaticResource InvicoRadioButtonStyle}"
+										 VerticalAlignment="Center"
+										 Content="Đã trả (-)"
+										 Command="{Binding RadioButtonTuyChonCheckedCommand}" />
 
-							<Label Style="{DynamicResource InvicoLabelModalStyle}"
-								   Content="vnđ" />
+							<RadioButton x:Name="rdbVayThem"
+										 Margin="3,0"
+										 Style="{StaticResource InvicoRadioButtonStyle}"
+										 VerticalAlignment="Center"
+										 Content="Vay thêm (+)"
+										 Command="{Binding RadioButtonTuyChonCheckedCommand}" />
+
+							<RadioButton x:Name="rdbSuaThanh"
+										 Margin="3,0"
+										 Style="{StaticResource InvicoRadioButtonStyle}"
+										 VerticalAlignment="Center"
+										 Content="Sửa thành"
+										 Command="{Binding RadioButtonTuyChonCheckedCommand}" />
 
 						  </StackPanel>
 
-						  <Grid>
-							<help:NounicodeTextBox x:Name="txtDonGia"
-												   StringFilter="^[0-9]+$"
-												   MaxLength="10"
-												   Height="30"
-												   VerticalContentAlignment="Center"
-												   HorizontalContentAlignment="Left"
-												   Style="{StaticResource InvicoTextBoxStyle}"
-												   Text="">
+						</GroupBox>
 
-							</help:NounicodeTextBox>
+						<GroupBox Grid.Column="1"
+								  Header="Số tiền"
+								  Style="{DynamicResource InvicoGroupBoxStyle}">
 
-							<TextBlock IsHitTestVisible="False"
-									   Text="Nhập số tiền..."
-									   VerticalAlignment="Center"
-									   HorizontalAlignment="Left"
-									   Foreground="DarkGray"
-									   Margin="7,0,0,0">
-							  <TextBlock.Style>
-								<Style TargetType="{x:Type TextBlock}">
-								  <Setter Property="Visibility"
-										  Value="Collapsed" />
-								  <Style.Triggers>
-									<DataTrigger Binding="{Binding Text, ElementName=txtDonGia}"
-												 Value="">
-									  <Setter Property="Visibility"
-											  Value="Visible" />
-									</DataTrigger>
-								  </Style.Triggers>
-								</Style>
-							  </TextBlock.Style>
-							</TextBlock>
-						  </Grid>
+						  <DockPanel>
 
-						</DockPanel>
+							<StackPanel Orientation="Horizontal"
+										DockPanel.Dock="Right"
+										VerticalAlignment="Center"
+										Visibility="{Binding ElementName=stackPanelChiTiet,Path=Visibility}">
 
-					  </GroupBox>
+							  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+									 x:Name="lblSoTienCuThe"
+									 Foreground="Red"
+									 Content="0" />
 
-					</Grid>
+							  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+									 Content="vnđ" />
 
-					<GroupBox Header="Ghi chú"
-							  Style="{DynamicResource InvicoGroupBoxStyle}">
+							</StackPanel>
 
-					  <Grid>
-						<TextBox Style="{DynamicResource InvicoTextBoxStyle}"
-								 AcceptsReturn="False"
-								 x:Name="txtGhiChu"
-								 MaxLength="50"
-								 HorizontalAlignment="Stretch"
-								 HorizontalContentAlignment="Left"
-								 VerticalAlignment="Center"
-								 VerticalContentAlignment="Center"
-								 Height="30">
+							<Grid>
+							  <help:NounicodeTextBox x:Name="txtSoTienCuThe"
+													 StringFilter="^[0-9]+$"
+													 MaxLength="10"
+													 Height="30"
+													 VerticalContentAlignment="Center"
+													 HorizontalContentAlignment="Left"
+													 Style="{StaticResource InvicoTextBoxStyle}"
+													 Text="">
 
-						</TextBox>
-						<TextBlock IsHitTestVisible="False"
-								   Text="Nhập ghi chú chi tiết để xem lại lần sau(Ví dụ: Trả tiền mặt, chuyển khoản hoặc lý do khác...)"
-								   VerticalAlignment="Center"
-								   HorizontalAlignment="Left"
-								   Foreground="DarkGray"
-								   Margin="7,0,0,0">
-						  <TextBlock.Style>
-							<Style TargetType="{x:Type TextBlock}">
-							  <Setter Property="Visibility"
-									  Value="Collapsed" />
-							  <Style.Triggers>
-								<DataTrigger Binding="{Binding Text, ElementName=txtGhiChu}"
-											 Value="">
-								  <Setter Property="Visibility"
-										  Value="Visible" />
-								</DataTrigger>
-							  </Style.Triggers>
-							</Style>
-						  </TextBlock.Style>
-						</TextBlock>
+							  </help:NounicodeTextBox>
+
+							  <TextBlock IsHitTestVisible="False"
+										 Text="Nhập số tiền..."
+										 VerticalAlignment="Center"
+										 HorizontalAlignment="Left"
+										 Foreground="DarkGray"
+										 Margin="7,0,0,0">
+								<TextBlock.Style>
+								  <Style TargetType="{x:Type TextBlock}">
+									<Setter Property="Visibility"
+											Value="Collapsed" />
+									<Style.Triggers>
+									  <DataTrigger Binding="{Binding Text, ElementName=txtSoTienCuThe}"
+												   Value="">
+										<Setter Property="Visibility"
+												Value="Visible" />
+									  </DataTrigger>
+									</Style.Triggers>
+								  </Style>
+								</TextBlock.Style>
+							  </TextBlock>
+							</Grid>
+
+						  </DockPanel>
+
+						</GroupBox>
+
 					  </Grid>
 
-					</GroupBox>
+					  <GroupBox Header="Ghi chú"
+								Style="{DynamicResource InvicoGroupBoxStyle}">
+
+						<Grid>
+						  <TextBox Style="{DynamicResource InvicoTextBoxStyle}"
+								   AcceptsReturn="False"
+								   x:Name="txtGhiChu"
+								   MaxLength="50"
+								   HorizontalAlignment="Stretch"
+								   HorizontalContentAlignment="Left"
+								   VerticalAlignment="Center"
+								   VerticalContentAlignment="Center"
+								   Height="30">
+
+						  </TextBox>
+						  <TextBlock IsHitTestVisible="False"
+									 Text="Nhập ghi chú chi tiết để xem lại lần sau(Ví dụ: Trả tiền mặt, chuyển khoản hoặc lý do khác...)"
+									 VerticalAlignment="Center"
+									 HorizontalAlignment="Left"
+									 Foreground="DarkGray"
+									 Margin="7,0,0,0">
+							<TextBlock.Style>
+							  <Style TargetType="{x:Type TextBlock}">
+								<Setter Property="Visibility"
+										Value="Collapsed" />
+								<Style.Triggers>
+								  <DataTrigger Binding="{Binding Text, ElementName=txtGhiChu}"
+											   Value="">
+									<Setter Property="Visibility"
+											Value="Visible" />
+								  </DataTrigger>
+								</Style.Triggers>
+							  </Style>
+							</TextBlock.Style>
+						  </TextBlock>
+						</Grid>
+
+					  </GroupBox>
+					</StackPanel>
 
 					<StackPanel x:Name="stackPanelChiTiet">
 					  <GroupBox Header="Chi tiết thay đổi"

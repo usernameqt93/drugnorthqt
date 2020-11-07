@@ -4,13 +4,11 @@ using PluginDnqt.Customer.Models;
 using PluginDnqt.Customer.Views;
 using QT.Framework.ToolCommon;
 using QT.Framework.ToolCommon.Helpers;
-using QT.Framework.ToolCommon.Models;
 using QT.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -35,9 +33,9 @@ namespace PluginDnqt.Customer.ViewModels {
 
 	private const int CONST_INT_INTERVAL_TIMER = 50;
 
-	private DAL_Product DALProduct = new DAL_Product();
+	private DAL_Customer DALCustomer = new DAL_Customer();
 
-	private DAL_Order DALOrder = new DAL_Order();
+	private Tuple<decimal,decimal,decimal,decimal> TupleHienTaiTruocCuTheSau = null;
 
 	private readonly BLLPlugin _bllPlugin = new BLLPlugin();
 
@@ -152,21 +150,29 @@ namespace PluginDnqt.Customer.ViewModels {
 		  strGhiChuFull="\nGhi chú: "+strVietHoa;
 		}
 
+		ModelRowCustomer mrow = DicDataInPreviousUC["ModelRowCustomer"] as ModelRowCustomer;
+
+		decimal decCuThe = 0;
+		_bllPlugin.GetDecimalFromObject(ref decCuThe,_mainUserControl.lblSoTienCuThe.Tag);
+
 		string strHienTai = _mainUserControl.lblTienNo.Content.ToString();
-		string strCuThe = _mainUserControl.lblDonGia.Content.ToString();
+		string strCuThe = _mainUserControl.lblSoTienCuThe.Content.ToString();
 		if(_mainUserControl.rdbSuaThanh.IsChecked==true) {
+		  #region Trường hợp sửa tiền nợ
 		  _mainUserControl.lblChiTiet.Content=$"Tiền nợ sửa thành {strCuThe} đ"+strGhiChuFull;
 		  _mainUserControl.lblSauKhiThayDoi.Content=
 		  $"Từ    {strHienTai}    thành    {strCuThe} đ";
+
+		  TupleHienTaiTruocCuTheSau=new Tuple<decimal,decimal,decimal,decimal>
+			(decCuThe,mrow.MBDTienNo.Value,decCuThe,decCuThe);
+		  #endregion
+
 		  return;
 		}
 
-		ModelRowCustomer mrow = DicDataInPreviousUC["ModelRowCustomer"] as ModelRowCustomer;
-
-		decimal decDonGia = 0;
-		_bllPlugin.GetDecimalFromObject(ref decDonGia,_mainUserControl.lblDonGia.Tag);
 		if(_mainUserControl.rdbDaTra.IsChecked==true) {
-		  decimal decHieu = mrow.MBDTienNo.Value-decDonGia;
+		  #region Trường hợp đã trả
+		  decimal decHieu = mrow.MBDTienNo.Value-decCuThe;
 		  if(decHieu<0) {
 			QTMessageBox.ShowNotify("Bạn đang nhập số tiền lớn hơn tiền nợ hiện tại, vui lòng kiểm tra lại!");
 			return;
@@ -176,12 +182,18 @@ namespace PluginDnqt.Customer.ViewModels {
 		  _mainUserControl.lblChiTiet.Content=$"Khách hàng đã trả {strCuThe} đ"+strGhiChuFull;
 		  _mainUserControl.lblSauKhiThayDoi.Content=
 		  $"{strHienTai}   -   {strCuThe} đ   =   {strHieu} đ";
+
+		  TupleHienTaiTruocCuTheSau=new Tuple<decimal,decimal,decimal,decimal>
+			(decHieu,mrow.MBDTienNo.Value,decCuThe,decHieu);
+		  #endregion
+
 		  return;
 		}
 
 		if(_mainUserControl.rdbVayThem.IsChecked==true) {
-		  decimal decTong = mrow.MBDTienNo.Value+decDonGia;
-		  if(decDonGia<4000) {
+		  #region Trường hợp vay thêm
+		  decimal decTong = mrow.MBDTienNo.Value+decCuThe;
+		  if(decCuThe<4000) {
 			QTMessageBox.ShowNotify("Bạn đang nhập số tiền nhỏ hơn 4.000 đ, vui lòng kiểm tra lại!");
 			return;
 		  }
@@ -190,6 +202,11 @@ namespace PluginDnqt.Customer.ViewModels {
 		  _mainUserControl.lblChiTiet.Content=$"Khách hàng vay thêm {strCuThe} đ"+strGhiChuFull;
 		  _mainUserControl.lblSauKhiThayDoi.Content=
 		  $"{strHienTai}   +   {strCuThe} đ   =   {strTong} đ";
+
+		  TupleHienTaiTruocCuTheSau=new Tuple<decimal,decimal,decimal,decimal>
+			(decTong,mrow.MBDTienNo.Value,decCuThe,decTong);
+		  #endregion
+
 		  return;
 		}
 	  } catch(Exception ex) {
@@ -233,6 +250,8 @@ namespace PluginDnqt.Customer.ViewModels {
 
 	public ICommand XacNhanCheckedChangedCommand => new DelegateCommand(p => {
 	  try {
+		TupleHienTaiTruocCuTheSau=null;
+
 		_mainUserControl.lblChiTiet.Content="";
 		_mainUserControl.lblSauKhiThayDoi.Content="";
 
@@ -246,7 +265,7 @@ namespace PluginDnqt.Customer.ViewModels {
 		}
 
 		{
-		  string strText = _mainUserControl.txtDonGia.Text.Trim();
+		  string strText = _mainUserControl.txtSoTienCuThe.Text.Trim();
 		  decimal objTemp = 0;
 		  try {
 			objTemp=Convert.ToDecimal(strText);
@@ -254,15 +273,15 @@ namespace PluginDnqt.Customer.ViewModels {
 			string str = e.Message;
 		  }
 
-		  _bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblDonGia,objTemp);
+		  _bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblSoTienCuThe,objTemp);
 		}
 
 		HienThiChiTiet();
 
 		if(_mainUserControl.lblChiTiet.Content.ToString().Trim()=="") {
 		  _mainUserControl.chkXacNhan.IsChecked=false;
-		  _mainUserControl.txtDonGia.Focus();
-		  _mainUserControl.txtDonGia.SelectAll();
+		  _mainUserControl.txtSoTienCuThe.Focus();
+		  _mainUserControl.txtSoTienCuThe.SelectAll();
 		  return;
 		}
 
@@ -277,84 +296,60 @@ namespace PluginDnqt.Customer.ViewModels {
 	  }
 	});
 
-	//public ICommand RadioButtonTuyChonCheckedCommand => new DelegateCommand(p => {
-	//  try {
-	//	{
-	//	  string strText = _mainUserControl.txtDonGia.Text.Trim();
-	//	  decimal objTemp = 0;
-	//	  try {
-	//		objTemp=Convert.ToDecimal(strText);
-	//	  } catch(Exception e) {
-	//		string str = e.Message;
-	//	  }
-
-	//	  _bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblDonGia,objTemp);
-	//	}
-
-	//	string strTxtGhiChu = _mainUserControl.txtGhiChu.Text.Trim();
-	//	string strGhiChuFull = "";
-	//	if(strTxtGhiChu!="") {
-	//	  strGhiChuFull="\nGhi chú: "+strTxtGhiChu;
-	//	}
-
-	//	string strHienTai = _mainUserControl.lblTienNo.Content.ToString();
-	//	string strCuThe = _mainUserControl.lblDonGia.Content.ToString();
-	//	if(_mainUserControl.rdbSuaThanh.IsChecked==true) {
-	//	  _mainUserControl.lblChiTiet.Content=$"Tiền nợ sửa thành {strCuThe} đ"+strGhiChuFull;
-	//	  _mainUserControl.lblSauKhiThayDoi.Content=
-	//	  $"Từ    {strHienTai}    thành    {strCuThe} đ";
-	//	  return;
-	//	}
-
-	//	ModelRowCustomer mrow = DicDataInPreviousUC["ModelRowCustomer"] as ModelRowCustomer;
-
-	//	decimal decDonGia = 0;
-	//	_bllPlugin.GetDecimalFromObject(ref decDonGia,_mainUserControl.lblDonGia.Tag);
-	//	if(_mainUserControl.rdbDaTra.IsChecked==true) {
-	//	  decimal decHieu = mrow.MBDTienNo.Value-decDonGia;
-	//	  if(decHieu<0) {
-	//		QTMessageBox.ShowNotify("Bạn đang nhập số tiền lớn hơn tiền nợ hiện tại, vui lòng kiểm tra lại!");
-	//		return;
-	//	  }
-
-	//	  string strHieu = (decHieu==0) ? "0" : decHieu.ToString("#,###.#");
-	//	  _mainUserControl.lblChiTiet.Content=$"Khách hàng đã trả {strCuThe} đ"+strGhiChuFull;
-	//	  _mainUserControl.lblSauKhiThayDoi.Content=
-	//	  $"{strHienTai}   -   {strCuThe} đ   =   {strHieu} đ";
-	//	  return;
-	//	}
-
-	//	if(_mainUserControl.rdbVayThem.IsChecked==true) {
-	//	  decimal decTong = mrow.MBDTienNo.Value+decDonGia;
-	//	  if(decDonGia<4000) {
-	//		QTMessageBox.ShowNotify("Bạn đang nhập số tiền nhỏ hơn 4.000 đ, vui lòng kiểm tra lại!");
-	//		return;
-	//	  }
-
-	//	  string strTong = (decTong==0) ? "0" : decTong.ToString("#,###.#");
-	//	  _mainUserControl.lblChiTiet.Content=$"Khách hàng vay thêm {strCuThe} đ"+strGhiChuFull;
-	//	  _mainUserControl.lblSauKhiThayDoi.Content=
-	//	  $"{strHienTai}   +   {strCuThe} đ   =   {strTong} đ";
-	//	  return;
-	//	}
-	//  } catch(Exception ex) {
-	//	Log4Net.Error(ex.Message);
-	//	Log4Net.Error(ex.StackTrace);
-	//	ShowException(ex);
-	//  }
-	//});
-
 	public ICommand SaveCommand => new DelegateCommand(p => {
 	  try {
-		string strMessage = "Bạn chắc chắn muốn thực hiện thao tác này?";
-		//strMessage+="\n"+"Tổng giá đơn hàng sẽ giảm đi tương ứng!";
-		//strMessage+="\n"+"Bạn chắc chắn muốn thực hiện thao tác này?";
-		if(QTMessageBox.ShowConfirm(strMessage)!=MessageBoxResult.Yes) {
+		string strConfirm = "Bạn chắc chắn muốn thực hiện thao tác này?";
+		if(QTMessageBox.ShowConfirm(strConfirm)!=MessageBoxResult.Yes) {
 		  return;
 		}
 
+		ModelRowCustomer mrow = DicDataInPreviousUC["ModelRowCustomer"] as ModelRowCustomer;
 
+		var dicInput = new Dictionary<string,object>();
+		dicInput["decimal.TienNoHienTai"]=TupleHienTaiTruocCuTheSau.Item1;
+		dicInput["string.IdBangKhachHang"]=mrow.MBC000.Str;
 
+		dicInput["decimal.TienNoTruocKhiSua"]=TupleHienTaiTruocCuTheSau.Item2;
+		dicInput["string.LyDoSuaTienNo"]=_mainUserControl.lblChiTiet.Content.ToString().Trim();
+
+		dicInput["decimal.SoTienSuaCuThe"]=TupleHienTaiTruocCuTheSau.Item3;
+		dicInput["decimal.TienNoSauKhiSua"]=TupleHienTaiTruocCuTheSau.Item4;
+
+		{
+		  var dicOutput = new Dictionary<string,object>();
+		  Exception exOutput = null;
+		  DALCustomer.UpdateDetailTienNoKH(ref dicOutput,ref exOutput,dicInput);
+		  if(exOutput!=null) {
+			Log4Net.Error(exOutput.Message);
+			Log4Net.Error(exOutput.StackTrace);
+			ShowException(exOutput);
+			return;
+		  }
+
+		  string strKeyError = "string";
+		  if(dicOutput.ContainsKey(strKeyError)) {
+			QTMessageBox.ShowNotify(
+			  "Thao tác không thành công, bạn vui lòng thử lại!"
+			  ,dicOutput[strKeyError] as string);
+			return;
+		  }
+		}
+
+		decimal decTienNoMoi= TupleHienTaiTruocCuTheSau.Item4;
+		string strTienNoMoi= (decTienNoMoi==0) ? "0" : decTienNoMoi.ToString("#,###.#");
+		string strMessage = "THAO TÁC THÀNH CÔNG!";
+		strMessage += "\n"
+		+$"Tiền nợ hiện tại của khách hàng '{_mainUserControl.lblName.Content.ToString()}' là {strTienNoMoi} đ";
+
+		QTMessageBox.ShowNotify(strMessage);
+
+		BackCommand.Execute(null);
+
+		if(ExcuteInOtherUserControl!=null) {
+		  var dicInput2 = new Dictionary<string,object>();
+
+		  ExcuteInOtherUserControl(ref dicInput2);
+		}
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);

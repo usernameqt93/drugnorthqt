@@ -102,6 +102,10 @@ namespace PluginDnqt.Customer.ViewModels {
 
 	}
 
+	private void ExcuteFromDetailTienNoUC(ref Dictionary<string,object> dic) {
+	  EditCommand.Execute(null);
+	}
+
 	private void LoadForm() {
 	  try {
 		LoadControlDefault();
@@ -116,10 +120,6 @@ namespace PluginDnqt.Customer.ViewModels {
 
 	private void LoadControlDefault() {
 	  try {
-		//_mainUserControl.colSumOrder.Visibility=System.Windows.Visibility.Collapsed;
-		//_mainUserControl.colListOrder.Visibility=System.Windows.Visibility.Collapsed;
-		//_mainUserControl.chkShowSumOrder.IsChecked=false;
-
 		_mainUserControl.lblSoRow1Page.Content=$"({ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN} dữ liệu/ 1 trang)";
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
@@ -141,7 +141,7 @@ namespace PluginDnqt.Customer.ViewModels {
 	private void timerChanged_Tick(object sender,EventArgs e) {
 	  TimerChanged.Stop();
 
-	  TimerChangedCommand.Execute(null);
+	  RadioButtonPhanLoaiCheckedCommand.Execute(null);
 	}
 
 	private void LoadComboboxPage(int intSumPage) {
@@ -223,6 +223,10 @@ namespace PluginDnqt.Customer.ViewModels {
 		if(SelectedRow==null) {
 		  return;
 		}
+		if(SelectedRow.MBC000.Str=="1"||SelectedRow.MBC001.Str=="--Không ghi vào--") {
+		  QTMessageBox.ShowNotify("Dữ liệu này mặc định để hệ thống không hiển thị tên khách hàng khi in hóa đơn, bạn vui lòng chọn tên khách hàng khác!");
+		  return;
+		}
 
 		var lstStringId = new List<string>();
 		lstStringId.Add(SelectedRow.MBC000.Str);
@@ -250,7 +254,7 @@ namespace PluginDnqt.Customer.ViewModels {
 
 		var dicInput = new Dictionary<string,object>();
 		dicInput.Add("DELEGATE_VOID_IN_OTHER_USERCONTROL",
-					  new DetailTienNo_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromOtherUserControl));
+					  new DetailTienNo_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromDetailTienNoUC));
 
 		BLLTools.AddDeepModelToDictionary(ref dicInput,"ModelRowCustomer",SelectedRow);
 
@@ -270,11 +274,16 @@ namespace PluginDnqt.Customer.ViewModels {
 	  }
 	});
 
-	public ICommand TimerChangedCommand => new DelegateCommand(p => {
+	public ICommand RadioButtonPhanLoaiCheckedCommand => new DelegateCommand(p => {
 	  try {
 		Exception exOutput = null;
 		DT_AllIdCustomer=null;
-		DALCustomer.GetDTAllIdCustomer(ref DT_AllIdCustomer,ref exOutput);
+		if(_mainUserControl.rdbTuADenZ.IsChecked==true) {
+		  DALCustomer.GetDTAllIdCustomer(ref DT_AllIdCustomer,ref exOutput); 
+		}
+		if(_mainUserControl.rdbGiamDan.IsChecked==true) {
+		  DALCustomer.GetDTAllIdCustomerSortByTienNo(ref DT_AllIdCustomer,ref exOutput);
+		}
 		if(exOutput!=null) {
 		  Log4Net.Error(exOutput.Message);
 		  Log4Net.Error(exOutput.StackTrace);
