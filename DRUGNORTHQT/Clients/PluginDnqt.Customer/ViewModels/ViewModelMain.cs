@@ -1,5 +1,7 @@
-﻿using DNQTDataAccessLayer.DALNew;
+﻿using DNQTConstTable.ListTableDatabase;
+using DNQTDataAccessLayer.DALNew;
 using log4net;
+using PluginDnqt.Customer.Models;
 using PluginDnqt.Customer.Views;
 using QT.Framework.ToolCommon;
 using QT.Framework.ToolCommon.Helpers;
@@ -10,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -49,14 +52,14 @@ namespace PluginDnqt.Customer.ViewModels {
 
 	#region MainDataGrid
 
-	private ModelBaseRow _selectedRow;
+	private ModelRowCustomer _selectedRow;
 
-	public ModelBaseRow SelectedRow {
+	public ModelRowCustomer SelectedRow {
 	  get { return this._selectedRow; }
 	  set { _selectedRow=value; OnPropertyChanged(nameof(SelectedRow)); }
 	}
 
-	private ObservableCollection<ModelBaseRow> _lstGridMain = new ObservableCollection<ModelBaseRow>();
+	private ObservableCollection<ModelRowCustomer> _lstGridMain = new ObservableCollection<ModelRowCustomer>();
 	private CollectionViewSource MainCollection = new CollectionViewSource();
 
 	public ICollectionView LstGridMain {
@@ -176,10 +179,40 @@ namespace PluginDnqt.Customer.ViewModels {
 		  return;
 		}
 
+		var lstStringId = new List<string>();
+		_bllPlugin.GetListStringIdInDataTable(ref lstStringId
+		  ,MOCPage.MItemSelected.ID,ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN,DT_AllIdCustomer
+		  ,Table_BangKhachHang.Col_IdBangKhachHang.NAME);
+		if(lstStringId.Count==0) {
+		  QTMessageBox.ShowNotify(
+			"Hiện tại không tìm thấy mã dữ liệu trên trang này, bạn vui lòng thao tác lại!"
+			,"(lstStringId.Count==0)");
+		  return;
+		}
+
+		Exception exOutput = null;
+		DataTable DT_AllDetailOrderByListIdOrder=null;
+		DALCustomer.GetDTDetailTienNoByListIdKH(ref DT_AllDetailOrderByListIdOrder,ref exOutput,lstStringId);
+		if(exOutput!=null) {
+		  Log4Net.Error(exOutput.Message);
+		  Log4Net.Error(exOutput.StackTrace);
+		  ShowException(exOutput);
+		  return;
+		}
+
+		if(DT_AllDetailOrderByListIdOrder==null) {
+		  QTMessageBox.ShowNotify(
+			"Dữ liệu trang này tải không thành công, bạn vui lòng thao tác lại!"
+			,"(DT_AllDetailOrderByListIdOrder==null)");
+		  return;
+		}
+
 		_bllPlugin.LoadGridMainByPage(ref _lstGridMain,
 		  MOCPage.MItemSelected.ID,ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN,DT_AllIdCustomer);
 
-		//ChkShowSumOrderChangedCommand.Execute(null);
+		//_bllPlugin.LoadGridMainByDataTableDetail(ref _lstGridMain,DT_AllDetailOrderByListIdOrder);
+
+		_bllPlugin.LoadFormatGridMain(ref _lstGridMain);
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
@@ -188,27 +221,61 @@ namespace PluginDnqt.Customer.ViewModels {
 	  }
 	});
 
-	//public ICommand ChkShowSumOrderChangedCommand => new DelegateCommand(p => {
-	//  try {
-	//	_mainUserControl.colSumOrder.Visibility=System.Windows.Visibility.Collapsed;
-	//	_mainUserControl.colListOrder.Visibility=System.Windows.Visibility.Collapsed;
+	public ICommand EditCommand => new DelegateCommand(p => {
+	  try {
+		if(SelectedRow==null) {
+		  return;
+		}
 
-	//	if(_mainUserControl.chkShowSumOrder.IsChecked==true) {
-	//	  if(_lstGridMain.Count==0) {
-	//		return;
-	//	  }
+		var lstStringId = new List<string>();
+		lstStringId.Add(SelectedRow.MBC000.Str);
 
-	//	  _bllPlugin.ShowSumOrderOnGridMain(ref _lstGridMain);
+		Exception exOutput = null;
+		DataTable DT_DetailOrderByListId = null;
+		DALCustomer.GetDTDetailTienNoByListIdKH(ref DT_DetailOrderByListId,ref exOutput,lstStringId);
+		if(exOutput!=null) {
+		  Log4Net.Error(exOutput.Message);
+		  Log4Net.Error(exOutput.StackTrace);
+		  ShowException(exOutput);
+		  return;
+		}
 
-	//	  _mainUserControl.colSumOrder.Visibility=System.Windows.Visibility.Visible;
-	//	  _mainUserControl.colListOrder.Visibility=System.Windows.Visibility.Visible;
-	//	}
-	//  } catch(Exception ex) {
-	//	Log4Net.Error(ex.Message);
-	//	Log4Net.Error(ex.StackTrace);
-	//	ShowException(ex);
-	//  }
-	//});
+		if(DT_DetailOrderByListId==null) {
+		  QTMessageBox.ShowNotify(
+			"Dữ liệu tiền nợ khách hàng này tải không thành công, bạn vui lòng thao tác lại!"
+			,"(DT_DetailOrderByListId==null)");
+		  return;
+		}
+
+		_bllPlugin.LoadOneCustomerByTableDetail(SelectedRow,DT_DetailOrderByListId);
+
+		_bllPlugin.LoadFormatGridDetail(SelectedRow);
+
+		var dicInput = new Dictionary<string,object>();
+		dicInput.Add("DELEGATE_VOID_IN_OTHER_USERCONTROL",
+					  new DetailTienNo_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromOtherUserControl));
+
+		BLLTools.AddDeepModelToDictionary(ref dicInput,"ModelRowCustomer",SelectedRow);
+		//if(DT_AllIdNameProduct!=null) {
+		//  dicInput["DataTable"]=DT_AllIdNameProduct;
+		//  DT_AllIdNameProduct=null;
+		//}
+
+		_mainUserControl.modalPresenter.Visibility=Visibility.Hidden;
+		_mainUserControl.modelChildren.Visibility=Visibility.Visible;
+		_mainUserControl.modelChildren.Margin=new Thickness(0);
+
+		_mainUserControl.gridChildren.Children.Clear();
+
+		var userControl = new DetailTienNo(dicInput);
+		_mainUserControl.gridChildren.Children.Add(userControl);
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
 
 	public ICommand TimerChangedCommand => new DelegateCommand(p => {
 	  try {

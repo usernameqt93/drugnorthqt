@@ -139,25 +139,14 @@
 					  <TextBlock Margin="3,0"
 								 VerticalAlignment="Center"
 								 HorizontalAlignment="Center"
-								 Text="{Binding Stt}" />
+								 Text="{Binding Stt}"
+								 ToolTip="{Binding MBC000.Str}"/>
 					</DataTemplate>
 				  </DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>
 
 				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-										Header=" Mã dữ liệu "
-										Width="auto">
-				  <DataGridTemplateColumn.CellTemplate>
-					<DataTemplate>
-					  <TextBlock TextAlignment="Center"
-								 VerticalAlignment="Center"
-								 Text="{Binding MBC000.Str}" />
-					</DataTemplate>
-				  </DataGridTemplateColumn.CellTemplate>
-				</DataGridTemplateColumn>
-
-				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-										Header="Tên khách hàng"
+										Header=" Tên khách hàng "
 										Width="1*">
 				  <DataGridTemplateColumn.CellTemplate>
 					<DataTemplate>
@@ -171,32 +160,54 @@
 				</DataGridTemplateColumn>
 
 				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-										x:Name="colSumOrder"
-										Header=" Column3 "
+										Header=" Tiền nợ hiện tại "
 										Width="auto">
 				  <DataGridTemplateColumn.CellTemplate>
 					<DataTemplate>
 					  <TextBlock Margin="3,0"
 								 VerticalAlignment="Center"
-								 HorizontalAlignment="Center"
-								 Text="{Binding MBC002.Str}"
+								 HorizontalAlignment="Right"
+								 Text="{Binding StrSumTienNo}"
 								 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
 					</DataTemplate>
 				  </DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>
 
 				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-										x:Name="colListOrder"
-										Header="Danh sách đơn hàng"
-										Width="2*">
+										Header=" Số lần thay đổi "
+										Width="auto">
 				  <DataGridTemplateColumn.CellTemplate>
 					<DataTemplate>
 					  <TextBlock Margin="3,0"
 								 VerticalAlignment="Center"
-								 HorizontalAlignment="Center"
-								 TextTrimming="CharacterEllipsis"
-								 Text="{Binding StrListOrder}"
+								 HorizontalAlignment="Right"
+								 Text="{Binding StrSumTienNo}"
 								 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header=" Thao tác "
+										Width="auto"
+										HeaderStyle="{StaticResource InvicoColumnHeaderStyle}">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+
+					  <StackPanel Orientation="Horizontal"
+								  HorizontalAlignment="Center">
+
+						<Button Template="{StaticResource DocumentIcon}"
+								Command="{Binding Path=DataContext.EditCommand, 
+                                                        RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+								CommandParameter="{Binding}"
+								Width="20"
+								Height="20"
+								RenderTransformOrigin="0.435,1"
+								ToolTip="Xem chi tiết tiền nợ hoặc cập nhật"
+								Margin="3,0" />
+
+					  </StackPanel>
+
 					</DataTemplate>
 				  </DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>

@@ -36,6 +36,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DNQTConstTable">
+      <HintPath>..\Libraries\DNQTConstTable.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DNQTDataAccessLayer">
       <HintPath>..\Libraries\DNQTDataAccessLayer.dll</HintPath>
       <Private>False</Private>
@@ -83,8 +87,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionSDK.cs" />
+    <Compile Include="Models\ModelRowCustomer.cs" />
+    <Compile Include="Models\ModelRowDetailTienNo.cs" />
     <Compile Include="ViewModels\BLLPlugin.cs" />
+    <Compile Include="ViewModels\DetailTienNo_ViewModel.cs" />
     <Compile Include="ViewModels\ViewModelMain.cs" />
+    <Compile Include="Views\DetailTienNo.xaml.cs">
+      <DependentUpon>DetailTienNo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -114,6 +124,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Views\DetailTienNo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
