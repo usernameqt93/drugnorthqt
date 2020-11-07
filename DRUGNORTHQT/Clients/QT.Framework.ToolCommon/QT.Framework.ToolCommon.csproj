@@ -83,6 +83,8 @@
     <Compile Include="Helpers\UpKeyHelpers.cs" />
     <Compile Include="Models\ModelBaseCell.cs" />
     <Compile Include="Models\ModelBaseDataGrid.cs" />
+    <Compile Include="Models\ModelBaseDateTime.cs" />
+    <Compile Include="Models\ModelBaseDecimal.cs" />
     <Compile Include="Models\ModelBaseRow.cs" />
     <Compile Include="Models\ModelEnum.cs" />
     <Compile Include="Models\ModelItems.cs" />

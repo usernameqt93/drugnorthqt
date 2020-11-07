@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Configuration;
+using System.Data;
 
 namespace QT.Framework.ToolCommon {
   public static class BLLTools {
@@ -414,6 +415,111 @@ namespace QT.Framework.ToolCommon {
 	  }
 
 	  strOutput=strInput.Substring(0,intSoKyTuDauTien).ToUpper()+strInput.Substring(intSoKyTuDauTien);
+	}
+
+	public static void SetValueBaseRowDataTableByIndexRow(ref ModelBaseRow mrow,int intIndexRow
+	  ,DataTable dtInput) {
+	  if(dtInput==null||intIndexRow>=dtInput.Rows.Count) {
+		return;
+	  }
+
+	  int intSumColumn = dtInput.Columns.Count;
+	  for(int k = 0;k<intSumColumn;k++) {
+		var mcell = new ModelBaseCell();
+		mcell.StrColumnName=dtInput.Columns[k].ColumnName;
+
+		object objTemp = dtInput.Rows[intIndexRow][k];
+		mcell.ObjItem=objTemp;
+		if(objTemp!=null) {
+		  mcell.Str=dtInput.Rows[intIndexRow][k].ToString();
+		}
+
+		mrow.SetValueCell(k,mcell);
+	  }
+	}
+
+	#region Convert object to string theo format
+
+	/// <summary>
+	/// Nếu decimal bằng 0 thì trả về 0 vì mặc định nó trả về 00, không thì trả về đúng dạng
+	/// </summary>
+	/// <param name="strOutput"></param>
+	/// <param name="decInput"></param>
+	/// <param name="strEndString"></param>
+	public static void GetStringFormatTienMat(ref string strOutput,decimal decInput,string strEndString) {
+	  if(decInput<0) {
+		return;
+	  }
+	  if(decInput==0) {
+		strOutput="0"+strEndString;
+		return;
+	  }
+
+	  strOutput=""+string.Format("{0:0,0}",decInput)+strEndString;
+	}
+
+	/// <summary>
+	/// mặc định trả về 0 value và "0"+"strEndString" nếu không hợp lệ
+	/// </summary>
+	/// <param name="decOutput"></param>
+	/// <param name="strOutput"></param>
+	/// <param name="objInput"></param>
+	/// <param name="strEndString"></param>
+	public static void GetStringFormatTienMat(ref decimal decOutput,ref string strOutput
+	  ,object objInput,string strEndString) {
+	  decOutput=0;
+	  try {
+		decOutput=Convert.ToDecimal(objInput);
+	  } catch(Exception e) {
+		string str = e.Message;
+	  }
+
+	  GetStringFormatTienMat(ref strOutput,decOutput,strEndString);
+	}
+
+	/// <summary>
+	/// nếu không hợp lệ, mặc định sẽ trả về 1993.11.13 và string không thay đổi gì cả
+	/// </summary>
+	/// <param name="dtOutput"></param>
+	/// <param name="strOutput"></param>
+	/// <param name="objInput"></param>
+	public static void GetStringFormatDateTimeVN(ref DateTime dtOutput,ref string strOutput,object objInput) {
+	  dtOutput=new DateTime(1993,11,13);
+	  try {
+		dtOutput=Convert.ToDateTime(objInput);
+		strOutput=dtOutput.ToString("yyyy-MM-dd HH:mm:ss");
+	  } catch(Exception e) {
+		string str = e.Message;
+	  }
+	}
+
+	#endregion
+
+	/// <summary>
+	/// mặc định trả về 0 value và "0"+"strEndString" nếu không hợp lệ
+	/// </summary>
+	/// <param name="mOutput"></param>
+	/// <param name="obj"></param>
+	/// <param name="strEndString"></param>
+	public static void GetModelDecimalFromObject(ref ModelBaseDecimal mOutput,object obj,string strEndString) {
+	  decimal objTemp = 0;
+	  string strHienThi = "";
+	  BLLTools.GetStringFormatTienMat(ref objTemp,ref strHienThi,obj,strEndString);
+	  mOutput.Value=objTemp;
+	  mOutput.Str=strHienThi;
+	}
+
+	/// <summary>
+	/// nếu không hợp lệ, mặc định sẽ trả về 1993.11.13 và string ""
+	/// </summary>
+	/// <param name="mOutput"></param>
+	/// <param name="obj"></param>
+	public static void GetModelDateTimeFromObject(ref ModelBaseDateTime mOutput,object obj) {
+	  DateTime objTemp = new DateTime(1993,11,13);
+	  string strHienThi = "";
+	  BLLTools.GetStringFormatDateTimeVN(ref objTemp,ref strHienThi,obj);
+	  mOutput.Value=objTemp;
+	  mOutput.Str=strHienThi;
 	}
 
   }
