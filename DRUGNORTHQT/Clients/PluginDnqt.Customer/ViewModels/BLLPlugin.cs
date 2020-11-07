@@ -1,13 +1,11 @@
-﻿using DNQTConstTable.ListTableDatabase;
-using PluginDnqt.Customer.Models;
+﻿using PluginDnqt.Customer.Models;
 using QT.Framework.ToolCommon;
 using QT.Framework.ToolCommon.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
-using System.Linq;
-using System.Text;
+using System.Windows.Controls;
 
 namespace PluginDnqt.Customer.ViewModels {
   class BLLPlugin {
@@ -49,32 +47,33 @@ namespace PluginDnqt.Customer.ViewModels {
 	  }
 	}
 
-	//internal void LoadGridMainByDataTableDetail(ref ObservableCollection<ModelRowCustomer> lstGridMain
-	//  ,DataTable dT_AllDetailOrderByListIdOrder) {
-	//  foreach(var mitem in lstGridMain) {
-	//	LoadOneOrderByTableDetail(mitem,dT_AllDetailOrderByListIdOrder);
-	//  }
-	//}
+	internal void LoadGridMainByDataTableDetail(ref ObservableCollection<ModelRowCustomer> lstGridMain
+	  ,DataTable dtInput) {
+	  foreach(var mitem in lstGridMain) {
+		LoadOneCustomerByTableDetail(mitem,dtInput);
+	  }
+	}
 
 	internal void LoadOneCustomerByTableDetail(ModelRowCustomer mitem,DataTable dtInput) {
 	  var lstGridBaseDetail = new ObservableCollection<ModelBaseRow>();
 	  LoadGridBaseDetailByDataTable(ref lstGridBaseDetail,dtInput,mitem.MBC000.Str);
 	  mitem.LstGridBaseDetail=lstGridBaseDetail;
 
-	 // mitem.IntSumProduct=lstGridDetail.Count;
+	  int intSumRowDetail = lstGridBaseDetail.Count;
+	  mitem.IntSoLanThayDoi=intSumRowDetail;
 
-	 // float floatSumKg = 0;
-	 // decimal decimalSumGiaTri = 0;
-	 // foreach(var item in lstGridDetail) {
-		//floatSumKg+=item.FloatSumKg;
-		//decimalSumGiaTri+=(decimal)item.FloatSumKg*item.DecimalDonGia;
-	 // }
-
-	 // mitem.FloatSumKg=floatSumKg;
-	 // mitem.StrSumKg=string.Format("{0:0.###}",floatSumKg);
-
-	 // mitem.DecimalSumGiaTri=decimalSumGiaTri;
-	 // mitem.StrSumGiaTri=string.Format("{0:0,0}",decimalSumGiaTri)+" đ";
+	  if(intSumRowDetail>0) {
+		{
+		  var mtemp = new ModelBaseDateTime();
+		  BLLTools.GetModelDateTimeFromObject(ref mtemp,lstGridBaseDetail[intSumRowDetail-1].MBC001.ObjItem);
+		  mitem.MBDTGanNhat=mtemp;
+		}
+		{
+		  var mtemp = new ModelBaseDecimal();
+		  BLLTools.GetModelDecimalFromObject(ref mtemp,lstGridBaseDetail[intSumRowDetail-1].MBC005.ObjItem," đ");
+		  mitem.MBDTienNo=mtemp;
+		}
+	  }
 	}
 
 	internal void LoadGridBaseDetailByDataTable(ref ObservableCollection<ModelBaseRow> lstGridMain
@@ -98,16 +97,6 @@ namespace PluginDnqt.Customer.ViewModels {
 
 		mitem.Selected=false;
 		lstGridMain.Add(mitem);
-	  }
-	}
-
-	internal void LoadFormatGridMain(ref ObservableCollection<ModelRowCustomer> lstGridMain) {
-	  foreach(var mrow in lstGridMain) {
-		decimal objTemp = 0;
-		string strTienNo = "";
-		BLLTools.GetStringFormatTienMat(ref objTemp,ref strTienNo,mrow.MBC002.ObjItem," vnđ");
-		mrow.DecimalSumTienNo=objTemp;
-		mrow.StrSumTienNo=strTienNo;
 	  }
 	}
 
@@ -140,5 +129,27 @@ namespace PluginDnqt.Customer.ViewModels {
 		}
 	  }
 	}
+
+	internal void HienThiLabelDonGiaByDecimal(ref Label lblOutput,decimal decInput) {
+	  lblOutput.Tag=decInput;
+	  lblOutput.ToolTip=""+decInput;
+	  if(decInput==0) {
+		lblOutput.Content="0";
+		return;
+	  }
+
+	  lblOutput.Content=""+string.Format("{0:0,0}",decInput);
+	}
+
+	internal void GetDecimalFromObject(ref decimal decOutput,object objInput) {
+	  if(objInput!=null) {
+		try {
+		  decOutput=(decimal)objInput;
+		} catch(Exception e) {
+		  string str = e.Message;
+		}
+	  }
+	}
+
   }
 }

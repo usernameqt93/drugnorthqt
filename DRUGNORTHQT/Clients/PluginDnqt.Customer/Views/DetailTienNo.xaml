@@ -64,48 +64,232 @@
 
 		  <DockPanel>
 
-			<Grid DockPanel.Dock="Top">
-			  <Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-			  </Grid.ColumnDefinitions>
+			<StackPanel DockPanel.Dock="Bottom">
+			  <Grid>
+				<Grid.ColumnDefinitions>
+				  <ColumnDefinition />
+				  <ColumnDefinition />
+				</Grid.ColumnDefinitions>
 
-			  <GroupBox Grid.Column="0"
-						Header="Tên khách hàng"
-						Style="{DynamicResource InvicoGroupBoxStyle}">
+				<GroupBox Grid.Column="0"
+						  Header="Tên khách hàng"
+						  Style="{DynamicResource InvicoGroupBoxStyle}">
 
-				<Label Style="{DynamicResource InvicoLabelModalStyle}"
-					   VerticalAlignment="Center"
-					   Content="Tên khách hàng" />
-
-			  </GroupBox>
-
-			  <GroupBox Grid.Column="1"
-						Header="Tiền nợ hiện tại"
-						Style="{DynamicResource InvicoGroupBoxStyle}">
-
-				<DockPanel>
 				  <Label Style="{DynamicResource InvicoLabelModalStyle}"
-						 DockPanel.Dock="Left"
 						 VerticalAlignment="Center"
-						 Content="Tên khách hàng" />
+						 x:Name="lblName"
+						 Content="..." />
 
-				  <Button Style="{DynamicResource InvicoButtonStyle}"
-						  DockPanel.Dock="Right"
-						  Height="30"
-						  Width="100"
-						  Content="Thay đổi"
-						  Command="{Binding BackCommand}" />
+				</GroupBox>
 
-				  <Grid>
-					
-				  </Grid>
-				  
-				</DockPanel>
+				<GroupBox Grid.Column="1"
+						  Header="Tiền nợ hiện tại"
+						  Style="{DynamicResource InvicoGroupBoxStyle}">
 
+				  <DockPanel>
+					<Label Style="{DynamicResource InvicoLabelModalStyle}"
+						   DockPanel.Dock="Left"
+						   x:Name="lblTienNo"
+						   VerticalAlignment="Center"
+						   Content="..." />
+
+					<Button Style="{DynamicResource InvicoButtonStyle}"
+							DockPanel.Dock="Right"
+							x:Name="btnChange"
+							Height="30"
+							Width="100"
+							Content="Thay đổi"
+							Command="{Binding EditCommand}" />
+
+					<Grid>
+
+					</Grid>
+
+				  </DockPanel>
+
+				</GroupBox>
+
+			  </Grid>
+
+			  <GroupBox Visibility="{Binding ElementName=btnSave,Path=Visibility}"
+						Header="Thay đổi tiền nợ"
+						Style="{DynamicResource InvicoGroupBoxStyle}">
+				<StackPanel>
+				  <StackPanel x:Name="stackPanelThaoTac">
+					<Grid>
+					  <Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition />
+					  </Grid.ColumnDefinitions>
+
+					  <GroupBox Grid.Column="0"
+								Header="Tùy chọn"
+								Style="{DynamicResource InvicoGroupBoxStyle}">
+
+						<StackPanel Orientation="Horizontal"
+									Margin="0,5">
+
+						  <RadioButton x:Name="rdbDaTra"
+									   Margin="3,0"
+									   IsChecked="True"
+									   Style="{StaticResource InvicoRadioButtonStyle}"
+									   VerticalAlignment="Center"
+									   Content="Đã trả (-)"
+									   Command="{Binding RadioButtonTuyChonCheckedCommand}" />
+
+						  <RadioButton x:Name="rdbVayThem"
+									   Margin="3,0"
+									   Style="{StaticResource InvicoRadioButtonStyle}"
+									   VerticalAlignment="Center"
+									   Content="Vay thêm (+)"
+									   Command="{Binding RadioButtonTuyChonCheckedCommand}" />
+
+						  <RadioButton x:Name="rdbSuaThanh"
+									   Margin="3,0"
+									   Style="{StaticResource InvicoRadioButtonStyle}"
+									   VerticalAlignment="Center"
+									   Content="Sửa thành"
+									   Command="{Binding RadioButtonTuyChonCheckedCommand}" />
+
+						</StackPanel>
+
+					  </GroupBox>
+
+					  <GroupBox Grid.Column="1"
+								Header="Số tiền"
+								Style="{DynamicResource InvicoGroupBoxStyle}">
+
+						<DockPanel>
+
+						  <StackPanel Orientation="Horizontal"
+									  DockPanel.Dock="Right"
+									  VerticalAlignment="Center"
+									  Visibility="{Binding ElementName=stackPanelChiTiet,Path=Visibility}">
+
+							<Label Style="{DynamicResource InvicoLabelModalStyle}"
+								   x:Name="lblDonGia"
+								   Foreground="Red"
+								   Content="0" />
+
+							<Label Style="{DynamicResource InvicoLabelModalStyle}"
+								   Content="vnđ" />
+
+						  </StackPanel>
+
+						  <Grid>
+							<help:NounicodeTextBox x:Name="txtDonGia"
+												   StringFilter="^[0-9]+$"
+												   MaxLength="10"
+												   Height="30"
+												   VerticalContentAlignment="Center"
+												   HorizontalContentAlignment="Left"
+												   Style="{StaticResource InvicoTextBoxStyle}"
+												   Text="">
+
+							</help:NounicodeTextBox>
+
+							<TextBlock IsHitTestVisible="False"
+									   Text="Nhập số tiền..."
+									   VerticalAlignment="Center"
+									   HorizontalAlignment="Left"
+									   Foreground="DarkGray"
+									   Margin="7,0,0,0">
+							  <TextBlock.Style>
+								<Style TargetType="{x:Type TextBlock}">
+								  <Setter Property="Visibility"
+										  Value="Collapsed" />
+								  <Style.Triggers>
+									<DataTrigger Binding="{Binding Text, ElementName=txtDonGia}"
+												 Value="">
+									  <Setter Property="Visibility"
+											  Value="Visible" />
+									</DataTrigger>
+								  </Style.Triggers>
+								</Style>
+							  </TextBlock.Style>
+							</TextBlock>
+						  </Grid>
+
+						</DockPanel>
+
+					  </GroupBox>
+
+					</Grid>
+
+					<GroupBox Header="Ghi chú"
+							  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+					  <Grid>
+						<TextBox Style="{DynamicResource InvicoTextBoxStyle}"
+								 AcceptsReturn="False"
+								 x:Name="txtGhiChu"
+								 MaxLength="50"
+								 HorizontalAlignment="Stretch"
+								 HorizontalContentAlignment="Left"
+								 VerticalAlignment="Center"
+								 VerticalContentAlignment="Center"
+								 Height="30">
+
+						</TextBox>
+						<TextBlock IsHitTestVisible="False"
+								   Text="Nhập ghi chú chi tiết để xem lại lần sau(Ví dụ: Trả tiền mặt, chuyển khoản hoặc lý do khác...)"
+								   VerticalAlignment="Center"
+								   HorizontalAlignment="Left"
+								   Foreground="DarkGray"
+								   Margin="7,0,0,0">
+						  <TextBlock.Style>
+							<Style TargetType="{x:Type TextBlock}">
+							  <Setter Property="Visibility"
+									  Value="Collapsed" />
+							  <Style.Triggers>
+								<DataTrigger Binding="{Binding Text, ElementName=txtGhiChu}"
+											 Value="">
+								  <Setter Property="Visibility"
+										  Value="Visible" />
+								</DataTrigger>
+							  </Style.Triggers>
+							</Style>
+						  </TextBlock.Style>
+						</TextBlock>
+					  </Grid>
+
+					</GroupBox>
+
+					<StackPanel x:Name="stackPanelChiTiet">
+					  <GroupBox Header="Chi tiết thay đổi"
+								Style="{DynamicResource InvicoGroupBoxStyle}">
+
+						<Label Style="{DynamicResource InvicoLabelModalStyle}"
+							   VerticalAlignment="Center"
+							   x:Name="lblChiTiet"
+							   Content="..." />
+
+					  </GroupBox>
+
+					  <GroupBox Header="Tiền nợ sau khi thay đổi"
+								Style="{DynamicResource InvicoGroupBoxStyle}">
+
+						<Label Style="{DynamicResource InvicoLabelModalStyle}"
+							   VerticalAlignment="Center"
+							   x:Name="lblSauKhiThayDoi"
+							   Content="..." />
+
+					  </GroupBox>
+					</StackPanel>
+				  </StackPanel>
+
+				  <CheckBox Cursor="Hand"
+							x:Name="chkXacNhan"
+							Style="{DynamicResource InvicoSliderCheckBoxStyle}"
+							Content="Hiển thị chi tiết thay đổi và kiểm tra"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Bottom"
+							Command="{Binding XacNhanCheckedChangedCommand}"
+							Margin="0,5" />
+
+				</StackPanel>
 			  </GroupBox>
-			  
-			</Grid>
+			</StackPanel>
 
 			<DockPanel>
 
@@ -160,7 +344,7 @@
 						  <DataTemplate>
 							<TextBlock TextAlignment="Left"
 									   VerticalAlignment="Center"
-									   Margin="3,0"
+									   Margin="3,3"
 									   TextTrimming="CharacterEllipsis"
 									   Text="{Binding MBC002.Str}"
 									   ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
@@ -208,6 +392,38 @@
 					  </DataGridTemplateColumn>
 
 					</DataGrid.Columns>
+
+					<DataGrid.CellStyle>
+					  <Style TargetType="{x:Type DataGridCell}">
+						<Style.Triggers>
+						  <Trigger Property="DataGridCell.IsSelected"
+								   Value="True">
+							<Setter Property="Foreground"
+									Value="Black" />
+							<Setter Property="Background"
+									Value="LightGray" />
+							<Setter Property="BorderBrush"
+									Value="Transparent" />
+						  </Trigger>
+						  <Trigger Property="IsMouseOver"
+								   Value="True">
+						  </Trigger>
+						</Style.Triggers>
+						<Setter Property="FontWeight"
+								Value="Normal" />
+						<Setter Property="FontSize"
+								Value="13" />
+						<Setter Property="Height"
+								Value="auto" />
+						<Setter Property="VerticalContentAlignment"
+								Value="Center" />
+						<Setter Property="TextBox.VerticalAlignment"
+								Value="Stretch" />
+						<Setter Property="TextBox.VerticalContentAlignment"
+								Value="Center" />
+					  </Style>
+					</DataGrid.CellStyle>
+
 				  </DataGrid>
 
 				</Grid>
@@ -221,12 +437,24 @@
 		</Grid>
 
 		<StackPanel Grid.Row="3"
+					HorizontalAlignment="Center"
+					Orientation="Horizontal"
 					Margin="0,3">
+
+		  <Button Style="{DynamicResource InvicoButtonStyle}"
+				  x:Name="btnSave"
+				  IsEnabled="{Binding ElementName=chkXacNhan,Path=IsChecked}"
+				  Height="30"
+				  Width="100"
+				  Margin="3,0"
+				  Content="Lưu"
+				  Command="{Binding SaveCommand}" />
 
 		  <Button Style="{DynamicResource InvicoButtonStyle}"
 				  Height="30"
 				  Width="100"
-				  Content="Quay lại"
+				  Margin="3,0"
+				  Content="Đóng"
 				  Command="{Binding BackCommand}" />
 
 		</StackPanel>

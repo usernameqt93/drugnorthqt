@@ -23,18 +23,25 @@ namespace PluginDnqt.Customer.Models {
 	public ObservableCollection<ModelRowDetailTienNo> LstGridDetail { get; set; } =
 	  new ObservableCollection<ModelRowDetailTienNo>();
 
-	private decimal _decimalSumTienNo = 0;
+	private int _intSoLanThayDoi=0;
 
-	public decimal DecimalSumTienNo {
-	  get { return _decimalSumTienNo; }
-	  set { _decimalSumTienNo=value; OnPropertyChanged(nameof(DecimalSumTienNo)); }
+	public int IntSoLanThayDoi {
+	  get { return _intSoLanThayDoi; }
+	  set { _intSoLanThayDoi=value;OnPropertyChanged(nameof(IntSoLanThayDoi)); }
 	}
 
-	private string _strSumTienNo = "";
+	private ModelBaseDateTime _mbdtGanNhat = new ModelBaseDateTime();
 
-	public string StrSumTienNo {
-	  get { return _strSumTienNo; }
-	  set { _strSumTienNo=value; OnPropertyChanged(nameof(StrSumTienNo)); }
+	public ModelBaseDateTime MBDTGanNhat {
+	  get { return _mbdtGanNhat; }
+	  set { _mbdtGanNhat=value; OnPropertyChanged(nameof(MBDTGanNhat)); }
+	}
+
+	private ModelBaseDecimal _mbdTienNo = new ModelBaseDecimal();
+
+	public ModelBaseDecimal MBDTienNo {
+	  get { return _mbdTienNo; }
+	  set { _mbdTienNo=value; OnPropertyChanged(nameof(MBDTienNo)); }
 	}
 
   }

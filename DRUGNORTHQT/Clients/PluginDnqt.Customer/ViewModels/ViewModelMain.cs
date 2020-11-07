@@ -35,7 +35,6 @@ namespace PluginDnqt.Customer.ViewModels {
 
 	private const int CONST_INT_INTERVAL_TIMER = 50;
 
-	private DAL_Product DALProduct = new DAL_Product();
 	private DAL_Customer DALCustomer = new DAL_Customer();
 
 	private DataTable DT_AllIdCustomer = null;
@@ -210,9 +209,7 @@ namespace PluginDnqt.Customer.ViewModels {
 		_bllPlugin.LoadGridMainByPage(ref _lstGridMain,
 		  MOCPage.MItemSelected.ID,ConnectionSDK.INT_SO_ROW_1PAGE_PLUGIN,DT_AllIdCustomer);
 
-		//_bllPlugin.LoadGridMainByDataTableDetail(ref _lstGridMain,DT_AllDetailOrderByListIdOrder);
-
-		_bllPlugin.LoadFormatGridMain(ref _lstGridMain);
+		_bllPlugin.LoadGridMainByDataTableDetail(ref _lstGridMain,DT_AllDetailOrderByListIdOrder);
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
@@ -256,10 +253,6 @@ namespace PluginDnqt.Customer.ViewModels {
 					  new DetailTienNo_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromOtherUserControl));
 
 		BLLTools.AddDeepModelToDictionary(ref dicInput,"ModelRowCustomer",SelectedRow);
-		//if(DT_AllIdNameProduct!=null) {
-		//  dicInput["DataTable"]=DT_AllIdNameProduct;
-		//  DT_AllIdNameProduct=null;
-		//}
 
 		_mainUserControl.modalPresenter.Visibility=Visibility.Hidden;
 		_mainUserControl.modelChildren.Visibility=Visibility.Visible;

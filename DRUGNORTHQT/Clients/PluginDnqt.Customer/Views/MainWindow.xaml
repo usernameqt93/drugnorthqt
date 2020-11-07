@@ -167,22 +167,39 @@
 					  <TextBlock Margin="3,0"
 								 VerticalAlignment="Center"
 								 HorizontalAlignment="Right"
-								 Text="{Binding StrSumTienNo}"
+								 Text="{Binding MBDTienNo.Str}"
 								 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
 					</DataTemplate>
 				  </DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>
 
 				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
-										Header=" Số lần thay đổi "
+										Header=" Thay đổi "
 										Width="auto">
 				  <DataGridTemplateColumn.CellTemplate>
 					<DataTemplate>
-					  <TextBlock Margin="3,0"
-								 VerticalAlignment="Center"
-								 HorizontalAlignment="Right"
-								 Text="{Binding StrSumTienNo}"
-								 ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+					  <StackPanel Orientation="Horizontal"
+								  VerticalAlignment="Center"
+								  HorizontalAlignment="Right"
+								  Margin="3,0">
+						<TextBlock Text="{Binding IntSoLanThayDoi}" />
+						<TextBlock Text=" lần" />
+					  </StackPanel>
+					</DataTemplate>
+				  </DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn HeaderStyle="{StaticResource InvicoColumnHeaderStyle}"
+										Header=" Thời gian gần nhất "
+										Width="auto">
+				  <DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+					  <StackPanel Orientation="Horizontal"
+								  VerticalAlignment="Center"
+								  HorizontalAlignment="Right"
+								  Margin="3,0">
+						<TextBlock Text="{Binding MBDTGanNhat.Str}" />
+					  </StackPanel>
 					</DataTemplate>
 				  </DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>

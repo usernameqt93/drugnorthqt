@@ -2,6 +2,7 @@
 using log4net;
 using PluginDnqt.Customer.Models;
 using PluginDnqt.Customer.Views;
+using QT.Framework.ToolCommon;
 using QT.Framework.ToolCommon.Helpers;
 using QT.Framework.ToolCommon.Models;
 using QT.MessageBox;
@@ -35,8 +36,6 @@ namespace PluginDnqt.Customer.ViewModels {
 	private const int CONST_INT_INTERVAL_TIMER = 50;
 
 	private DAL_Product DALProduct = new DAL_Product();
-
-	private DataTable DT_AllIdNameProduct = null;
 
 	private DAL_Order DALOrder = new DAL_Order();
 
@@ -103,7 +102,7 @@ namespace PluginDnqt.Customer.ViewModels {
 
 	private void LoadControlDefault() {
 	  try {
-		//_mainUserControl.chkHienThiListDonGia.Visibility=Visibility.Collapsed;
+		_mainUserControl.btnSave.Visibility=Visibility.Collapsed;
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
@@ -113,46 +112,86 @@ namespace PluginDnqt.Customer.ViewModels {
 
 	private void LoadData() {
 	  try {
-		//ModelRowOrder mOrder = DicDataInPreviousUC["ModelRowOrder"] as ModelRowOrder;
-
-		////var lstStringId = new List<string>();
-		////lstStringId.Add(mOrder.StrId);
-
-		////Exception exOutput = null;
-		////DataTable DT_DetailOrderByListId = null;
-		////DALOrder.GetDTDetailOrderByListIdOrder(ref DT_DetailOrderByListId,ref exOutput,lstStringId);
-		////if(exOutput!=null) {
-		////  Log4Net.Error(exOutput.Message);
-		////  Log4Net.Error(exOutput.StackTrace);
-		////  ShowException(exOutput);
-		////  return;
-		////}
-
-		////if(DT_DetailOrderByListId==null) {
-		////  QTMessageBox.ShowNotify(
-		////	"Dữ liệu đơn hàng này tải không thành công, bạn vui lòng thao tác lại!"
-		////	,"(DT_DetailOrderByListId==null)");
-		////  return;
-		////}
-
-		////_bllPlugin.LoadGridChiTietDHByDataTable(ref _lstGridMain,DT_DetailOrderByListId,mOrder.StrId);
-
-		//ModelRowOrder mOrder = DicDataInPreviousUC["ModelRowOrder"] as ModelRowOrder;
-		//_lstGridMain.Clear();
-		//foreach(var item in mOrder.LstGridDetailOrder) {
-		//  _lstGridMain.Add(item);
-		//}
-
-		//_mainUserControl.grbSumGiaTriDH.Header=""+_mainUserControl.grbSumGiaTriDH.Tag.ToString()
-		//  +$"({mOrder.StrSumKg} Kg)";
-		//_mainUserControl.lblSumGiaTriDH.Content=mOrder.StrSumGiaTri;
-
-		ModelRowCustomer mOrder = DicDataInPreviousUC["ModelRowCustomer"] as ModelRowCustomer;
+		ModelRowCustomer mrow = DicDataInPreviousUC["ModelRowCustomer"] as ModelRowCustomer;
 		_lstGridMain.Clear();
-		foreach(var item in mOrder.LstGridDetail) {
+		foreach(var item in mrow.LstGridDetail) {
 		  _lstGridMain.Add(item);
 		}
 
+		_mainUserControl.lblName.Content=mrow.MBC001.Str;
+		_mainUserControl.lblTienNo.Content=mrow.MBDTienNo.Str;
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	}
+
+	private void ScrollToLastRowOnGrid() {
+	  try {
+		int intSumRow = _lstGridMain.Count;
+		if(intSumRow>0) {
+		  SelectedRow=_lstGridMain[intSumRow-1];
+		  _mainUserControl.dgvMain.ScrollIntoView(SelectedRow);
+		}
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	}
+
+	private void HienThiChiTiet() {
+	  try {
+		string strTxtGhiChu = _mainUserControl.txtGhiChu.Text.Trim();
+		string strGhiChuFull = "";
+		if(strTxtGhiChu!="") {
+		  string strVietHoa = "";
+		  BLLTools.UpperTextStartByQuantity(ref strVietHoa,strTxtGhiChu,1);
+		  strGhiChuFull="\nGhi chú: "+strVietHoa;
+		}
+
+		string strHienTai = _mainUserControl.lblTienNo.Content.ToString();
+		string strCuThe = _mainUserControl.lblDonGia.Content.ToString();
+		if(_mainUserControl.rdbSuaThanh.IsChecked==true) {
+		  _mainUserControl.lblChiTiet.Content=$"Tiền nợ sửa thành {strCuThe} đ"+strGhiChuFull;
+		  _mainUserControl.lblSauKhiThayDoi.Content=
+		  $"Từ    {strHienTai}    thành    {strCuThe} đ";
+		  return;
+		}
+
+		ModelRowCustomer mrow = DicDataInPreviousUC["ModelRowCustomer"] as ModelRowCustomer;
+
+		decimal decDonGia = 0;
+		_bllPlugin.GetDecimalFromObject(ref decDonGia,_mainUserControl.lblDonGia.Tag);
+		if(_mainUserControl.rdbDaTra.IsChecked==true) {
+		  decimal decHieu = mrow.MBDTienNo.Value-decDonGia;
+		  if(decHieu<0) {
+			QTMessageBox.ShowNotify("Bạn đang nhập số tiền lớn hơn tiền nợ hiện tại, vui lòng kiểm tra lại!");
+			return;
+		  }
+
+		  string strHieu = (decHieu==0) ? "0" : decHieu.ToString("#,###.#");
+		  _mainUserControl.lblChiTiet.Content=$"Khách hàng đã trả {strCuThe} đ"+strGhiChuFull;
+		  _mainUserControl.lblSauKhiThayDoi.Content=
+		  $"{strHienTai}   -   {strCuThe} đ   =   {strHieu} đ";
+		  return;
+		}
+
+		if(_mainUserControl.rdbVayThem.IsChecked==true) {
+		  decimal decTong = mrow.MBDTienNo.Value+decDonGia;
+		  if(decDonGia<4000) {
+			QTMessageBox.ShowNotify("Bạn đang nhập số tiền nhỏ hơn 4.000 đ, vui lòng kiểm tra lại!");
+			return;
+		  }
+
+		  string strTong = (decTong==0) ? "0" : decTong.ToString("#,###.#");
+		  _mainUserControl.lblChiTiet.Content=$"Khách hàng vay thêm {strCuThe} đ"+strGhiChuFull;
+		  _mainUserControl.lblSauKhiThayDoi.Content=
+		  $"{strHienTai}   +   {strCuThe} đ   =   {strTong} đ";
+		  return;
+		}
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
@@ -163,14 +202,8 @@ namespace PluginDnqt.Customer.ViewModels {
 	private void timerChanged_Tick(object sender,EventArgs e) {
 	  TimerChanged.Stop();
 
-	  //ChangeFocusToTextBoxNameProduct();
-
-	  //LoadListProductGoiY();
-	  int intSumRow = _lstGridMain.Count;
-	  if(intSumRow>0) {
-		SelectedRow=_lstGridMain[intSumRow-1];
-		_mainUserControl.dgvMain.ScrollIntoView(SelectedRow);
-	  }
+	  ScrollToLastRowOnGrid();
+	  XacNhanCheckedChangedCommand.Execute(null);
 	}
 
 	private void ExcuteFromOtherUserControl(ref Dictionary<string,object> dicInput) {
@@ -184,6 +217,151 @@ namespace PluginDnqt.Customer.ViewModels {
 	#endregion
 
 	#region === Command ===
+
+	public ICommand EditCommand => new DelegateCommand(p => {
+	  try {
+		_mainUserControl.btnChange.Visibility=Visibility.Collapsed;
+		_mainUserControl.btnSave.Visibility=Visibility.Visible;
+
+		ScrollToLastRowOnGrid();
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand XacNhanCheckedChangedCommand => new DelegateCommand(p => {
+	  try {
+		_mainUserControl.lblChiTiet.Content="";
+		_mainUserControl.lblSauKhiThayDoi.Content="";
+
+		_mainUserControl.stackPanelChiTiet.Visibility=Visibility.Collapsed;
+		_mainUserControl.stackPanelThaoTac.IsEnabled=true;
+
+		ScrollToLastRowOnGrid();
+
+		if(_mainUserControl.chkXacNhan.IsChecked==false) {
+		  return;
+		}
+
+		{
+		  string strText = _mainUserControl.txtDonGia.Text.Trim();
+		  decimal objTemp = 0;
+		  try {
+			objTemp=Convert.ToDecimal(strText);
+		  } catch(Exception e) {
+			string str = e.Message;
+		  }
+
+		  _bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblDonGia,objTemp);
+		}
+
+		HienThiChiTiet();
+
+		if(_mainUserControl.lblChiTiet.Content.ToString().Trim()=="") {
+		  _mainUserControl.chkXacNhan.IsChecked=false;
+		  _mainUserControl.txtDonGia.Focus();
+		  _mainUserControl.txtDonGia.SelectAll();
+		  return;
+		}
+
+		_mainUserControl.stackPanelChiTiet.Visibility=Visibility.Visible;
+		_mainUserControl.stackPanelThaoTac.IsEnabled=false;
+
+		ScrollToLastRowOnGrid();
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	//public ICommand RadioButtonTuyChonCheckedCommand => new DelegateCommand(p => {
+	//  try {
+	//	{
+	//	  string strText = _mainUserControl.txtDonGia.Text.Trim();
+	//	  decimal objTemp = 0;
+	//	  try {
+	//		objTemp=Convert.ToDecimal(strText);
+	//	  } catch(Exception e) {
+	//		string str = e.Message;
+	//	  }
+
+	//	  _bllPlugin.HienThiLabelDonGiaByDecimal(ref _mainUserControl.lblDonGia,objTemp);
+	//	}
+
+	//	string strTxtGhiChu = _mainUserControl.txtGhiChu.Text.Trim();
+	//	string strGhiChuFull = "";
+	//	if(strTxtGhiChu!="") {
+	//	  strGhiChuFull="\nGhi chú: "+strTxtGhiChu;
+	//	}
+
+	//	string strHienTai = _mainUserControl.lblTienNo.Content.ToString();
+	//	string strCuThe = _mainUserControl.lblDonGia.Content.ToString();
+	//	if(_mainUserControl.rdbSuaThanh.IsChecked==true) {
+	//	  _mainUserControl.lblChiTiet.Content=$"Tiền nợ sửa thành {strCuThe} đ"+strGhiChuFull;
+	//	  _mainUserControl.lblSauKhiThayDoi.Content=
+	//	  $"Từ    {strHienTai}    thành    {strCuThe} đ";
+	//	  return;
+	//	}
+
+	//	ModelRowCustomer mrow = DicDataInPreviousUC["ModelRowCustomer"] as ModelRowCustomer;
+
+	//	decimal decDonGia = 0;
+	//	_bllPlugin.GetDecimalFromObject(ref decDonGia,_mainUserControl.lblDonGia.Tag);
+	//	if(_mainUserControl.rdbDaTra.IsChecked==true) {
+	//	  decimal decHieu = mrow.MBDTienNo.Value-decDonGia;
+	//	  if(decHieu<0) {
+	//		QTMessageBox.ShowNotify("Bạn đang nhập số tiền lớn hơn tiền nợ hiện tại, vui lòng kiểm tra lại!");
+	//		return;
+	//	  }
+
+	//	  string strHieu = (decHieu==0) ? "0" : decHieu.ToString("#,###.#");
+	//	  _mainUserControl.lblChiTiet.Content=$"Khách hàng đã trả {strCuThe} đ"+strGhiChuFull;
+	//	  _mainUserControl.lblSauKhiThayDoi.Content=
+	//	  $"{strHienTai}   -   {strCuThe} đ   =   {strHieu} đ";
+	//	  return;
+	//	}
+
+	//	if(_mainUserControl.rdbVayThem.IsChecked==true) {
+	//	  decimal decTong = mrow.MBDTienNo.Value+decDonGia;
+	//	  if(decDonGia<4000) {
+	//		QTMessageBox.ShowNotify("Bạn đang nhập số tiền nhỏ hơn 4.000 đ, vui lòng kiểm tra lại!");
+	//		return;
+	//	  }
+
+	//	  string strTong = (decTong==0) ? "0" : decTong.ToString("#,###.#");
+	//	  _mainUserControl.lblChiTiet.Content=$"Khách hàng vay thêm {strCuThe} đ"+strGhiChuFull;
+	//	  _mainUserControl.lblSauKhiThayDoi.Content=
+	//	  $"{strHienTai}   +   {strCuThe} đ   =   {strTong} đ";
+	//	  return;
+	//	}
+	//  } catch(Exception ex) {
+	//	Log4Net.Error(ex.Message);
+	//	Log4Net.Error(ex.StackTrace);
+	//	ShowException(ex);
+	//  }
+	//});
+
+	public ICommand SaveCommand => new DelegateCommand(p => {
+	  try {
+		string strMessage = "Bạn chắc chắn muốn thực hiện thao tác này?";
+		//strMessage+="\n"+"Tổng giá đơn hàng sẽ giảm đi tương ứng!";
+		//strMessage+="\n"+"Bạn chắc chắn muốn thực hiện thao tác này?";
+		if(QTMessageBox.ShowConfirm(strMessage)!=MessageBoxResult.Yes) {
+		  return;
+		}
+
+
+
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
 
 	public ICommand LoadedCommand => new DelegateCommand(p => {
 	  try {
