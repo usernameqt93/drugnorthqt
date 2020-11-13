@@ -36,6 +36,11 @@
       <HintPath>..\Libraries\DNQTConstTable.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="QT.Framework.ToolCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\QT.Framework.ToolCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -51,6 +56,7 @@
     <Compile Include="BLLSelectFromWhere\BLLFrom.cs" />
     <Compile Include="BLLSelectFromWhere\BLLSelect.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="DALNew\DAL_Account.cs" />
     <Compile Include="DALNew\DAL_Common.cs" />
     <Compile Include="DALNew\DAL_Customer.cs" />
     <Compile Include="DALNew\DAL_Order.cs" />
