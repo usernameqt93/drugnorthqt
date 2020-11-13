@@ -44,6 +44,11 @@
       <HintPath>..\Libraries\DNQTConstTable.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DNQTDataAccessLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\DNQTDataAccessLayer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="INV.Framework.Switchs.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\INV.Framework.Switchs.Library.dll</HintPath>
@@ -127,6 +132,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\BLLPlugin.cs" />
+    <Compile Include="ViewModels\CheckSystem_ViewModel.cs" />
     <Compile Include="ViewModels\HostService.cs" />
     <Compile Include="ViewModels\ListMessages_ViewModel.cs" />
     <Compile Include="ViewModels\MainMenuSphere_ViewModel.cs" />
@@ -137,6 +143,9 @@
     </Compile>
     <Compile Include="View\ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CheckSystem.xaml.cs">
+      <DependentUpon>CheckSystem.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CircularPanel.cs" />
     <Compile Include="View\ListMessages.xaml.cs">
@@ -182,6 +191,10 @@
     <Page Include="View\ChangePassword.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\CheckSystem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ListMessages.xaml">
       <Generator>MSBuild:Compile</Generator>
