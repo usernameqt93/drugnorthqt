@@ -136,5 +136,38 @@ namespace DNQTDataAccessLayer.DALNew {
 		exOutput=ex;
 	  }
 	}
+
+	public void GetDtAccountGiaHanByUserPass(ref DataTable dtOutput,ref Exception exOutput
+	  ,Dictionary<string,object> dicInput) {
+	  try {
+		string strQuery = "";
+		strQuery+="\n"+@"SELECT BangAccount.Id,BangAccount.Username,BangAccount.IsDeleted "
++" ,BangGiaHan.StartTimeUse,BangGiaHan.EndTimeUse "
++" FROM BangAccount BangAccount LEFT JOIN BangGiaHan BangGiaHan "
++" ON BangGiaHan.IdAccount=BangAccount.Id "
++" WHERE BangAccount.Username=@Username AND BangAccount.Password=@Password;";
+
+		var lstTupleParameter = new List<Tuple<string,object>>();
+		{
+		  string objTemp = dicInput["string.strUserName"] as string;
+		  lstTupleParameter.Add(new Tuple<string,object>
+			("Username",objTemp));
+		}
+		{
+		  string objTemp = dicInput["string.strPassword"] as string;
+		  lstTupleParameter.Add(new Tuple<string,object>
+			("Password",objTemp));
+		}
+
+		SqlParameter[] arrayTemp = new SqlParameter[lstTupleParameter.Count];
+		for(int i = 0;i<lstTupleParameter.Count;i++) {
+		  arrayTemp[i]=new SqlParameter("@"+lstTupleParameter[i].Item1,lstTupleParameter[i].Item2);
+		}
+
+		dtOutput=dataTableThucThiQuery(strQuery,CommandType.Text,arrayTemp);
+	  } catch(Exception ex) {
+		exOutput=ex;
+	  }
+	}
   }
 }

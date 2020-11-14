@@ -61,12 +61,6 @@
     <Compile Include="DALNew\DAL_Customer.cs" />
     <Compile Include="DALNew\DAL_Order.cs" />
     <Compile Include="DALNew\DAL_Product.cs" />
-    <Compile Include="DAO_CaiDat.cs" />
-    <Compile Include="DAO_DonHang.cs" />
-    <Compile Include="DAO_DonXacNhan.cs" />
-    <Compile Include="DAO_GiaViThuoc.cs" />
-    <Compile Include="DAO_KhachHang.cs" />
-    <Compile Include="DAO_ViThuoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
