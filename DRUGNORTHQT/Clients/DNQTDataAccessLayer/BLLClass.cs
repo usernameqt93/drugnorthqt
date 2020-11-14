@@ -66,6 +66,41 @@ namespace DNQTDataAccessLayer {
 
 	/// <summary>
 	/// Ví dụ list string là a b c 
+	/// thì output là "a,b,c" hoặc "t.a,t.b,t.c" hoặc 'a','b','c' 
+	/// với 't.' là tiền tố, dấu phẩy là phân cách, ' là strBaoQuanh
+	/// </summary>
+	/// <param name="strOutput"></param>
+	/// <param name="lstStringInput"></param>
+	/// <param name="strCharSplit"></param>
+	/// <param name="strTienTo"></param>
+	internal void GetStringJoinSplitCharNotDot(ref string strOutput
+	  ,List<string> lstStringInput,string strCharSplit,string strTienTo,string strBaoQuanh) {
+	  if(lstStringInput.Count==0) {
+		return;
+	  }
+
+	  string strThemVao = "";
+	  if(strTienTo!="") {
+		strThemVao=$"{strTienTo}";
+	  }
+
+	  for(int i = 0;i<lstStringInput.Count;i++) {
+		string strOneString = strThemVao+lstStringInput[i];
+		if(strBaoQuanh!="") {
+		  strOneString=$"{strBaoQuanh}{strOneString}{strBaoQuanh}";
+		}
+
+		if(i==0) {
+		  strOutput+=strOneString;
+		  continue;
+		}
+
+		strOutput+=strCharSplit+strOneString;
+	  }
+	}
+
+	/// <summary>
+	/// Ví dụ list string là a b c 
 	/// thì output là "a,b,c" hoặc "t.a,t.b,t.c" với t là tiền tố, dấu phẩy là phân cách
 	/// </summary>
 	/// <param name="strOutput"></param>

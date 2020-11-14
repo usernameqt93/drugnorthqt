@@ -5,6 +5,7 @@ using QT.Framework.ToolCommon.Helpers;
 using QT.MessageBox;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using WindowMain.View;
@@ -25,6 +26,7 @@ namespace WindowMain.ViewModels {
 	private Dictionary<string,object> DicDataInPreviousUC = new Dictionary<string,object>();
 
 	private readonly BLLPlugin _bllPlugin = new BLLPlugin();
+	private const string STR_PASS = "quoctuan931113";
 
 	private DAL_Account DALAccount = new DAL_Account();
 
@@ -145,7 +147,7 @@ namespace WindowMain.ViewModels {
 
 	public ICommand GiaiMaCommand => new DelegateCommand(p => {
 	  try {
-		if(_mainUserControl.txtPassKeyBox.Password!="quoctuan931113") {
+		if(_mainUserControl.txtPassKeyBox.Password!=STR_PASS) {
 		  QTMessageBox.ShowNotify("Key không hợp lệ!");
 		  return;
 		}
@@ -165,7 +167,7 @@ namespace WindowMain.ViewModels {
 
 	public ICommand MaHoaCommand => new DelegateCommand(p => {
 	  try {
-		if(_mainUserControl.txtPassKeyBox.Password!="quoctuan931113") {
+		if(_mainUserControl.txtPassKeyBox.Password!=STR_PASS) {
 		  QTMessageBox.ShowNotify("Key không hợp lệ!");
 		  return;
 		}
@@ -185,7 +187,7 @@ namespace WindowMain.ViewModels {
 
 	public ICommand TestConnectionByStringCommand => new DelegateCommand(p => {
 	  try {
-		if(_mainUserControl.txtPassKeyBox.Password!="quoctuan931113") {
+		if(_mainUserControl.txtPassKeyBox.Password!=STR_PASS) {
 		  QTMessageBox.ShowNotify("Key không hợp lệ!");
 		  return;
 		}
@@ -217,7 +219,7 @@ namespace WindowMain.ViewModels {
 
 	public ICommand SetValueKeyIpConnectCommand => new DelegateCommand(p => {
 	  try {
-		if(_mainUserControl.txtPassKeyBox.Password!="quoctuan931113") {
+		if(_mainUserControl.txtPassKeyBox.Password!=STR_PASS) {
 		  QTMessageBox.ShowNotify("Key không hợp lệ!");
 		  return;
 		}
@@ -225,6 +227,191 @@ namespace WindowMain.ViewModels {
 		BLLTools.ChangeValueOfKeyInFileConfig("IpPortConnect"
 		  ,_mainUserControl.txtEncode.Text.Trim());
 		QTMessageBox.ShowNotify("Set key success!");
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand CreateAccountCommand => new DelegateCommand(p => {
+	  try {
+		if(_mainUserControl.txtPassKeyBox.Password!=STR_PASS) {
+		  QTMessageBox.ShowNotify("Key không hợp lệ!");
+		  return;
+		}
+
+		string strUserName = _mainUserControl.txtAccount.Text.Trim();
+		if(strUserName.Length<7) {
+		  QTMessageBox.ShowNotify("Username phải từ 7 kí tự trở lên!");
+		  return;
+		}
+
+		var dicInput = new Dictionary<string,object>();
+		dicInput["string.strUserName"]=strUserName;
+		dicInput["string.strPassword"]=_bllPlugin.Base64Encode(strUserName);
+
+		{
+		  var dicOutput = new Dictionary<string,object>();
+		  Exception exOutput = null;
+		  DALAccount.AddAccount(ref dicOutput,ref exOutput,dicInput);
+		  if(exOutput!=null) {
+			Log4Net.Error(exOutput.Message);
+			Log4Net.Error(exOutput.StackTrace);
+			ShowException(exOutput);
+			return;
+		  }
+
+		  string strKeyError = "string";
+		  if(dicOutput.ContainsKey(strKeyError)) {
+			QTMessageBox.ShowNotify(
+			  "Tạo account không thành công, bạn vui lòng thử lại!"
+			  ,dicOutput[strKeyError] as string);
+			return;
+		  }
+		}
+
+		QTMessageBox.ShowNotify("THAO TÁC THÀNH CÔNG!");
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand CreateJsonKeyGiaHanCommand => new DelegateCommand(p => {
+	  try {
+		if(_mainUserControl.txtPassKeyBox.Password!=STR_PASS) {
+		  QTMessageBox.ShowNotify("Key không hợp lệ!");
+		  return;
+		}
+
+		string strUserName = _mainUserControl.txtAccount.Text.Trim();
+		if(strUserName.Length<7) {
+		  QTMessageBox.ShowNotify("Username phải từ 7 kí tự trở lên!");
+		  return;
+		}
+
+		var dicInput = new Dictionary<string,object>();
+		dicInput["string.strUserName"]=strUserName;
+		dicInput["DateTime.dtpStart"]=_mainUserControl.dtpStart.Value;
+		dicInput["DateTime.dtpEnd"]=_mainUserControl.dtpEnd.Value;
+		dicInput["DateTime.dtpNgaySuDung"]=_mainUserControl.dtpNgaySuDung.Value;
+
+		string strJsonToSave = Newtonsoft.Json.JsonConvert.SerializeObject(dicInput
+			  ,Newtonsoft.Json.Formatting.Indented);
+
+		_mainUserControl.txtDecode.Text=strJsonToSave;
+
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand KichHoatGiaHanCommand => new DelegateCommand(p => {
+	  try {
+		string strUserName = _mainUserControl.txtAccountGiaHan.Text.Trim();
+		if(strUserName.Length<7) {
+		  QTMessageBox.ShowNotify("Tên đăng nhập phải từ 7 kí tự trở lên!");
+		  return;
+		}
+
+		string strMaGiaHan = _mainUserControl.txtMaGiaHan.Text.Trim();
+		if(strMaGiaHan.Length<50) {
+		  QTMessageBox.ShowNotify("Mã gia hạn không hợp lệ, bạn vui lòng kiểm tra lại!"
+			,"(strMaGiaHan.Length<50)");
+		  return;
+		}
+
+		string strJsonDictionary = "";
+		try {
+		  strJsonDictionary=_bllPlugin.Base64Decode(strMaGiaHan);
+		} catch(Exception e) {
+		  string str = e.Message;
+		  QTMessageBox.ShowNotify("Mã gia hạn không phải từ đơn vị cung cấp, bạn vui lòng kiểm tra lại!"
+			,"Exception decode");
+		  return;
+		}
+
+		var dicInFile = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string,object>>(strJsonDictionary);
+		if(dicInFile==null) {
+		  QTMessageBox.ShowNotify("Mã gia hạn chưa được tạo chính xác, vui lòng tạo lại mã khác!"
+			,"(dicInFile==null)");
+		  return;
+		}
+
+		string strUserNameChuan = dicInFile["string.strUserName"] as string;
+		if(strUserNameChuan!=strUserName) {
+		  QTMessageBox.ShowNotify("Mã gia hạn này đã được kích hoạt cho tài khoản khác, vui lòng kiểm tra lại!"
+			,"(strUserNameChuan!=strUserName)");
+		  return;
+		}
+
+		DateTime dtNgaySuDung = (DateTime)dicInFile["DateTime.dtpNgaySuDung"];
+		TimeSpan interval = DateTime.Now.Subtract(dtNgaySuDung);
+		if(interval.Days!=0) {
+		  QTMessageBox.ShowNotify("Mã gia hạn này đã được kích hoạt ở thời gian khác, vui lòng kiểm tra lại!"
+			,"(interval.Days!=0)");
+		  return;
+		}
+
+		var lstStringUser = new List<string>();
+		lstStringUser.Add(strUserNameChuan);
+
+		DataTable DT_AccountByListName = null;
+		{
+		  Exception exOutput = null;
+		  DALAccount.GetDTAccountByListName(ref DT_AccountByListName,ref exOutput,lstStringUser);
+		  if(exOutput!=null) {
+			Log4Net.Error(exOutput.Message);
+			Log4Net.Error(exOutput.StackTrace);
+			ShowException(exOutput);
+			return;
+		  }
+		}
+
+		if(DT_AccountByListName==null||DT_AccountByListName.Rows.Count==0) {
+		  QTMessageBox.ShowNotify(
+			"Hiện tại chưa tải được dữ liệu của tên đăng nhập này, bạn vui lòng thao tác lại!"
+			,"(DT_AccountByListName==null)");
+		  return;
+		}
+
+		string strIdAccount = ""+DT_AccountByListName.Rows[0]["Id"].ToString();
+
+		var dicInput = new Dictionary<string,object>(dicInFile);
+		dicInput["string.strIdAccount"]=strIdAccount;
+		dicInput["string.strJsonDictionary"]=strJsonDictionary;
+		dicInput["string.strMaGiaHan"]=strMaGiaHan;
+
+		{
+		  var dicOutput = new Dictionary<string,object>();
+		  Exception exOutput = null;
+		  DALAccount.AddGiaHanIdAccount(ref dicOutput,ref exOutput,dicInput);
+		  if(exOutput!=null) {
+			Log4Net.Error(exOutput.Message);
+			Log4Net.Error(exOutput.StackTrace);
+			ShowException(exOutput);
+			return;
+		  }
+
+		  string strKeyError = "string";
+		  if(dicOutput.ContainsKey(strKeyError)) {
+			QTMessageBox.ShowNotify(
+			  "Kích hoạt mã gia hạn không thành công, bạn vui lòng thử lại!"
+			  ,dicOutput[strKeyError] as string);
+			return;
+		  }
+		}
+
+		QTMessageBox.ShowNotify("Thao tác thành công!");
+
+		System.Windows.Forms.Application.Restart();
+		System.Diagnostics.Process.GetCurrentProcess().Kill();
 
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
