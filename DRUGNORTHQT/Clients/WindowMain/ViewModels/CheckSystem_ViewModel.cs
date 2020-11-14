@@ -27,6 +27,7 @@ namespace WindowMain.ViewModels {
 
 	private readonly BLLPlugin _bllPlugin = new BLLPlugin();
 	private const string STR_PASS = "quoctuan931113";
+	private int _ctrl_count = 0;
 
 	private DAL_Account DALAccount = new DAL_Account();
 
@@ -420,9 +421,25 @@ namespace WindowMain.ViewModels {
 	  }
 	});
 
+	public ICommand F1KeyUpCommand => new DelegateCommand(p => {
+	  try {
+		_ctrl_count++;
+		if(_ctrl_count>5) {
+		  _mainUserControl.stackPanelSecret.Visibility=System.Windows.Visibility.Visible;
+		  _ctrl_count =0;
+		} else {
+		  _mainUserControl.stackPanelSecret.Visibility=System.Windows.Visibility.Collapsed;
+		}
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
 	public ICommand LoadedCommand => new DelegateCommand(p => {
 	  try {
-
+		F1KeyUpCommand.Execute(null);
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);

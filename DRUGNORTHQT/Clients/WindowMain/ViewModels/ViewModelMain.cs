@@ -1,4 +1,5 @@
-﻿using HostViewer.Types;
+﻿using DNQTDataAccessLayer.DALNew;
+using HostViewer.Types;
 using log4net;
 using QT.Framework.LoadingPopup.View;
 using QT.Framework.ToolCommon;
@@ -9,6 +10,7 @@ using QT.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
@@ -73,6 +75,7 @@ namespace WindowMain.ViewModels {
 	public DELEGATE_VOID_IN_OTHER_USERCONTROL ExcuteInOtherUserControl;
 
 	private string StrOldPassword;
+	private DAL_Account DALAccount = new DAL_Account();
 
 	#region === Những thuộc tính binding ===
 
@@ -744,14 +747,6 @@ namespace WindowMain.ViewModels {
 
 	private void Login_RunWorkerCompleted(object arg1,RunWorkerCompletedEventArgs e) {
 	  try {
-		//if(e.Result==null) {
-		//  _mainWindow.gridPopup.Children.Clear();
-		//  BlnHideMain=false;
-
-		//  InvicoMessageBox.ShowNotify(
-		//	"Đăng nhập lỗi!");
-		//  return;
-		//}
 
 		_version=$"{_software}.3.{DtPhienBan.ToString("yy.MM.dd")}";
 		_dateTime=DtPhienBan.ToString("dd/MM/yyyy");
@@ -764,19 +759,56 @@ namespace WindowMain.ViewModels {
 		//var key = "";
 		var mes = "";
 		var status = "notadminadmin";
-		//status = _bllPlugin.OnLogin(ref DicLoginInfo,strAppName,DtPhienBan,_software,
-		//  _mainWindow.ucLoginMaster.gridTxtHintUserName.txtText.Text.Trim()
-		//  ,_mainWindow.ucLoginMaster.passBox.Password.Trim(),
-		//  ServerSelected.IsServer,ref _user,ref key,ref mes);
-		//if(_software==19) {
-		//  status = _bllPlugin.OnLogin(_software,strUser.Trim(),strPass.Trim(),ServerSelected.IsServer,ref _user,ref key,ref mes);
-		//} else {
-		//  status = _bllPlugin.OnLogin(strUser.Trim(),strPass.Trim(),ServerSelected.IsServer,ref _user,ref key,ref mes);
-		//}
 		string strUser = _mainWindow.ucLoginMaster.gridTxtHintUserName.txtText.Text.Trim();
 		string strPass = _mainWindow.ucLoginMaster.passBox.Password.Trim();
-		if(strUser==strPass&&strPass=="admin") {
-		  status="ok";
+
+		var dicInput = new Dictionary<string,object>();
+		dicInput["string.strUserName"]=strUser;
+		dicInput["string.strPassword"]=_bllPlugin.Base64Encode(strPass);
+
+		DataTable dtOutput = null;
+		{
+		  Exception exOutput = null;
+		  DALAccount.GetDtAccountGiaHanByUserPass(ref dtOutput,ref exOutput,dicInput);
+		  if(exOutput!=null) {
+			//Log4Net.Error(exOutput.Message);
+			//Log4Net.Error(exOutput.StackTrace);
+			//ShowException(exOutput);
+			//return;
+			throw exOutput;
+		  }
+		}
+		if(dtOutput==null) {
+		  //QTMessageBox.ShowNotify(
+		  //  "Kiểm tra dữ liệu đăng nhập không thành công, bạn vui lòng thử lại!"
+		  //  ,"(dtOutput==null)");
+		  //return;
+		  status="dtOutputNull";
+		}
+		if(dtOutput!=null) {
+		  if(dtOutput.Rows.Count==0) {
+			status="dangnhapsai";
+		  }
+		}
+
+		if(dtOutput!=null) {
+		  int intSumRow = dtOutput.Rows.Count;
+		  if(intSumRow>0) {
+			string strIdAccount = ""+dtOutput.Rows[intSumRow-1]["Id"].ToString();
+			
+			try {
+			  DateTime dtStart = (DateTime)dtOutput.Rows[intSumRow-1]["StartTimeUse"];
+			  DateTime dtEnd = (DateTime)dtOutput.Rows[intSumRow-1]["EndTimeUse"];
+			  if(DateTime.Now.Subtract(dtStart).Days<0||DateTime.Now.Subtract(dtEnd).Days>0) {
+				status="HetHan";
+			  } else {
+				status="ok";
+			  }
+			} catch(Exception etemp) {
+			  string str = etemp.Message;
+			  status="HetHan";
+			}
+		  }
 		}
 
 		string strMessageNotHaveIp = "";
@@ -872,6 +904,16 @@ namespace WindowMain.ViewModels {
 
 			break;
 		  case "notadminadmin":
+			QTMessageBox.ShowNotify("Tài khoản hoặc mật khẩu không đúng, bạn vui lòng thao tác lại!");
+			break;
+		  case "HetHan":
+			QTMessageBox.ShowNotify("Bạn vui lòng kích hoạt mã gia hạn để tiếp tục sử dụng!");
+			ShowCheckSystemDialogCommand.Execute(null);
+			break;
+		  case "dtOutputNull":
+			QTMessageBox.ShowNotify("Kiểm tra dữ liệu đăng nhập không thành công, bạn vui lòng thử lại!");
+			break;
+		  case "dangnhapsai":
 			QTMessageBox.ShowNotify("Tài khoản hoặc mật khẩu không đúng, bạn vui lòng thao tác lại!");
 			break;
 		  case "notok":
@@ -1903,8 +1945,17 @@ namespace WindowMain.ViewModels {
 		dicInput.Add("DELEGATE_VOID_IN_OTHER_USERCONTROL",
 					  new CheckSystem_ViewModel.DELEGATE_VOID_IN_OTHER_USERCONTROL(ExcuteFromOtherUserControl));
 
+		_mainWindow.ucLoginMaster.IsEnabled=false;
+
 		var frm = new CheckSystem(dicInput);
+		frm.Owner=Application.Current.MainWindow;
 		frm.ShowDialog();
+
+		_mainWindow.ucLoginMaster.IsEnabled=true;
+
+		System.Windows.Forms.Application.Restart();
+		System.Diagnostics.Process.GetCurrentProcess().Kill();
+
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);

@@ -9,11 +9,11 @@
 		xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 		mc:Ignorable="d"
 		WindowStartupLocation="CenterScreen"
-		Title="CHECK SYSTEM"
-		Width="1024"
+		Title="KÍCH HOẠT"
 		Height="700"
-		MinHeight="700"
-		MinWidth="1024"
+		Width="1024"
+		MaxHeight="700"
+		MaxWidth="1024"
 		Style="{DynamicResource InvicoWindowStyle}"
 		WindowState="Normal"
 		AllowsTransparency="False"
@@ -30,6 +30,17 @@
 	</ResourceDictionary>
   </Window.Resources>
 
+  <i:Interaction.Triggers>
+	<i:EventTrigger EventName="Loaded">
+	  <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+	</i:EventTrigger>
+	<help:F1KeyUpEventTrigger EventName="KeyUp">
+	  <i:InvokeCommandAction Command="{Binding DataContext.F1KeyUpCommand, 
+                                            RelativeSource={RelativeSource AncestorType=Window}}"
+							 CommandParameter="{Binding}" />
+	</help:F1KeyUpEventTrigger>
+  </i:Interaction.Triggers>
+
   <Grid>
 	<help:ModalContentPresenter x:Name="modalPresenter"
 								IsModal="{Binding BlnHideMain}">
@@ -40,47 +51,9 @@
 
 		<Grid Background="White"
 			  Margin="5">
-		  <StackPanel>
-			<Grid>
-			  <Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-			  </Grid.ColumnDefinitions>
+		  <StackPanel VerticalAlignment="Center">
 
-			  <GroupBox Grid.Column="0"
-						Header="Config"
-						Style="{DynamicResource InvicoGroupBoxStyle}">
-				<StackPanel>
-
-				  <RichTextBox Style="{DynamicResource InvicoRichTextBoxStyle}" 
-							   x:Name="rtbAllConfig"/>
-
-				  <GroupBox Header="Test connection"
-							Style="{DynamicResource InvicoGroupBoxStyle}">
-
-					<StackPanel Orientation="Horizontal">
-					  <Button Style="{DynamicResource InvicoButtonStyle}"
-							  Height="30"
-							  Width="120"
-							  Content="Test connection"
-							  Command="{Binding TestConnectionCommand}" />
-
-					  <CheckBox Style="{DynamicResource InvicoSliderCheckBoxStyle}"
-								IsEnabled="False"
-								x:Name="chkStatusConnection"
-								Content="Success"
-								VerticalAlignment="Center" />
-
-					</StackPanel>
-
-				  </GroupBox>
-				  
-				</StackPanel>
-			  </GroupBox>
-
-			</Grid>
-
-			<GroupBox Header="Kích hoạt key gia hạn"
+			<GroupBox Header="Kích hoạt"
 					  Style="{DynamicResource InvicoGroupBoxStyle}">
 			  <StackPanel>
 				
@@ -171,278 +144,320 @@
 
 			  </StackPanel>
 			</GroupBox>
-			
-			<GroupBox Header="Endecode"
-					  Style="{DynamicResource InvicoGroupBoxStyle}">
-			  <StackPanel>
 
-				<GroupBox Header="Key"
+			<StackPanel x:Name="stackPanelSecret">
+			  <Grid>
+				<Grid.ColumnDefinitions>
+				  <ColumnDefinition />
+				  <ColumnDefinition />
+				</Grid.ColumnDefinitions>
+
+				<GroupBox Grid.Column="0"
+						  Grid.ColumnSpan="2"
+						  Header="Config"
 						  Style="{DynamicResource InvicoGroupBoxStyle}">
-
-				  <PasswordBox x:Name="txtPassKeyBox"
-							   help:CustomerPasswordBox.BindPassword="true"
-							   help:CustomerPasswordBox.BoundPassword="{Binding Path=NewPassword, 
-                                                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-							   Style="{DynamicResource InvicoPasswordBoxStyle}"
-							   Height="30"
-							   MaxLength="30"
-							   VerticalContentAlignment="Center" />
-
-				</GroupBox>
-
-				<GroupBox Header="Encode"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
-
 				  <StackPanel>
-					<DockPanel>
 
-					  <Button Style="{DynamicResource InvicoButtonStyle}"
-							  DockPanel.Dock="Right"
-							  Height="30"
-							  Width="100"
-							  Content="Giải mã"
-							  Command="{Binding GiaiMaCommand}" />
+					<RichTextBox Style="{DynamicResource InvicoRichTextBoxStyle}"
+								 x:Name="rtbAllConfig" />
 
-					  <Grid>
-						<TextBox Style="{DynamicResource InvicoTextBoxStyle}"
-								 AcceptsReturn="False"
-								 x:Name="txtEncode"
-								 MaxLength="9999"
-								 HorizontalAlignment="Stretch"
-								 HorizontalContentAlignment="Left"
-								 VerticalAlignment="Center"
-								 VerticalContentAlignment="Center"
-								 Height="30">
+					<GroupBox Header="Test connection"
+							  Style="{DynamicResource InvicoGroupBoxStyle}">
 
-						</TextBox>
-						<TextBlock IsHitTestVisible="False"
-								   Text="Encode..."
-								   VerticalAlignment="Center"
-								   HorizontalAlignment="Left"
-								   Foreground="DarkGray"
-								   Margin="7,0,0,0">
-						  <TextBlock.Style>
-							<Style TargetType="{x:Type TextBlock}">
-							  <Setter Property="Visibility"
-									  Value="Collapsed" />
-							  <Style.Triggers>
-								<DataTrigger Binding="{Binding Text, ElementName=txtEncode}"
-											 Value="">
-								  <Setter Property="Visibility"
-										  Value="Visible" />
-								</DataTrigger>
-							  </Style.Triggers>
-							</Style>
-						  </TextBlock.Style>
-						</TextBlock>
-					  </Grid>
+					  <StackPanel Orientation="Horizontal">
+						<Button Style="{DynamicResource InvicoButtonStyle}"
+								Height="30"
+								Width="120"
+								Content="Test connection"
+								Command="{Binding TestConnectionCommand}" />
 
-					</DockPanel>
-
-					<StackPanel Orientation="Horizontal"
-								Margin="0,5">
-
-					  <Button Style="{DynamicResource InvicoButtonStyle}"
-							  Height="30"
-							  Width="290"
-							  Content="Set config key IpPortConnect (string encode)"
-							  Command="{Binding SetValueKeyIpConnectCommand}" />
-
-					</StackPanel>
-					
-				  </StackPanel>
-
-				</GroupBox>
-
-				<GroupBox Header="Decode"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
-
-				  <StackPanel>
-					<DockPanel>
-
-					  <Button Style="{DynamicResource InvicoButtonStyle}"
-							  DockPanel.Dock="Right"
-							  Height="30"
-							  Width="100"
-							  Content="Mã hóa"
-							  Command="{Binding MaHoaCommand}" />
-
-					  <Grid>
-						<TextBox Style="{DynamicResource InvicoTextBoxStyle}"
-								 AcceptsReturn="False"
-								 x:Name="txtDecode"
-								 MaxLength="9999"
-								 HorizontalAlignment="Stretch"
-								 HorizontalContentAlignment="Left"
-								 VerticalAlignment="Center"
-								 VerticalContentAlignment="Center"
-								 Height="30">
-
-						</TextBox>
-						<TextBlock IsHitTestVisible="False"
-								   Text="Decode..."
-								   VerticalAlignment="Center"
-								   HorizontalAlignment="Left"
-								   Foreground="DarkGray"
-								   Margin="7,0,0,0">
-						  <TextBlock.Style>
-							<Style TargetType="{x:Type TextBlock}">
-							  <Setter Property="Visibility"
-									  Value="Collapsed" />
-							  <Style.Triggers>
-								<DataTrigger Binding="{Binding Text, ElementName=txtDecode}"
-											 Value="">
-								  <Setter Property="Visibility"
-										  Value="Visible" />
-								</DataTrigger>
-							  </Style.Triggers>
-							</Style>
-						  </TextBlock.Style>
-						</TextBlock>
-					  </Grid>
-
-					</DockPanel>
-
-					<StackPanel Orientation="Horizontal"
-								Margin="0,5">
-
-					  <Button Style="{DynamicResource InvicoButtonStyle}"
-							  Height="30"
-							  Width="290"
-							  Content="Test connection (string decode)"
-							  Command="{Binding TestConnectionByStringCommand}" />
-
-					  <CheckBox Style="{DynamicResource InvicoSliderCheckBoxStyle}"
-								IsEnabled="False"
-								x:Name="chkStatusConnectionString"
-								Content="Success"
-								VerticalAlignment="Center" />
-
-					</StackPanel>
-				  </StackPanel>
-
-				</GroupBox>
-
-				<GroupBox Header="Account"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
-
-				  <StackPanel>
-					<DockPanel>
-
-					  <Button Style="{DynamicResource InvicoButtonStyle}"
-							  DockPanel.Dock="Right"
-							  Height="30"
-							  Width="100"
-							  Content="Tạo"
-							  Command="{Binding CreateAccountCommand}" />
-
-					  <Grid>
-						<TextBox Style="{DynamicResource InvicoTextBoxStyle}"
-								 AcceptsReturn="False"
-								 x:Name="txtAccount"
-								 MaxLength="9999"
-								 HorizontalAlignment="Stretch"
-								 HorizontalContentAlignment="Left"
-								 VerticalAlignment="Center"
-								 VerticalContentAlignment="Center"
-								 Height="30">
-
-						</TextBox>
-						<TextBlock IsHitTestVisible="False"
-								   Text="Tên đăng nhập và mật khẩu trùng nhau khi tạo..."
-								   VerticalAlignment="Center"
-								   HorizontalAlignment="Left"
-								   Foreground="DarkGray"
-								   Margin="7,0,0,0">
-						  <TextBlock.Style>
-							<Style TargetType="{x:Type TextBlock}">
-							  <Setter Property="Visibility"
-									  Value="Collapsed" />
-							  <Style.Triggers>
-								<DataTrigger Binding="{Binding Text, ElementName=txtAccount}"
-											 Value="">
-								  <Setter Property="Visibility"
-										  Value="Visible" />
-								</DataTrigger>
-							  </Style.Triggers>
-							</Style>
-						  </TextBlock.Style>
-						</TextBlock>
-					  </Grid>
-
-					</DockPanel>
-
-				  </StackPanel>
-
-				</GroupBox>
-
-				<GroupBox Header="Start end time"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
-
-				  <StackPanel>
-					<DockPanel>
-
-					  <StackPanel Orientation="Horizontal"
-								  VerticalAlignment="Center"
-								  DockPanel.Dock="Left">
-
-						<Label Style="{DynamicResource InvicoLabelModalStyle}"
-							   Content="Start" />
-
-						<WindowsFormsHost x:Name="wfHostStart"
-										  Width="100">
-						  <wf:DateTimePicker x:Name="dtpStart"
-											 Format="Custom"
-											 CustomFormat="dd/MM/yyyy"
-											 Width="30"
-											 Margin="0, 0, 0, 0" />
-						</WindowsFormsHost>
-
-						<Label Style="{DynamicResource InvicoLabelModalStyle}"
-							   Content="End" />
-
-						<WindowsFormsHost x:Name="wfHostEnd"
-										  Width="100">
-						  <wf:DateTimePicker x:Name="dtpEnd"
-											 Format="Custom"
-											 CustomFormat="dd/MM/yyyy"
-											 Width="30"
-											 Margin="0, 0, 0, 0" />
-						</WindowsFormsHost>
-
-						<Label Style="{DynamicResource InvicoLabelModalStyle}"
-							   Content="Ngày duy nhất có thể sử dụng key này" />
-
-						<WindowsFormsHost x:Name="wfHostNgaySuDung"
-										  Width="100">
-						  <wf:DateTimePicker x:Name="dtpNgaySuDung"
-											 Format="Custom"
-											 CustomFormat="dd/MM/yyyy"
-											 Width="30"
-											 Margin="0, 0, 0, 0" />
-						</WindowsFormsHost>
+						<CheckBox Style="{DynamicResource InvicoSliderCheckBoxStyle}"
+								  IsEnabled="False"
+								  x:Name="chkStatusConnection"
+								  Content="Success"
+								  VerticalAlignment="Center" />
 
 					  </StackPanel>
 
-					  <Button Style="{DynamicResource InvicoButtonStyle}"
-							  DockPanel.Dock="Right"
-							  Height="30"
-							  Width="100"
-							  Content="Tạo"
-							  Command="{Binding CreateJsonKeyGiaHanCommand}" />
-
-					  <Grid>
-						
-					  </Grid>
-					  
-					</DockPanel>
+					</GroupBox>
 
 				  </StackPanel>
-
 				</GroupBox>
 
-			  </StackPanel>
-			</GroupBox>
+			  </Grid>
+
+			  <GroupBox Header="Endecode"
+						Style="{DynamicResource InvicoGroupBoxStyle}">
+				<StackPanel>
+
+				  <GroupBox Header="Key"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
+
+					<PasswordBox x:Name="txtPassKeyBox"
+								 help:CustomerPasswordBox.BindPassword="true"
+								 help:CustomerPasswordBox.BoundPassword="{Binding Path=NewPassword, 
+                                                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								 Style="{DynamicResource InvicoPasswordBoxStyle}"
+								 Height="30"
+								 MaxLength="30"
+								 VerticalContentAlignment="Center" />
+
+				  </GroupBox>
+
+				  <GroupBox Header="Encode"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
+
+					<StackPanel>
+					  <DockPanel>
+
+						<Button Style="{DynamicResource InvicoButtonStyle}"
+								DockPanel.Dock="Right"
+								Height="30"
+								Width="100"
+								Content="Giải mã"
+								Command="{Binding GiaiMaCommand}" />
+
+						<Grid>
+						  <TextBox Style="{DynamicResource InvicoTextBoxStyle}"
+								   AcceptsReturn="False"
+								   x:Name="txtEncode"
+								   MaxLength="9999"
+								   HorizontalAlignment="Stretch"
+								   HorizontalContentAlignment="Left"
+								   VerticalAlignment="Center"
+								   VerticalContentAlignment="Center"
+								   Height="30">
+
+						  </TextBox>
+						  <TextBlock IsHitTestVisible="False"
+									 Text="Encode..."
+									 VerticalAlignment="Center"
+									 HorizontalAlignment="Left"
+									 Foreground="DarkGray"
+									 Margin="7,0,0,0">
+							<TextBlock.Style>
+							  <Style TargetType="{x:Type TextBlock}">
+								<Setter Property="Visibility"
+										Value="Collapsed" />
+								<Style.Triggers>
+								  <DataTrigger Binding="{Binding Text, ElementName=txtEncode}"
+											   Value="">
+									<Setter Property="Visibility"
+											Value="Visible" />
+								  </DataTrigger>
+								</Style.Triggers>
+							  </Style>
+							</TextBlock.Style>
+						  </TextBlock>
+						</Grid>
+
+					  </DockPanel>
+
+					  <StackPanel Orientation="Horizontal"
+								  Margin="0,5">
+
+						<Button Style="{DynamicResource InvicoButtonStyle}"
+								Height="30"
+								Width="290"
+								Content="Set config key IpPortConnect (string encode)"
+								Command="{Binding SetValueKeyIpConnectCommand}" />
+
+					  </StackPanel>
+
+					</StackPanel>
+
+				  </GroupBox>
+
+				  <GroupBox Header="Decode"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
+
+					<StackPanel>
+					  <DockPanel>
+
+						<Button Style="{DynamicResource InvicoButtonStyle}"
+								DockPanel.Dock="Right"
+								Height="30"
+								Width="100"
+								Content="Mã hóa"
+								Command="{Binding MaHoaCommand}" />
+
+						<Grid>
+						  <TextBox Style="{DynamicResource InvicoTextBoxStyle}"
+								   AcceptsReturn="False"
+								   x:Name="txtDecode"
+								   MaxLength="9999"
+								   HorizontalAlignment="Stretch"
+								   HorizontalContentAlignment="Left"
+								   VerticalAlignment="Center"
+								   VerticalContentAlignment="Center"
+								   Height="30">
+
+						  </TextBox>
+						  <TextBlock IsHitTestVisible="False"
+									 Text="Decode..."
+									 VerticalAlignment="Center"
+									 HorizontalAlignment="Left"
+									 Foreground="DarkGray"
+									 Margin="7,0,0,0">
+							<TextBlock.Style>
+							  <Style TargetType="{x:Type TextBlock}">
+								<Setter Property="Visibility"
+										Value="Collapsed" />
+								<Style.Triggers>
+								  <DataTrigger Binding="{Binding Text, ElementName=txtDecode}"
+											   Value="">
+									<Setter Property="Visibility"
+											Value="Visible" />
+								  </DataTrigger>
+								</Style.Triggers>
+							  </Style>
+							</TextBlock.Style>
+						  </TextBlock>
+						</Grid>
+
+					  </DockPanel>
+
+					  <StackPanel Orientation="Horizontal"
+								  Margin="0,5">
+
+						<Button Style="{DynamicResource InvicoButtonStyle}"
+								Height="30"
+								Width="290"
+								Content="Test connection (string decode)"
+								Command="{Binding TestConnectionByStringCommand}" />
+
+						<CheckBox Style="{DynamicResource InvicoSliderCheckBoxStyle}"
+								  IsEnabled="False"
+								  x:Name="chkStatusConnectionString"
+								  Content="Success"
+								  VerticalAlignment="Center" />
+
+					  </StackPanel>
+					</StackPanel>
+
+				  </GroupBox>
+
+				  <GroupBox Header="Account"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
+
+					<StackPanel>
+					  <DockPanel>
+
+						<Button Style="{DynamicResource InvicoButtonStyle}"
+								DockPanel.Dock="Right"
+								Height="30"
+								Width="100"
+								Content="Tạo"
+								Command="{Binding CreateAccountCommand}" />
+
+						<Grid>
+						  <TextBox Style="{DynamicResource InvicoTextBoxStyle}"
+								   AcceptsReturn="False"
+								   x:Name="txtAccount"
+								   MaxLength="9999"
+								   HorizontalAlignment="Stretch"
+								   HorizontalContentAlignment="Left"
+								   VerticalAlignment="Center"
+								   VerticalContentAlignment="Center"
+								   Height="30">
+
+						  </TextBox>
+						  <TextBlock IsHitTestVisible="False"
+									 Text="Tên đăng nhập và mật khẩu trùng nhau khi tạo..."
+									 VerticalAlignment="Center"
+									 HorizontalAlignment="Left"
+									 Foreground="DarkGray"
+									 Margin="7,0,0,0">
+							<TextBlock.Style>
+							  <Style TargetType="{x:Type TextBlock}">
+								<Setter Property="Visibility"
+										Value="Collapsed" />
+								<Style.Triggers>
+								  <DataTrigger Binding="{Binding Text, ElementName=txtAccount}"
+											   Value="">
+									<Setter Property="Visibility"
+											Value="Visible" />
+								  </DataTrigger>
+								</Style.Triggers>
+							  </Style>
+							</TextBlock.Style>
+						  </TextBlock>
+						</Grid>
+
+					  </DockPanel>
+
+					</StackPanel>
+
+				  </GroupBox>
+
+				  <GroupBox Header="Start end time"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
+
+					<StackPanel>
+					  <DockPanel>
+
+						<StackPanel Orientation="Horizontal"
+									VerticalAlignment="Center"
+									DockPanel.Dock="Left">
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 Content="Start" />
+
+						  <WindowsFormsHost x:Name="wfHostStart"
+											Width="100">
+							<wf:DateTimePicker x:Name="dtpStart"
+											   Format="Custom"
+											   CustomFormat="dd/MM/yyyy"
+											   Width="30"
+											   Margin="0, 0, 0, 0" />
+						  </WindowsFormsHost>
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 Content="End" />
+
+						  <WindowsFormsHost x:Name="wfHostEnd"
+											Width="100">
+							<wf:DateTimePicker x:Name="dtpEnd"
+											   Format="Custom"
+											   CustomFormat="dd/MM/yyyy"
+											   Width="30"
+											   Margin="0, 0, 0, 0" />
+						  </WindowsFormsHost>
+
+						  <Label Style="{DynamicResource InvicoLabelModalStyle}"
+								 Content="Ngày duy nhất có thể sử dụng key này" />
+
+						  <WindowsFormsHost x:Name="wfHostNgaySuDung"
+											Width="100">
+							<wf:DateTimePicker x:Name="dtpNgaySuDung"
+											   Format="Custom"
+											   CustomFormat="dd/MM/yyyy"
+											   Width="30"
+											   Margin="0, 0, 0, 0" />
+						  </WindowsFormsHost>
+
+						</StackPanel>
+
+						<Button Style="{DynamicResource InvicoButtonStyle}"
+								DockPanel.Dock="Right"
+								Height="30"
+								Width="100"
+								Content="Tạo"
+								Command="{Binding CreateJsonKeyGiaHanCommand}" />
+
+						<Grid>
+
+						</Grid>
+
+					  </DockPanel>
+
+					</StackPanel>
+
+				  </GroupBox>
+
+				</StackPanel>
+			  </GroupBox>
+			</StackPanel>
 
 		  </StackPanel>
 		</Grid>
