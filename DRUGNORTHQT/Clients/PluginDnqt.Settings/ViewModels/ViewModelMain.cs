@@ -61,12 +61,7 @@ namespace PluginDnqt.Settings.ViewModels {
 
 	private void LoadControlDefault() {
 	  try {
-		_mainUserControl.gridMain.IsEnabled=false;
-
-		_mainUserControl.btnLuuLai.Visibility=System.Windows.Visibility.Collapsed;
-		_mainUserControl.btnThayDoi.Visibility=System.Windows.Visibility.Collapsed;
-
-		_mainUserControl.btnThayDoi.Visibility=System.Windows.Visibility.Visible;
+		CancelCommand.Execute(null);
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
@@ -128,6 +123,21 @@ namespace PluginDnqt.Settings.ViewModels {
 		_mainUserControl.btnThayDoi.Visibility=System.Windows.Visibility.Collapsed;
 
 		_mainUserControl.btnLuuLai.Visibility=System.Windows.Visibility.Visible;
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand CancelCommand => new DelegateCommand(p => {
+	  try {
+		_mainUserControl.gridMain.IsEnabled=false;
+
+		_mainUserControl.btnLuuLai.Visibility=System.Windows.Visibility.Collapsed;
+		_mainUserControl.btnThayDoi.Visibility=System.Windows.Visibility.Collapsed;
+
+		_mainUserControl.btnThayDoi.Visibility=System.Windows.Visibility.Visible;
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);
