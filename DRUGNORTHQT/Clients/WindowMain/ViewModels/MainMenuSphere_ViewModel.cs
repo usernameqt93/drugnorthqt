@@ -9,13 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using WindowMain.Model;
 using WindowMain.View;
 
@@ -153,12 +150,12 @@ namespace WindowMain.ViewModels {
 	  try {
 		var intdsfdsf = _mainUserControl.lstMain.Height;
 
-		Icon appIcon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
-		_mainUserControl.LogoIcon.Source=System.Windows.Interop.Imaging.CreateBitmapSourceFromHIcon
-		  (appIcon.Handle,System.Windows.Int32Rect.Empty
-		  ,BitmapSizeOptions.FromEmptyOptions());
+		//Icon appIcon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
+		//_mainUserControl.LogoIcon.Source=System.Windows.Interop.Imaging.CreateBitmapSourceFromHIcon
+		//  (appIcon.Handle,System.Windows.Int32Rect.Empty
+		//  ,BitmapSizeOptions.FromEmptyOptions());
 
-		//_bllPlugin.SetSourceToImageBySoftware(ref _mainUserControl.LogoIcon,_software);
+		_bllPlugin.SetSourceToImageBySoftware(ref _mainUserControl.LogoIcon,_software);
 
 		_bllPlugin.SetTitleBySoftware(ref _mainUserControl.lblTitleAbove,_software);
 

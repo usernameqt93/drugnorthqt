@@ -36,7 +36,8 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>DrugNorthQT.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DNQTConstTable, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
@@ -234,7 +235,7 @@
     <Resource Include="Assets\AddFromDB.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DrugNorthQT.ico" />
+    <Resource Include="Assets\soft_focus_leaf_visible.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

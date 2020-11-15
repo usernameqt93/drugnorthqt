@@ -70,6 +70,8 @@ namespace WindowMain.ViewModels {
 			new Uri("pack://application:,,,/INV.Framework.ProductInfo.Library;component/Resources/logo-marktest.png"));
 		  break;
 		default:
+		  logoIcon.Source=new BitmapImage(
+			new Uri("pack://application:,,,/WindowMain;component/Assets/soft_focus_leaf_visible.png"));
 		  break;
 	  }
 	}
@@ -101,6 +103,7 @@ namespace WindowMain.ViewModels {
 		  lblTitleAbove.Content="HỆ THỐNG CHẤM THI";
 		  break;
 		default:
+		  lblTitleAbove.Content="HỆ THỐNG QUẢN LÝ HÓA ĐƠN, SỔ SÁCH";
 		  break;
 	  }
 	}
@@ -167,25 +170,15 @@ namespace WindowMain.ViewModels {
 		return;
 	  }
 
-	 // if(strTextChange.Equals("Thiết lập đề thi")) {
-		//strTextChange="Thiết lập\nđề thi";
-		//return;
-	 // }
+	  if(strTextChange.Equals("Quản lý vị thuốc")) {
+		strTextChange="Quản lý\nvị thuốc";
+		return;
+	  }
 
-	 // if(strTextChange.Equals("Báo cáo thống kê")) {
-		//strTextChange="Thiết lập\nđề thi";
-		//return;
-	 // }
-
-	 // if(strTextChange.Equals("Thiết lập đề thi")) {
-		//strTextChange="Thiết lập\nđề thi";
-		//return;
-	 // }
-
-	 // if(strTextChange.Equals("Thiết lập đề thi")) {
-		//strTextChange="Thiết lập\nđề thi";
-		//return;
-	 // }
+	  // if(strTextChange.Equals("Báo cáo thống kê")) {
+	  //strTextChange="Thiết lập\nđề thi";
+	  //return;
+	  // }
 
 	}
 
@@ -296,6 +289,8 @@ namespace WindowMain.ViewModels {
 	  }
 	}
 
+	#region Encode decode base64
+
 	public string Base64Encode(string plainText) {
 	  var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
 	  return System.Convert.ToBase64String(plainTextBytes);
@@ -304,7 +299,9 @@ namespace WindowMain.ViewModels {
 	public string Base64Decode(string base64EncodedData) {
 	  var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
 	  return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
-	}
+	} 
+
+	#endregion
 
 	public string LoadIcon(int key,int intSoftware) {
 	  switch(key) {
@@ -651,6 +648,20 @@ namespace WindowMain.ViewModels {
 		  break;
 	  }
 	}
+
+	#endregion
+
+	#region Function for CheckSystem_ViewModel
+
+	internal void GetListTupleValueFromListKeyFromConfig(ref List<Tuple<string,string>> lstTupleKeyValueCurrent
+  ,List<string> lstStringKey) {
+	  lstTupleKeyValueCurrent=new List<Tuple<string,string>>();
+	  foreach(var strKey in lstStringKey) {
+		string strValueKey = "";
+		BLLTools.GetValueFromFileConfig(ref strValueKey,strKey);
+		lstTupleKeyValueCurrent.Add(new Tuple<string,string>(strKey,strValueKey));
+	  }
+	} 
 
 	#endregion
 

@@ -65,6 +65,8 @@ namespace WindowMain.ViewModels {
 	  Interval=3000
 	};
 
+	private Tuple<string,string> TupleIdNameAccount = new Tuple<string,string>("","");
+
 	private Dictionary<string,object> DicData;
 	private Tuple<bool,string,string,int> TupleSetting;
 	private string StrPathLoadDll = "";
@@ -547,8 +549,8 @@ namespace WindowMain.ViewModels {
 		return false;
 	  }
 
-	  if(string.IsNullOrEmpty(users.NewPassword)) {
-		QTMessageBox.ShowNotify("Bạn cần nhập mật khẩu mới!");
+	  if(string.IsNullOrEmpty(users.NewPassword)||users.NewPassword.Trim().Length<7) {
+		QTMessageBox.ShowNotify("Mật khẩu mới phải từ 7 kí tự trở lên, bạn vui lòng thử lại!");
 		_mainWindow.ucChangePassword.TxtPassNew.Focus();
 		return false;
 	  }
@@ -791,15 +793,21 @@ namespace WindowMain.ViewModels {
 		  }
 		}
 
+		string strPhienBanHanCuoi = "";
 		if(dtOutput!=null) {
 		  int intSumRow = dtOutput.Rows.Count;
 		  if(intSumRow>0) {
 			string strIdAccount = ""+dtOutput.Rows[intSumRow-1]["Id"].ToString();
-			
+			TupleIdNameAccount=new Tuple<string,string>(strIdAccount,strUser);
+
 			try {
 			  DateTime dtStart = (DateTime)dtOutput.Rows[intSumRow-1]["StartTimeUse"];
 			  DateTime dtEnd = (DateTime)dtOutput.Rows[intSumRow-1]["EndTimeUse"];
-			  if(DateTime.Now.Subtract(dtStart).Days<0||DateTime.Now.Subtract(dtEnd).Days>0) {
+
+			  strPhienBanHanCuoi=$"(Phiên bản {dtEnd.ToString("dd/MM/yyyy")})";
+			  TimeSpan tsStart = DateTime.Now.Subtract(dtStart);
+			  TimeSpan tsEnd = DateTime.Now.Subtract(dtEnd);
+			  if(DateTime.Now<dtStart||DateTime.Now>dtEnd) {
 				status="HetHan";
 			  } else {
 				status="ok";
@@ -855,7 +863,7 @@ namespace WindowMain.ViewModels {
 			string strUserText = "";
 			string strPassBase64 = "";
 			if(CheckSavedAccount) {
-			  strUserText=_mainWindow.ucLoginMaster.gridTxtHintUserName.txtText.Text.Trim();
+			  strUserText=strUser;
 			  //strPassBase64=_bllPlugin.Base64Encode(_mainWindow.ucLoginMaster.passBox.Password.Trim());
 			  strPassBase64=_bllPlugin.Base64Encode("");
 			}
@@ -885,7 +893,8 @@ namespace WindowMain.ViewModels {
 
 			//DateTime dtLoginTimeGanNhat = (_isServer==0) ? DateTime.Now : _user.LoginTime;
 			DateTime dtLoginTimeGanNhat = DateTime.Now;
-			ShowInfoUserLogin(_mainWindow.ucLoginMaster.gridTxtHintUserName.txtText.Text.Trim(),dtLoginTimeGanNhat);
+			ShowInfoUserLogin(strUser,dtLoginTimeGanNhat);
+			_mainWindow.txtHanCuoi.Content=strPhienBanHanCuoi;
 
 			_isLogin = false;
 			OnPropertyChanged(nameof(ShowLogin));
@@ -1535,9 +1544,9 @@ namespace WindowMain.ViewModels {
 			if(ServerSelected.IsServer == 1) {
 			  IsTiling = true;
 			  _isProFile = true;
-			  OnPropertyChanged("ShowProFile");
+			  OnPropertyChanged(nameof(ShowProFile));
 			  _isChangePass = false;
-			  OnPropertyChanged("ShowChangePass");
+			  OnPropertyChanged(nameof(ShowChangePass));
 			  _mainWindow.contnet.Visibility = Visibility.Hidden;
 			} else {
 			  QTMessageBox.ShowNotify("Bạn không thể cập nhật thông tin cá nhân ở chế độ offline!");
@@ -1557,9 +1566,9 @@ namespace WindowMain.ViewModels {
 		  try {
 			IsTiling = true;
 			_isProFile = false;
-			OnPropertyChanged("ShowProFile");
+			OnPropertyChanged(nameof(ShowProFile));
 			_isChangePass = true;
-			OnPropertyChanged("ShowChangePass");
+			OnPropertyChanged(nameof(ShowChangePass));
 			_mainWindow.contnet.Visibility = Visibility.Hidden;
 
 			_usersUpdatePass.OldPassword="";
@@ -1638,49 +1647,80 @@ namespace WindowMain.ViewModels {
 		return new DelegateCommand(p => {
 		  try {
 			if(CheckDataChangePass(_usersUpdatePass)) {
-			  try {
-				//var strCase = "";
-				//if(ServerSelected.IsServer == 1)
-				//  strCase = _bllPlugin.ChangePassWord(_usersUpdatePass.NewPassword,
-				//	_usersUpdatePass.OldPassword,_key,_user.UserID,ServerSelected.IsServer);
-				//else
-				//  strCase = _bllPlugin.ChangePassWord(_usersUpdatePass.NewPassword);
+			  var dicInput = new Dictionary<string,object>();
+			  dicInput["string.strId"]=TupleIdNameAccount.Item1;
+			  dicInput["string.strUserName"]=TupleIdNameAccount.Item2;
+			  dicInput["string.strPassword"]=_bllPlugin.Base64Encode(_usersUpdatePass.NewPassword);
 
-				//var reviced = JsonConvert.DeserializeObject<IDictionary>(strCase);
-				//var status = reviced["status"].ToString();
-				//switch(status) {
-				//  case "1":
-				//	QTMessageBox.ShowNotify(reviced["success"].ToString());
+			  {
+				var dicOutput = new Dictionary<string,object>();
+				Exception exOutput = null;
+				DALAccount.UpdatePasswordAccount(ref dicOutput,ref exOutput,dicInput);
+				if(exOutput!=null) {
+				  Log4Net.Error(exOutput.Message);
+				  Log4Net.Error(exOutput.StackTrace);
+				  ShowException(exOutput);
+				  return;
+				}
 
-				//	System.Windows.Forms.Application.Restart();
-				//	Process.GetCurrentProcess().Kill();
-
-				//	//_passText = _usersUpdatePass.NewPassword;
-				//	//OnPropertyChanged("PasswordText");
-
-				//	//_isChangePass = false;
-				//	//OnPropertyChanged("ShowChangePass");
-
-				//	//_isMain = true;
-				//	//OnPropertyChanged("ShowMain");
-				//	//IsTiling = false;
-				//	//_mainWindow.contnet.Visibility = Visibility.Visible;
-
-				//	//_usersUpdatePass.OldPassword = "";
-				//	//_usersUpdatePass.NewPassword = "";
-				//	//_usersUpdatePass.AgainNewPassword = "";
-				//	break;
-				//  case "2":
-				//	QTMessageBox.ShowNotify(reviced["success"].ToString());
-				//	//Application.Restart();
-				//	break;
-				//  default:
-				//	QTMessageBox.ShowNotify(reviced["error"].ToString());
-				//	break;
-				//}
-			  } catch(Exception ex) {
-				QTMessageBox.Show("Cảnh báo",ex.ToString(),MessageBoxButton.OK,MessageBoxImage.Error);
+				string strKeyError = "string";
+				if(dicOutput.ContainsKey(strKeyError)) {
+				  QTMessageBox.ShowNotify(
+					"Thao tác không thành công, bạn vui lòng thử lại!"
+					,dicOutput[strKeyError] as string);
+				  return;
+				}
 			  }
+
+			  QTMessageBox.ShowNotify("THAO TÁC THÀNH CÔNG!");
+
+			  System.Windows.Forms.Application.Restart();
+			  Process.GetCurrentProcess().Kill();
+
+
+			  // try {
+			  ////var strCase = "";
+			  ////if(ServerSelected.IsServer == 1)
+			  ////  strCase = _bllPlugin.ChangePassWord(_usersUpdatePass.NewPassword,
+			  ////	_usersUpdatePass.OldPassword,_key,_user.UserID,ServerSelected.IsServer);
+			  ////else
+			  ////  strCase = _bllPlugin.ChangePassWord(_usersUpdatePass.NewPassword);
+
+			  ////var reviced = JsonConvert.DeserializeObject<IDictionary>(strCase);
+			  ////var status = reviced["status"].ToString();
+			  ////switch(status) {
+			  ////  case "1":
+			  ////	QTMessageBox.ShowNotify(reviced["success"].ToString());
+
+			  ////	System.Windows.Forms.Application.Restart();
+			  ////	Process.GetCurrentProcess().Kill();
+
+			  ////	//_passText = _usersUpdatePass.NewPassword;
+			  ////	//OnPropertyChanged("PasswordText");
+
+			  ////	//_isChangePass = false;
+			  ////	//OnPropertyChanged("ShowChangePass");
+
+			  ////	//_isMain = true;
+			  ////	//OnPropertyChanged("ShowMain");
+			  ////	//IsTiling = false;
+			  ////	//_mainWindow.contnet.Visibility = Visibility.Visible;
+
+			  ////	//_usersUpdatePass.OldPassword = "";
+			  ////	//_usersUpdatePass.NewPassword = "";
+			  ////	//_usersUpdatePass.AgainNewPassword = "";
+			  ////	break;
+			  ////  case "2":
+			  ////	QTMessageBox.ShowNotify(reviced["success"].ToString());
+			  ////	//Application.Restart();
+			  ////	break;
+			  ////  default:
+			  ////	QTMessageBox.ShowNotify(reviced["error"].ToString());
+			  ////	break;
+			  ////}
+			  // } catch(Exception ex) {
+			  //QTMessageBox.Show("Cảnh báo",ex.ToString(),MessageBoxButton.OK,MessageBoxImage.Error);
+			  // }
 
 			  //var itm = new DIGILIB.Users();
 			  //itm.UserID = _usersUpdateProFile.UserID;
@@ -1948,6 +1988,7 @@ namespace WindowMain.ViewModels {
 		_mainWindow.ucLoginMaster.IsEnabled=false;
 
 		var frm = new CheckSystem(dicInput);
+		frm.WindowStartupLocation=WindowStartupLocation.CenterScreen;
 		frm.Owner=Application.Current.MainWindow;
 		frm.ShowDialog();
 

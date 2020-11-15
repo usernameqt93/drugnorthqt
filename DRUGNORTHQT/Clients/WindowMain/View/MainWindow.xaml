@@ -105,22 +105,10 @@
 					 Content="Copyright © 2017 Sao Sài Gòn" />
 		  </Border.ToolTip>
 		  <Grid>
-			<Path Data="M0.74339156,53.250006 L23.335756,52.958328 C23.335756,52.958328 24.878243,52.316616 25.48282,50.758128 26.087396,49.19964 
-                          27.004392,34.288707 28.038643,30.377252 30.230107,22.08931 36.339003,24.908035 37.543415,28.385407 37.936333,29.519838 41.30844,37.886335 
-                          41.30844,37.886335 41.30844,37.886335 43.50925,42.405258 43.992262,43.128422 44.987804,44.618946 46.423032,46.280757 48.387906,43.022162
-                          50.35278,39.763567 52.96287,30.064079 53.413934,28.417359 54.371204,24.922611 59.380217,21.681296&#xD;&#xA;62.414155,29.336941 
-                          62.994279,30.800792 65.430184,45.041025 66.134736,47.87456 66.571741,49.63209 66.487201,52.318409 69.585875,52.436069 72.9155,52.562499 
-                          91.835367,53.10801 91.835367,53.10801 91.835367,53.10801 93.977521,37.173947 84.820526,21.461217 79.481339,12.299566 67.620877,1.2370276 
-                          46.611883,0.52863411 25.60289,-0.17976048 12.27999,12.366131 4.745013,25.914303 -0.98000515,36.2081 0.74339156,53.250006 0.74339156,53.250006 z 
-                          M1.187999,55.553805 C1.187999,55.553805 17.846842,55.693206 27.391544,55.195833 31.117332,55.001682 31.998272,54.232952 33.390344,46.68491
-                          33.978,43.498551 37.582166,43.499263 38.618765,46.101745 39.408426,48.084268 41.39676,52.071333 42.712825,55.588859 44.144666,59.415825 
-                          48.907655,58.714939 50.087626,55.660119 51.936332,50.874006 52.921012,47.749644 52.921012,47.749644 52.921012,47.749644 
-                          55.403114,42.071284 57.934001,48.234966 59.935196,53.108644 60.664713,55.365815 65.057679,55.361135 65.317447,55.360858 
-                          91.021998,55.890078 91.021998,55.890078 91.021998,55.890078 86.019623,90.874638 47.75237,92.461821 12.372702,93.929237 
-                          2.2065327,61.436789 1.187999,55.553805 z"
+			<Path Data="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"
 				  Fill="White"
 				  Stretch="Fill" />
-			<TextBlock Text="Master"
+			<TextBlock Text=""
 					   FontFamily="Verdana"
 					   FontSize="16"
 					   FontWeight="ExtraBold"
@@ -158,19 +146,7 @@
 			</Style>
 		  </Border.Style>
 
-		  <Path Data="M0.74339156,53.250006 L23.335756,52.958328 C23.335756,52.958328 24.878243,52.316616 25.48282,50.758128 26.087396,49.19964 
-                          27.004392,34.288707 28.038643,30.377252 30.230107,22.08931 36.339003,24.908035 37.543415,28.385407 37.936333,29.519838 41.30844,37.886335 
-                          41.30844,37.886335 41.30844,37.886335 43.50925,42.405258 43.992262,43.128422 44.987804,44.618946 46.423032,46.280757 48.387906,43.022162
-                          50.35278,39.763567 52.96287,30.064079 53.413934,28.417359 54.371204,24.922611 59.380217,21.681296&#xD;&#xA;62.414155,29.336941 
-                          62.994279,30.800792 65.430184,45.041025 66.134736,47.87456 66.571741,49.63209 66.487201,52.318409 69.585875,52.436069 72.9155,52.562499 
-                          91.835367,53.10801 91.835367,53.10801 91.835367,53.10801 93.977521,37.173947 84.820526,21.461217 79.481339,12.299566 67.620877,1.2370276 
-                          46.611883,0.52863411 25.60289,-0.17976048 12.27999,12.366131 4.745013,25.914303 -0.98000515,36.2081 0.74339156,53.250006 0.74339156,53.250006 z 
-                          M1.187999,55.553805 C1.187999,55.553805 17.846842,55.693206 27.391544,55.195833 31.117332,55.001682 31.998272,54.232952 33.390344,46.68491
-                          33.978,43.498551 37.582166,43.499263 38.618765,46.101745 39.408426,48.084268 41.39676,52.071333 42.712825,55.588859 44.144666,59.415825 
-                          48.907655,58.714939 50.087626,55.660119 51.936332,50.874006 52.921012,47.749644 52.921012,47.749644 52.921012,47.749644 
-                          55.403114,42.071284 57.934001,48.234966 59.935196,53.108644 60.664713,55.365815 65.057679,55.361135 65.317447,55.360858 
-                          91.021998,55.890078 91.021998,55.890078 91.021998,55.890078 86.019623,90.874638 47.75237,92.461821 12.372702,93.929237 
-                          2.2065327,61.436789 1.187999,55.553805 z"
+		  <Path Data="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"
 				Fill="White"
 				Stretch="Fill" />
 		</Border>
@@ -385,7 +361,7 @@
 						  Height="20"
 						  Cursor="Hand"
 						  RenderTransformOrigin="0.435,1"
-						  ToolTip="Click để mở TeamviewQS"
+						  ToolTip="Click để mở UltraViewer hỗ trợ"
 						  Margin="5,0" />
 
 				  <Button Template="{StaticResource OpenUnikeyIcon}"
@@ -394,7 +370,7 @@
 						  Height="20"
 						  Cursor="Hand"
 						  RenderTransformOrigin="0.435,1"
-						  ToolTip="Click để mở Unikey"
+						  ToolTip="Click để mở Unikey gõ tiếng việt"
 						  Margin="5,0" />
 				  
 				</StackPanel>
@@ -524,9 +500,9 @@
 				  </Button.Template>
 				  <Button.ContextMenu>
 					<ContextMenu>
-					  <MenuItem Header="Cập nhật thông tin cá nhân"
+					  <!--<MenuItem Header="Cập nhật thông tin cá nhân"
 								Name="profile"
-								Command="{Binding ProfileCommand}" />
+								Command="{Binding ProfileCommand}" />-->
 					  <MenuItem Header="Đổi mật khẩu"
 								Name="changePass"
 								Command="{Binding ChangePassCommand}" />
@@ -551,36 +527,49 @@
 			  <ColumnDefinition Width="*" />
 			  <ColumnDefinition Width="auto" />
 			</Grid.ColumnDefinitions>
-			
-			<Grid Grid.Column="0">
-			  <Label x:Name="lblInfoAppLicense"
-					 Content="Bạn đang dùng Intest bản chưa đăng ký mã bản quyền"
-					 HorizontalAlignment="Left"
-					 VerticalAlignment="Center"
-					 Foreground="LightGray"
-					 FontSize="11" />
-			</Grid>
 
-			<Grid Grid.Column="1">
-			  <Label Content="-"
-					 HorizontalAlignment="Left"
-					 VerticalAlignment="Center"
-					 Foreground="LightGray"
-					 FontSize="11" />
-			</Grid>
+			<StackPanel Grid.Column="0"
+						Orientation="Horizontal"
+						Visibility="Collapsed">
+			  <Grid Grid.Column="0">
+				<Label x:Name="lblInfoAppLicense"
+					   Content="Bạn đang dùng Intest bản chưa đăng ký mã bản quyền"
+					   HorizontalAlignment="Left"
+					   VerticalAlignment="Center"
+					   Foreground="LightGray"
+					   FontSize="11" />
+			  </Grid>
+
+			  <Grid Grid.Column="1">
+				<Label Content="-"
+					   HorizontalAlignment="Left"
+					   VerticalAlignment="Center"
+					   Foreground="LightGray"
+					   FontSize="11" />
+			  </Grid>
+			</StackPanel>
 
 			<Grid Grid.Column="2">
-			  <Label x:Name="txtTimeLogin"
-					 Content="Bạn đã đăng nhập lúc 11h00"
-					 HorizontalAlignment="Left"
-					 VerticalAlignment="Center"
-					 Foreground="LightGray"
-					 FontSize="11">
-				<Label.InputBindings>
-				  <MouseBinding Gesture="LeftDoubleClick"
-								Command="{Binding ActiveFocusUserControlCommand}" />
-				</Label.InputBindings>
-			  </Label>
+			  <StackPanel Orientation="Horizontal">
+				<Label x:Name="txtTimeLogin"
+					   Content="Bạn đã đăng nhập lúc 11h00"
+					   HorizontalAlignment="Left"
+					   VerticalAlignment="Center"
+					   Foreground="LightGray"
+					   FontSize="11">
+				  <Label.InputBindings>
+					<MouseBinding Gesture="LeftDoubleClick"
+								  Command="{Binding ActiveFocusUserControlCommand}" />
+				  </Label.InputBindings>
+				</Label>
+				<Label x:Name="txtHanCuoi"
+					   Content="."
+					   HorizontalAlignment="Left"
+					   VerticalAlignment="Center"
+					   Foreground="LightGray"
+					   FontSize="11">
+				</Label>
+			  </StackPanel>
 			</Grid>
 
 			<StackPanel Grid.Column="4"

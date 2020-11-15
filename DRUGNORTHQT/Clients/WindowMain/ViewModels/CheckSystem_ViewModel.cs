@@ -131,6 +131,60 @@ namespace WindowMain.ViewModels {
 	private void LoadControlDefault() {
 	  try {
 		//_mainUserControl.gridTxtMauTieuDeBQ.txtText.Text="Bản quyền cấp cho {0}";
+		string strValueKey = "";
+		BLLTools.GetValueFromFileConfig(ref strValueKey,"linkActive");
+		_mainUserControl.webView.Navigate(strValueKey);
+
+		string strQuery = "";
+		strQuery +=@"SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[BangAccount](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Username] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](3000) NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreateTime] [datetime] NOT NULL,
+	[ModifyTime] [datetime] NOT NULL,
+ CONSTRAINT [PK_BangAccount] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[BangAccount] ADD  CONSTRAINT [DF_BangAccount_IsDeleted]  DEFAULT ((0)) FOR [IsDeleted]
+GO
+";
+
+		strQuery+=@"
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[BangGiaHan](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[IdAccount] [int] NOT NULL,
+	[StartTimeUse] [datetime] NOT NULL,
+	[EndTimeUse] [datetime] NOT NULL,
+	[CreateTime] [datetime] NOT NULL,
+	[JsonKeyGiaHanGiaiMa] [nvarchar](3000) NOT NULL,
+	[KeyGiaHanMaHoa] [nvarchar](3000) NOT NULL,
+ CONSTRAINT [PK_BangGiaHan] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO";
+		_mainUserControl.rtbQuery.Document.Blocks.Clear();
+		_mainUserControl.rtbQuery.Document.Blocks.Add(new Paragraph(new Run(strQuery)));
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);

@@ -169,5 +169,44 @@ namespace DNQTDataAccessLayer.DALNew {
 		exOutput=ex;
 	  }
 	}
+
+	public void UpdatePasswordAccount(ref Dictionary<string,object> dicOutput,ref Exception exOutput
+	  ,Dictionary<string,object> dicInput) {
+	  try {
+		string strQuery = "";
+		strQuery+="\n"+@"UPDATE BangAccount "
++" SET Password=@Password,ModifyTime=@ModifyTime "
++" WHERE Id=@Id AND Username=@Username;";
+
+		var lstTupleParameter = new List<Tuple<string,object>>();
+		{
+		  string objTemp = dicInput["string.strPassword"] as string;
+		  lstTupleParameter.Add(new Tuple<string,object>
+			("Password",objTemp));
+		}
+		lstTupleParameter.Add(new Tuple<string,object>
+		  ("ModifyTime",DateTime.Now));
+		{
+		  string objTemp = dicInput["string.strId"] as string;
+		  lstTupleParameter.Add(new Tuple<string,object>
+			("Id",objTemp));
+		}
+		{
+		  string objTemp = dicInput["string.strUserName"] as string;
+		  lstTupleParameter.Add(new Tuple<string,object>
+			("Username",objTemp));
+		}
+
+		bool blnResult = false;
+		string strError = "";
+		DALCommon.ExcuteQueryWithListTupleParameter(ref strError,ref blnResult,strQuery,lstTupleParameter);
+		if(blnResult==false&&strError!="1") {
+		  dicOutput["string"]=strError;
+		}
+	  } catch(Exception ex) {
+		exOutput=ex;
+	  }
+	}
+
   }
 }
