@@ -71,101 +71,166 @@
 		  <DockPanel Grid.Column="0"
 					 Width="250">
 
-			<GroupBox Header="Thêm vị thuốc"
-					  DockPanel.Dock="Top"
-					  Style="{DynamicResource InvicoGroupBoxStyle}">
-			  <StackPanel>
+			<StackPanel DockPanel.Dock="Top">
 
-				<GroupBox Header="Tùy chọn mẫu giấy"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
-				  <ComboBox Style="{DynamicResource InvicoComboBoxStyle}"
-							Height="30"
-							ItemsSource="{Binding MOCTypePaper.LstCbo}"
-							SelectedItem="{Binding MOCTypePaper.MItemSelected}"
-							DisplayMemberPath="Name"
-							SelectedValuePath="ID">
-					<i:Interaction.Triggers>
-					  <i:EventTrigger EventName="SelectionChanged">
-						<i:InvokeCommandAction Command="{Binding TypePaperSelectionChangedCommand}" />
-					  </i:EventTrigger>
-					</i:Interaction.Triggers>
-				  </ComboBox>
-				</GroupBox>
+			  <GroupBox Header="Chức năng"
+						Style="{DynamicResource InvicoGroupBoxStyle}">
+				<Button Style="{DynamicResource InvicoAboveButtonImportFromPrinter}"
+						Content="Hiển thị bản in xem trước"
+						Command="{Binding ShowPreviewCommand}" />
+			  </GroupBox>
 
-				<GroupBox Header="Số lượng muốn thêm vào đơn hàng"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
+			  <GroupBox Header="Thêm vị thuốc"
+						Style="{DynamicResource InvicoGroupBoxStyle}">
+				<StackPanel>
 
-				  <Grid>
-					<Grid.ColumnDefinitions>
-					  <ColumnDefinition />
-					  <ColumnDefinition Width="5" />
-					  <ColumnDefinition />
-					</Grid.ColumnDefinitions>
+				  <GroupBox Header="Tùy chọn mẫu giấy"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
+					<ComboBox Style="{DynamicResource InvicoComboBoxStyle}"
+							  Height="30"
+							  ItemsSource="{Binding MOCTypePaper.LstCbo}"
+							  SelectedItem="{Binding MOCTypePaper.MItemSelected}"
+							  DisplayMemberPath="Name"
+							  SelectedValuePath="ID">
+					  <i:Interaction.Triggers>
+						<i:EventTrigger EventName="SelectionChanged">
+						  <i:InvokeCommandAction Command="{Binding TypePaperSelectionChangedCommand}" />
+						</i:EventTrigger>
+					  </i:Interaction.Triggers>
+					</ComboBox>
+				  </GroupBox>
 
-					<local:TextBoxWithHint x:Name="gridTxtUsername2232"
-										   Grid.Column="0"
-										   Height="30"
-										   StrHint="Nhập số lượng..." />
+				</StackPanel>
+			  </GroupBox>
 
-					<local:TextBoxWithHint x:Name="gridTxtUsername22232"
-										   Grid.Column="2"
-										   Height="30"
-										   StrHint="Nhập đơn vị..." />
+			  <GroupBox Header="Thông tin thêm"
+						Style="{DynamicResource InvicoGroupBoxStyle}">
+				<StackPanel>
 
-				  </Grid>
+				  <GroupBox Header="Tên khách hàng"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
 
-				</GroupBox>
+					<Label Content="12345678901234567890"
+						   x:Name="lblTenKH"
+						   Style="{DynamicResource InvicoLabelModalStyle}" />
 
-				<GroupBox Header="Đơn giá"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
+				  </GroupBox>
 
-				  <DockPanel>
+				  <GroupBox Header="Số điện thoại khách hàng"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
 
-					<Label Style="{DynamicResource InvicoLabelModalStyle}"
-						   Content="vnđ"
-						   DockPanel.Dock="Right" />
+					<StackPanel>
+					  <Label Content="123456789012345"
+							 x:Name="lblSdtKH"
+							 Style="{DynamicResource InvicoLabelModalStyle}" />
 
-					<local:TextBoxWithHint x:Name="gridTxtUsername3222"
-										   Height="30"
-										   StrHint="100.000" />
-				  </DockPanel>
+					  <DockPanel>
 
-				</GroupBox>
+						<StackPanel Orientation="Horizontal"
+									VerticalAlignment="Center"
+									DockPanel.Dock="Right">
+						  
+						  <Label Content="Rộng"
+								 Style="{DynamicResource InvicoLabelModalStyle}" />
 
-				<GroupBox Header="Thành tiền"
-						  Style="{DynamicResource InvicoGroupBoxStyle}">
+						  <Label Content="{Binding ElementName=sliderPercentSdt,Path=Value}"
+								 Style="{DynamicResource InvicoLabelModalStyle}" />
+						  
+						  <Label Content="%"
+								 Style="{DynamicResource InvicoLabelModalStyle}" />
+						  
+						</StackPanel>
 
-				  <Label Style="{DynamicResource InvicoLabelModalStyle}"
-						 Content="= 200,000 đ" />
+						<Slider x:Name="sliderPercentSdt"
+								VerticalAlignment="Center"
+								Value="25"
+								IsSnapToTickEnabled="True"
+								TickFrequency="1"
+								Minimum="5"
+								Maximum="50"
+								ToolTip="{Binding ElementName=sliderPercentSdt,Path=Value}" />
 
-				</GroupBox>
+					  </DockPanel>
+					</StackPanel>
 
-				<Button Style="{DynamicResource InvicoButtonStyle}"
-						Margin="0,5"
-						Height="30"
-						Content="Thêm món ăn trên vào hóa đơn"
-						Command="{Binding ImportCommand}" />
+				  </GroupBox>
 
-			  </StackPanel>
-			</GroupBox>
+				  <GroupBox Header="Tổng giá đơn hàng (1)"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
 
-			<GroupBox Header="Tổng giá đơn hàng hiện tại"
-					  DockPanel.Dock="Bottom"
-					  Style="{DynamicResource InvicoGroupBoxStyle}">
-			  <StackPanel>
+					<Label Content="1,000,000,000 đ"
+						   x:Name="lblTongGiaDH"
+						   Style="{DynamicResource InvicoLabelModalStyle}" />
 
-				<Label Style="{DynamicResource InvicoLabelModalStyle}"
-					   Content="0 đ"
-					   HorizontalAlignment="Center" />
+				  </GroupBox>
 
-				<Button Style="{DynamicResource InvicoButtonStyle}"
-						Height="30"
-						Width="190"
-						Content="Xem bản in hóa đơn này"
-						Command="{Binding GGGHHHHCommand}" />
+				  <GroupBox Header="Số nợ cũ (2)"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
 
-			  </StackPanel>
-			</GroupBox>
+					<Label Content="1,000,000,000 đ"
+						   x:Name="lblTienNoCu"
+						   Style="{DynamicResource InvicoLabelModalStyle}" />
+
+				  </GroupBox>
+
+				  <GroupBox Header="Tổng tiền ((1)+(2))"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
+
+					<Label Content="1,000,000,000 đ"
+						   x:Name="lblTongNoVaGiaDH"
+						   Style="{DynamicResource InvicoLabelModalStyle}" />
+
+				  </GroupBox>
+
+				  <GroupBox Header="Thời gian"
+							Style="{DynamicResource InvicoGroupBoxStyle}">
+
+					<StackPanel>
+					  <Label Content="Ngày 22 tháng 12 năm 2020"
+							 x:Name="lblThoiGian"
+							 Style="{DynamicResource InvicoLabelModalStyle}" />
+
+					  <DockPanel>
+
+						<StackPanel Orientation="Horizontal"
+									VerticalAlignment="Center"
+									DockPanel.Dock="Right">
+
+						  <Label Content="Rộng"
+								 Style="{DynamicResource InvicoLabelModalStyle}" />
+
+						  <Label Content="{Binding ElementName=sliderPercentThoiGian,Path=Value}"
+								 Style="{DynamicResource InvicoLabelModalStyle}" />
+
+						  <Label Content="%"
+								 Style="{DynamicResource InvicoLabelModalStyle}" />
+
+						</StackPanel>
+
+						<Slider x:Name="sliderPercentThoiGian"
+								VerticalAlignment="Center"
+								Value="40"
+								IsSnapToTickEnabled="True"
+								TickFrequency="1"
+								Minimum="20"
+								Maximum="50"
+								ToolTip="{Binding ElementName=sliderPercentThoiGian,Path=Value}" />
+
+					  </DockPanel>
+					  
+					</StackPanel>
+
+				  </GroupBox>
+
+				</StackPanel>
+			  </GroupBox>
+			  
+			  <GroupBox Header="Thông tin thêm"
+						Style="{DynamicResource InvicoGroupBoxStyle}">
+				
+			  </GroupBox>
+			  
+			</StackPanel>
 
 			<Grid>
 
@@ -175,6 +240,129 @@
 
 		  <DockPanel Grid.Column="1">
 
+			<GroupBox DockPanel.Dock="Top"
+					  Header="Thiết lập độ rộng cột dữ liệu"
+					  Style="{DynamicResource InvicoGroupBoxStyle}">
+			  <WrapPanel Orientation="Horizontal">
+
+				<GroupBox Header="STT"
+						  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+				  <DockPanel>
+
+					<Label Content="{Binding ElementName=sliderPercentSTT,Path=Value}"
+						   Style="{DynamicResource InvicoLabelModalStyle}"
+						   DockPanel.Dock="Right"/>
+
+					<Slider x:Name="sliderPercentSTT"
+							VerticalAlignment="Center"
+							Value="6"
+							IsSnapToTickEnabled="True"
+							TickFrequency="1"
+							Width="50"
+							Minimum="0"
+							Maximum="15"
+							ToolTip="{Binding ElementName=sliderPercentSTT,Path=Value}" />
+					
+				  </DockPanel>
+
+				</GroupBox>
+
+				<GroupBox Header="Số lượng"
+						  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+				  <DockPanel>
+
+					<Label Content="{Binding ElementName=sliderPercentSoLuong,Path=Value}"
+						   Style="{DynamicResource InvicoLabelModalStyle}"
+						   DockPanel.Dock="Right"/>
+
+					<Slider x:Name="sliderPercentSoLuong"
+							VerticalAlignment="Center"
+							Value="11"
+							IsSnapToTickEnabled="True"
+							TickFrequency="1"
+							Width="70"
+							Minimum="0"
+							Maximum="15"
+							ToolTip="{Binding ElementName=sliderPercentSoLuong,Path=Value}" />
+					
+				  </DockPanel>
+
+				</GroupBox>
+
+				<GroupBox Header="Đơn vị"
+						  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+				  <DockPanel>
+
+					<Label Content="{Binding ElementName=sliderPercentDonVi,Path=Value}"
+						   Style="{DynamicResource InvicoLabelModalStyle}"
+						   DockPanel.Dock="Right"/>
+
+					<Slider x:Name="sliderPercentDonVi"
+							VerticalAlignment="Center"
+							Value="9"
+							IsSnapToTickEnabled="True"
+							TickFrequency="1"
+							Width="60"
+							Minimum="0"
+							Maximum="15"
+							ToolTip="{Binding ElementName=sliderPercentDonVi,Path=Value}" />
+					
+				  </DockPanel>
+
+				</GroupBox>
+
+				<GroupBox Header="Đơn giá"
+						  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+				  <DockPanel>
+
+					<Label Content="{Binding ElementName=sliderPercentDonGia,Path=Value}"
+						   Style="{DynamicResource InvicoLabelModalStyle}"
+						   DockPanel.Dock="Right"/>
+
+					<Slider x:Name="sliderPercentDonGia"
+							VerticalAlignment="Center"
+							Value="14"
+							IsSnapToTickEnabled="True"
+							TickFrequency="1"
+							Width="90"
+							Minimum="0"
+							Maximum="20"
+							ToolTip="{Binding ElementName=sliderPercentDonGia,Path=Value}" />
+					
+				  </DockPanel>
+
+				</GroupBox>
+
+				<GroupBox Header="Thành tiền"
+						  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+				  <DockPanel>
+
+					<Label Content="{Binding ElementName=sliderPercentThanhTien,Path=Value}"
+						   Style="{DynamicResource InvicoLabelModalStyle}"
+						   DockPanel.Dock="Right"/>
+
+					<Slider x:Name="sliderPercentThanhTien"
+							VerticalAlignment="Center"
+							Value="17"
+							IsSnapToTickEnabled="True"
+							TickFrequency="1"
+							Width="100"
+							Minimum="0"
+							Maximum="25"
+							ToolTip="{Binding ElementName=sliderPercentThanhTien,Path=Value}" />
+					
+				  </DockPanel>
+
+				</GroupBox>
+
+			  </WrapPanel>
+			</GroupBox>
+			
 			<GroupBox Header="Nội dung bản in(khi in ra, nội dung trên giấy sẽ giống hệt hình ở dưới)"
 					  x:Name="grbMain"
 					  Style="{DynamicResource InvicoGroupBoxStyle}">

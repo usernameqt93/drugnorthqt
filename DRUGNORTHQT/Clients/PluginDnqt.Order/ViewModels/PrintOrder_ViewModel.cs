@@ -266,6 +266,33 @@ namespace PluginDnqt.Order.ViewModels {
 		dicInput["double.doubleSize"]=13;
 		dicInput["string.strFontName"]="Times New Roman";
 
+		dicInput["string.lblTenKH"]=_mainUserControl.lblTenKH.Content;
+		dicInput["string.lblSdtKH"]=_mainUserControl.lblSdtKH.Content;
+
+		dicInput["double.sliderPercentSdt"]=_mainUserControl.sliderPercentSdt.Value;
+
+		var lstDoublePercentColumn = new List<double>();
+		lstDoublePercentColumn.Add(_mainUserControl.sliderPercentSTT.Value);
+		lstDoublePercentColumn.Add(0);
+		lstDoublePercentColumn.Add(_mainUserControl.sliderPercentSoLuong.Value);
+		lstDoublePercentColumn.Add(_mainUserControl.sliderPercentDonVi.Value);
+		lstDoublePercentColumn.Add(_mainUserControl.sliderPercentDonGia.Value);
+		lstDoublePercentColumn.Add(_mainUserControl.sliderPercentThanhTien.Value);
+
+		double doublePercentNameColumn = 100;
+		foreach(var item in lstDoublePercentColumn) {
+		  doublePercentNameColumn-=item;
+		}
+		lstDoublePercentColumn[1]=doublePercentNameColumn;
+		dicInput["List<double>"]=lstDoublePercentColumn;
+
+		dicInput["string.lblTongGiaDH"]=_mainUserControl.lblTongGiaDH.Content;
+		dicInput["string.lblTienNoCu"]=_mainUserControl.lblTienNoCu.Content;
+		dicInput["string.lblTongNoVaGiaDH"]=_mainUserControl.lblTongNoVaGiaDH.Content;
+
+		dicInput["string.lblThoiGian"]=_mainUserControl.lblThoiGian.Content;
+		dicInput["double.sliderPercentThoiGian"]=_mainUserControl.sliderPercentThoiGian.Value;
+
 		DataTable dtTemp=DicDataInPreviousUC["DataTable"] as DataTable;
 		dicInput["DataTable"]=dtTemp;
 		//dicInput["DataTable"]=DicDataInPreviousUC["DataTable"] as DataTable;
