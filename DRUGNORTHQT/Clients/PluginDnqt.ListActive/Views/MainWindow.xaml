@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="PluginDnqt.ListActive.Views.MainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:PluginDnqt.ListActive.Views"
+			 xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+			 xmlns:help="clr-namespace:QT.Framework.ToolCommon.Helpers;assembly=QT.Framework.ToolCommon"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 mc:Ignorable="d"
+			 d:DesignHeight="800"
+			 d:DesignWidth="1200"
+			 x:Name="ucMain">
+  <UserControl.Resources>
+	<ResourceDictionary>
+	  <ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="pack://application:,,,/QT.Framework.Styles.Library;Component/QTStyle.xaml" />
+	  </ResourceDictionary.MergedDictionaries>
+	</ResourceDictionary>
+  </UserControl.Resources>
+
+  <i:Interaction.Triggers>
+	<i:EventTrigger EventName="Loaded">
+	  <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+	</i:EventTrigger>
+  </i:Interaction.Triggers>
+
+  <Grid>
+	<help:ModalContentPresenter x:Name="modalPresenter"
+								IsModal="{Binding BlnHideMain}">
+
+	  <Grid Background="White">
+		<Grid.RowDefinitions>
+		  <RowDefinition Height="30" />
+		  <RowDefinition Height="5" />
+		  <RowDefinition />
+		  <RowDefinition Height="auto" />
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0"
+			  VerticalAlignment="Center">
+		  <Label Content="DANH SÁCH MÃ KÍCH HOẠT"
+				 x:Name="lblTitle"
+				 Style="{DynamicResource InvicoTitlePopupStyle}"
+				 HorizontalAlignment="Center"
+				 VerticalContentAlignment="Center"
+				 Height="Auto"
+				 VerticalAlignment="Stretch">
+			<Label.InputBindings>
+			  <MouseBinding Gesture="LeftDoubleClick"
+							Command="{Binding KichHoatShowFullKiemChungCommand}" />
+			</Label.InputBindings>
+		  </Label>
+
+		</Grid>
+
+		<Separator Grid.Row="1"
+				   Style="{StaticResource CustomSeparatorStyle}"
+				   Margin="3,0"
+				   VerticalAlignment="Top" />
+
+		<Grid Grid.Row="2"
+			  x:Name="gridMain"
+			  Background="White"
+			  Margin="5,0,5,5">
+
+		  <GroupBox Header="Danh sách"
+					Style="{DynamicResource InvicoGroupBoxStyle}">
+			<WindowsFormsHost x:Name="wfHost">
+			  <wf:WebBrowser x:Name="webView"
+							 TabStop="False" />
+			</WindowsFormsHost>
+		  </GroupBox>
+
+		</Grid>
+
+	  </Grid>
+
+	  <help:ModalContentPresenter.ModalContent>
+		<Grid x:Name="gridPopup">
+
+		</Grid>
+	  </help:ModalContentPresenter.ModalContent>
+	</help:ModalContentPresenter>
+
+	<help:ModalContentPresenter x:Name="modelChildren"
+								Margin="1500,0,0,0"
+								Visibility="Hidden">
+	  <Grid x:Name="gridChildren">
+
+	  </Grid>
+	</help:ModalContentPresenter>
+  </Grid>
+</UserControl>

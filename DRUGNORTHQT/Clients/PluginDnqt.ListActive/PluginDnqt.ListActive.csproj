@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B1228875-081C-459F-A29F-DCA941585749}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>DrugNorthQT</RootNamespace>
-    <AssemblyName>DrugNorthQT</AssemblyName>
+    <ProjectGuid>{46172F41-48A3-4AF6-9A1E-1E55DE685743}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PluginDnqt.ListActive</RootNamespace>
+    <AssemblyName>PluginDnqt.ListActive</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Publics\</OutputPath>
+    <OutputPath>..\..\Publics\DNQT\PlugIns\Location\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,54 +33,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>DrugNorthQT.ico</ApplicationIcon>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aspose.Words, Version=15.12.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libraries\Aspose.Words.dll</HintPath>
-    </Reference>
-    <Reference Include="DNQTConstTable">
-      <HintPath>..\Libraries\DNQTConstTable.dll</HintPath>
-    </Reference>
-    <Reference Include="DNQTDataAccessLayer">
-      <HintPath>..\Libraries\DNQTDataAccessLayer.dll</HintPath>
-    </Reference>
-    <Reference Include="DNQTWebBrowser">
-      <HintPath>..\Libraries\DNQTWebBrowser.dll</HintPath>
-    </Reference>
     <Reference Include="INV.Framework.Switchs.Library">
       <HintPath>..\Libraries\INV.Framework.Switchs.Library.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\Libraries\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libraries\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="QT.Framework.LoadingPopup">
-      <HintPath>..\Libraries\QT.Framework.LoadingPopup.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="QT.Framework.MessageBox">
       <HintPath>..\Libraries\QT.Framework.MessageBox.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="QT.Framework.Styles.Library">
       <HintPath>..\Libraries\QT.Framework.Styles.Library.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="QT.Framework.ToolCommon">
       <HintPath>..\Libraries\QT.Framework.ToolCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="QT.HamburgerMenu">
-      <HintPath>..\Libraries\QT.HamburgerMenu.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\System.Windows.Interactivity.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -90,24 +72,13 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="WindowMain">
-      <HintPath>..\Libraries\WindowMain.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="ConnectionSDK.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -121,39 +92,26 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\BLLPlugin.cs" />
+    <Compile Include="ViewModels\ViewModelMain.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DrugNorthQT.ico" />
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\AssignManager.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\leaf-icon49x49.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\OrderIcon48x48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\SyncData.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\48x48UserFilesIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\ProductLicense.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
