@@ -6,6 +6,7 @@ using QT.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Windows.Documents;
 using System.Windows.Input;
 using WindowMain.View;
@@ -484,6 +485,35 @@ GO";
 		} else {
 		  _mainUserControl.stackPanelSecret.Visibility=System.Windows.Visibility.Collapsed;
 		}
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand OpenTeamviewQSCommand => new DelegateCommand(p => {
+	  try {
+		string strPathFileUnikey = System.Windows.Forms.Application.StartupPath
+		+$"\\UltraViewer\\UltraViewer_Desktop.exe";
+		if(!System.IO.File.Exists(strPathFileUnikey)) {
+		  QTMessageBox.ShowNotify("Hiện tại chưa có file chạy để thực hiện thao tác này!");
+		  return;
+		}
+
+		_mainUserControl.btnHelp.IsEnabled=false;
+
+		var arrayProcess = Process.GetProcesses();
+		foreach(var mProcess in arrayProcess) {
+		  string strName = mProcess.ProcessName.ToLower();
+		  if(strName.Contains("ultraviewer_desktop")) {
+			mProcess.Kill();
+			//break;
+			//return;
+		  }
+		}
+
+		_bllPlugin.StartProcessAsAdmin(strPathFileUnikey);
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);

@@ -65,14 +65,23 @@
 						  Content="Kích hoạt"
 						  Margin="0,3"
 						  Command="{Binding KichHoatGiaHanCommand}" />-->
-				  
-				  <Button Style="{DynamicResource InvicoAboveButtonMarkTest}"
-						  DockPanel.Dock="Right"
-						  Command="{Binding KichHoatGiaHanCommand}"
-						  Width="100"
-						  Margin="5,0"
-						  VerticalAlignment="Center"
-						  Content="Kích hoạt" />
+
+				  <StackPanel DockPanel.Dock="Right"
+							  VerticalAlignment="Center">
+					<Button Style="{DynamicResource InvicoAboveButtonMarkTest}"
+							Command="{Binding KichHoatGiaHanCommand}"
+							Width="100"
+							Margin="5,0"
+							Content="Kích hoạt" />
+					<Button Command="{Binding OpenTeamviewQSCommand}"
+							Content="Trợ giúp"
+							Cursor="Hand"
+							x:Name="btnHelp"
+							HorizontalAlignment="Center"
+							Template="{StaticResource LinkButtonTemplate}"
+							Style="{StaticResource LinkButtonStyle}" />
+
+				  </StackPanel>
 
 				  <StackPanel>
 
