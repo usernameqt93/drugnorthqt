@@ -382,8 +382,8 @@
 				  Margin="3"
 				  Height="30"
 				  Width="100"
-				  Content="Lưu"
-				  Command="{Binding Path= DataContext.SaveCommand, 
+				  Content="In"
+				  Command="{Binding Path= DataContext.PrintCommand, 
                                     RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
 		  <Button Style="{DynamicResource InvicoButtonStyle}"
 				  x:Name="btnBack"

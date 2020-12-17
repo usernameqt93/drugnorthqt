@@ -35,6 +35,7 @@ namespace DNQTDataAccessLayer.BLLSelectFromWhere {
 	  {
 		var lstColumnTable = new List<string>();
 		lstColumnTable.Add(Table_BangKhachHang.Col_TenKhachHang.NAME);
+		lstColumnTable.Add(Table_BangKhachHang.Col_IdBangKhachHang.NAME);
 
 		_bllClass.GetStringJoinSplitChar(ref strListColumnJoinTable2
 		  ,lstColumnTable,",",Table_BangKhachHang.NAME);

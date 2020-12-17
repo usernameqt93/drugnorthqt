@@ -80,12 +80,22 @@
 			<DockPanel Grid.Row="0"
 					   LastChildFill="True">
 
+			  <StackPanel DockPanel.Dock="Left"
+						  Orientation="Horizontal">
+
+				<Button Style="{DynamicResource InvicoFlatButtonAdd}"
+						Content="Thêm đơn hàng mới"
+						VerticalAlignment="Center"
+						Command="{Binding AddCommand}"
+						Height="32" />
+
+			  </StackPanel>
+			  
 			  <StackPanel DockPanel.Dock="Right"
 						  Orientation="Horizontal">
 
 				<GroupBox Header="Dữ liệu hiện có"
-						  Style="{DynamicResource InvicoGroupBoxStyle}"
-						  Margin="10,0">
+						  Style="{DynamicResource InvicoGroupBoxStyle}">
 				  <StackPanel HorizontalAlignment="Left"
 							  VerticalAlignment="Center"
 							  Orientation="Horizontal">
@@ -259,6 +269,14 @@
 								  Height="20"
 								  Margin="3,0"
 								  ToolTip="Sửa đơn hàng này" />
+
+						  <Button Command="{Binding DataContext.PrintCommand, 
+                                            RelativeSource={RelativeSource AncestorType=DataGrid}}"
+								  Template="{StaticResource PrinterIcon}"
+								  Width="20"
+								  Height="20"
+								  Margin="3,0"
+								  ToolTip="In đơn hàng này" />
 
 						</StackPanel>
 

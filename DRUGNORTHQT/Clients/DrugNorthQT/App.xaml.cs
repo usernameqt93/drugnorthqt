@@ -15,7 +15,7 @@ namespace DrugNorthQT {
 
 	private const int CONST_INT_SOFTWARE = 20201020;
 	private const string CONST_STR_APP_NAME = "DrugNorthQT";
-	private const string CONST_STR_TITLE = "Hệ thống quản lý ABC";
+	private const string CONST_STR_TITLE = "DrugNorthQT - Hệ thống quản lý sổ sách, hóa đơn";
 	private const string CONST_STR_PATH_DLL = @"DNQT\PlugIns";
 	private const string CONST_STR_PATH_REGISTRY = @"SOFTWARE\Windset";
 	private const string CONST_STR_KEY_REGISTRY = "Windsetdnqt";

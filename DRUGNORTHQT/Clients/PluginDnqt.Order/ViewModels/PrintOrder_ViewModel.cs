@@ -141,6 +141,13 @@ namespace PluginDnqt.Order.ViewModels {
 
 	private void LoadData() {
 	  try {
+		ModelRowOrder mOrder = DicDataInPreviousUC["ModelRowOrder"] as ModelRowOrder;
+		_mainUserControl.lblTenKH.Content=mOrder.StrNameKH;
+		_mainUserControl.lblTongGiaDH.Content=mOrder.StrSumGiaTri;
+
+		DateTime dtThoiGian = mOrder.DTimeViet;
+		_mainUserControl.lblThoiGian.Content=
+		  $"Ngày {dtThoiGian.ToString("dd")} tháng {dtThoiGian.ToString("MM")} năm {dtThoiGian.ToString("yyyy")}";
 
 		string strPath = System.Windows.Forms.Application.StartupPath
 		  +$"\\{CONST_STR_TEMPLATE_FOLDER_NAME}\\"+CONST_STR_ORDER_FOLDER_NAME;
@@ -398,6 +405,16 @@ namespace PluginDnqt.Order.ViewModels {
 		  }
 		}
 
+	  } catch(Exception ex) {
+		Log4Net.Error(ex.Message);
+		Log4Net.Error(ex.StackTrace);
+		ShowException(ex);
+	  }
+	});
+
+	public ICommand PrintCommand => new DelegateCommand(p => {
+	  try {
+		_mainUserControl.webView.Print();
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
 		Log4Net.Error(ex.StackTrace);

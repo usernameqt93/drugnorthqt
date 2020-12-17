@@ -43,7 +43,7 @@
 			   VerticalAlignment="Center">
 		  <Label.InputBindings>
 			<MouseBinding Gesture="LeftDoubleClick"
-						  Command="{Binding ShowControlPanelCommand}" />
+						  Command="{Binding ShowCheckSystemDialogCommand}" />
 		  </Label.InputBindings>
 		</Label>
 	  </Grid>
@@ -216,7 +216,7 @@
 				  Cursor="Hand"
 				  Style="{DynamicResource InvicoSliderCheckBoxStyle}"
 				  x:Name="chkRemember"
-				  Content="Nhớ mật khẩu"
+				  Content="Nhớ tên đăng nhập"
 				  HorizontalAlignment="Right"
 				  VerticalAlignment="Center"
 				  Margin="0,10"

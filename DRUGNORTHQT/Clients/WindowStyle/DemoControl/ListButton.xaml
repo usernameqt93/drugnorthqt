@@ -406,6 +406,54 @@
 				Height="22" />
 
 	  </WrapPanel>
+
+	  <TextBlock Text="Control khác"
+				 FontWeight="Bold" />
+	  <WrapPanel  Orientation="Horizontal">
+
+		<Label Content="InvicoLabelModalStyle"
+			   Style="{DynamicResource InvicoLabelModalStyle}" />
+
+		<Label Content="InvicoLabelStyle"
+			   Style="{DynamicResource InvicoLabelStyle}" />
+
+		<CheckBox Cursor="Hand"
+				  VerticalAlignment="Center"
+				  Style="{DynamicResource InvicoSliderCheckBoxStyle}"
+				  Content="InvicoSliderCheckBoxStyle"
+				  Command="{Binding XacNhanCheckedChangedCommand}"/>
+
+		<Button Style="{DynamicResource InvicoButtonStyle}"
+				Height="30"
+				Width="100"
+				Content="Hủy bỏ"/>
+
+		<GroupBox Header="InvicoGroupBoxStyle"
+				  Style="{DynamicResource InvicoGroupBoxStyle}">
+
+		</GroupBox>
+
+		<RadioButton Style="{StaticResource InvicoRadioButtonStyle}"
+					 VerticalAlignment="Center"
+					 Content="InvicoRadioButtonStyle"
+					 Command="{Binding RadioButtonPhanLoaiCheckedCommand}" />
+
+		<Button Command="{Binding ExportCommand}"
+				Content="LinkButtonStyle"
+				Cursor="Hand"
+				Template="{StaticResource LinkButtonTemplate}"
+				Style="{StaticResource LinkButtonStyle}"/>
+
+		<Slider x:Name="sliderPercent"
+				Value="70"
+				IsSnapToTickEnabled="True"
+				TickFrequency="1"
+				Width="100"
+				Minimum="60"
+				Maximum="100"
+				ToolTip="{Binding ElementName=sliderPercent,Path=Value}" />
+
+	  </WrapPanel>
 	  
 	</StackPanel>
   </Grid>

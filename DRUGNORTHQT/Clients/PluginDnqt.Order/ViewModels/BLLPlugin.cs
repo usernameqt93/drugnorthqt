@@ -317,7 +317,11 @@ namespace PluginDnqt.Order.ViewModels {
 	  mitem.StrSumKg=string.Format("{0:0.###}",floatSumKg);
 
 	  mitem.DecimalSumGiaTri=decimalSumGiaTri;
-	  mitem.StrSumGiaTri=string.Format("{0:0,0}",decimalSumGiaTri)+" đ";
+	  //mitem.StrSumGiaTri=string.Format("{0:0,0}",decimalSumGiaTri)+" đ";
+
+	  string strSumGiaTri = "";
+	  BLLTools.GetStringFormatTienMat(ref strSumGiaTri,decimalSumGiaTri," đ");
+	  mitem.StrSumGiaTri=strSumGiaTri;
 	}
 
 	internal void LoadGridMainIdTenKHByPage(ref ObservableCollection<ModelRowOrder> lstGridMain
@@ -336,16 +340,20 @@ namespace PluginDnqt.Order.ViewModels {
 
 		mitem.StrId=""+dtInput.Rows[i][Table_BangDanhSachDonHang.Col_MaDonHang.NAME].ToString().Trim();
 		mitem.StrNameKH=""+dtInput.Rows[i][Table_BangKhachHang.Col_TenKhachHang.NAME].ToString().Trim();
+		mitem.StrIdKH=""+dtInput.Rows[i][Table_BangKhachHang.Col_IdBangKhachHang.NAME].ToString().Trim();
 
 		{
 		  string strTemp = "Định dạng TG False";
 		  DateTime objTemp = CVPConstValuePlugin.DTimeMacDinh;
-		  try {
-			objTemp=Convert.ToDateTime(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_ThoiGianVietDonHangNay.NAME]);
-			strTemp=objTemp.ToString("yyyy-MM-dd HH:mm:ss");
-		  } catch(Exception e) {
-			string str = e.Message;
-		  }
+		 // try {
+			//objTemp=Convert.ToDateTime(dtInput.Rows[i][Table_BangDanhSachDonHang.Col_ThoiGianVietDonHangNay.NAME]);
+			//strTemp=objTemp.ToString("yyyy-MM-dd HH:mm:ss");
+		 // } catch(Exception e) {
+			//string str = e.Message;
+		 // }
+
+		  BLLTools.GetStringFormatDateTimeVN(ref objTemp,ref strTemp
+			,dtInput.Rows[i][Table_BangDanhSachDonHang.Col_ThoiGianVietDonHangNay.NAME]);
 		  mitem.DTimeViet=objTemp;
 		  mitem.StrDTimeViet=strTemp;
 		}
@@ -473,12 +481,15 @@ namespace PluginDnqt.Order.ViewModels {
 		{
 		  string strTemp = "Định dạng TG False";
 		  DateTime objTemp = CVPConstValuePlugin.DTimeMacDinh;
-		  try {
-			objTemp=Convert.ToDateTime(dRow[Table_BangDanhSachDonHang.Col_ThoiGianVietDonHangNay.NAME]);
-			strTemp=objTemp.ToString("yyyy-MM-dd HH:mm:ss");
-		  } catch(Exception e) {
-			string str = e.Message;
-		  }
+		 // try {
+			//objTemp=Convert.ToDateTime(dRow[Table_BangDanhSachDonHang.Col_ThoiGianVietDonHangNay.NAME]);
+			//strTemp=objTemp.ToString("yyyy-MM-dd HH:mm:ss");
+		 // } catch(Exception e) {
+			//string str = e.Message;
+		 // }
+
+		  BLLTools.GetStringFormatDateTimeVN(ref objTemp,ref strTemp
+			,dRow[Table_BangDanhSachDonHang.Col_ThoiGianVietDonHangNay.NAME]);
 		  mitem.DTimeViet=objTemp;
 		  mitem.StrDTimeViet=strTemp;
 		}

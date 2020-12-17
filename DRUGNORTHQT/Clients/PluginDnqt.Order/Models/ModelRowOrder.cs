@@ -48,6 +48,13 @@ namespace PluginDnqt.Order.Models {
 	  set { _strSumGiaTri=value;OnPropertyChanged(nameof(StrSumGiaTri)); }
 	}
 
+	private string _strIdKH="0";
+
+	public string StrIdKH {
+	  get { return _strIdKH; }
+	  set { _strIdKH=value;OnPropertyChanged(nameof(StrIdKH)); }
+	}
+
 	private string _strNameKH="";
 
 	public string StrNameKH {

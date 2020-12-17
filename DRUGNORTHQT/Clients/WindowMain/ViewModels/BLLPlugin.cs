@@ -175,6 +175,11 @@ namespace WindowMain.ViewModels {
 		return;
 	  }
 
+	  if(strTextChange.Equals("Mã kích hoạt")) {
+		strTextChange="Mã\nkích hoạt";
+		return;
+	  }
+
 	  // if(strTextChange.Equals("Báo cáo thống kê")) {
 	  //strTextChange="Thiết lập\nđề thi";
 	  //return;

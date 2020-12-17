@@ -864,8 +864,8 @@ namespace WindowMain.ViewModels {
 			string strPassBase64 = "";
 			if(CheckSavedAccount) {
 			  strUserText=strUser;
-			  //strPassBase64=_bllPlugin.Base64Encode(_mainWindow.ucLoginMaster.passBox.Password.Trim());
-			  strPassBase64=_bllPlugin.Base64Encode("");
+			  strPassBase64=_bllPlugin.Base64Encode(_mainWindow.ucLoginMaster.passBox.Password.Trim());
+			  //strPassBase64=_bllPlugin.Base64Encode("");
 			}
 
 			SaveSettings(ref DicData,ref TupleSetting,strUserText,strPassBase64,

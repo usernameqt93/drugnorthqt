@@ -4,6 +4,7 @@ using log4net;
 using PluginDnqt.Order.Models;
 using PluginDnqt.Order.Views;
 using QT.Framework.LoadingPopup.View;
+using QT.Framework.ToolCommon;
 using QT.Framework.ToolCommon.Helpers;
 using QT.MessageBox;
 using System;
@@ -417,6 +418,9 @@ namespace PluginDnqt.Order.ViewModels {
 		dicInput["ObservableCollection<ModelRowDetailOrder>"]=_lstGridMain;
 		dicInput["DataTable"]=dtReport;
 		dicInput["List<Tuple<string,int,string>>"]=lstTupleMaxCharInColumn;
+
+		ModelRowOrder mOrder = DicDataInPreviousUC["ModelRowOrder"] as ModelRowOrder;
+		BLLTools.AddDeepModelToDictionary(ref dicInput,"ModelRowOrder",mOrder);
 
 		_mainUserControl.modalPresenter.Visibility=Visibility.Hidden;
 		_mainUserControl.modelChildren.Visibility=Visibility.Visible;
