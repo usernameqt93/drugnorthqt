@@ -61,6 +61,7 @@ namespace PluginDnqt.Settings.ViewModels {
 
 	private void LoadControlDefault() {
 	  try {
+		_mainUserControl.btnThayDoi.IsEnabled=false;
 		CancelCommand.Execute(null);
 	  } catch(Exception ex) {
 		Log4Net.Error(ex.Message);
