@@ -148,6 +148,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\AreaAccount\AreaAccountAreaRegistration.cs" />
+    <Compile Include="Areas\AreaAccount\Controllers\CtlLoginController.cs" />
+    <Compile Include="Areas\AreaAccount\Models\LoginModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -173,6 +176,7 @@
     <Content Include="Assets\admin\dist\password.html" />
     <Content Include="Assets\admin\dist\register.html" />
     <Content Include="Assets\admin\dist\tables.html" />
+    <Content Include="Assets\admin\js\CtlLoginController.js" />
     <Content Include="Assets\admin\js\userController.js" />
     <Content Include="Assets\admin\plugins\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\admin\plugins\ckeditor\build-config.js" />
@@ -1374,6 +1378,10 @@
     <Content Include="Assets\admin\src\scss\variables\_spacing.scss" />
     <Content Include="Assets\admin\src\scss\_global.scss" />
     <Content Include="Assets\admin\src\scss\_variables.scss" />
+    <Content Include="Areas\AreaAccount\Views\web.config" />
+    <Content Include="Areas\AreaAccount\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\AreaAccount\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\AreaAccount\Views\CtlLogin\ARIndex.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
