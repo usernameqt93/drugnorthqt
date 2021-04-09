@@ -29,7 +29,7 @@
 
                   @using(Html.BeginForm()) {
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true,null,new { @class = "alert alert-danger" })
+                    @*@Html.ValidationSummary(true,null,new { @class = "alert alert-danger" })*@
 
                     <div class="form-group">
                       <label class="small mb-1" for="inputEmailAddress">Tên đăng nhập - Username</label>
@@ -53,7 +53,10 @@
                     </div>
                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                       <a class="small" href="password.html">Forgot Password?</a>
-                      @*<a class="btn btn-primary" href="index.html">Login</a>*@
+
+                      <a class="btn btn-primary collapse" href="#" role="button" onclick="showConfirm()"
+						  @(ViewBag.strIdButtonCreate==null ? "" : $"id={ViewBag.strIdButtonCreate}")>Create Super</a>
+
                       <button type="submit" class="btn btn-primary">Login QT</button>
                     </div>
 				  }
@@ -87,6 +90,39 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="~/Assets/admin/dist/js/scripts.js"></script>
   <script src="/Assets/admin/js/CtlLoginController.js"></script>
+
+  @if(ViewBag.objAddJSConfirm!=null) {
+    <script type="text/javascript">
+	  function showConfirm() {
+		var strHref = "#";
+
+		if (confirm(@Html.Raw(Json.Encode(@ViewBag.strConfirmJs)))) {
+		  strHref = '@ViewBag.strNewHref';
+		} else {
+		  //document.getElementById("idBtnCreate").href = '#';
+		}
+
+		document.getElementById('@ViewBag.strIdButtonCreate').href = strHref;
+	  }
+    </script>
+  }
+
+  @if(ViewBag.strMessageJs!=null) {
+    <script type="text/javascript" charset='UTF-8'>
+            $(function () {
+			  alert(@Html.Raw(Json.Encode(@ViewBag.strMessageJs)));
+            });
+    </script>
+  }
+
+  @if(ViewBag.objAddJSClickButton!=null) {
+    <script type="text/javascript">
+            $(function () {
+			  document.getElementById('@ViewBag.strIdButtonCreate').click();
+            });
+    </script>
+  }
+
 </body>
 </html>
 
