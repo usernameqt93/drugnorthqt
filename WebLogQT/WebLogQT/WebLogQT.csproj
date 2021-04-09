@@ -156,8 +156,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\AreaAccount\AreaAccountAreaRegistration.cs" />
+    <Compile Include="Areas\AreaAccount\Controllers\CtlHomeAccountController.cs" />
     <Compile Include="Areas\AreaAccount\Controllers\CtlLoginController.cs" />
     <Compile Include="Areas\AreaAccount\Models\LoginModel.cs" />
+    <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\QTTools.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1390,12 +1392,16 @@
     <Content Include="Areas\AreaAccount\Views\_ViewStart.cshtml" />
     <Content Include="Areas\AreaAccount\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\AreaAccount\Views\CtlLogin\ARIndex.cshtml" />
+    <Content Include="Areas\AreaAccount\Views\CtlHomeAccount\ARIndex.cshtml" />
+    <Content Include="Areas\AreaAccount\Views\Shared\_LeftMenu.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
