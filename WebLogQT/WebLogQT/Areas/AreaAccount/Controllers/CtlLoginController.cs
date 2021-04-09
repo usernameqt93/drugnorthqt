@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebLogQT.Areas.AreaAccount.Models;
+using WebLogQT.Common;
 
 namespace WebLogQT.Areas.AreaAccount.Controllers
 {
@@ -36,10 +37,12 @@ namespace WebLogQT.Areas.AreaAccount.Controllers
 		return View(mLogin);
 	  }
 
-	  if(mLogin.StrUserName.Trim()=="superadminqt") {
+	  string strUsername = mLogin.StrUserName.Trim();
+	  string strPass = mLogin.StrPassword.Trim();
+	  var dal = new DALUser();
+	  if(strUsername=="superadminqt") {
 		bool blnDaCoTaiKhoanNay = false;
-		var dal = new DALUser();
-		dal.CheckExistUsername(ref blnDaCoTaiKhoanNay,mLogin.StrUserName.Trim());
+		dal.CheckExistUsername(ref blnDaCoTaiKhoanNay,strUsername);
 		if(blnDaCoTaiKhoanNay==false) {
 		  ViewBag.objAddJSClickButton=true;
 
@@ -49,16 +52,33 @@ namespace WebLogQT.Areas.AreaAccount.Controllers
 
 		  ViewBag.strIdButtonCreate="idBtnCreate";
 		  ViewBag.strConfirmJs="Tài khoản QT này chưa tồn tại, bạn muốn tạo mới nó không?";
-		  //ViewBag.strNewHref=$"/AreaAccount/CtlLogin/{nameof(ARCheckAndCreateAccount)}?strUserNameCreate={mLogin.StrUserName.Trim()}";
+		  //ViewBag.strNewHref=$"/AreaAccount/CtlLogin/{nameof(ARCheckAndCreateAccount)}?strUserNameCreate={strUsername}";
 		  ViewBag.strNewHref=$"/AreaAccount/CtlLogin/{nameof(ARCheckAndCreateAccount)}";
 		  return View(mLogin);
 		}
 
-		ViewBag.strMessageJs="Tên đăng nhập này đã có, chuyển sang đăng nhập!";
+		//ViewBag.strMessageJs="Tên đăng nhập QT này đã có, chuyển sang đăng nhập! - Đặc biệt nên mới hiện message này";
 	  }
 
-	  ModelState.AddModelError("","AddModelError: Tên đăng nhập hoặc mật khẩu không đúng!");
-	  return View(mLogin);
+	  TblTaiKhoan mUser = null;
+	  dal.GetModelUserByUsername(ref mUser,strUsername);
+	  if(mUser==null) {
+		ViewBag.strMessageJs="Tên đăng nhập hoặc mật khẩu không đúng!";
+		return View(mLogin);
+	  }
+
+	  if(mUser.Status==false) {
+		ViewBag.strMessageJs="Tên đăng nhập này đang bị khóa!";
+		return View(mLogin);
+	  }
+
+	  if(mUser.Password!=Common.QTTools.MD5Hash(strPass)) {
+		ViewBag.strMessageJs="Tên đăng nhập hoặc mật khẩu không đúng!";
+		return View(mLogin);
+	  }
+
+	  Session.Add(CommonConstants.USER_SESSION,strUsername);
+	  return RedirectToAction("ARIndex","CtlHomeAccount");
 	}
 
 	public ActionResult ARCheckAndCreateAccount() {

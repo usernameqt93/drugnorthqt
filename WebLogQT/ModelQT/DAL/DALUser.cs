@@ -23,5 +23,9 @@ namespace ModelQT.DAL {
 	  QTMainDbContext.SaveChanges();
 	  return minput.Id;
 	}
+
+	public void GetModelUserByUsername(ref TblTaiKhoan mUser,string strUsername) {
+	  mUser=QTMainDbContext.TblTaiKhoans.SingleOrDefault(x => x.UserName==strUsername);
+	}
   }
 }
