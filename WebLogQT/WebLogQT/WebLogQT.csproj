@@ -156,6 +156,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\AreaAccount\AreaAccountAreaRegistration.cs" />
+    <Compile Include="Areas\AreaAccount\Controllers\BaseController.cs" />
+    <Compile Include="Areas\AreaAccount\Controllers\CtlCategoryController.cs" />
     <Compile Include="Areas\AreaAccount\Controllers\CtlHomeAccountController.cs" />
     <Compile Include="Areas\AreaAccount\Controllers\CtlLoginController.cs" />
     <Compile Include="Areas\AreaAccount\Models\LoginModel.cs" />
@@ -1394,6 +1396,8 @@
     <Content Include="Areas\AreaAccount\Views\CtlLogin\ARIndex.cshtml" />
     <Content Include="Areas\AreaAccount\Views\CtlHomeAccount\ARIndex.cshtml" />
     <Content Include="Areas\AreaAccount\Views\Shared\_LeftMenu.cshtml" />
+    <Content Include="Areas\AreaAccount\Views\CtlCategory\ARIndex.cshtml" />
+    <Content Include="Areas\AreaAccount\Views\CtlCategory\ARCreate.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1424,6 +1428,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\AreaAccount\Views\Base\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

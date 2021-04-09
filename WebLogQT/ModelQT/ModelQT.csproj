@@ -53,8 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\DALBase.cs" />
+    <Compile Include="DAL\DALCategory.cs" />
     <Compile Include="DAL\DALUser.cs" />
-    <Compile Include="Framework\sysdiagram.cs" />
+    <Compile Include="Framework\TblCategoryTheLoai.cs" />
     <Compile Include="Framework\TblTaiKhoan.cs" />
     <Compile Include="Framework\WeblogQTDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
