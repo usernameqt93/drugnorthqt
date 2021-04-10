@@ -10,6 +10,7 @@ namespace ModelQT.Framework {
 	}
 
 	public virtual DbSet<TblCategoryTheLoai> TblCategoryTheLoais { get; set; }
+	public virtual DbSet<TblPostBaiViet> TblPostBaiViets { get; set; }
 	public virtual DbSet<TblTaiKhoan> TblTaiKhoans { get; set; }
 
 	protected override void OnModelCreating(DbModelBuilder modelBuilder) {
@@ -22,6 +23,18 @@ namespace ModelQT.Framework {
 		  .IsUnicode(false);
 
 	  modelBuilder.Entity<TblCategoryTheLoai>()
+		  .Property(e => e.ModifiedBy)
+		  .IsUnicode(false);
+
+	  modelBuilder.Entity<TblPostBaiViet>()
+		  .Property(e => e.MetaTitle)
+		  .IsUnicode(false);
+
+	  modelBuilder.Entity<TblPostBaiViet>()
+		  .Property(e => e.CreatedBy)
+		  .IsUnicode(false);
+
+	  modelBuilder.Entity<TblPostBaiViet>()
 		  .Property(e => e.ModifiedBy)
 		  .IsUnicode(false);
 

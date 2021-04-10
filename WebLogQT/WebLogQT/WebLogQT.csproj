@@ -160,9 +160,11 @@
     <Compile Include="Areas\AreaAccount\Controllers\CtlCategoryController.cs" />
     <Compile Include="Areas\AreaAccount\Controllers\CtlHomeAccountController.cs" />
     <Compile Include="Areas\AreaAccount\Controllers\CtlLoginController.cs" />
+    <Compile Include="Areas\AreaAccount\Controllers\CtlPostController.cs" />
     <Compile Include="Areas\AreaAccount\Models\LoginModel.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\QTTools.cs" />
+    <Compile Include="Controllers\CtlHomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1398,6 +1400,8 @@
     <Content Include="Areas\AreaAccount\Views\Shared\_LeftMenu.cshtml" />
     <Content Include="Areas\AreaAccount\Views\CtlCategory\ARIndex.cshtml" />
     <Content Include="Areas\AreaAccount\Views\CtlCategory\ARCreate.cshtml" />
+    <Content Include="Areas\AreaAccount\Views\CtlPost\ARIndex.cshtml" />
+    <Content Include="Areas\AreaAccount\Views\CtlPost\ARCreate.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1425,6 +1429,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\CtlHome\ARIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
