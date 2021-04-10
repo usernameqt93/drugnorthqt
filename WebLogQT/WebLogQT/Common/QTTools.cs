@@ -25,5 +25,21 @@ namespace WebLogQT.Common {
 
 	  return strBuilder.ToString();
 	}
+
+	internal static void GetListIntIndexRandomByCountList(ref List<int> lstIntIndexRandom,int intCountList) {
+	  lstIntIndexRandom=new List<int>();
+
+	  Random rnd = new Random();
+	  int intIndexRandom = 0;
+	  for(int i = 0;i<intCountList;i++) {
+		do {
+		  intIndexRandom=rnd.Next(0,intCountList);
+		  if(lstIntIndexRandom.Contains(intIndexRandom)==false) {
+			lstIntIndexRandom.Add(intIndexRandom);
+			break;
+		  }
+		} while(lstIntIndexRandom.Contains(intIndexRandom)==true);
+	  }
+	}
   }
 }

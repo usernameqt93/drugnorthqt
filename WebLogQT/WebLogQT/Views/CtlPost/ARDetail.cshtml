@@ -1,0 +1,11 @@
+﻿@model ModelQT.Framework.TblPostBaiViet
+
+@{
+  ViewBag.Title="ARDetail";
+  Layout="~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="mt-4">@Model.Title</h1>
+<hr />
+
+@Html.Raw(Model.Detail)

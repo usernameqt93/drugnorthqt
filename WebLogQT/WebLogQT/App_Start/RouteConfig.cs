@@ -11,9 +11,22 @@ namespace WebLogQT {
 	  routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 	  routes.MapRoute(
+		  name: "Post Detail",
+		  url: "chi-tiet/{metatitle}-{longId}",
+		  defaults: new { controller = "CtlPost",action = "ARDetail",id = UrlParameter.Optional },
+		  namespaces: new[] { "WebLogQT.Controllers" }
+	  );
+
+	  //routes.MapRoute(
+	  // name: "Default",
+	  // url: "{controller}/{action}/{id}",
+	  // defaults: new { controller = "Home",action = "Index",id = UrlParameter.Optional }
+	  //);
+
+	  routes.MapRoute(
 		  name: "Default",
 		  url: "{controller}/{action}/{id}",
-		  defaults: new { controller = "Home",action = "Index",id = UrlParameter.Optional }
+		  defaults: new { controller = "CtlHome",action = "ARIndex",id = UrlParameter.Optional }
 	  );
 	}
   }

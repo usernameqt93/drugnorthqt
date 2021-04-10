@@ -16,6 +16,10 @@ namespace ModelQT.DAL {
 		.Skip((intPageIndex-0)*intPageSize).Take(intPageSize).ToList();
 	}
 
+	public void GetModelPostDetailById(ref TblPostBaiViet moutput,long longId) {
+	  moutput=QTMainDbContext.TblPostBaiViets.SingleOrDefault(x => x.Id==longId);
+	}
+
 	public long LongInsert(TblPostBaiViet minput) {
 	  QTMainDbContext.TblPostBaiViets.Add(minput);
 	  QTMainDbContext.SaveChanges();

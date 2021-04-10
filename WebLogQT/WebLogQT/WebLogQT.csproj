@@ -165,6 +165,7 @@
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\QTTools.cs" />
     <Compile Include="Controllers\CtlHomeController.cs" />
+    <Compile Include="Controllers\CtlPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1430,6 +1431,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\CtlHome\ARIndex.cshtml" />
+    <Content Include="Views\CtlPost\ARDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
