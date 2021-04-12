@@ -25,5 +25,25 @@ namespace ModelQT.DAL {
 	  QTMainDbContext.SaveChanges();
 	  return minput.Id;
 	}
+
+	public bool BlnUpdateSuccess(TblPostBaiViet minput) {
+	  try {
+		TblPostBaiViet mUser = QTMainDbContext.TblPostBaiViets.Find(minput.Id);
+		mUser.Title=minput.Title;
+		mUser.MetaTitle=minput.MetaTitle;
+		mUser.Description=minput.Description;
+		mUser.CategoryID=minput.CategoryID;
+		mUser.Detail=minput.Detail;
+		mUser.ModifiedDate=DateTime.Now;
+		mUser.ModifiedBy=minput.ModifiedBy;
+
+		QTMainDbContext.SaveChanges();
+		return true;
+	  } catch(Exception et) {
+		string str = et.Message;
+		return false;
+	  }
+	}
+
   }
 }

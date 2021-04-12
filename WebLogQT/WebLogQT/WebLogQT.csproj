@@ -192,6 +192,8 @@
     <Content Include="Assets\admin\dist\register.html" />
     <Content Include="Assets\admin\dist\tables.html" />
     <Content Include="Assets\admin\js\CtlLoginController.js" />
+    <Content Include="Assets\admin\js\CtlPostControllerAccount.js" />
+    <Content Include="Assets\admin\js\ImportCKFinderEditor.js" />
     <Content Include="Assets\admin\js\userController.js" />
     <Content Include="Assets\admin\plugins\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\admin\plugins\ckeditor\build-config.js" />
@@ -1403,6 +1405,7 @@
     <Content Include="Areas\AreaAccount\Views\CtlCategory\ARCreate.cshtml" />
     <Content Include="Areas\AreaAccount\Views\CtlPost\ARIndex.cshtml" />
     <Content Include="Areas\AreaAccount\Views\CtlPost\ARCreate.cshtml" />
+    <Content Include="Areas\AreaAccount\Views\CtlPost\AREdit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

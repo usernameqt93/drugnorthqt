@@ -48,6 +48,7 @@ namespace WebLogQT.Areas.AreaAccount.Controllers {
 		if(ModelState.IsValid) {
 		  string strUser = (string)Session[CommonConstants.USER_SESSION];
 		  minput.CreatedBy=strUser;
+		  minput.CreatedDate=DateTime.Now;
 
 		  string strDescription = "Truy cập trang để xem chi tiết nội dung này ...";
 		  try {
@@ -59,7 +60,6 @@ namespace WebLogQT.Areas.AreaAccount.Controllers {
 		  }
 		  minput.Description=strDescription.Substring(0,240)+"...";
 
-		  minput.CreatedDate=DateTime.Now;
 		  minput.Status=true;
 
 		  var dal = new DALPost();
@@ -70,6 +70,59 @@ namespace WebLogQT.Areas.AreaAccount.Controllers {
 		  }
 		  ModelState.AddModelError("","Thêm mới không thành công!");
 		}
+
+		SetViewBag();
+		return View(minput);
+	  } catch(Exception et) {
+		string str = et.Message;
+		ModelState.AddModelError("",str);
+		return View(minput);
+	  }
+	}
+
+	public ActionResult AREdit(long id) {
+	  TblPostBaiViet minput = null;
+
+	  var dal = new DALPost();
+	  dal.GetModelPostDetailById(ref minput,id);
+	  SetViewBag();
+	  return View(minput);
+	}
+
+	[HttpPost]
+	[ValidateAntiForgeryToken]
+	[ValidateInput(false)]
+	public ActionResult AREdit(TblPostBaiViet minput) {
+	  try {
+		if(ModelState.IsValid==false) {
+		  SetViewBag();
+		  return View(minput);
+		}
+
+		string strUser = (string)Session[CommonConstants.USER_SESSION];
+		minput.ModifiedBy=strUser;
+		minput.ModifiedDate=DateTime.Now;
+
+		string strDescription = "Truy cập trang để xem chi tiết nội dung này ...";
+		try {
+		  string strPlainTextTrim = QTTools.GetPlainTextFromHtml(minput.Detail);
+		  strPlainTextTrim=System.Net.WebUtility.HtmlDecode(strPlainTextTrim);
+		  strDescription=strPlainTextTrim.Replace("  "," ");
+		} catch(Exception et) {
+		  string str = et.Message;
+		}
+		minput.Description=strDescription.Substring(0,240)+"...";
+
+		//minput.Status=true;
+
+		var dal = new DALPost();
+		bool blnSuccess = dal.BlnUpdateSuccess(minput);
+		if(blnSuccess==true) {
+		  //ViewBag.strMessageJs="Tự động tạo tài khoản QT thành công(tk=mk)!";
+		  return RedirectToAction(nameof(ARIndex));
+		}
+
+		ModelState.AddModelError("","Thêm mới không thành công!");
 
 		SetViewBag();
 		return View(minput);
