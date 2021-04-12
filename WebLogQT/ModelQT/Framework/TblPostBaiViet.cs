@@ -17,6 +17,9 @@ namespace ModelQT.Framework
         [StringLength(250)]
         public string MetaTitle { get; set; }
 
+        [StringLength(250)]
+        public string Description { get; set; }
+
         public long? CategoryID { get; set; }
 
         [Column(TypeName = "ntext")]

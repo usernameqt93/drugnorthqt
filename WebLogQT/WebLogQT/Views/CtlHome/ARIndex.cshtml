@@ -14,12 +14,15 @@
           <a href="@url" class="link-primary">
             <h3>@item.Title</h3>
           </a>
-          <p>
+		  <p>
+		    @((item.Description==null||item.Description.Trim()=="")? "Truy cập trang để xem chi tiết nội dung bài viết này ..." : item.Description)
+		  </p>
+          @*<p>
             ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
             enables a clean separation of concerns and gives you full control over markup
             for enjoyable, agile development.
 
-          </p>
+          </p>*@
         </div>
       </div>
 	}

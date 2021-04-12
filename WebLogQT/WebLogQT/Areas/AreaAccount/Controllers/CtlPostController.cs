@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using WebLogQT.Common;
 
 namespace WebLogQT.Areas.AreaAccount.Controllers {
@@ -19,6 +20,18 @@ namespace WebLogQT.Areas.AreaAccount.Controllers {
 
 	  var dal = new DALPost();
 	  dal.GetListByPageAndSize(ref lst,0,10);
+
+	  foreach(var item in lst) {
+		string strDes = item.Description;
+		try {
+		  strDes=System.Net.WebUtility.HtmlDecode(strDes);// Returns é
+		  //strDes=QTTools.DecodeFromUtf8(strDes);
+		} catch(Exception et) {
+		  string str = et.Message;
+		}
+		item.Description=strDes;
+	  }
+
 	  return View(lst);
 	}
 
@@ -36,6 +49,16 @@ namespace WebLogQT.Areas.AreaAccount.Controllers {
 		  string strUser = (string)Session[CommonConstants.USER_SESSION];
 		  minput.CreatedBy=strUser;
 
+		  string strDescription = "Truy cập trang để xem chi tiết nội dung này ...";
+		  try {
+			string strPlainTextTrim = QTTools.GetPlainTextFromHtml(minput.Detail);
+			strPlainTextTrim=System.Net.WebUtility.HtmlDecode(strPlainTextTrim);
+			strDescription= strPlainTextTrim.Replace("  "," ");
+		  } catch(Exception et) {
+			string str = et.Message;
+		  }
+		  minput.Description=strDescription.Substring(0,240)+"...";
+
 		  minput.CreatedDate=DateTime.Now;
 		  minput.Status=true;
 
@@ -45,12 +68,6 @@ namespace WebLogQT.Areas.AreaAccount.Controllers {
 			//ViewBag.strMessageJs="Tự động tạo tài khoản QT thành công(tk=mk)!";
 			return RedirectToAction(nameof(ARIndex));
 		  }
-		  //var session = (UserLogin)Session[CommonConstants.USER_SESSION];
-		  //minput.CreatedBy=session.UserName;
-		  //var culture = Session[CommonConstants.CurrentCulture];
-		  //minput.Language=culture.ToString();
-		  //new ContentDao().Create(minput);
-		  //return RedirectToAction("Index");
 		  ModelState.AddModelError("","Thêm mới không thành công!");
 		}
 
@@ -70,6 +87,30 @@ namespace WebLogQT.Areas.AreaAccount.Controllers {
 	  dal.GetListCategoryByPageAndSize(ref lst,0,1000);
 	  ViewBag.CategoryID=new SelectList(lst,"ID","Name",longSelectedId);
 	}
+
+	#region JsonResult
+
+	public JsonResult JRCreateMetaTitle(string strJsonInput) {
+	  string strTitle = new JavaScriptSerializer().Deserialize<string>(strJsonInput);
+	  string strTextTrimNoUnicode = QTTools.RemoveUnicode(strTitle.Trim());
+	  string strMetaTitle = strTextTrimNoUnicode.Replace("  "," ").Replace(" ","-");
+	  return Json(new {
+		blnStatusJs = true,
+		strOutputJs = strMetaTitle
+	  });
+	}
+
+	//public JsonResult JRCreateDescription(string strJsonInput) {
+	//  string strHTML = new JavaScriptSerializer().Deserialize<string>(strJsonInput);
+	//  string strPlainTextTrim = QTTools.GetPlainTextFromHtml(strHTML);
+	//  string strOutput = strPlainTextTrim.Replace("  "," ");
+	//  return Json(new {
+	//	blnStatusJs = true,
+	//	strOutputJs = strOutput
+	//  });
+	//}
+
+	#endregion
 
   }
 }
