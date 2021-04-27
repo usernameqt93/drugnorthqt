@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ModelQT.Framework.TblJson>
+
+@{
+  ViewBag.Title="ARIndex";
+  Layout="~/Areas/AreaAccount/Views/Shared/_Layout.cshtml";
+}
+
+@section jsFooter{
+  <script type="text/javascript">
+	var varTemp = {
+	  init: function () {
+		varTemp.regEvents();
+	  },
+	  regEvents: function () {
+
+		$('.btn-edit-ajax').off('click').on('click', function (e) {
+		  e.preventDefault();
+		  $.ajax({
+			data: { longId: $(this).data('id') },
+			url: '/AreaAccount/CtlJson/JRNhanDoi',
+			dataType: 'json',
+			type: 'POST',
+			success: function (res) {
+			  if (res.blnStatusJs == true) {
+				window.location.href = "/AreaAccount/CtlJson/ARIndex";
+			  } else {
+				window.location.href = "/";
+			  }
+			}
+		  })
+		});
+	  }
+	}
+	varTemp.init();
+  </script>
+}
+
+<h2>ARIndex</h2>
+
+<p>
+  @Html.ActionLink("Create New","ARCreate")
+</p>
+<table class="table">
+  <tr>
+    <th>
+      @Html.DisplayNameFor(model => model.Keyword)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Json)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Description)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.CreatedDate)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.CreatedBy)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.ModifiedDate)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.ModifiedBy)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Status)
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach(var item in Model) {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.Keyword)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Json)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Description)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.CreatedDate)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.CreatedBy)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.ModifiedDate)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.ModifiedBy)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Status)
+      </td>
+      <td>
+        @Html.ActionLink("Edit","AREdit",new { id = item.Id }) |
+        @Html.ActionLink("Details","Details",new { id = item.Id }) |
+        @Html.ActionLink("Delete","Delete",new { id = item.Id }) |
+        <a class="btn-edit-ajax" href="#" role="button" data-id="@item.Id">Nhân đôi</a>
+      </td>
+    </tr>
+  }
+
+</table>

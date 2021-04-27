@@ -16,8 +16,8 @@ namespace WebLogQT.Areas.AreaAccount
         {
             context.MapRoute(
                 "AreaAccount_default",
-                "AreaAccount/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+				"AreaAccount/{controller}/{action}/{id}",
+                new { action = "ARIndex",Controller = "CtlLogin", id = UrlParameter.Optional }
             );
         }
     }

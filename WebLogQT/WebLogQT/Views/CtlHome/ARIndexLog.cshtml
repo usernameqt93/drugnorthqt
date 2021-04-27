@@ -1,0 +1,29 @@
+﻿@{
+  ViewBag.Title="Home Page";
+  var listNewProducts = (List<ModelQT.Framework.TblPostBaiViet>)ViewBag.VBLstPost;
+  var listStringClassBackground = (List<string>)ViewBag.LstString;
+}
+
+@{ int intIndexIncrease = -1;
+  for(int k = 0;k<1;k++) {
+	for(int i = 0;i<listNewProducts.Count;i++) {
+	  var item = listNewProducts[i];
+	  var url = "/chi-tiet/"+item.MetaTitle+"-"+item.Id;
+
+      <div class="row @listStringClassBackground[++intIndexIncrease]">
+        <div class="col-md-12">
+          <a href="@url" class="link-primary alignleft">
+            <h3>@item.Title</h3>
+          </a>
+          <p class="alignright">
+            @(item.ModifiedDate==null ? "..." : item.ModifiedDate.ToString())
+          </p>
+          <p>
+            @((item.Description==null||item.Description.Trim()=="") ? "Truy cập trang để xem chi tiết nội dung bài viết này ..." : item.Description)
+          </p>
+        </div>
+      </div>
+
+	}
+  }
+}

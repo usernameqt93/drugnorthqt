@@ -1,0 +1,26 @@
+﻿
+@{
+  Layout=null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>ARLogin</title>
+</head>
+<body>
+  <div>
+    <a href="/AreaAccount" id="btnLogin">Click</a>
+  </div>
+
+  @Scripts.Render("~/bundles/jquery")
+
+  <script type="text/javascript">
+	$(function () {
+	  document.getElementById('btnLogin').click();
+	});
+  </script>
+</body>
+</html>

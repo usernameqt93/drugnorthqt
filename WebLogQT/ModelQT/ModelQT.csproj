@@ -54,13 +54,18 @@
   <ItemGroup>
     <Compile Include="DAL\DALBase.cs" />
     <Compile Include="DAL\DALCategory.cs" />
+    <Compile Include="DAL\DALHtmlRaw.cs" />
+    <Compile Include="DAL\DALJson.cs" />
     <Compile Include="DAL\DALPost.cs" />
     <Compile Include="DAL\DALUser.cs" />
     <Compile Include="Framework\TblCategoryTheLoai.cs" />
+    <Compile Include="Framework\TblHtmlRaw.cs" />
+    <Compile Include="Framework\TblJson.cs" />
     <Compile Include="Framework\TblPostBaiViet.cs" />
     <Compile Include="Framework\TblTaiKhoan.cs" />
     <Compile Include="Framework\WeblogQTDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\VMLienLac.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

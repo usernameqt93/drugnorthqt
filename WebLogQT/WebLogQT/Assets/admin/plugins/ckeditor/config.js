@@ -11,7 +11,19 @@ CKEDITOR.editorConfig = function( config ) {
   //config.extraPlugins = 'syntaxhighlight';
   config.syntaxhighlight_lang = 'csharp';
   config.syntaxhighlight_hideControls = true;
+
+  //config.pasteFromWordPromptCleanup = true;
+  //config.pasteFromWordRemoveFontStyles = false;
+  //config.pasteFromWordRemoveStyles = false;
+
   config.language = 'vi';
+
+  config.htmlEncodeOutput = false;
+  config.ProcessHTMLEntities = false;
+  config.entities = false;
+  config.entities_latin = false;
+  config.ForceSimpleAmpersand = true;
+
   config.filebrowserBrowseUrl = '/Assets/admin/plugins/ckfinder/ckfinder.html';
   config.filebrowserImageBrowseUrl = '/Assets/admin/plugins/ckfinder.html?Type=Images';
   config.filebrowserFlashBrowseUrl = '/Assets/admin/plugins/ckfinder.html?Type=Flash';

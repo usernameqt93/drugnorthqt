@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using WebLogQT.Common;
 
 namespace WebLogQT.Areas.AreaAccount.Controllers {
-  public class CtlCategoryController:BaseController {
+  public class CtlCategoryController:BaseAdminController {
 	// GET: AreaAccount/CtlCategory
 	public ActionResult Index() {
 	  return View();

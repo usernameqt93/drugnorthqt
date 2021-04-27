@@ -1,0 +1,68 @@
+﻿@model ModelQT.ViewModel.VMLienLac
+
+@using (Html.BeginForm("ARUpdatePV","CtlLienLac",FormMethod.Post))
+{
+		@Html.AntiForgeryToken()
+
+		<div class="form-horizontal">
+        <h4>Cập nhật thông tin</h4>
+        <hr />
+
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StrNameButton,"Tên nút hiển thị", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StrNameButton, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StrNameButton, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StrLinkLienLac,"Link liên lạc HTML", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StrLinkLienLac, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StrLinkLienLac, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StrLinkImageIcon,"Link ảnh icon hiển thị", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StrLinkImageIcon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StrLinkImageIcon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+			  <div class="checkbox">
+			    @Html.EditorFor(model => model.BlnOpenNewTab)
+			    <label class="form-check-label" for="BlnOpenNewTab">
+			      Bật tab mới khi người dùng click vào(Phải sử dụng đối với call phone, messenger và zalo)
+			    </label>
+			    @Html.ValidationMessageFor(model => model.BlnOpenNewTab,"",new { @class = "text-danger" })
+			  </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+			  <div class="checkbox">
+			    @Html.EditorFor(model => model.BlnHienThi)
+			    <label class="form-check-label" for="BlnHienThi">
+			      Hiển thị lên trang chủ
+			    </label>
+			    @Html.ValidationMessageFor(model => model.BlnHienThi,"",new { @class = "text-danger" })
+			  </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu thay đổi" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

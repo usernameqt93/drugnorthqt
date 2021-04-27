@@ -5,9 +5,9 @@
       <div class="nav">
         <div class="sb-sidenav-menu-heading">Core</div>
 
-        <a class="nav-link" href="/TenAreaAdmin/Home/Index">
+        <a class="nav-link" href="/AreaAccount/CtlHomeAccount">
           <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-          Trang chủ
+          Trang chủ quản trị
         </a>
 
         <a class="nav-link" href="index.html">
@@ -17,14 +17,17 @@
 
         <div class="sb-sidenav-menu-heading">Interface</div>
 
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayoutsHeThong" aria-expanded="false" aria-controls="collapseLayouts">
           <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
           Hệ thống
           <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
         </a>
-        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+        <div class="collapse" id="collapseLayoutsHeThong" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
           <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="/Category/Index">Nhóm người dùng</a>
+            <a class="nav-link" href="/AreaAccount/CtlCategory/ARIndex">Danh sách thể loại - Category</a>
+            <a class="nav-link" href="/AreaAccount/CtlPost/ARIndex">Danh sách bài viết - Post</a>
+            <a class="nav-link" href="/AreaAccount/CtlHtmlRaw/ARIndex">Danh sách Html raw</a>
+            <a class="nav-link" href="/AreaAccount/CtlJson/ARIndex">Danh sách Json</a>
             <a class="nav-link" href="/TenAreaAdmin/User/Index">User</a>
           </nav>
         </div>
@@ -38,45 +41,6 @@
           <nav class="sb-sidenav-menu-nested nav">
             <a class="nav-link" href="/Category/Index">Danh mục category</a>
             <a class="nav-link" href="/Content/Index">Tin tức</a>
-          </nav>
-        </div>
-
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-          <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-          Sản phẩm
-          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-        </a>
-        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-          <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="/Category/Index">Danh mục category</a>
-            <a class="nav-link" href="/Content/Index">Tin tức</a>
-          </nav>
-        </div>
-
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-          <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-          Quản lý chung
-          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-        </a>
-        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-          <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="/Category/Index">Giới thiệu</a>
-            <a class="nav-link" href="/Content/Index">Footer</a>
-            <a class="nav-link" href="/Content/Index">Menu</a>
-            <a class="nav-link" href="/Content/Index">Slide</a>
-            <a class="nav-link" href="/Content/Index">Phản hồi - Feedback</a>
-          </nav>
-        </div>
-
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-          <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-          Layouts
-          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-        </a>
-        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-          <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="layout-static.html">Static Navigation</a>
-            <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
           </nav>
         </div>
 
@@ -124,7 +88,7 @@
     </div>
     <div class="sb-sidenav-footer">
       <div class="small">Logged in as:</div>
-      Start Bootstrap
+		@(TempData["strUsername"]==null ? "" : TempData["strUsername"])
     </div>
   </nav>
 </div>

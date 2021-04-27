@@ -18,6 +18,7 @@ namespace WebLogQT.Areas.AreaAccount.Controllers
 
 	[HttpGet]
 	public ActionResult ARIndex() {
+	  Session[CommonConstants.USER_SESSION]=null;
 	  if(TempData["strMessage"]!=null) {
 		ViewBag.strMessageJs=TempData["strMessage"].ToString();
 	  }
@@ -78,7 +79,11 @@ namespace WebLogQT.Areas.AreaAccount.Controllers
 	  }
 
 	  Session.Add(CommonConstants.USER_SESSION,strUsername);
-	  return RedirectToAction("ARIndex","CtlHomeAccount");
+	  if(strUsername=="superadminqt") {
+		return RedirectToAction("ARIndex","CtlHomeAccount"); 
+	  }
+
+	  return RedirectToAction("ARIndex","CtlHomeUser");
 	}
 
 	public ActionResult ARCheckAndCreateAccount() {
@@ -107,5 +112,9 @@ namespace WebLogQT.Areas.AreaAccount.Controllers
 	  return View(nameof(ARIndex));
 	}
 
+	public ActionResult ARLogout() {
+	  Session[CommonConstants.USER_SESSION]=null;
+	  return Redirect("/admin");
+	}
   }
 }

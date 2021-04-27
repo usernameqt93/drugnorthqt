@@ -1,0 +1,65 @@
+﻿@model ModelQT.Framework.TblHtmlRaw
+
+@{
+  ViewBag.Title="AREdit";
+  Layout="~/Areas/AreaAccount/Views/Shared/_Layout.cshtml";
+}
+
+@section jsFooter{
+  @*<script src="~/Assets/admin/js/ImportCKFinderEditor.js"></script>*@
+}
+
+<h2>AREdit</h2>
+
+@using(Html.BeginForm()) {
+  @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+  <h4>TblHtmlRaw</h4>
+  <hr />
+  @Html.ValidationSummary(true,"",new { @class = "text-danger" })
+  @Html.HiddenFor(model => model.Id)
+
+  <div class="form-group">
+    @Html.LabelFor(model => model.Keyword,htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+      @Html.EditorFor(model => model.Keyword,new { htmlAttributes = new { @class = "form-control",id = "idTxtTitle" } })
+      @Html.ValidationMessageFor(model => model.Keyword,"",new { @class = "text-danger" })
+    </div>
+  </div>
+
+  <div class="form-group">
+    @Html.LabelFor(model => model.Html,htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+      @Html.TextAreaFor(model => model.Html,new { htmlAttributes = new { @class = "form-control" },id = "txtContent",cols = "40",rows = "8" })
+
+	  @*<script>
+		CKEDITOR.config.pasteFromWordPromptCleanup = true;
+		CKEDITOR.config.pasteFromWordRemoveFontStyles = false;
+		CKEDITOR.config.pasteFromWordRemoveStyles = false;
+		
+		CKEDITOR.config.language = 'vi';
+		
+		CKEDITOR.config.htmlEncodeOutput = false;
+		CKEDITOR.config.ProcessHTMLEntities = false;
+		CKEDITOR.config.entities = false;
+		CKEDITOR.config.entities_latin = false;
+		CKEDITOR.config.ForceSimpleAmpersand = true;
+		CKEDITOR.replace("txtContent");
+	</script>*@
+
+      @Html.ValidationMessageFor(model => model.Html,"",new { @class = "text-danger" })
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+  </div>
+</div>
+}
+
+<div>
+  @Html.ActionLink("Back to List","Index")
+</div>

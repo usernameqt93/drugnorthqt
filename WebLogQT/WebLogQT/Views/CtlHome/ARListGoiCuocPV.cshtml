@@ -1,0 +1,168 @@
+﻿@model List<ModelQT.Framework.TblHtmlRaw>
+
+<div id="feature">
+  <div class="row-container visible-first">
+    <div class="container-fluid">
+      <div class="row-fluid">
+
+
+
+        <div class="moduletable pricing_detailed  span12">
+
+          <div class="module_container">
+            <h1 style="text-align:center" class="heading-style-1 visible-first">@ViewBag.strTitleH1</h1>
+
+			<p style="text-align:center">@ViewBag.strDescription</p>
+
+            <div class="cols-3 mod-newsflash-adv mod-newsflash-adv__pricing_detailed" id="module_225">
+              <div class="row-fluid">
+                <div class="item_content"><!-- Item title --></div>
+              </div>
+            </div>
+          </div>
+
+
+		  <div class="row">
+
+		    @foreach(var item in Model) {
+		      @Html.Raw(item.Html);
+			}
+
+		    @*<div id="col-1308898585" class="col medium-3 small-12 large-3">
+	  <div class="col-inner">
+
+		<div class="pricing-table-wrapper">
+		  <div class="pricing-table ux_price_table text-center box-shadow-3 box-shadow-3-hover">
+			<div class="pricing-table-header">
+			  <div class="title uppercase strong">Gói 30M</div>
+			  <div class="price is-xxlarge">30 Mbps</div>
+			</div>
+			<div class="pricing-table-items items">
+
+			  <p>
+				<b>
+				  <span style="color: #ed1c24;">
+					<span style="color: #00a859; ">Giá cước :</span><br /> 175.000 VNĐ/ Tháng
+				  </span>&nbsp;
+				</b><br /><span style="color: #00a859;"><b>MODEM Wifi 4 Cổng <br /><span style="color: #ff6600;">Miễn Phí</span></b></span>
+			  </p>
+			  <div class="bullet-item" title=""><span class="text">Trả từng tháng : Mất phí lắp đặt 110.000 VNĐ</span></div>
+
+			  <div class="bullet-item" title=""><span class="text">Trả trước 6 tháng : Miễn phí lắp đặt + tặng thêm 01 tháng</span></div>
+
+			  <div class="bullet-item" title=""><span class="text">Trả trước 12 tháng : Miễn phí lắp đặt&nbsp; + tặng thêm 02 tháng</span></div>
+
+			  <a href="tel:0964954222" target="_self" class="button primary is-outline" style="border-radius:99px;">
+				<span>Bấm Đăng ký</span>
+			  </a>
+
+			</div>
+		  </div>
+		</div>
+
+	  </div>
+	</div>
+
+
+
+		    <div id="col-2117428522" class="col medium-3 small-12 large-3">
+		      <div class="col-inner">
+
+		        <div class="pricing-table-wrapper">
+		          <div class="pricing-table ux_price_table text-center box-shadow-3 box-shadow-3-hover">
+		            <div class="pricing-table-header">
+		              <div class="title uppercase strong">GÓI 80M</div>
+		              <div class="price is-xxlarge">80 Mbps</div>
+		            </div>
+		            <div class="pricing-table-items items">
+
+		              <p><b><span style="color: #ed1c24;"><span style="color: #00a859;">Giá cước :</span><br /> 185.000 VNĐ/ Tháng </span></b><br /><span style="color: #00a859;"><b>MODEM Wifi 4 Cổng <br /><span style="color: #ff6600;">Miễn Phí</span></b></span></p>
+		              <div class="bullet-item" title=""><span class="text">Trả từng tháng : Mất Phí lắp đặt 110.000 VNĐ</span></div>
+
+		              <div class="bullet-item" title=""><span class="text">Trả trước 6 tháng : Miễn phí lắp đặt + tặng thêm 01 tháng</span></div>
+
+		              <div class="bullet-item" title=""><span class="text">Trả trước 12 tháng : Miễn phí lắp đặt + tặng thêm 02 tháng</span></div>
+
+		              <a href="tel:0964954222" target="_self" class="button primary is-outline" style="border-radius:99px;">
+		                <span>Bấm Đăng ký</span>
+		              </a>
+
+		            </div>
+		          </div>
+		        </div>
+
+		      </div>
+		    </div>
+
+
+
+		    <div id="col-1247591233" class="col medium-3 small-12 large-3">
+		      <div class="col-inner">
+
+		        <div class="pricing-table-wrapper">
+		          <div class="pricing-table ux_price_table text-center box-shadow-3 box-shadow-3-hover">
+		            <div class="pricing-table-header">
+		              <div class="title uppercase strong">GÓI 100M</div>
+		              <div class="price is-xxlarge">100 Mbps</div>
+		            </div>
+		            <div class="pricing-table-items items">
+
+		              <p><b><span style="color: #ed1c24;"><span style="color: #00a859;">Giá cước :</span><br /> 235.000 VNĐ/ Tháng</span>&nbsp;</b><br /><span style="color: #00a859;"><b>MODEM Wifi 2 Băng Tần<br /><span style="color: #ff6600;">&nbsp;Miễn Phí</span></b></span></p>
+		              <div class="bullet-item" title=""><span class="text">Trả từng tháng : Mất Phí lắp đặt 110.000 VNĐ</span></div>
+
+		              <div class="bullet-item" title=""><span class="text">Trả trước 6 tháng : Miễn phí lắp đặt + tặng thêm 01 tháng</span></div>
+
+		              <div class="bullet-item" title=""><span class="text">Trả trước 12 tháng : Miễn phí lắp đặt + tặng thêm 02 tháng</span></div>
+
+		              <a href="tel:0964954222" target="_self" class="button primary is-outline" style="border-radius:99px;">
+		                <span>Bấm Đăng ký</span>
+		              </a>
+
+		            </div>
+		          </div>
+		        </div>
+
+		      </div>
+		    </div>
+
+
+
+		    <div id="col-986717193" class="col medium-3 small-12 large-3">
+		      <div class="col-inner">
+
+		        <div class="pricing-table-wrapper">
+		          <div class="pricing-table ux_price_table text-center box-shadow-3 box-shadow-3-hover">
+		            <div class="pricing-table-header">
+		              <div class="title uppercase strong">GÓI 150M</div>
+		              <div class="price is-xxlarge">150 Mbps</div>
+		            </div>
+		            <div class="pricing-table-items items">
+
+		              <p><b><span style="color: #ed1c24;"><span style="color: #00a859;">Giá cước :</span><br />&nbsp;290.000 VNĐ/ Tháng </span></b><br /><span style="color: #00a859;"><b>MODEM Wifi 2 Băng Tần<br /><span style="color: #ff6600;">&nbsp;Miễn Phí</span></b></span></p>
+		              <div class="bullet-item" title=""><span class="text">Trả từng tháng : Mất Phí lắp đặt 110.000 VNĐ</span></div>
+
+		              <div class="bullet-item" title=""><span class="text">Trả trước 6 tháng : Miễn phí lắp đặt + tặng thêm 1 tháng</span></div>
+
+		              <div class="bullet-item" title=""><span class="text">Trả trước 12 tháng : Miễn phí lắp đặt + tặng thêm 2 tháng</span></div>
+
+		              <a href="tel:0964954222" target="_self" class="button primary is-outline" style="border-radius:99px;">
+		                <span>Bấm Đăng ký</span>
+		              </a>
+
+		            </div>
+		          </div>
+		        </div>
+
+		      </div>
+		    </div>*@
+
+
+
+		  </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

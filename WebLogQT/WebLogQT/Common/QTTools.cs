@@ -6,6 +6,10 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using ModelQT.DAL;
+using ModelQT.Framework;
+using ModelQT.ViewModel;
+using Newtonsoft.Json;
 
 namespace WebLogQT.Common {
   public static class QTTools {
@@ -76,6 +80,61 @@ namespace WebLogQT.Common {
 	  _return2=_return2.Replace("'","");
 	  _return2=_return2.Replace(@"\","");
 	  return _return2;
+	}
+
+	internal static void GetDictionaryFromKeywordJson(ref Dictionary<string,object> dicInput,string strKeyword) {
+	  var lstStringKey = new List<string>();
+	  lstStringKey.Add(strKeyword);
+
+	  var lst = new List<TblJson>();
+	  var dal = new DALJson();
+	  dal.GetListByListKey(ref lst,lstStringKey);
+
+	  string strJsonDictionary = lst[0].Json;
+
+	  dicInput = new Dictionary<string,object>();
+	  try {
+		dicInput=JsonConvert.DeserializeObject<Dictionary<string,object>>(strJsonDictionary);
+	  } catch(Exception et) {
+		string str = et.Message;
+	  }
+	}
+
+	internal static void GetListLienLacFromJson(ref List<VMLienLac> lstLienLac,string strJsonDictionary) {
+	  try {
+		var dicInput = JsonConvert.DeserializeObject<Dictionary<string,object>>(strJsonDictionary);
+		lstLienLac=(List<VMLienLac>)JsonConvert.DeserializeObject(
+		  dicInput["lstVMLienLac"].ToString(),(typeof(List<VMLienLac>)));
+	  } catch(Exception et) {
+		string str = et.Message;
+	  }
+	}
+
+	internal static void UpdateJsonForKeyword(ref bool blnSuccess,string strUser,string strJsonToSave,string strKeyword) {
+	  blnSuccess=false;
+	  var mJsonInput = new TblJson();
+
+	  mJsonInput.Json=strJsonToSave;
+	  mJsonInput.Keyword=strKeyword;
+
+	  //string strUser = (string)Session[CommonConstants.USER_SESSION];
+	  mJsonInput.ModifiedBy=strUser;
+	  mJsonInput.ModifiedDate=DateTime.Now;
+
+	  string strDescription = "Truy cập trang để xem chi tiết nội dung này ...";
+	  try {
+		string strPlainTextTrim = QTTools.GetPlainTextFromHtml(mJsonInput.Json);
+		strPlainTextTrim=System.Net.WebUtility.HtmlDecode(strPlainTextTrim);
+		strDescription=strPlainTextTrim.Replace("  "," ");
+	  } catch(Exception et) {
+		string str = et.Message;
+	  }
+	  mJsonInput.Description=(strDescription.Length>240) ? (strDescription.Substring(0,240)+"...") : strDescription;
+
+	  //minput.Status=true;
+
+	  var dal = new DALJson();
+	  blnSuccess=dal.BlnUpdateSuccessByKeyword(mJsonInput);
 	}
 
 	//public static string DecodeFromUtf8(this string utf8String) {

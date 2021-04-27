@@ -10,6 +10,8 @@ namespace ModelQT.Framework {
 	}
 
 	public virtual DbSet<TblCategoryTheLoai> TblCategoryTheLoais { get; set; }
+	public virtual DbSet<TblHtmlRaw> TblHtmlRaws { get; set; }
+	public virtual DbSet<TblJson> TblJsons { get; set; }
 	public virtual DbSet<TblPostBaiViet> TblPostBaiViets { get; set; }
 	public virtual DbSet<TblTaiKhoan> TblTaiKhoans { get; set; }
 
@@ -23,6 +25,30 @@ namespace ModelQT.Framework {
 		  .IsUnicode(false);
 
 	  modelBuilder.Entity<TblCategoryTheLoai>()
+		  .Property(e => e.ModifiedBy)
+		  .IsUnicode(false);
+
+	  modelBuilder.Entity<TblHtmlRaw>()
+		  .Property(e => e.Keyword)
+		  .IsUnicode(false);
+
+	  modelBuilder.Entity<TblHtmlRaw>()
+		  .Property(e => e.CreatedBy)
+		  .IsUnicode(false);
+
+	  modelBuilder.Entity<TblHtmlRaw>()
+		  .Property(e => e.ModifiedBy)
+		  .IsUnicode(false);
+
+	  modelBuilder.Entity<TblJson>()
+		  .Property(e => e.Keyword)
+		  .IsUnicode(false);
+
+	  modelBuilder.Entity<TblJson>()
+		  .Property(e => e.CreatedBy)
+		  .IsUnicode(false);
+
+	  modelBuilder.Entity<TblJson>()
 		  .Property(e => e.ModifiedBy)
 		  .IsUnicode(false);
 
@@ -54,5 +80,7 @@ namespace ModelQT.Framework {
 		  .Property(e => e.ModifiedBy)
 		  .IsUnicode(false);
 	}
+
+	public System.Data.Entity.DbSet<ModelQT.ViewModel.VMLienLac> VMLienLacs { get; set; }
   }
 }

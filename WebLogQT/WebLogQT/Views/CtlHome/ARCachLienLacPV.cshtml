@@ -1,0 +1,674 @@
+﻿@model IEnumerable<ModelQT.ViewModel.VMLienLac>
+
+<style>
+  .zChat[_ngcontent-lud-c39] {
+  position: fixed;
+  right: 10px;
+  bottom: 0;
+  z-index: 99999999999
+  }
+
+  .opened.zChat[_ngcontent-lud-c39], .zChat.opened[_ngcontent-lud-c39] {
+  height: 550px;
+  width: 350px
+  }
+
+  .opened.zChat[_ngcontent-lud-c39], .zChat.closed[_ngcontent-lud-c39], .zChat.opened[_ngcontent-lud-c39] {
+  max-width: 100%;
+  animation: zChatOpen .25s ease !important;
+  -webkit-animation: zChatOpen .25s ease !important
+  }
+
+  .zChat.closed[_ngcontent-lud-c39] {
+  height: 40px;
+  width: 200px
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] {
+  height: 100%;
+  display: flex;
+  flex-direction: column
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] {
+  background-color: #3884ff;
+  color: #fff;
+  height: 60px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer
+  }
+
+  .closed.zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39], .zChat.closed[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] {
+  height: 100%
+  }
+
+  .closed.zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .am-navbar-right[_ngcontent-lud-c39], .zChat.closed[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .am-navbar-right[_ngcontent-lud-c39] {
+  display: none;
+  visibility: hidden
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .am-navbar-left[_ngcontent-lud-c39] {
+  padding-left: 15px;
+  font-size: 16px;
+  flex: 2
+  }
+
+  .closed.zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .am-navbar-left[_ngcontent-lud-c39], .zChat.closed[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .am-navbar-left[_ngcontent-lud-c39] {
+  flex: 10
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .logo[_ngcontent-lud-c39] img[_ngcontent-lud-c39] {
+  width: 40px;
+  vertical-align: middle
+  }
+
+  .closed.zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .logo[_ngcontent-lud-c39] img[_ngcontent-lud-c39], .zChat.closed[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .logo[_ngcontent-lud-c39] img[_ngcontent-lud-c39] {
+  width: 30px
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .company[_ngcontent-lud-c39] {
+  padding-left: 10px
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .company[_ngcontent-lud-c39] .name[_ngcontent-lud-c39] {
+  font-weight: 600
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .company[_ngcontent-lud-c39] .slogan[_ngcontent-lud-c39] {
+  opacity: .7;
+  font-size: .8em
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] .rightContent[_ngcontent-lud-c39] {
+  width: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .message-list[_ngcontent-lud-c39] {
+  height: 100%;
+  overflow-y: auto;
+  border-left: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+  background-color: #f5f5f9;
+  overflow-x: hidden
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .message-list[_ngcontent-lud-c39]::-webkit-scrollbar {
+  width: 4px
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .inputArea[_ngcontent-lud-c39] {
+  height: 70px;
+  display: flex;
+  border-top: 1px solid #ececec;
+  border-left: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .inputArea[_ngcontent-lud-c39] .input[_ngcontent-lud-c39] {
+  width: 100%;
+  flex: 1;
+  padding-top: 10px;
+  padding-bottom: 9px;
+  padding-left: 10px
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .inputArea[_ngcontent-lud-c39] .input[_ngcontent-lud-c39] textarea[_ngcontent-lud-c39] {
+  color: #000;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  overflow: visible;
+  display: block;
+  resize: none;
+  word-break: break-word;
+  font-size: 14px;
+  font-family: Roboto
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .inputArea[_ngcontent-lud-c39] .btn-action[_ngcontent-lud-c39] {
+  width: 50px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .inputArea[_ngcontent-lud-c39] .btn-action[_ngcontent-lud-c39] button[_ngcontent-lud-c39] {
+  width: 100%;
+  background: none;
+  border: none
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .inputArea[_ngcontent-lud-c39] .btn-action[_ngcontent-lud-c39] button[_ngcontent-lud-c39] svg[_ngcontent-lud-c39] {
+  width: 30px;
+  height: 100%;
+  fill: #b7b7b7
+  }
+
+  .zChat[_ngcontent-lud-c39] .message-list[_ngcontent-lud-c39] ul.listChat[_ngcontent-lud-c39] {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0
+  }
+
+  .zChat[_ngcontent-lud-c39] .message-list[_ngcontent-lud-c39] .list[_ngcontent-lud-c39] [class*=list_][_ngcontent-lud-c39] {
+  display: flex;
+  align-items: center
+  }
+
+  .zChat[_ngcontent-lud-c39] .message-list[_ngcontent-lud-c39] li.list[_ngcontent-lud-c39] {
+  padding: 0 10px;
+  margin-bottom: 6px;
+  -webkit-animation: zChatOpen .25s ease !important;
+  animation: zChatOpen .25s ease !important
+  }
+
+  .zChat[_ngcontent-lud-c39] .message-list[_ngcontent-lud-c39] li.list.right[_ngcontent-lud-c39] {
+  justify-content: flex-end;
+  align-items: center
+  }
+
+  .zChat[_ngcontent-lud-c39] .message-list[_ngcontent-lud-c39] li.list.left[_ngcontent-lud-c39], .zChat[_ngcontent-lud-c39] .message-list[_ngcontent-lud-c39] li.list.right[_ngcontent-lud-c39] {
+  align-items: flex-end;
+  display: flex;
+  margin: 10px 9px 10px 8px;
+  position: relative
+  }
+
+  .zChat[_ngcontent-lud-c39] .message-list[_ngcontent-lud-c39] li.list.private[_ngcontent-lud-c39] {
+  display: none;
+  visibility: hidden
+  }
+
+  .list[_ngcontent-lud-c39] .list_body[_ngcontent-lud-c39] p[_ngcontent-lud-c39] {
+  background: linear-gradient(#fdfdfd,#f4f4f4);
+  border: 1px solid #e0e0e0;
+  box-shadow: inset 0 1px 0 #fff;
+  border-radius: 5px;
+  color: #828080;
+  font-size: 14px;
+  padding: 5px 10px;
+  text-shadow: 0 1px 0 hsla(0,0%,100%,.5);
+  display: inline-block;
+  margin: 0;
+  position: relative;
+  line-height: 17px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 260px;
+  text-transform: none;
+  padding: 5px !important
+  }
+
+  .list.right[_ngcontent-lud-c39] .list_body[_ngcontent-lud-c39] p[_ngcontent-lud-c39] {
+  background: linear-gradient(#3884ff,#3884ff);
+  color: #fff;
+  border: none;
+  box-shadow: none;
+  text-shadow: none
+  }
+
+  li.list[_ngcontent-lud-c39] .userPhoto[_ngcontent-lud-c39] {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px
+  }
+
+  li.list[_ngcontent-lud-c39] .userPhoto[_ngcontent-lud-c39] img[_ngcontent-lud-c39] {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid #a5a5a5
+  }
+
+  .list.left[_ngcontent-lud-c39] .list_body[_ngcontent-lud-c39] p[_ngcontent-lud-c39] {
+  background: linear-gradient(#e4e4e4,#e6e6e6);
+  border: none;
+  box-shadow: none;
+  border-radius: 5px;
+  color: #3e3e3e;
+  font-size: 13px;
+  padding: 5px 10px;
+  text-shadow: none;
+  word-wrap: break-word;
+  display: inline-block;
+  margin: 0;
+  position: relative;
+  line-height: 17px
+  }
+
+  .list.left[_ngcontent-lud-c39] .list_body[_ngcontent-lud-c39] p[_ngcontent-lud-c39]:before {
+  content: "";
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 6px solid #e5e5e5;
+  height: 0;
+  left: -6px;
+  position: absolute
+  }
+
+  .list.left[_ngcontent-lud-c39] .list_body[_ngcontent-lud-c39] p[_ngcontent-lud-c39]:after {
+  border-right: 5px solid #e5e5e5;
+  left: -5px
+  }
+
+  .list.left[_ngcontent-lud-c39] .list_body[_ngcontent-lud-c39] p[_ngcontent-lud-c39]:after, .list.right[_ngcontent-lud-c39] .list_body[_ngcontent-lud-c39] p[_ngcontent-lud-c39]:before {
+  content: "";
+  position: absolute;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  height: 0;
+  top: 5px
+  }
+
+  .list.right[_ngcontent-lud-c39] .list_body[_ngcontent-lud-c39] p[_ngcontent-lud-c39]:before {
+  border-left: 6px solid #3884ff;
+  right: -6px
+  }
+
+  .list.right[_ngcontent-lud-c39] .list_body[_ngcontent-lud-c39] p[_ngcontent-lud-c39]:after {
+  content: "";
+  position: absolute;
+  border-top: 5px solid transparent;
+  border-left: 5px solid #3884ff;
+  border-bottom: 5px solid transparent;
+  height: 0;
+  right: -4px;
+  top: 5px
+  }
+
+  .list.center[_ngcontent-lud-c39] {
+  width: 100%;
+  display: flex;
+  justify-content: center
+  }
+
+  .list.center[_ngcontent-lud-c39] .list_body[_ngcontent-lud-c39] p[_ngcontent-lud-c39] {
+  background: none;
+  border: none;
+  box-shadow: none;
+  font-size: 11px
+  }
+
+  @@media (max-width:700px) {
+  .zChat.opened[_ngcontent-lud-c39] {
+  height: 100%;
+  width: 100%;
+  right: 0;
+  position: fixed;
+  z-index: 999999
+  }
+  }
+
+  @@keyframes zChatOpen {
+  0% {
+  opacity: 0;
+  transform: translateY(30px)
+  }
+
+  to {
+  opacity: 1;
+  transform: translate(0)
+  }
+  }
+
+  @@-webkit-keyframes zChatOpen {
+  0% {
+  opacity: 0;
+  transform: translateY(30px)
+  }
+
+  to {
+  opacity: 1;
+  transform: translate(0)
+  }
+  }
+
+  @@keyframes notify {
+  0% {
+  margin-top: 0
+  }
+
+  50% {
+  margin-top: 2px
+  }
+
+  to {
+  margin-top: 0
+  }
+  }
+
+  @@-webkit-keyframes notify {
+  0% {
+  margin-top: 0
+  }
+
+  50% {
+  margin-top: 2px
+  }
+
+  to {
+  margin-top: 0
+  }
+  }
+
+  .float-icon[_ngcontent-lud-c39] {
+  right: 20px;
+  position: fixed;
+  bottom: 100px
+  }
+
+  .float-icon[_ngcontent-lud-c39] ul[_ngcontent-lud-c39] {
+  display: flex;
+  flex-direction: column;
+  list-style: none
+  }
+
+  .float-icon[_ngcontent-lud-c39] ul[_ngcontent-lud-c39] li[_ngcontent-lud-c39] {
+  padding: 5px 0;
+  cursor: pointer;
+  position: relative
+  }
+
+  .float-icon[_ngcontent-lud-c39] ul[_ngcontent-lud-c39] li[_ngcontent-lud-c39] span[_ngcontent-lud-c39] {
+  display: none
+  }
+
+  .float-icon[_ngcontent-lud-c39] img[_ngcontent-lud-c39] {
+  width: 60px
+  }
+
+  .action-custom[_ngcontent-lud-c39] {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  align-items: flex-start;
+  justify-content: space-around;
+  background: #e6e6e6;
+  border-bottom: 1px solid #e0e0e0
+  }
+
+  .action-custom[_ngcontent-lud-c39] .top-button[_ngcontent-lud-c39] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  color: #676767 !important
+  }
+
+  .action-custom[_ngcontent-lud-c39] .top-button[_ngcontent-lud-c39] img[_ngcontent-lud-c39] {
+  width: 20px;
+  height: 20px
+  }
+
+  .action-custom[_ngcontent-lud-c39] .top-button[_ngcontent-lud-c39] span[_ngcontent-lud-c39] {
+  font-size: 10px
+  }
+
+  .custom-message[_ngcontent-lud-c39] {
+  position: absolute;
+  right: 50px;
+  min-width: 200px;
+  color: #fff
+  }
+
+  .custom-message[_ngcontent-lud-c39] .chat-welcome[_ngcontent-lud-c39] {
+  background: #ff9252;
+  text-transform: none;
+  border-radius: 10px;
+  width: auto;
+  padding: 5px 15px 5px 5px;
+  cursor: pointer;
+  animation: zChatOpen .25s ease !important;
+  -webkit-animation: zChatOpen .25s ease !important
+  }
+
+  .custom-message[_ngcontent-lud-c39] .chat-welcome[_ngcontent-lud-c39] .c[_ngcontent-lud-c39] {
+  display: flex;
+  align-items: center
+  }
+
+  .custom-message[_ngcontent-lud-c39] .chat-welcome[_ngcontent-lud-c39]:after {
+  content: "";
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 15px solid #ff9252;
+  height: 0;
+  right: -10px;
+  position: absolute;
+  top: 5px
+  }
+
+  .custom-message[_ngcontent-lud-c39] .chat-welcome[_ngcontent-lud-c39] .c[_ngcontent-lud-c39] .c-photo[_ngcontent-lud-c39] {
+  width: 50px;
+  margin-right: 10px;
+  height: 30px
+  }
+
+  .custom-message[_ngcontent-lud-c39] .chat-welcome[_ngcontent-lud-c39] .c[_ngcontent-lud-c39] .c-photo[_ngcontent-lud-c39] img[_ngcontent-lud-c39] {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%
+  }
+
+  .custom-message[_ngcontent-lud-c39] .chat-welcome[_ngcontent-lud-c39] p[_ngcontent-lud-c39] {
+  line-height: 15px
+  }
+
+  .notifyCount[_ngcontent-lud-c39] {
+  animation: notify .5s;
+  -moz-animation: notify .8s infinite;
+  -webkit-animation: notify .8s infinite
+  }
+
+  @@media (max-width:740px) {
+  .float-icon[_ngcontent-lud-c39] {
+  right: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background: #e6e6e6
+  }
+
+  .float-icon[_ngcontent-lud-c39] ul[_ngcontent-lud-c39] {
+  flex-direction: row;
+  list-style: none;
+  align-items: flex-start;
+  justify-content: space-around
+  }
+
+  .float-icon[_ngcontent-lud-c39] ul[_ngcontent-lud-c39], .float-icon[_ngcontent-lud-c39] ul[_ngcontent-lud-c39] li[_ngcontent-lud-c39] {
+  display: flex;
+  width: 100%;
+  height: 100%
+  }
+
+  .float-icon[_ngcontent-lud-c39] ul[_ngcontent-lud-c39] li[_ngcontent-lud-c39] {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0
+  }
+
+  .float-icon[_ngcontent-lud-c39] ul[_ngcontent-lud-c39] li[_ngcontent-lud-c39] img[_ngcontent-lud-c39] {
+  width: 50px
+  }
+
+  .float-icon[_ngcontent-lud-c39] ul[_ngcontent-lud-c39] li[_ngcontent-lud-c39] span[_ngcontent-lud-c39] {
+  display: initial;
+  font-size: 11px
+  }
+
+  .custom-message[_ngcontent-lud-c39] {
+  display: none;
+  visibility: hidden
+  }
+
+  .zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .am-navbar[_ngcontent-lud-c39] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0
+  }
+
+  .opened.zChat[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .message-list[_ngcontent-lud-c39], .zChat.opened[_ngcontent-lud-c39] .window[_ngcontent-lud-c39] .message-list[_ngcontent-lud-c39] {
+  height: 100% !important
+  }
+  }
+
+  .callingScreen[_ngcontent-lud-c39] {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center
+  }
+
+  .callingScreen[_ngcontent-lud-c39] .logo[_ngcontent-lud-c39] {
+  width: 100%;
+  height: 150px;
+  color: #bbb
+  }
+
+  .callingScreen[_ngcontent-lud-c39] .logo[_ngcontent-lud-c39] img[_ngcontent-lud-c39] {
+  border-radius: 50%;
+  border: 1px solid #fff
+  }
+
+  .callingAction[_ngcontent-lud-c39] {
+  height: 100px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center
+  }
+
+  .callingAction[_ngcontent-lud-c39] .btn-red[_ngcontent-lud-c39] {
+  background: linear-gradient(262.92deg,#ff8087 6.49%,#ef3b67 108.73%);
+  box-shadow: 0 4px 24px rgba(176,43,67,.25);
+  width: 55px;
+  height: 55px;
+  border-radius: 3rem;
+  border: none;
+  cursor: pointer
+  }
+
+  .callingAction[_ngcontent-lud-c39] .btn-action-incomming[_ngcontent-lud-c39] img[_ngcontent-lud-c39] {
+  width: 20px
+  }
+
+  .callFreeModal-buttons[_ngcontent-lud-c39] button[_ngcontent-lud-c39] {
+  margin: 5px 0;
+  min-height: 40px;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  color: #03a9f4;
+  cursor: pointer
+  }
+
+  .callFreeModal-buttons[_ngcontent-lud-c39] .primary-btn[_ngcontent-lud-c39] {
+  background: #4caf50;
+  border: none;
+  color: #fff;
+  font-weight: 600
+  }
+
+  .callFreeModal-buttons[_ngcontent-lud-c39] {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0
+  }
+</style>
+
+<style>
+
+  .zChat .window .inputArea {
+  height: 50px !important;
+  }
+
+  .zChat .window .am-navbar .company .name {
+  font-weight: 600;
+  height: 20px !important;
+  }
+
+  .action-custom {
+  height: 40px !important;
+  }
+
+  .action-custom .top-button span {
+  line-height: 15px !important;
+  }
+
+  @@media (max-width: 740px) {
+  .float-icon {
+  right: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 65px !important;
+  background: #e6e6e6;
+  display: flex;
+  }
+
+  .float-icon ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .float-icon ul li img {
+  width: 20px;
+  }
+
+  .float-icon ul li span {
+  line-height: 15px;
+  }
+  }
+</style>
+
+<div _ngcontent-lud-c39="" class="float-icon">
+  <ul _ngcontent-lud-c39="">
+
+    @{
+	  foreach(var item in Model) {
+		if(item.BlnHienThi==false) {
+		  continue;
+		}
+
+        <li _ngcontent-lud-c39="">
+          <a _ngcontent-lud-c39="" @(item.BlnOpenNewTab==true ? "target='_blank'" : "") href="@item.StrLinkLienLac">
+            <img _ngcontent-lud-c39="" src="@item.StrLinkImageIcon">
+          </a>
+          <span _ngcontent-lud-c39="">@item.StrNameButton</span>
+        </li>
+	  }
+    }
+
+    @*<li _ngcontent-lud-c39="">
+		<badge _ngcontent-lud-c39="" class="notifyCount am-badge am-badge-not-a-wrapper"><sup class="am-badge-text"><span>1</span></sup></badge>
+		<a _ngcontent-lud-c39="" href="#">
+		  <img _ngcontent-lud-c39="" src="https://fpt123.net/images/super-chat.gif">
+		</a>
+		<span _ngcontent-lud-c39="">Nhắc gọi lại</span>
+	  </li>*@
+
+  </ul>
+</div>
+
+@Html.Raw(ViewBag.strHtmlChatOnline)

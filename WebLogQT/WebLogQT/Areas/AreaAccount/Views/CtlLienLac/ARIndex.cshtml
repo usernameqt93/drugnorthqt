@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ModelQT.ViewModel.VMLienLac>
+
+@{
+  ViewBag.Title="Cách thức liên lạc";
+  Layout="~/Areas/AreaAccount/Views/Shared/_LayoutUser.cshtml";
+}
+
+@section jsFooter{
+  <script type="text/javascript">
+	var varTemp = {
+	  init: function () {
+		varTemp.regEvents();
+	  },
+	  regEvents: function () {
+
+		$('.btn-edit-ajax').off('click').on('click', function (e) {
+		  e.preventDefault();
+		  $.ajax({
+			data: { longId: $(this).data('id') },
+			url: '/AreaAccount/CtlLienLac/JRShowUpdatePartialView',
+			dataType: 'json',
+			type: 'POST',
+			success: function (res) {
+			  if (res.blnStatusJs == true) {
+				window.location.href = "/AreaAccount/CtlLienLac/ARIndex";
+			  }
+			}
+		  })
+		});
+	  }
+	}
+	varTemp.init();
+  </script>
+}
+
+    <h1 class="mt-4">Cách thức liên lạc</h1>
+
+    <p>
+      @Html.ActionLink("Thêm mới","ARCreate",null,new { @class = "btn btn-primary" })
+    </p>
+
+    <table class="table">
+      <tr>
+        <th>
+          Tên nút hiển thị
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.StrLinkLienLac)
+        </th>
+		<th>
+		  Link ảnh icon hiển thị
+		</th>
+        <th>
+          @Html.DisplayNameFor(model => model.BlnOpenNewTab)
+        </th>
+		<th>
+		  Hiển thị lên trang chủ
+		</th>
+        <th></th>
+      </tr>
+
+      @foreach(var item in Model) {
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.StrNameButton)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.StrLinkLienLac)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.StrLinkImageIcon)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.BlnOpenNewTab)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.BlnHienThi)
+          </td>
+          <td>
+            <a class="btn-edit-ajax" href="#" role="button" data-id="@item.Id">Sửa</a>
+          </td>
+        </tr>
+	  }
+
+    </table>
+
+    @{ if(ViewBag.strJsonDictionary!=null) {
+		Html.RenderAction("ARUpdatePV","CtlLienLac",new { strJsonDictionary = ViewBag.strJsonDictionary });
+	  }}

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Tuple<string,string,string,string>>
+
+@{
+  ViewBag.Title="Index";
+  Layout="~/Areas/AreaAccount/Views/Shared/_LayoutUser.cshtml";
+  string strIdButtonSave = "btnSaveCtlChatOnline";
+}
+
+@section jsFooter{
+  <script type="text/javascript">
+	function changeDataButtonSave(str) {
+	  document.getElementById('@strIdButtonSave').dataset.strinput = str;
+	  }
+  </script>
+
+  <script type="text/javascript">
+	  var varTemp = {
+		init: function () {
+		  varTemp.regEvents();
+		},
+		regEvents: function () {
+
+		  $('#@strIdButtonSave').off('click').on('click', function (e) {
+			e.preventDefault();
+			$.ajax({
+			  data: { strInput: $(this).data('strinput') },
+			  url: '/AreaAccount/CtlChatOnline/JRUpdateSetting',
+			  dataType: 'json',
+			  type: 'POST',
+			  success: function (res) {
+				if (res.blnStatusJs == true) {
+				  alert('Thao tác thành công!');
+				  window.location.href = "/AreaAccount/CtlChatOnline/Index";
+				} else {
+				  alert('Thao tác không thành công, bạn vui lòng thử lại!');
+				  window.location.href = "/AreaAccount/CtlChatOnline/Index";
+				}
+			  }
+			})
+		  });
+		}
+	  }
+	  varTemp.init();
+	</script>
+}
+
+<h2>Chat trực tuyến</h2>
+
+<div class="card">
+  <div class="card-header">
+    Thiết lập công cụ
+  </div>
+  <div class="card-body">
+
+    @{
+	  foreach(var item in Model) {
+        <div class="form-check">
+          <input onclick="changeDataButtonSave('@item.Item4')" class="form-check-input" type="radio" name="flexRadio" id="@item.Item1" @item.Item2>
+          <label class="form-check-label" for="@item.Item1">
+            @item.Item3
+          </label>
+        </div>
+	  }
+    }
+
+    <a class="btn btn-primary mt-3" href="#" id="@strIdButtonSave">Lưu thay đổi</a>
+
+  </div>
+</div>
+
+<div class="row align-items-md-stretch mt-3">
+  <div class="col-md-6">
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
+      <h2>Chat online qua vchat</h2>
+      <p>+ Phiên bản web: <br />Đăng nhập tài khoản duyvnqtnet@gmail.com , mật khẩu duydotvnqtnet trên trang web</p>
+      <p>+ Phiên bản điện thoại: <br />Tải app vchat plus -> Đăng nhập tài khoản duyvnqtnet@gmail.com , mật khẩu duydotvnqtnet trên app</p>
+      <a class="btn btn-outline-light" href="https://dashboard.vchat.vn/login" target="_blank">Truy cập web luôn</a>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="h-100 p-5 bg-light border rounded-3">
+      <h2>Chat online qua Tawk.to</h2>
+      <p>+ Phiên bản web: <br />Đăng nhập tài khoản duyvnqtnet@gmail.com , mật khẩu duydotvnqtnet trên trang web</p>
+      <p>+ Phiên bản điện thoại: <br />Tải app Tawk.to -> Đăng nhập tài khoản duyvnqtnet@gmail.com , mật khẩu duydotvnqtnet trên app</p>
+      <a class="btn btn-outline-secondary" href="https://dashboard.tawk.to/login" target="_blank">Truy cập web luôn</a>
+    </div>
+  </div>
+</div>

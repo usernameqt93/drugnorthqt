@@ -9,7 +9,7 @@ using System.Web.Script.Serialization;
 using WebLogQT.Common;
 
 namespace WebLogQT.Areas.AreaAccount.Controllers {
-  public class CtlPostController:BaseController {
+  public class CtlPostController:BaseAdminController {
 	// GET: AreaAccount/CtlPost
 	public ActionResult Index() {
 	  return View();
@@ -58,7 +58,7 @@ namespace WebLogQT.Areas.AreaAccount.Controllers {
 		  } catch(Exception et) {
 			string str = et.Message;
 		  }
-		  minput.Description=strDescription.Substring(0,240)+"...";
+		  minput.Description=(strDescription.Length>240) ? (strDescription.Substring(0,240)+"...") : strDescription;
 
 		  minput.Status=true;
 
@@ -111,7 +111,7 @@ namespace WebLogQT.Areas.AreaAccount.Controllers {
 		} catch(Exception et) {
 		  string str = et.Message;
 		}
-		minput.Description=strDescription.Substring(0,240)+"...";
+		minput.Description=(strDescription.Length>240) ? (strDescription.Substring(0,240)+"...") : strDescription;
 
 		//minput.Status=true;
 
